@@ -34,7 +34,7 @@ export function Values() {
             <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
               Valores
             </p>
-            <h2 className="mt-6 max-w-2xl text-[38px] font-semibold leading-[1.05] tracking-[-0.02em] text-balance text-[color:var(--ink)] md:text-[48px]">
+            <h2 className="mt-6 text-balance text-[36px] font-semibold leading-[1.06] tracking-[-0.02em] text-[color:var(--ink)] md:text-[44px]">
               Aquilo em que{' '}
               <span className="font-serif italic text-[color:var(--gold-soft)]">acreditamos</span>{' '}
               enquanto construímos.

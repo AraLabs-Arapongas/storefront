@@ -69,10 +69,9 @@ export default function CasaLevePage() {
                 Primeiro produto da Aralabs
               </div>
 
-              <h1 className="text-balance text-[44px] font-semibold leading-[1.03] tracking-[-0.02em] text-[color:var(--ink)] md:text-[58px] lg:text-[68px]">
-                <span className="font-serif italic text-[color:var(--gold-soft)]">Casa Leve</span>
-                <br />
-                um sistema para a família funcionar melhor.
+              <h1 className="text-balance text-[42px] font-semibold leading-[1.04] tracking-[-0.02em] text-[color:var(--ink)] md:text-[52px] lg:text-[58px]">
+                <span className="font-serif italic text-[color:var(--gold-soft)]">Casa Leve</span>{' '}
+                — um sistema para a família funcionar melhor.
               </h1>
 
               <p className="mt-8 max-w-xl text-[19px] leading-[1.7] text-[color:var(--ink-muted)] md:text-[20px]">
@@ -98,9 +97,7 @@ export default function CasaLevePage() {
                   <dt className="text-[11px] font-medium uppercase tracking-[0.22em] text-[color:var(--ink-dim)]">
                     Foco
                   </dt>
-                  <dd className="mt-2 font-serif text-xl italic text-[color:var(--ink)]">
-                    Família
-                  </dd>
+                  <dd className="mt-2 text-sm leading-snug text-[color:var(--ink)]">Família</dd>
                 </div>
                 <div>
                   <dt className="text-[11px] font-medium uppercase tracking-[0.22em] text-[color:var(--ink-dim)]">
@@ -150,7 +147,7 @@ export default function CasaLevePage() {
             <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
               Para quem é
             </p>
-            <h2 className="mt-4 max-w-3xl text-balance text-[36px] font-semibold leading-[1.05] tracking-[-0.02em] text-[color:var(--ink)] md:text-[48px]">
+            <h2 className="mt-4 text-balance text-[34px] font-semibold leading-[1.06] tracking-[-0.02em] text-[color:var(--ink)] md:text-[44px]">
               Desenhado para{' '}
               <span className="font-serif italic text-[color:var(--gold-soft)]">famílias</span>{' '}
               com filhos que querem uma rotina mais leve.
@@ -179,8 +176,8 @@ export default function CasaLevePage() {
               <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
                 Funcionalidades
               </p>
-              <h2 className="mt-4 max-w-2xl text-balance text-[36px] font-semibold leading-[1.05] tracking-[-0.02em] text-[color:var(--ink)] md:text-[48px]">
-                O que o Casa Leve faz{' '}
+              <h2 className="mt-4 text-balance text-[34px] font-semibold leading-[1.06] tracking-[-0.02em] text-[color:var(--ink)] md:text-[44px]">
+                O que o <span className="whitespace-nowrap">Casa Leve</span> faz{' '}
                 <span className="font-serif italic text-[color:var(--gold-soft)]">pela casa</span>.
               </h2>
             </div>
@@ -219,7 +216,7 @@ export default function CasaLevePage() {
             <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
               Princípios do produto
             </p>
-            <h2 className="mt-4 max-w-2xl text-balance text-[36px] font-semibold leading-[1.05] tracking-[-0.02em] text-[color:var(--ink)] md:text-[48px]">
+            <h2 className="mt-4 text-balance text-[34px] font-semibold leading-[1.06] tracking-[-0.02em] text-[color:var(--ink)] md:text-[44px]">
               Como o Casa Leve{' '}
               <span className="font-serif italic text-[color:var(--gold-soft)]">pensa</span>{' '}
               rotina.
@@ -257,7 +254,7 @@ export default function CasaLevePage() {
                 <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--gold-soft)]">
                   — Casa Leve
                 </p>
-                <h2 className="mt-5 text-balance text-[34px] font-semibold leading-[1.05] tracking-[-0.02em] text-[color:var(--ink)] md:text-[44px]">
+                <h2 className="mt-5 text-balance text-[32px] font-semibold leading-[1.06] tracking-[-0.02em] text-[color:var(--ink)] md:text-[40px]">
                   Quer acompanhar a construção?
                 </h2>
                 <p className="mt-5 text-[16px] leading-[1.7] text-[color:var(--ink-muted)]">

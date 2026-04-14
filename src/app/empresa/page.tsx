@@ -77,7 +77,7 @@ export default function EmpresaPage() {
               <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
                 Base da empresa
               </p>
-              <h2 className="mt-4 max-w-2xl text-balance text-[34px] font-semibold leading-[1.08] tracking-[-0.02em] text-[color:var(--ink)] md:text-[42px]">
+              <h2 className="mt-4 text-balance text-[32px] font-semibold leading-[1.08] tracking-[-0.02em] text-[color:var(--ink)] md:text-[40px]">
                 Documentação como{' '}
                 <span className="font-serif italic text-[color:var(--gold-soft)]">
                   forma de pensar
@@ -111,7 +111,7 @@ export default function EmpresaPage() {
               <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
                 Princípios de decisão
               </p>
-              <h2 className="mt-6 text-balance text-[38px] font-semibold leading-[1.05] tracking-[-0.02em] text-[color:var(--ink)] md:text-[48px]">
+              <h2 className="mt-6 text-balance text-[34px] font-semibold leading-[1.06] tracking-[-0.02em] text-[color:var(--ink)] md:text-[44px]">
                 Diretrizes que guiam{' '}
                 <span className="font-serif italic text-[color:var(--gold-soft)]">
                   cada escolha

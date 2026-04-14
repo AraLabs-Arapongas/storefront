@@ -28,7 +28,7 @@ export function Thesis() {
           </div>
 
           <div>
-            <h2 className="text-[40px] font-semibold leading-[1.08] tracking-[-0.02em] text-balance text-[color:var(--ink)] md:text-[56px]">
+            <h2 className="text-balance text-[36px] font-semibold leading-[1.08] tracking-[-0.02em] text-[color:var(--ink)] md:text-[50px]">
               Bons produtos nascem de{' '}
               <span className="font-serif italic text-[color:var(--gold-soft)]">leitura profunda</span>{' '}
               do problema.

@@ -66,7 +66,7 @@ export default function Home() {
               Empresa-mãe de produtos digitais
             </div>
 
-            <h1 className="text-balance text-[44px] font-semibold leading-[1.03] tracking-[-0.02em] text-[color:var(--ink)] md:text-[58px] lg:text-[68px]">
+            <h1 className="text-balance text-[42px] font-semibold leading-[1.04] tracking-[-0.02em] text-[color:var(--ink)] md:text-[54px] lg:text-[62px]">
               Produtos{' '}
               <span className="font-serif italic text-[color:var(--gold-soft)]">digitais</span> para
               problemas reais do cotidiano.
@@ -113,23 +113,15 @@ export default function Home() {
       {/* Quick pillars row */}
       <section className="border-b border-[color:var(--line)]">
         <div className="mx-auto max-w-[1240px] px-6 py-20 lg:px-10 lg:py-24">
-          <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-            <div>
-              <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
-                Como pensamos
-              </p>
-              <h2 className="mt-4 max-w-2xl text-balance text-[34px] font-semibold leading-[1.08] tracking-[-0.02em] text-[color:var(--ink)] md:text-[42px]">
-                Uma empresa de{' '}
-                <span className="font-serif italic text-[color:var(--gold-soft)]">produtos</span>,
-                não apenas de software.
-              </h2>
-            </div>
-            <Link
-              href="/empresa"
-              className="inline-flex items-center gap-2 text-[14px] font-semibold text-[color:var(--gold-soft)] transition hover:text-[color:var(--gold)]"
-            >
-              Ler sobre a empresa →
-            </Link>
+          <div>
+            <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
+              Como pensamos
+            </p>
+            <h2 className="mt-4 text-balance text-[32px] font-semibold leading-[1.08] tracking-[-0.02em] text-[color:var(--ink)] md:text-[40px]">
+              Uma empresa de{' '}
+              <span className="font-serif italic text-[color:var(--gold-soft)]">produtos</span>,
+              não apenas de software.
+            </h2>
           </div>
 
           <div className="mt-12 grid gap-px overflow-hidden rounded-[24px] border border-[color:var(--line-strong)] bg-[color:var(--line-strong)] sm:grid-cols-2 lg:grid-cols-4">
@@ -166,7 +158,7 @@ export default function Home() {
                   em exploração
                 </span>
               </div>
-              <h2 className="mt-6 text-balance text-[36px] font-semibold leading-[1.05] tracking-[-0.02em] text-[color:var(--ink)] md:text-[48px]">
+              <h2 className="mt-6 text-balance text-[34px] font-semibold leading-[1.05] tracking-[-0.02em] text-[color:var(--ink)] md:text-[44px]">
                 <span className="font-serif italic text-[color:var(--gold-soft)]">Casa Leve</span>{' '}
                 — um sistema para a família funcionar melhor.
               </h2>
@@ -201,7 +193,7 @@ export default function Home() {
               <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
                 Por onde começar
               </p>
-              <h2 className="mt-4 text-balance text-[34px] font-semibold leading-[1.08] tracking-[-0.02em] text-[color:var(--ink)] md:text-[42px]">
+              <h2 className="mt-4 text-balance text-[32px] font-semibold leading-[1.08] tracking-[-0.02em] text-[color:var(--ink)] md:text-[40px]">
                 Explore o que estamos construindo.
               </h2>
             </div>

@@ -21,7 +21,7 @@ export function PageHero({ eyebrow, title, description, visual }: PageHeroProps)
           <p className="mb-6 text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--gold-soft)]">
             — {eyebrow}
           </p>
-          <h1 className="text-balance text-[44px] font-semibold leading-[1.04] tracking-[-0.02em] text-[color:var(--ink)] md:text-[56px] lg:text-[64px]">
+          <h1 className="text-balance text-[40px] font-semibold leading-[1.04] tracking-[-0.02em] text-[color:var(--ink)] md:text-[50px] lg:text-[58px]">
             {title}
           </h1>
           <p className="mt-7 max-w-xl text-[19px] leading-[1.7] text-[color:var(--ink-muted)] md:text-[20px]">

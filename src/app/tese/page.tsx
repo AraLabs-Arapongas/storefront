@@ -72,7 +72,7 @@ export default function TesePage() {
             <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
               Nossa leitura
             </p>
-            <h2 className="mt-4 max-w-3xl text-balance text-[38px] font-semibold leading-[1.05] tracking-[-0.02em] text-[color:var(--ink)] md:text-[50px]">
+            <h2 className="mt-4 text-balance text-[34px] font-semibold leading-[1.06] tracking-[-0.02em] text-[color:var(--ink)] md:text-[44px]">
               O que entendemos depois de escutar famílias.
             </h2>
           </div>

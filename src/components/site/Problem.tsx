@@ -18,7 +18,7 @@ export function Problem() {
             <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
               O problema que escolhemos resolver
             </p>
-            <h2 className="mt-6 text-[38px] font-semibold leading-[1.05] tracking-[-0.02em] text-balance text-[color:var(--ink)] md:text-[48px]">
+            <h2 className="mt-6 text-balance text-[34px] font-semibold leading-[1.08] tracking-[-0.02em] text-[color:var(--ink)] md:text-[44px]">
               Famílias precisam de um{' '}
               <span className="font-serif italic text-[color:var(--gold-soft)]">sistema claro</span>{' '}
               para rotina, responsabilidades e acordos.

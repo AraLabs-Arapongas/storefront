@@ -36,7 +36,7 @@ export function NextSteps() {
               <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
                 Próximos passos
               </p>
-              <h2 className="mt-6 text-[36px] font-semibold leading-[1.05] tracking-[-0.02em] text-balance text-[color:var(--ink)] md:text-[48px]">
+              <h2 className="mt-6 text-balance text-[34px] font-semibold leading-[1.06] tracking-[-0.02em] text-[color:var(--ink)] md:text-[42px]">
                 Para construir produtos que{' '}
                 <span className="font-serif italic text-[color:var(--gold-soft)]">
                   façam sentido

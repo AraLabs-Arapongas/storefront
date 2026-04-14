@@ -1,4 +1,4 @@
-import { LogoMark } from './Logo';
+import { LogoMark, LogoWordmark } from './Logo';
 
 const columns = [
   {
@@ -21,11 +21,9 @@ export function Footer() {
       <div className="mx-auto max-w-[1240px] px-6 py-20 lg:px-10 lg:py-24">
         <div className="grid gap-14 border-b border-[color:var(--line)] pb-16 lg:grid-cols-[1.3fr_0.7fr_0.7fr_0.7fr]">
           <div>
-            <a href="#top" className="flex items-center gap-3">
-              <LogoMark className="h-11 w-11 text-[color:var(--ink)]" />
-              <span className="text-xl font-semibold tracking-tight text-[color:var(--ink)]">
-                Aralabs
-              </span>
+            <a href="#top" className="flex items-center gap-3" aria-label="AraLabs">
+              <LogoMark className="h-14 w-14 text-[color:var(--ink)]" />
+              <LogoWordmark className="hidden h-10 w-auto text-[color:var(--ink)] md:block" />
             </a>
             <p className="mt-6 max-w-sm text-[16px] leading-[1.7] text-[color:var(--ink-muted)]">
               Empresa brasileira de produtos digitais úteis, claros e bem estruturados, conectados

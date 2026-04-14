@@ -18,42 +18,18 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: 'Aralabs — Produtos digitais para problemas reais',
+  title: 'AraLabs — Produtos digitais para problemas reais',
   description:
-    'A Aralabs é uma empresa brasileira de produtos digitais que transforma problemas reais do cotidiano em soluções úteis, claras e sustentáveis.',
+    'A AraLabs é uma empresa brasileira de produtos digitais que transforma problemas reais do cotidiano em soluções úteis, claras e sustentáveis.',
   metadataBase: new URL('https://aralabs.com.br'),
-  keywords: [
-    'Aralabs',
-    'produtos digitais',
-    'empresa brasileira',
-    'rotina familiar',
-    'experiência mobile',
-    'soluções úteis',
-  ],
-  authors: [{ name: 'Aralabs', url: 'https://aralabs.com.br' }],
   openGraph: {
-    title: 'Aralabs — Produtos digitais para problemas reais',
+    title: 'AraLabs — Produtos digitais para problemas reais',
     description:
-      'Aralabs é uma empresa brasileira que transforma desafios do cotidiano em produtos digitais úteis, claros e sustentáveis para famílias.',
+      'AraLabs é uma empresa brasileira que transforma desafios do cotidiano em produtos digitais úteis, claros e sustentáveis para famílias.',
     url: 'https://aralabs.com.br',
-    siteName: 'Aralabs',
+    siteName: 'AraLabs',
     locale: 'pt-BR',
     type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Aralabs — Produtos digitais para problemas reais',
-    description:
-      'Aralabs é uma empresa brasileira que transforma desafios do cotidiano em soluções digitais úteis e claras.',
-    creator: '@aralabs',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-    },
   },
 };
 
@@ -63,7 +39,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={`${jakarta.variable} ${fraunces.variable}`} suppressHydrationWarning>
+    <html
+      lang="pt-BR"
+      className={`${jakarta.variable} ${fraunces.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <script
           dangerouslySetInnerHTML={{

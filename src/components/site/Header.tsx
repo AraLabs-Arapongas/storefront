@@ -1,4 +1,4 @@
-import { LogoMark } from './Logo';
+import { LogoMark, LogoWordmark } from './Logo';
 import { ThemeSwitcher } from './ThemeSwitcher';
 
 import Link from 'next/link';
@@ -15,11 +15,13 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-[color:var(--line)] bg-[color:var(--bg)]/80 backdrop-blur-xl">
       <div className="mx-auto flex max-w-[1240px] items-center justify-between px-6 py-5 lg:px-10">
-        <Link href="/" className="group flex items-center gap-3">
-          <LogoMark className="h-9 w-9 text-[color:var(--ink)] transition group-hover:text-[color:var(--gold-soft)]" />
-          <span className="text-[15px] font-semibold tracking-tight text-[color:var(--ink)]">
-            Aralabs
-          </span>
+        <Link
+          href="/"
+          className="group flex items-center gap-3"
+          aria-label="AraLabs — ir para a home"
+        >
+          <LogoMark className="h-11 w-11 text-[color:var(--ink)] transition group-hover:text-[color:var(--gold-soft)]" />
+          <LogoWordmark className="hidden h-7 w-auto text-[color:var(--ink)] transition group-hover:text-[color:var(--gold-soft)] md:block" />
         </Link>
 
         <nav className="hidden items-center gap-8 text-[15px] font-medium text-[color:var(--ink-muted)] md:flex" aria-label="Navegação principal">

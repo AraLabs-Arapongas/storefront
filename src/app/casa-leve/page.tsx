@@ -1,40 +1,31 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { ImagePlaceholder } from '@/components/site/ImagePlaceholder';
 import { CasaLeveMockup } from '@/components/site/CasaLeveMockup';
+import {
+  RoutineMockup,
+  CollabMockup,
+  HabitsMockup,
+} from '@/components/site/FeatureMockups';
 
 const features = [
   {
     n: '01',
     title: 'Rotina da casa',
     body: 'Tarefas recorrentes, lembretes e checkpoints diários para toda a família.',
-    image: {
-      description:
-        'Mockup de celular: tela de rotina semanal com cards coloridos de manhã/tarde/noite.',
-      width: 1000,
-      height: 1200,
-    },
+    mockup: <RoutineMockup />,
   },
   {
     n: '02',
     title: 'Colaboração familiar',
     body: 'Responsabilidades visíveis para todos os membros, sem depender da memória de um.',
-    image: {
-      description:
-        'Mockup: tela de membros da família com avatares e tarefas atribuídas a cada um.',
-      width: 1000,
-      height: 1200,
-    },
+    mockup: <CollabMockup />,
   },
   {
     n: '03',
     title: 'Hábitos e pontos',
     body: 'Incentivo positivo para crianças com pontos, metas e recompensas definidas pelos pais.',
-    image: {
-      description:
-        'Mockup: tela de perfil do filho mostrando streak de dias, pontos acumulados e loja de recompensas.',
-      width: 1000,
-      height: 1200,
-    },
+    mockup: <HabitsMockup />,
   },
 ];
 
@@ -166,13 +157,17 @@ export default function CasaLevePage() {
             </h2>
           </div>
 
-          <ImagePlaceholder
-            description="Família brasileira em casa, momento real (não posado): pais e filhos dividindo uma tarefa cotidiana — arrumar mesa, arrumar mochila, cozinhar juntos. Luz natural, sensação humana."
-            width={2400}
-            height={1200}
-            label="Público · família"
-            className="min-h-[500px]"
-          />
+          <div className="relative overflow-hidden rounded-[24px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] shadow-[0_40px_120px_rgba(0,0,0,0.25)]">
+            <Image
+              src="/images/family-1.png"
+              alt="Família em casa dividindo uma tarefa cotidiana"
+              width={1536}
+              height={1024}
+              priority
+              sizes="(min-width: 1240px) 1160px, 100vw"
+              className="h-auto w-full"
+            />
+          </div>
         </div>
       </section>
 
@@ -197,14 +192,9 @@ export default function CasaLevePage() {
                 key={f.n}
                 className="group flex flex-col overflow-hidden rounded-[24px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] transition hover:border-[color:var(--gold)]/30"
               >
-                <ImagePlaceholder
-                  description={f.image.description}
-                  width={f.image.width}
-                  height={f.image.height}
-                  aspect="preserve"
-                  className="rounded-none border-0 border-b border-dashed"
-                  label={`Feature ${f.n}`}
-                />
+                <div className="relative h-[520px] border-b border-[color:var(--line)] bg-gradient-to-b from-[color:var(--bg-elev-2)] to-[color:var(--bg-elev)]">
+                  {f.mockup}
+                </div>
                 <div className="p-7">
                   <span className="font-serif text-xs italic text-[color:var(--gold-soft)]">
                     {f.n}

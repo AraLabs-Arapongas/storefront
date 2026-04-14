@@ -16,15 +16,16 @@ export function Hero() {
             Empresa-mãe de produtos digitais
           </div>
 
-          <h1 className="text-[44px] font-semibold leading-[1.02] tracking-[-0.02em] text-[color:var(--ink)] md:text-[56px] lg:text-[68px]">
-            Produtos <span className="font-serif italic text-[color:var(--gold-soft)]">digitais</span>
-            <br />
-            para problemas reais
-            <br />
-            do cotidiano.
+          <h1 className="text-[40px] font-semibold leading-[1.04] tracking-[-0.02em] text-[color:var(--ink)] md:text-[52px] lg:text-[62px]">
+            <span className="block">
+              Produtos{' '}
+              <span className="font-serif italic text-[color:var(--gold-soft)]">digitais</span>
+            </span>
+            <span className="block">para problemas reais</span>
+            <span className="block">do cotidiano.</span>
           </h1>
 
-          <p className="mt-8 max-w-xl text-[17px] leading-[1.65] text-[color:var(--ink-muted)] md:text-lg">
+          <p className="mt-8 max-w-xl text-[20px] leading-[1.7] text-[color:var(--ink-muted)] md:text-[21px]">
             A Aralabs é uma empresa brasileira que transforma desafios recorrentes da vida real em
             produtos digitais úteis, claros e construídos com intenção de longo prazo.
           </p>
@@ -32,14 +33,14 @@ export function Hero() {
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <a
               href="#casa-leve"
-              className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-[color:var(--gold)] px-6 py-3.5 text-[14px] font-semibold tracking-tight text-[#1a1410] transition hover:bg-[color:var(--gold-soft)]"
+              className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-[color:var(--gold)] px-6 py-3.5 text-[15px] font-semibold tracking-tight text-[#1a1410] transition hover:bg-[color:var(--gold-soft)]"
             >
               Conhecer o Casa Leve
               <span className="transition group-hover:translate-x-0.5">→</span>
             </a>
             <a
               href="#tese"
-              className="inline-flex items-center gap-3 rounded-full border border-[color:var(--line-strong)] bg-transparent px-6 py-3.5 text-[14px] font-semibold text-[color:var(--ink)] transition hover:border-[color:var(--gold)]/50 hover:text-[color:var(--gold-soft)]"
+              className="inline-flex items-center gap-3 rounded-full border border-[color:var(--line-strong)] bg-transparent px-6 py-3.5 text-[15px] font-semibold text-[color:var(--ink)] transition hover:border-[color:var(--gold)]/50 hover:text-[color:var(--gold-soft)]"
             >
               Ler a nossa tese
             </a>

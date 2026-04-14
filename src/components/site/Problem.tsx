@@ -18,17 +18,17 @@ export function Problem() {
             <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
               O problema que escolhemos resolver
             </p>
-            <h2 className="mt-6 text-[38px] font-semibold leading-[1.05] tracking-[-0.02em] text-[color:var(--ink)] md:text-[48px]">
+            <h2 className="mt-6 text-[38px] font-semibold leading-[1.05] tracking-[-0.02em] text-balance text-[color:var(--ink)] md:text-[48px]">
               Famílias precisam de um{' '}
               <span className="font-serif italic text-[color:var(--gold-soft)]">sistema claro</span>{' '}
               para rotina, responsabilidades e acordos.
             </h2>
-            <p className="mt-7 text-[16px] leading-[1.7] text-[color:var(--ink-muted)]">
+            <p className="mt-7 text-[19px] leading-[1.75] text-[color:var(--ink-muted)]">
               Hoje, muitas casas dependem de lembretes informais, da memória de uma pessoa só e de
               ferramentas desconectadas. O resultado é sobrecarga mental, cobrança constante e pouca
               clareza sobre quem faz o quê.
             </p>
-            <p className="mt-5 text-[16px] leading-[1.7] text-[color:var(--ink-muted)]">
+            <p className="mt-5 text-[19px] leading-[1.75] text-[color:var(--ink-muted)]">
               Acreditamos que o problema não está na falta de boa vontade — está na{' '}
               <span className="text-[color:var(--ink)]">ausência de um sistema</span> que ajude a
               família a funcionar melhor como um todo.
@@ -44,7 +44,7 @@ export function Problem() {
                 <span className="mt-0.5 font-serif text-[11px] italic text-[color:var(--gold-soft)]">
                   {String(i + 1).padStart(2, '0')}
                 </span>
-                <p className="flex-1 text-[15.5px] font-medium leading-[1.5] text-[color:var(--ink)]">
+                <p className="flex-1 text-[17.5px] font-medium leading-[1.5] text-[color:var(--ink)]">
                   {p}
                 </p>
                 <span className="text-[color:var(--ink-dim)] transition group-hover:text-[color:var(--gold-soft)]">

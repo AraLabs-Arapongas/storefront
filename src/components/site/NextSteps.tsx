@@ -36,14 +36,14 @@ export function NextSteps() {
               <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
                 Próximos passos
               </p>
-              <h2 className="mt-6 text-[36px] font-semibold leading-[1.05] tracking-[-0.02em] text-[color:var(--ink)] md:text-[48px]">
+              <h2 className="mt-6 text-[36px] font-semibold leading-[1.05] tracking-[-0.02em] text-balance text-[color:var(--ink)] md:text-[48px]">
                 Para construir produtos que{' '}
                 <span className="font-serif italic text-[color:var(--gold-soft)]">
                   façam sentido
                 </span>{' '}
                 na vida real.
               </h2>
-              <p className="mt-6 max-w-lg text-[16px] leading-[1.7] text-[color:var(--ink-muted)]">
+              <p className="mt-6 max-w-lg text-[19px] leading-[1.75] text-[color:var(--ink-muted)]">
                 A Aralabs está em fase inicial de estruturação. Esses são os movimentos que estamos
                 fazendo agora para avançar com base sólida.
               </p>
@@ -73,10 +73,10 @@ export function NextSteps() {
                     {s.n}
                   </span>
                   <div>
-                    <h3 className="text-[14.5px] font-semibold text-[color:var(--ink)]">
+                    <h3 className="text-[17.5px] font-semibold text-[color:var(--ink)]">
                       {s.title}
                     </h3>
-                    <p className="mt-1.5 text-[13px] leading-[1.6] text-[color:var(--ink-muted)]">
+                    <p className="mt-1.5 text-[16px] leading-[1.65] text-[color:var(--ink-muted)]">
                       {s.body}
                     </p>
                   </div>

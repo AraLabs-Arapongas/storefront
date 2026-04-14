@@ -9,7 +9,7 @@ const columns = [
   },
   {
     title: 'Contato',
-    links: ['contato@aralabs.com.br', 'São Paulo, Brasil', 'aralabs.com.br'],
+    links: ['contato@aralabs.com.br', 'Arapongas, Paraná — Brasil', 'aralabs.com.br'],
   },
 ];
 
@@ -32,7 +32,7 @@ export function Footer() {
                 </span>
               </span>
             </a>
-            <p className="mt-6 max-w-sm text-[14px] leading-[1.7] text-[color:var(--ink-muted)]">
+            <p className="mt-6 max-w-sm text-[16px] leading-[1.7] text-[color:var(--ink-muted)]">
               Empresa brasileira de produtos digitais úteis, claros e bem estruturados, conectados
               com problemas reais do cotidiano.
             </p>
@@ -51,7 +51,7 @@ export function Footer() {
                   <li key={l}>
                     <a
                       href="#"
-                      className="text-[13.5px] text-[color:var(--ink)] transition hover:text-[color:var(--gold-soft)]"
+                      className="text-[15.5px] text-[color:var(--ink)] transition hover:text-[color:var(--gold-soft)]"
                     >
                       {l}
                     </a>
@@ -75,7 +75,7 @@ export function Footer() {
               Termos
             </a>
             <span className="font-serif italic text-[color:var(--gold-soft)]">
-              Feito em São Paulo
+              Feito em Arapongas, PR
             </span>
           </div>
         </div>

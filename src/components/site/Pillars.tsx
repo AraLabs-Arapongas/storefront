@@ -34,13 +34,13 @@ export function Pillars() {
             <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
               Aralabs HQ · Empresa
             </p>
-            <h2 className="mt-6 text-[38px] font-semibold leading-[1.05] tracking-[-0.02em] text-[color:var(--ink)] md:text-[48px]">
+            <h2 className="mt-6 text-[38px] font-semibold leading-[1.05] tracking-[-0.02em] text-balance text-[color:var(--ink)] md:text-[48px]">
               Uma empresa de{' '}
               <span className="font-serif italic text-[color:var(--gold-soft)]">produtos</span>,
               <br />
               não apenas de software.
             </h2>
-            <p className="mt-7 max-w-md text-[16px] leading-[1.7] text-[color:var(--ink-muted)]">
+            <p className="mt-7 max-w-md text-[19px] leading-[1.7] text-[color:var(--ink-muted)]">
               A Aralabs nasce como base estratégica e documental. Seu papel é identificar problemas
               relevantes, formular teses sólidas e sustentar produtos com clareza de direção.
             </p>
@@ -71,7 +71,7 @@ export function Pillars() {
                 <h3 className="mt-10 text-[22px] font-semibold tracking-tight text-[color:var(--ink)]">
                   {p.title}
                 </h3>
-                <p className="mt-3 text-[14px] leading-[1.65] text-[color:var(--ink-muted)]">
+                <p className="mt-3 text-[17px] leading-[1.65] text-[color:var(--ink-muted)]">
                   {p.body}
                 </p>
               </article>

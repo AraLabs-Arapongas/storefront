@@ -28,12 +28,12 @@ export function Thesis() {
           </div>
 
           <div>
-            <h2 className="text-[40px] font-semibold leading-[1.08] tracking-[-0.02em] text-[color:var(--ink)] md:text-[56px]">
+            <h2 className="text-[40px] font-semibold leading-[1.08] tracking-[-0.02em] text-balance text-[color:var(--ink)] md:text-[56px]">
               Bons produtos nascem de{' '}
               <span className="font-serif italic text-[color:var(--gold-soft)]">leitura profunda</span>{' '}
               do problema.
             </h2>
-            <p className="mt-8 max-w-2xl text-[17px] leading-[1.7] text-[color:var(--ink-muted)]">
+            <p className="mt-8 max-w-2xl text-[20px] leading-[1.75] text-[color:var(--ink-muted)]">
               O diferencial mais importante de uma empresa de produtos não está em construir rápido,
               mas em enxergar melhor, formular melhor e sustentar melhor uma direção de longo prazo.
               Acreditamos que bons produtos digitais geram valor real quando partem de problemas
@@ -52,10 +52,10 @@ export function Thesis() {
                     </span>
                     <span className="h-px w-10 bg-[color:var(--line-strong)]" />
                   </div>
-                  <h3 className="mt-8 text-[18px] font-semibold text-[color:var(--ink)]">
+                  <h3 className="mt-8 text-[20px] font-semibold text-[color:var(--ink)]">
                     {b.title}
                   </h3>
-                  <p className="mt-3 text-[13.5px] leading-[1.6] text-[color:var(--ink-muted)]">
+                  <p className="mt-3 text-[16.5px] leading-[1.65] text-[color:var(--ink-muted)]">
                     {b.body}
                   </p>
                 </div>

@@ -22,11 +22,11 @@ export function Principles() {
             <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
               Princípios de decisão
             </p>
-            <h2 className="mt-6 text-[38px] font-semibold leading-[1.05] tracking-[-0.02em] text-[color:var(--ink)] md:text-[48px]">
+            <h2 className="mt-6 text-[38px] font-semibold leading-[1.05] tracking-[-0.02em] text-balance text-[color:var(--ink)] md:text-[48px]">
               Os princípios que guiam{' '}
               <span className="font-serif italic text-[color:var(--gold-soft)]">cada decisão</span>.
             </h2>
-            <p className="mt-7 max-w-md text-[16px] leading-[1.7] text-[color:var(--ink-muted)]">
+            <p className="mt-7 max-w-md text-[19px] leading-[1.75] text-[color:var(--ink-muted)]">
               Essas diretrizes existem para manter consistência estratégica, reduzir decisões
               impulsivas e criar uma base clara para priorização e foco ao longo do tempo.
             </p>
@@ -40,7 +40,7 @@ export function Principles() {
                   <span className="font-serif text-[13px] italic text-[color:var(--gold-soft)]">
                     {p.n}
                   </span>
-                  <span className="flex-1 text-[15.5px] font-medium text-[color:var(--ink)]">
+                  <span className="flex-1 text-[18.5px] font-medium text-[color:var(--ink)]">
                     {p.title}
                   </span>
                   <span className="text-[color:var(--ink-dim)] transition group-hover:text-[color:var(--gold-soft)]">

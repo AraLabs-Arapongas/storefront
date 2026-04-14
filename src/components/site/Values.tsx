@@ -34,13 +34,13 @@ export function Values() {
             <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
               Valores
             </p>
-            <h2 className="mt-6 max-w-2xl text-[38px] font-semibold leading-[1.05] tracking-[-0.02em] text-[color:var(--ink)] md:text-[48px]">
+            <h2 className="mt-6 max-w-2xl text-[38px] font-semibold leading-[1.05] tracking-[-0.02em] text-balance text-[color:var(--ink)] md:text-[48px]">
               Aquilo em que{' '}
               <span className="font-serif italic text-[color:var(--gold-soft)]">acreditamos</span>{' '}
               enquanto construímos.
             </h2>
           </div>
-          <p className="max-w-sm text-[15px] leading-[1.65] text-[color:var(--ink-muted)]">
+          <p className="max-w-sm text-[18px] leading-[1.7] text-[color:var(--ink-muted)]">
             Esses valores orientam como a Aralabs escolhe problemas, toma decisões e sustenta
             produtos ao longo do tempo.
           </p>
@@ -61,7 +61,7 @@ export function Values() {
               <h3 className="mt-14 text-[22px] font-semibold tracking-tight text-[color:var(--ink)]">
                 {v.title}
               </h3>
-              <p className="mt-3 text-[14px] leading-[1.65] text-[color:var(--ink-muted)]">
+              <p className="mt-3 text-[17px] leading-[1.7] text-[color:var(--ink-muted)]">
                 {v.body}
               </p>
             </article>

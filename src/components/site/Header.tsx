@@ -25,7 +25,7 @@ export function Header() {
           </span>
         </a>
 
-        <nav className="hidden items-center gap-8 text-[13px] font-medium text-[color:var(--ink-muted)] md:flex">
+        <nav className="hidden items-center gap-8 text-[15px] font-medium text-[color:var(--ink-muted)] md:flex">
           {links.map((l) => (
             <a
               key={l.label}
@@ -39,7 +39,7 @@ export function Header() {
 
         <a
           href="#contato"
-          className="hidden items-center gap-2 rounded-full border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] px-4 py-2 text-[13px] font-semibold text-[color:var(--ink)] transition hover:border-[color:var(--gold)]/50 hover:text-[color:var(--gold-soft)] md:inline-flex"
+          className="hidden items-center gap-2 rounded-full border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] px-4 py-2 text-[15px] font-semibold text-[color:var(--ink)] transition hover:border-[color:var(--gold)]/50 hover:text-[color:var(--gold-soft)] md:inline-flex"
         >
           Falar com a gente
           <span aria-hidden className="text-[color:var(--gold-soft)]">

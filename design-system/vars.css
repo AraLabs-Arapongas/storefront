@@ -1,0 +1,124 @@
+:root {
+  --bg-canvas: #f7f3ee;
+  --bg-surface: #fcfbf8;
+  --bg-muted: #f3ede4;
+  --bg-strong: #222633;
+  --bg-strong-soft: #2a3040;
+
+  --text-primary: #181519;
+  --text-secondary: #59535b;
+  --text-muted: #7c757d;
+  --text-on-dark: #f7f4ef;
+  --text-on-dark-muted: rgba(247, 244, 239, 0.72);
+
+  --brand-purple-500: #7a4cff;
+  --brand-purple-400: #9370ff;
+  --brand-purple-200: #dcceff;
+  --brand-purple-100: #f1ebff;
+
+  --brand-gold-500: #d7c29a;
+  --brand-gold-400: #e6c58a;
+  --brand-gold-200: #f3e7d2;
+  --brand-gold-100: #faf3e8;
+
+  --border-default: rgba(24, 21, 25, 0.08);
+  --border-soft: rgba(24, 21, 25, 0.05);
+  --border-on-dark: rgba(255, 255, 255, 0.1);
+  --border-brand: rgba(122, 76, 255, 0.28);
+
+  --state-success: #3fa56d;
+  --state-warning: #c38a2e;
+  --state-error: #c85c5c;
+  --state-info: #6a74d9;
+
+  --gradient-hero-soft: linear-gradient(135deg, #f7f3ee 0%, #f4ecff 45%, #f2e7d8 100%);
+  --gradient-brand-soft: linear-gradient(135deg, #f1ebff 0%, #dcceff 100%);
+  --gradient-dark-lux: linear-gradient(135deg, #1d202b 0%, #2a3040 55%, #3a3352 100%);
+  --gradient-glow-purple-gold: radial-gradient(
+    circle,
+    rgba(122, 76, 255, 0.18) 0%,
+    rgba(215, 194, 154, 0.1) 45%,
+    rgba(247, 243, 238, 0) 70%
+  );
+
+  --font-family-sans:
+    'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
+
+  --font-display-xl-size: 72px;
+  --font-display-xl-line-height: 0.95;
+  --font-display-xl-weight: 600;
+
+  --font-display-l-size: 56px;
+  --font-display-l-line-height: 1;
+  --font-display-l-weight: 600;
+
+  --font-heading-xl-size: 40px;
+  --font-heading-xl-line-height: 1.1;
+  --font-heading-xl-weight: 600;
+
+  --font-heading-l-size: 32px;
+  --font-heading-l-line-height: 1.15;
+  --font-heading-l-weight: 600;
+
+  --font-heading-m-size: 24px;
+  --font-heading-m-line-height: 1.2;
+  --font-heading-m-weight: 600;
+
+  --font-body-l-size: 20px;
+  --font-body-l-line-height: 1.7;
+  --font-body-l-weight: 400;
+
+  --font-body-m-size: 18px;
+  --font-body-m-line-height: 1.7;
+  --font-body-m-weight: 400;
+
+  --font-body-s-size: 16px;
+  --font-body-s-line-height: 1.65;
+  --font-body-s-weight: 400;
+
+  --font-label-size: 12px;
+  --font-label-line-height: 1.4;
+  --font-label-weight: 600;
+  --font-label-letter-spacing: 0.28em;
+  --font-label-transform: uppercase;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-14: 56px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-28: 112px;
+  --space-32: 128px;
+
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-pill: 999px;
+
+  --shadow-soft: 0 8px 24px rgba(32, 24, 48, 0.06);
+  --shadow-medium: 0 18px 40px rgba(32, 24, 48, 0.1);
+  --shadow-large: 0 30px 80px rgba(32, 24, 48, 0.16);
+  --shadow-brand: 0 12px 40px rgba(122, 76, 255, 0.18);
+
+  --container-max: 1280px;
+  --container-content: 1200px;
+  --container-narrow: 880px;
+
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1440px;
+}
+
+/* Use essas variáveis para basear estilos, backgrounds e bordas em todo o projeto. */

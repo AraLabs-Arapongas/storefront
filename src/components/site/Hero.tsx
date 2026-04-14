@@ -1,3 +1,5 @@
+import { LogoMark } from './Logo';
+
 export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden border-b border-[color:var(--line)]">
@@ -88,8 +90,8 @@ export function Hero() {
               <div className="flex-1" />
 
               <div className="grid grid-cols-[auto_1fr_auto] items-end gap-6">
-                <div className="grid h-20 w-20 place-items-center rounded-2xl bg-gradient-to-br from-[color:var(--gold)] to-[#8a5d1a] font-serif text-4xl italic text-[#1a1410] shadow-2xl shadow-[color:var(--gold)]/20">
-                  A
+                <div className="grid h-20 w-20 place-items-center rounded-2xl bg-gradient-to-br from-[color:var(--gold)] to-[#8a5d1a] p-4 shadow-2xl shadow-[color:var(--gold)]/20">
+                  <LogoMark className="h-full w-full text-[#1a1410]" />
                 </div>
                 <div>
                   <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-[color:var(--ink-dim)]">

@@ -36,6 +36,12 @@ html,
 body {
   background: var(--bg);
   color: var(--ink);
+  scroll-behavior: smooth;
+  touch-action: manipulation;
+}
+
+html {
+  font-size: 100%;
 }
 
 body {
@@ -45,6 +51,31 @@ body {
     'cv11' on;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overscroll-behavior-y: contain;
+}
+
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+a {
+  text-decoration-skip-ink: auto;
+}
+
+button,
+summary {
+  cursor: pointer;
+}
+
+button:focus-visible,
+summary:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+summary::-webkit-details-marker {
+  display: none;
 }
 
 * {

@@ -1,3 +1,5 @@
+import { LogoMark } from './Logo';
+
 const columns = [
   {
     title: 'Empresa',
@@ -20,16 +22,9 @@ export function Footer() {
         <div className="grid gap-14 border-b border-[color:var(--line)] pb-16 lg:grid-cols-[1.3fr_0.7fr_0.7fr_0.7fr]">
           <div>
             <a href="#top" className="flex items-center gap-3">
-              <span className="grid h-11 w-11 place-items-center rounded-[12px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev-2)] font-serif text-xl italic text-[color:var(--gold-soft)]">
-                A
-              </span>
-              <span className="flex items-baseline gap-2">
-                <span className="text-xl font-semibold tracking-tight text-[color:var(--ink)]">
-                  Aralabs
-                </span>
-                <span className="text-[10px] font-medium uppercase tracking-[0.22em] text-[color:var(--ink-dim)]">
-                  HQ
-                </span>
+              <LogoMark className="h-11 w-11 text-[color:var(--ink)]" />
+              <span className="text-xl font-semibold tracking-tight text-[color:var(--ink)]">
+                Aralabs
               </span>
             </a>
             <p className="mt-6 max-w-sm text-[16px] leading-[1.7] text-[color:var(--ink-muted)]">

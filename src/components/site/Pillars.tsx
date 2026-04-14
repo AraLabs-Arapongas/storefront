@@ -32,7 +32,7 @@ export function Pillars() {
         <div className="grid gap-16 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
             <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
-              Aralabs HQ · Empresa
+              Aralabs · Empresa
             </p>
             <h2 className="mt-6 text-[38px] font-semibold leading-[1.05] tracking-[-0.02em] text-balance text-[color:var(--ink)] md:text-[48px]">
               Uma empresa de{' '}

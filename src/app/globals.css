@@ -1,9 +1,12 @@
 @import 'tailwindcss';
 
-:root {
+/* Default theme: Midnight */
+:root,
+[data-theme='midnight'] {
   --bg: #0d0c10;
   --bg-elev: #141218;
   --bg-elev-2: #1b1822;
+  --surface-deep: #0f0d12;
   --ink: #f5f0e6;
   --ink-muted: #b9b1a3;
   --ink-dim: #7d7668;
@@ -13,6 +16,65 @@
   --gold-soft: #e6c58a;
   --violet: #a78bff;
   --warm: #e9a86b;
+  --on-gold: #1a1410;
+  --is-light: 0;
+}
+
+/* Espresso: warm dark brown */
+[data-theme='espresso'] {
+  --bg: #1a130d;
+  --bg-elev: #221910;
+  --bg-elev-2: #2b2016;
+  --surface-deep: #15100a;
+  --ink: #f6efe2;
+  --ink-muted: #c4b49c;
+  --ink-dim: #8a7c66;
+  --line: rgba(246, 239, 226, 0.08);
+  --line-strong: rgba(246, 239, 226, 0.16);
+  --gold: #e0a648;
+  --gold-soft: #ecc68a;
+  --violet: #b998ff;
+  --warm: #edb07b;
+  --on-gold: #1f140a;
+  --is-light: 0;
+}
+
+/* Ink: midnight blue */
+[data-theme='ink'] {
+  --bg: #0d1020;
+  --bg-elev: #13172a;
+  --bg-elev-2: #1a1f38;
+  --surface-deep: #0a0d1a;
+  --ink: #eef2ff;
+  --ink-muted: #9ea9c9;
+  --ink-dim: #5f6a8a;
+  --line: rgba(200, 210, 240, 0.08);
+  --line-strong: rgba(200, 210, 240, 0.18);
+  --gold: #d9a84a;
+  --gold-soft: #f0d089;
+  --violet: #8da0ff;
+  --warm: #7ec0ff;
+  --on-gold: #0a0d1a;
+  --is-light: 0;
+}
+
+/* Cream: warm editorial light */
+[data-theme='cream'] {
+  --bg: #f5efe3;
+  --bg-elev: #ede5d4;
+  --bg-elev-2: #e3d9c2;
+  --surface-deep: #e8dfcb;
+  --ink: #241d15;
+  --ink-muted: #5a4e3d;
+  --ink-dim: #8f816b;
+  --line: rgba(36, 29, 21, 0.1);
+  --line-strong: rgba(36, 29, 21, 0.18);
+  --gold: #c58c2b;
+  --gold-soft: #8a5f1a;
+  --violet: #6f4bff;
+  --warm: #c26a1e;
+  --on-gold: #f9f3e4;
+  --is-light: 1;
 }
 
 @theme inline {
@@ -91,7 +153,12 @@ select {
 
 ::selection {
   background: var(--gold);
-  color: #1a1410;
+  color: var(--on-gold);
+}
+
+/* Grain overlay should only show on dark themes */
+[data-theme='cream'] .grain {
+  display: none;
 }
 
 .font-serif {

@@ -1,0 +1,166 @@
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
+
+type Theme = {
+  id: 'midnight' | 'espresso' | 'ink' | 'cream';
+  name: string;
+  description: string;
+  bg: string;
+  ring: string;
+  accent: string;
+};
+
+const themes: Theme[] = [
+  {
+    id: 'midnight',
+    name: 'Midnight',
+    description: 'Preto quente, dourado suave',
+    bg: '#0d0c10',
+    ring: 'rgba(243,238,228,0.16)',
+    accent: '#d9a84a',
+  },
+  {
+    id: 'espresso',
+    name: 'Espresso',
+    description: 'Marrom profundo, tom humano',
+    bg: '#1a130d',
+    ring: 'rgba(246,239,226,0.16)',
+    accent: '#e0a648',
+  },
+  {
+    id: 'ink',
+    name: 'Ink',
+    description: 'Azul-noite, tipografia limpa',
+    bg: '#0d1020',
+    ring: 'rgba(200,210,240,0.18)',
+    accent: '#d9a84a',
+  },
+  {
+    id: 'cream',
+    name: 'Cream',
+    description: 'Claro editorial, vibe papel',
+    bg: '#f5efe3',
+    ring: 'rgba(36,29,21,0.16)',
+    accent: '#b8822a',
+  },
+];
+
+export function ThemeSwitcher() {
+  const [open, setOpen] = useState(false);
+  const [current, setCurrent] = useState<Theme['id']>('midnight');
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const saved = (localStorage.getItem('aralabs-theme') as Theme['id']) || 'midnight';
+    setCurrent(saved);
+  }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    const onClick = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    const onEsc = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false);
+    document.addEventListener('mousedown', onClick);
+    document.addEventListener('keydown', onEsc);
+    return () => {
+      document.removeEventListener('mousedown', onClick);
+      document.removeEventListener('keydown', onEsc);
+    };
+  }, [open]);
+
+  const apply = (id: Theme['id']) => {
+    document.documentElement.setAttribute('data-theme', id);
+    localStorage.setItem('aralabs-theme', id);
+    setCurrent(id);
+    setOpen(false);
+  };
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-label="Mudar tema"
+        aria-expanded={open}
+        className="grid h-10 w-10 place-items-center rounded-full border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] text-[color:var(--ink)] transition hover:border-[color:var(--gold)]/50 hover:text-[color:var(--gold-soft)]"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className={`h-[18px] w-[18px] transition ${open ? 'rotate-45' : ''}`}
+        >
+          <circle cx="12" cy="12" r="3" />
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+        </svg>
+      </button>
+
+      {open && (
+        <div
+          role="menu"
+          className="absolute right-0 top-[52px] z-50 w-[320px] overflow-hidden rounded-[20px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] shadow-[0_30px_80px_rgba(0,0,0,0.45)]"
+        >
+          <div className="border-b border-[color:var(--line)] px-5 py-4">
+            <p className="text-[10px] font-medium uppercase tracking-[0.25em] text-[color:var(--ink-dim)]">
+              Tema
+            </p>
+            <p className="mt-1 font-serif text-base italic text-[color:var(--gold-soft)]">
+              Escolha a atmosfera do site
+            </p>
+          </div>
+          <ul className="p-2">
+            {themes.map((t) => {
+              const active = t.id === current;
+              return (
+                <li key={t.id}>
+                  <button
+                    type="button"
+                    role="menuitemradio"
+                    aria-checked={active}
+                    onClick={() => apply(t.id)}
+                    className={`group flex w-full items-center gap-4 rounded-[14px] px-3 py-3 text-left transition ${
+                      active
+                        ? 'bg-[color:var(--bg-elev-2)]'
+                        : 'hover:bg-[color:var(--bg-elev-2)]'
+                    }`}
+                  >
+                    <span
+                      className="relative grid h-11 w-11 shrink-0 place-items-center rounded-full"
+                      style={{
+                        background: t.bg,
+                        boxShadow: `inset 0 0 0 1px ${t.ring}`,
+                      }}
+                    >
+                      <span
+                        className="h-4 w-4 rounded-full"
+                        style={{ background: t.accent }}
+                      />
+                    </span>
+                    <span className="flex-1">
+                      <span className="block text-[14.5px] font-semibold text-[color:var(--ink)]">
+                        {t.name}
+                      </span>
+                      <span className="mt-0.5 block text-[12.5px] text-[color:var(--ink-muted)]">
+                        {t.description}
+                      </span>
+                    </span>
+                    {active && (
+                      <span className="font-serif text-xs italic text-[color:var(--gold-soft)]">
+                        atual
+                      </span>
+                    )}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}

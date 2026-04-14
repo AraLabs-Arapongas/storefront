@@ -61,7 +61,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={`${jakarta.variable} ${fraunces.variable}`}>
+    <html lang="pt-BR" className={`${jakarta.variable} ${fraunces.variable}`} suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('aralabs-theme');if(t&&['midnight','espresso','ink','cream'].indexOf(t)>-1){document.documentElement.setAttribute('data-theme',t);}else{document.documentElement.setAttribute('data-theme','midnight');}}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body className="min-h-screen bg-[color:var(--bg)] text-[color:var(--ink)]">{children}</body>
     </html>
   );

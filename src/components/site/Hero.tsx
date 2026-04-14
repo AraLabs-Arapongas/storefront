@@ -35,7 +35,7 @@ export function Hero() {
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <a
               href="#casa-leve"
-              className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-[color:var(--gold)] px-6 py-3.5 text-[15px] font-semibold tracking-tight text-[#1a1410] transition hover:bg-[color:var(--gold-soft)]"
+              className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-[color:var(--gold)] px-6 py-3.5 text-[15px] font-semibold tracking-tight text-[color:var(--on-gold)] transition hover:bg-[color:var(--gold-soft)]"
             >
               Conhecer o Casa Leve
               <span className="transition group-hover:translate-x-0.5">→</span>
@@ -72,7 +72,7 @@ export function Hero() {
 
         {/* Hero visual: placeholder for photo */}
         <div className="relative min-h-[420px] lg:min-h-[560px]">
-          <div className="absolute inset-0 rounded-[28px] border border-[color:var(--line-strong)] bg-gradient-to-br from-[#1b1822] via-[#14121a] to-[#0f0d12] shadow-[0_40px_120px_rgba(0,0,0,0.5)]">
+          <div className="absolute inset-0 rounded-[28px] border border-[color:var(--line-strong)] bg-gradient-to-br from-[color:var(--bg-elev-2)] via-[color:var(--bg-elev)] to-[color:var(--surface-deep)] shadow-[0_40px_120px_rgba(0,0,0,0.5)]">
             {/* IMAGE PLACEHOLDER — replace with a photo */}
             <div className="flex h-full w-full flex-col justify-between p-8">
               <div className="flex items-center justify-between">
@@ -90,8 +90,8 @@ export function Hero() {
               <div className="flex-1" />
 
               <div className="grid grid-cols-[auto_1fr_auto] items-end gap-6">
-                <div className="grid h-20 w-20 place-items-center rounded-2xl bg-gradient-to-br from-[color:var(--gold)] to-[#8a5d1a] p-4 shadow-2xl shadow-[color:var(--gold)]/20">
-                  <LogoMark className="h-full w-full text-[#1a1410]" />
+                <div className="grid h-20 w-20 place-items-center rounded-2xl bg-gradient-to-br from-[color:var(--gold)] to-[color:var(--gold-soft)] p-4 shadow-2xl shadow-[color:var(--gold)]/20">
+                  <LogoMark className="h-full w-full text-[color:var(--on-gold)]" />
                 </div>
                 <div>
                   <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-[color:var(--ink-dim)]">

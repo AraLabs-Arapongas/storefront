@@ -50,7 +50,7 @@ export function CasaLeveMockup() {
       </div>
 
       {/* Front card: task list */}
-      <div className="absolute right-0 top-0 w-[60%] rotate-[2deg] rounded-[22px] border border-[color:var(--line-strong)] bg-gradient-to-b from-[#1d1a24] to-[#141218] p-5 shadow-[0_50px_100px_rgba(0,0,0,0.6)]">
+      <div className="absolute right-0 top-0 w-[60%] rotate-[2deg] rounded-[22px] border border-[color:var(--line-strong)] bg-gradient-to-b from-[color:var(--bg-elev-2)] to-[color:var(--bg-elev)] p-5 shadow-[0_50px_100px_rgba(0,0,0,0.6)]">
         <div className="flex items-start justify-between">
           <div>
             <p className="text-[9px] font-medium uppercase tracking-[0.22em] text-[color:var(--ink-dim)]">
@@ -79,7 +79,7 @@ export function CasaLeveMockup() {
               <span
                 className={`grid h-4 w-4 place-items-center rounded-[5px] border ${
                   t.done
-                    ? 'border-[color:var(--gold)] bg-[color:var(--gold)] text-[9px] text-[#1a1410]'
+                    ? 'border-[color:var(--gold)] bg-[color:var(--gold)] text-[9px] text-[color:var(--on-gold)]'
                     : 'border-[color:var(--line-strong)]'
                 }`}
               >

@@ -1,4 +1,5 @@
 import { LogoMark } from './Logo';
+import { ThemeSwitcher } from './ThemeSwitcher';
 
 const links = [
   { label: 'A Aralabs', href: '#empresa' },
@@ -32,15 +33,18 @@ export function Header() {
           ))}
         </nav>
 
-        <a
-          href="#contato"
-          className="hidden items-center gap-2 rounded-full border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] px-4 py-2 text-[15px] font-semibold text-[color:var(--ink)] transition hover:border-[color:var(--gold)]/50 hover:text-[color:var(--gold-soft)] md:inline-flex"
-        >
-          Falar com a gente
-          <span aria-hidden="true" className="text-[color:var(--gold-soft)]">
-            →
-          </span>
-        </a>
+        <div className="hidden items-center gap-3 md:flex">
+          <a
+            href="#contato"
+            className="inline-flex items-center gap-2 rounded-full border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] px-4 py-2 text-[15px] font-semibold text-[color:var(--ink)] transition hover:border-[color:var(--gold)]/50 hover:text-[color:var(--gold-soft)]"
+          >
+            Falar com a gente
+            <span aria-hidden="true" className="text-[color:var(--gold-soft)]">
+              →
+            </span>
+          </a>
+          <ThemeSwitcher />
+        </div>
 
         <details className="md:hidden">
           <summary className="inline-flex items-center justify-between gap-2 rounded-full border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] px-4 py-2 text-[15px] font-semibold text-[color:var(--ink)] transition hover:border-[color:var(--gold)]/50 hover:text-[color:var(--gold-soft)]">
@@ -60,7 +64,7 @@ export function Header() {
             ))}
             <a
               href="#contato"
-              className="block rounded-2xl bg-[color:var(--gold)] px-4 py-3 text-[15px] font-semibold text-[#1a1410] transition hover:bg-[color:var(--gold-soft)]"
+              className="block rounded-2xl bg-[color:var(--gold)] px-4 py-3 text-[15px] font-semibold text-[color:var(--on-gold)] transition hover:bg-[color:var(--gold-soft)]"
             >
               Falar com a gente
             </a>

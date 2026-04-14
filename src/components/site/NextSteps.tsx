@@ -28,7 +28,7 @@ export function NextSteps() {
       className="relative overflow-hidden border-b border-[color:var(--line)]"
     >
       <div className="mx-auto max-w-[1240px] px-6 py-24 lg:px-10 lg:py-32">
-        <div className="relative overflow-hidden rounded-[32px] border border-[color:var(--line-strong)] bg-gradient-to-br from-[#1b1822] via-[#141218] to-[#0e0d12] px-8 py-14 md:px-14 md:py-20">
+        <div className="relative overflow-hidden rounded-[32px] border border-[color:var(--line-strong)] bg-gradient-to-br from-[color:var(--bg-elev-2)] via-[color:var(--bg-elev)] to-[color:var(--surface-deep)] px-8 py-14 md:px-14 md:py-20">
           <div className="pointer-events-none absolute -right-24 -top-24 h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(closest-side,rgba(217,168,74,0.18),transparent_70%)]" />
 
           <div className="relative grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
@@ -50,7 +50,7 @@ export function NextSteps() {
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
                   href="#contato"
-                  className="inline-flex items-center gap-2 rounded-full bg-[color:var(--gold)] px-6 py-3 text-[13px] font-semibold text-[#1a1410] transition hover:bg-[color:var(--gold-soft)]"
+                  className="inline-flex items-center gap-2 rounded-full bg-[color:var(--gold)] px-6 py-3 text-[13px] font-semibold text-[color:var(--on-gold)] transition hover:bg-[color:var(--gold-soft)]"
                 >
                   Conhecer o primeiro produto →
                 </a>

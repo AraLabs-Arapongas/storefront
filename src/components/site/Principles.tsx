@@ -62,11 +62,11 @@ export function Principles() {
               </span>
             </div>
 
-            <div className="rounded-[28px] border border-[color:var(--line-strong)] bg-gradient-to-b from-[#16141b] to-[#0f0d12] p-6 shadow-[0_40px_120px_rgba(0,0,0,0.5)]">
+            <div className="rounded-[28px] border border-[color:var(--line-strong)] bg-gradient-to-b from-[color:var(--bg-elev)] to-[color:var(--surface-deep)] p-6 shadow-[0_40px_120px_rgba(0,0,0,0.5)]">
               <div className="flex items-start justify-between">
                 <div>
                   <div className="flex items-center gap-2.5">
-                    <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-[color:var(--gold)] to-[#8a5d1a] font-serif text-base italic text-[#1a1410]">
+                    <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-[color:var(--gold)] to-[color:var(--gold-soft)] font-serif text-base italic text-[color:var(--on-gold)]">
                       C
                     </span>
                     <div>

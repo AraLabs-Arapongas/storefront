@@ -1,0 +1,85 @@
+const columns = [
+  {
+    title: 'Empresa',
+    links: ['Visão geral', 'Tese', 'Problema que resolvemos', 'Princípios'],
+  },
+  {
+    title: 'Produto',
+    links: ['Casa Leve', 'Visão do produto', 'Proposta de valor', 'Ideias'],
+  },
+  {
+    title: 'Contato',
+    links: ['contato@aralabs.com.br', 'São Paulo, Brasil', 'aralabs.com.br'],
+  },
+];
+
+export function Footer() {
+  return (
+    <footer id="contato" className="relative">
+      <div className="mx-auto max-w-[1240px] px-6 py-20 lg:px-10 lg:py-24">
+        <div className="grid gap-14 border-b border-[color:var(--line)] pb-16 lg:grid-cols-[1.3fr_0.7fr_0.7fr_0.7fr]">
+          <div>
+            <a href="#top" className="flex items-center gap-3">
+              <span className="grid h-11 w-11 place-items-center rounded-[12px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev-2)] font-serif text-xl italic text-[color:var(--gold-soft)]">
+                A
+              </span>
+              <span className="flex items-baseline gap-2">
+                <span className="text-xl font-semibold tracking-tight text-[color:var(--ink)]">
+                  Aralabs
+                </span>
+                <span className="text-[10px] font-medium uppercase tracking-[0.22em] text-[color:var(--ink-dim)]">
+                  HQ
+                </span>
+              </span>
+            </a>
+            <p className="mt-6 max-w-sm text-[14px] leading-[1.7] text-[color:var(--ink-muted)]">
+              Empresa brasileira de produtos digitais úteis, claros e bem estruturados, conectados
+              com problemas reais do cotidiano.
+            </p>
+            <p className="mt-6 font-serif text-sm italic text-[color:var(--gold-soft)]">
+              aralabs.com.br
+            </p>
+          </div>
+
+          {columns.map((c) => (
+            <div key={c.title}>
+              <h3 className="text-[10px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
+                {c.title}
+              </h3>
+              <ul className="mt-5 space-y-3">
+                {c.links.map((l) => (
+                  <li key={l}>
+                    <a
+                      href="#"
+                      className="text-[13.5px] text-[color:var(--ink)] transition hover:text-[color:var(--gold-soft)]"
+                    >
+                      {l}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <div className="flex flex-col items-start justify-between gap-4 pt-8 text-[12px] text-[color:var(--ink-dim)] md:flex-row md:items-center">
+          <div className="flex items-center gap-2">
+            <span>© 2026 Aralabs.</span>
+            <span>Empresa-mãe de produtos digitais.</span>
+          </div>
+          <div className="flex items-center gap-6">
+            <a href="#" className="hover:text-[color:var(--ink)]">
+              Privacidade
+            </a>
+            <a href="#" className="hover:text-[color:var(--ink)]">
+              Termos
+            </a>
+            <span className="font-serif italic text-[color:var(--gold-soft)]">
+              Feito em São Paulo
+            </span>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}

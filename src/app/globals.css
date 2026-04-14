@@ -1,30 +1,50 @@
 @import 'tailwindcss';
 
 :root {
-  --background: #ffffff;
-  --foreground: #0f172a;
+  --bg: #0d0c10;
+  --bg-elev: #141218;
+  --bg-elev-2: #1b1822;
+  --ink: #f3eee4;
+  --ink-muted: #a29a8e;
+  --ink-dim: #6d6657;
+  --line: rgba(243, 238, 228, 0.08);
+  --line-strong: rgba(243, 238, 228, 0.16);
+  --gold: #d9a84a;
+  --gold-soft: #e6c58a;
+  --violet: #a78bff;
+  --warm: #e9a86b;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-bg: var(--bg);
+  --color-bg-elev: var(--bg-elev);
+  --color-bg-elev-2: var(--bg-elev-2);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-dim: var(--ink-dim);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-violet: var(--violet);
+  --color-warm: var(--warm);
   --font-sans: var(--font-sans);
-  --font-mono:
-    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
-    monospace;
+  --font-serif: var(--font-serif);
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--ink);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family:
-    var(--font-sans),
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    sans-serif;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings:
+    'ss01' on,
+    'cv11' on;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 * {
@@ -36,4 +56,52 @@ input,
 textarea,
 select {
   font: inherit;
+}
+
+::selection {
+  background: var(--gold);
+  color: #1a1410;
+}
+
+.font-serif {
+  font-family: var(--font-serif), 'Times New Roman', serif;
+  font-feature-settings: 'ss01' on;
+}
+
+.grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise {
+  animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.shimmer {
+  animation: shimmer 3.6s ease-in-out infinite;
 }

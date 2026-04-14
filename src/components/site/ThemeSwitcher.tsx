@@ -13,7 +13,9 @@ type ThemeId =
   | 'sand'
   | 'slate'
   | 'dusk'
-  | 'madeira';
+  | 'madeira'
+  | 'medieval'
+  | 'cyberpunk';
 
 type Theme = {
   id: ThemeId;
@@ -22,6 +24,7 @@ type Theme = {
   bg: string;
   ring: string;
   accent: string;
+  premium?: boolean;
 };
 
 const themes: Theme[] = [
@@ -113,15 +116,33 @@ const themes: Theme[] = [
     ring: 'rgba(61,40,18,0.2)',
     accent: '#c25318',
   },
+  {
+    id: 'medieval',
+    name: 'Medieval',
+    description: 'Fortaleza de pedra, fogo da forja',
+    bg: '#1a1410',
+    ring: 'rgba(242,227,196,0.22)',
+    accent: '#d97830',
+    premium: true,
+  },
+  {
+    id: 'cyberpunk',
+    name: 'Cyberpunk',
+    description: 'Neon noturno, magenta e ciano',
+    bg: '#070412',
+    ring: 'rgba(0,234,255,0.28)',
+    accent: '#ff2d95',
+    premium: true,
+  },
 ];
 
 export function ThemeSwitcher() {
   const [open, setOpen] = useState(false);
-  const [current, setCurrent] = useState<Theme['id']>('midnight');
+  const [current, setCurrent] = useState<Theme['id']>('cream');
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const saved = (localStorage.getItem('aralabs-theme') as Theme['id']) || 'midnight';
+    const saved = (localStorage.getItem('aralabs-theme') as Theme['id']) || 'cream';
     setCurrent(saved);
   }, []);
 
@@ -211,8 +232,24 @@ export function ThemeSwitcher() {
                       />
                     </span>
                     <span className="flex-1">
-                      <span className="block text-[14.5px] font-semibold text-[color:var(--ink)]">
+                      <span className="flex items-center gap-2 text-[14.5px] font-semibold text-[color:var(--ink)]">
                         {t.name}
+                        {t.premium && (
+                          <span className="inline-flex items-center gap-1 rounded-full border border-[color:var(--gold)]/40 bg-[color:var(--gold)]/10 px-1.5 py-[1px] text-[8.5px] font-semibold uppercase tracking-[0.18em] text-[color:var(--gold-soft)]">
+                            <svg
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              className="h-2.5 w-2.5"
+                            >
+                              <path d="M12 2 15.09 8.26 22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            Premium
+                          </span>
+                        )}
                       </span>
                       <span className="mt-0.5 block text-[12.5px] text-[color:var(--ink-muted)]">
                         {t.description}

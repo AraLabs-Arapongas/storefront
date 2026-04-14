@@ -1,0 +1,128 @@
+import Link from 'next/link';
+import { PageHero } from '@/components/site/PageHero';
+import { ImagePlaceholder } from '@/components/site/ImagePlaceholder';
+import { Thesis } from '@/components/site/Thesis';
+import { Problem } from '@/components/site/Problem';
+
+const readings = [
+  {
+    n: '01',
+    title: 'Famílias não precisam só de lembretes',
+    body: 'Precisam de um sistema que distribua responsabilidades e torne acordos visíveis.',
+  },
+  {
+    n: '02',
+    title: 'A organização não pode depender de uma pessoa',
+    body: 'Quando a memória recai sobre um único adulto, a casa inteira fica instável.',
+  },
+  {
+    n: '03',
+    title: 'Cobrança não gera hábito',
+    body: 'Clareza e incentivo sustentam rotina melhor do que repetição de avisos.',
+  },
+];
+
+export default function TesePage() {
+  return (
+    <>
+      <PageHero
+        eyebrow="Nossa tese"
+        title={
+          <>
+            Bons produtos nascem de{' '}
+            <span className="font-serif italic text-[color:var(--gold-soft)]">
+              leitura profunda
+            </span>{' '}
+            do problema.
+          </>
+        }
+        description="O diferencial de uma empresa de produtos não está em construir rápido, mas em enxergar melhor, formular melhor e sustentar melhor uma direção de longo prazo."
+        visual={
+          <ImagePlaceholder
+            className="absolute inset-0 h-full w-full"
+            description="Cena contemplativa: mãos folheando um caderno com gráficos e anotações, luz dourada de fim de tarde entrando pela janela. Detalhe, macro, tom filme analógico."
+            width={1200}
+            height={900}
+            label="Tese · contemplação"
+          />
+        }
+      />
+
+      <Thesis />
+
+      {/* Big editorial image break */}
+      <section className="relative border-b border-[color:var(--line)]">
+        <div className="mx-auto max-w-[1240px] px-6 py-20 lg:px-10 lg:py-24">
+          <ImagePlaceholder
+            description="Panorâmica de uma cozinha em uso: família preparando algo juntas, câmera ampla, luz natural, sensação de fluxo. Destaque para as mãos e o movimento, rostos em segundo plano."
+            width={2400}
+            height={1000}
+            label="Vida real"
+            className="min-h-[440px]"
+          />
+        </div>
+      </section>
+
+      <Problem />
+
+      {/* Nossa leitura */}
+      <section className="relative border-b border-[color:var(--line)]">
+        <div className="mx-auto max-w-[1240px] px-6 py-20 lg:px-10 lg:py-28">
+          <div className="mb-14">
+            <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
+              Nossa leitura
+            </p>
+            <h2 className="mt-4 max-w-3xl text-balance text-[38px] font-semibold leading-[1.05] tracking-[-0.02em] text-[color:var(--ink)] md:text-[50px]">
+              O que entendemos depois de escutar famílias.
+            </h2>
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-3">
+            {readings.map((r) => (
+              <article
+                key={r.n}
+                className="relative rounded-[22px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] p-8"
+              >
+                <span className="font-serif text-[13px] italic text-[color:var(--gold-soft)]">
+                  {r.n}
+                </span>
+                <h3 className="mt-10 text-[20px] font-semibold tracking-tight text-[color:var(--ink)]">
+                  {r.title}
+                </h3>
+                <p className="mt-3 text-[15px] leading-[1.65] text-[color:var(--ink-muted)]">
+                  {r.body}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="border-b border-[color:var(--line)]">
+        <div className="mx-auto max-w-[1240px] px-6 py-20 lg:px-10 lg:py-24">
+          <div className="flex flex-col items-start justify-between gap-6 rounded-[28px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] p-10 md:flex-row md:items-center">
+            <div>
+              <h3 className="text-balance text-[26px] font-semibold tracking-tight text-[color:var(--ink)] md:text-[32px]">
+                Ver a tese{' '}
+                <span className="font-serif italic text-[color:var(--gold-soft)]">
+                  em produto
+                </span>
+                .
+              </h3>
+              <p className="mt-2 text-[15.5px] text-[color:var(--ink-muted)]">
+                Conheça o Casa Leve — o primeiro produto da Aralabs em construção.
+              </p>
+            </div>
+            <Link
+              href="/casa-leve"
+              className="inline-flex items-center gap-2 rounded-full bg-[color:var(--gold)] px-6 py-3.5 text-[14.5px] font-semibold text-[color:var(--on-gold)] transition hover:bg-[color:var(--gold-soft)]"
+            >
+              Conhecer o Casa Leve →
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

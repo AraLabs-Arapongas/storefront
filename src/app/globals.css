@@ -104,6 +104,7 @@ body {
 
 html {
   font-size: 100%;
+  scroll-padding-top: 5.5rem;
 }
 
 body {
@@ -114,10 +115,6 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overscroll-behavior-y: contain;
-}
-
-section[id] {
-  scroll-margin-top: 5.5rem;
 }
 
 a {

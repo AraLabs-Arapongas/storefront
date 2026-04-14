@@ -1,132 +1,183 @@
+const tasks = [
+  { label: 'Arrumar mochila', who: 'Miguel', points: 10, done: true },
+  { label: 'Tirar o lixo', who: 'Pedro', points: 5, done: true },
+  { label: 'Estudar 30min', who: 'Miguel', points: 20, done: false },
+  { label: 'Lavar a louça', who: 'Mãe', points: 8, done: false },
+];
+
 export function CasaLeveMockup() {
   return (
-    <div className="relative h-full min-h-[560px] w-full">
-      {/* Soft glow */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-1/2 h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(217,168,74,0.10),transparent_70%)]" />
+    <div className="relative flex h-full w-full items-center justify-center">
+      {/* Soft ambient glow */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-1/2 top-1/2 h-[130%] w-[130%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(217,168,74,0.12),transparent_70%)]" />
       </div>
 
-      {/* Back card: weekly dashboard */}
-      <div className="absolute left-0 top-8 w-[62%] rotate-[-3deg] rounded-[22px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev-2)] p-5 shadow-[0_40px_80px_rgba(0,0,0,0.45)]">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-[9px] font-medium uppercase tracking-[0.22em] text-[color:var(--ink-dim)]">
-              Casa Leve
-            </p>
-            <p className="mt-1 font-serif text-lg italic text-[color:var(--ink)]">
-              Semana de abril
-            </p>
-          </div>
-          <div className="grid h-8 w-8 place-items-center rounded-full bg-[color:var(--gold)]/15 text-[10px] font-semibold text-[color:var(--gold-soft)]">
-            82%
-          </div>
-        </div>
+      {/* iPhone frame — hardware stays dark (like the real phone) */}
+      <div className="relative h-full max-h-[580px] w-full max-w-[290px]">
+        {/* Outer bezel */}
+        <div className="relative h-full w-full rounded-[46px] bg-gradient-to-b from-[#2a2630] via-[#1a171f] to-[#0f0d13] p-[3px] shadow-[0_50px_120px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.04)_inset]">
+          {/* Side buttons */}
+          <div className="absolute -left-[3px] top-[88px] h-[26px] w-[3px] rounded-l bg-[#1a171f]" />
+          <div className="absolute -left-[3px] top-[128px] h-[44px] w-[3px] rounded-l bg-[#1a171f]" />
+          <div className="absolute -left-[3px] top-[184px] h-[44px] w-[3px] rounded-l bg-[#1a171f]" />
+          <div className="absolute -right-[3px] top-[128px] h-[64px] w-[3px] rounded-r bg-[#1a171f]" />
 
-        <div className="mt-4 grid grid-cols-7 gap-1.5">
-          {[60, 85, 40, 95, 70, 30, 55].map((v, i) => (
-            <div key={i} className="flex flex-col items-center gap-1">
-              <div className="relative h-16 w-full overflow-hidden rounded-md bg-[color:var(--bg)]">
-                <div
-                  className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[color:var(--gold)] to-[color:var(--gold-soft)]"
-                  style={{ height: `${v}%` }}
-                />
+          {/* Inner frame — screen content themes with the site */}
+          <div className="relative h-full w-full overflow-hidden rounded-[43px] bg-[color:var(--bg)]">
+            <div className="relative flex h-full w-full flex-col bg-gradient-to-b from-[color:var(--bg-elev-2)] via-[color:var(--bg-elev)] to-[color:var(--surface-deep)] text-[color:var(--ink)]">
+              {/* Status bar */}
+              <div className="relative flex items-center justify-between px-7 pt-3 text-[10px] font-semibold">
+                <span className="tabular-nums">9:41</span>
+                <span className="flex items-center gap-1 text-[color:var(--ink)]">
+                  <svg viewBox="0 0 16 10" className="h-2.5 w-3.5" fill="currentColor">
+                    <path d="M1 7h2v3H1zM5 5h2v5H5zM9 2h2v8H9zM13 0h2v10h-2z" />
+                  </svg>
+                  <svg viewBox="0 0 16 12" className="h-2.5 w-3.5" fill="currentColor">
+                    <path d="M8 2c2.8 0 5.4 1 7.4 2.8l-1 1A9 9 0 0 0 8 3.5a9 9 0 0 0-6.4 2.3l-1-1A10.9 10.9 0 0 1 8 2zm0 3.5c1.9 0 3.6.7 4.9 1.9l-1 1a6 6 0 0 0-4-1.4 6 6 0 0 0-4 1.4l-1-1A7.4 7.4 0 0 1 8 5.5zm0 3.5a3 3 0 0 1 2.1.9L8 12l-2.1-2.1A3 3 0 0 1 8 9z" />
+                  </svg>
+                  <svg viewBox="0 0 22 10" className="h-2.5 w-5">
+                    <rect
+                      x="0.5"
+                      y="0.5"
+                      width="18"
+                      height="9"
+                      rx="2"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeOpacity="0.7"
+                    />
+                    <rect x="2" y="2" width="14" height="6" rx="1" fill="currentColor" />
+                    <rect
+                      x="20"
+                      y="3.5"
+                      width="1.5"
+                      height="3"
+                      rx="0.5"
+                      fill="currentColor"
+                      fillOpacity="0.6"
+                    />
+                  </svg>
+                </span>
               </div>
-              <span className="text-[8px] font-medium uppercase tracking-wider text-[color:var(--ink-dim)]">
-                {['S', 'T', 'Q', 'Q', 'S', 'S', 'D'][i]}
-              </span>
-            </div>
-          ))}
-        </div>
 
-        <div className="mt-4 flex items-center justify-between rounded-lg border border-[color:var(--line)] bg-[color:var(--bg)]/50 px-3 py-2">
-          <div className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--gold)]" />
-            <span className="text-[10px] font-medium text-[color:var(--ink)]">
-              Pontos da família
-            </span>
-          </div>
-          <span className="font-serif text-sm italic text-[color:var(--gold-soft)]">1.240</span>
-        </div>
-      </div>
+              {/* Dynamic Island — always black (hardware) */}
+              <div className="absolute left-1/2 top-2 h-[26px] w-[92px] -translate-x-1/2 rounded-full bg-black" />
 
-      {/* Front card: task list */}
-      <div className="absolute right-0 top-0 w-[60%] rotate-[2deg] rounded-[22px] border border-[color:var(--line-strong)] bg-gradient-to-b from-[color:var(--bg-elev-2)] to-[color:var(--bg-elev)] p-5 shadow-[0_50px_100px_rgba(0,0,0,0.6)]">
-        <div className="flex items-start justify-between">
-          <div>
-            <p className="text-[9px] font-medium uppercase tracking-[0.22em] text-[color:var(--ink-dim)]">
-              Hoje · quarta-feira
-            </p>
-            <p className="mt-1 font-serif text-lg italic text-[color:var(--ink)]">Rotina da casa</p>
-          </div>
-          <div className="flex gap-1">
-            <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--ink-dim)]/60" />
-            <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--ink-dim)]/40" />
-            <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--ink-dim)]/30" />
-          </div>
-        </div>
+              {/* Incoming push notification */}
+              <div className="mx-3 mt-4 overflow-hidden rounded-[16px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)]/80 p-2.5 shadow-[0_8px_24px_rgba(0,0,0,0.35)] backdrop-blur-xl">
+                <div className="flex items-start gap-2">
+                  <span className="grid h-7 w-7 shrink-0 place-items-center rounded-[7px] bg-gradient-to-br from-[color:var(--gold)] to-[color:var(--gold-soft)] font-serif text-[11px] italic text-[color:var(--on-gold)]">
+                    C
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-baseline justify-between gap-2">
+                      <span className="text-[8.5px] font-semibold uppercase tracking-[0.14em] text-[color:var(--ink)]">
+                        Casa Leve
+                      </span>
+                      <span className="text-[8px] font-medium text-[color:var(--ink-dim)]">
+                        agora
+                      </span>
+                    </div>
+                    <p className="mt-0.5 text-[10px] font-semibold leading-tight text-[color:var(--ink)]">
+                      Hora de limpar a piscina 🏊
+                    </p>
+                    <p className="mt-0.5 text-[9px] leading-tight text-[color:var(--ink-muted)]">
+                      Tarefa semanal do Pedro · vale 15 pontos
+                    </p>
+                  </div>
+                </div>
+              </div>
 
-        <div className="mt-5 space-y-2.5">
-          {[
-            { label: 'Arrumar mochila', who: 'Miguel', points: 10, done: true },
-            { label: 'Tirar o lixo', who: 'Pedro', points: 5, done: true },
-            { label: 'Estudar 30min', who: 'Miguel', points: 20, done: false },
-            { label: 'Lavar a louça', who: 'Mãe', points: 8, done: false },
-          ].map((t) => (
-            <div
-              key={t.label}
-              className="flex items-center gap-3 rounded-lg border border-[color:var(--line)] bg-[color:var(--bg)]/60 px-3 py-2.5"
-            >
-              <span
-                className={`grid h-4 w-4 place-items-center rounded-[5px] border ${
-                  t.done
-                    ? 'border-[color:var(--gold)] bg-[color:var(--gold)] text-[9px] text-[color:var(--on-gold)]'
-                    : 'border-[color:var(--line-strong)]'
-                }`}
-              >
-                {t.done ? '✓' : ''}
-              </span>
-              <div className="flex-1">
-                <p
-                  className={`text-[11px] font-medium ${
-                    t.done
-                      ? 'text-[color:var(--ink-dim)] line-through'
-                      : 'text-[color:var(--ink)]'
-                  }`}
-                >
-                  {t.label}
+              {/* App header */}
+              <div className="mt-5 px-5">
+                <p className="text-[9px] font-medium uppercase tracking-[0.22em] text-[color:var(--ink-dim)]">
+                  Hoje · quarta-feira
                 </p>
-                <p className="mt-0.5 text-[9px] text-[color:var(--ink-dim)]">{t.who}</p>
+                <div className="mt-1 flex items-end justify-between">
+                  <h3 className="font-serif text-xl italic text-[color:var(--ink)]">
+                    Rotina da casa
+                  </h3>
+                  <div className="flex h-8 items-center gap-1.5 rounded-full border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] px-2.5">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--gold)]" />
+                    <span className="font-serif text-[10px] italic text-[color:var(--gold-soft)]">
+                      1.240
+                    </span>
+                  </div>
+                </div>
               </div>
-              <span className="font-serif text-[11px] italic text-[color:var(--gold-soft)]">
-                +{t.points}
-              </span>
-            </div>
-          ))}
-        </div>
 
-        <div className="mt-4 flex items-center justify-between border-t border-[color:var(--line)] pt-3">
-          <span className="text-[9px] font-medium uppercase tracking-[0.22em] text-[color:var(--ink-dim)]">
-            Progresso
-          </span>
-          <div className="flex items-center gap-1.5">
-            <div className="h-1 w-16 overflow-hidden rounded-full bg-[color:var(--line-strong)]">
-              <div className="h-full w-1/2 bg-[color:var(--gold)]" />
+              {/* Task list */}
+              <div className="mt-3 flex-1 space-y-1.5 px-3">
+                {tasks.map((t) => (
+                  <div
+                    key={t.label}
+                    className="flex items-center gap-2.5 rounded-[12px] border border-[color:var(--line)] bg-[color:var(--bg-elev)]/50 px-2.5 py-2"
+                  >
+                    <span
+                      className={`grid h-4 w-4 shrink-0 place-items-center rounded-[4px] border ${
+                        t.done
+                          ? 'border-[color:var(--gold)] bg-[color:var(--gold)] text-[8px] text-[color:var(--on-gold)]'
+                          : 'border-[color:var(--line-strong)]'
+                      }`}
+                    >
+                      {t.done ? '✓' : ''}
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <p
+                        className={`text-[10.5px] font-medium ${
+                          t.done
+                            ? 'text-[color:var(--ink-dim)] line-through'
+                            : 'text-[color:var(--ink)]'
+                        }`}
+                      >
+                        {t.label}
+                      </p>
+                      <p className="mt-[1px] text-[8.5px] text-[color:var(--ink-dim)]">{t.who}</p>
+                    </div>
+                    <span className="font-serif text-[10px] italic text-[color:var(--gold-soft)]">
+                      +{t.points}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Bottom tab bar */}
+              <div className="mx-3 mb-5 mt-3 flex items-center justify-around rounded-full border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)]/60 py-2.5 backdrop-blur">
+                {[
+                  { label: 'Hoje', active: true },
+                  { label: 'Família' },
+                  { label: 'Pontos' },
+                  { label: 'Ajustes' },
+                ].map((tab) => (
+                  <span
+                    key={tab.label}
+                    className={`text-[9px] font-semibold ${
+                      tab.active ? 'text-[color:var(--gold-soft)]' : 'text-[color:var(--ink-dim)]'
+                    }`}
+                  >
+                    {tab.label}
+                  </span>
+                ))}
+              </div>
+
+              {/* Home indicator */}
+              <div className="mx-auto mb-1.5 h-1 w-[110px] rounded-full bg-[color:var(--ink)]/70" />
             </div>
-            <span className="font-serif text-[11px] italic text-[color:var(--gold-soft)]">2/4</span>
           </div>
         </div>
-      </div>
 
-      {/* Floating badge */}
-      <div className="absolute bottom-4 left-8 flex items-center gap-3 rounded-full border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)]/90 px-4 py-2.5 shadow-xl backdrop-blur">
-        <span className="grid h-6 w-6 place-items-center rounded-full bg-[color:var(--gold)]/20 text-[11px] text-[color:var(--gold-soft)]">
-          ✶
-        </span>
-        <div>
-          <p className="text-[9px] font-medium uppercase tracking-[0.18em] text-[color:var(--ink-dim)]">
-            Miguel subiu de nível
-          </p>
-          <p className="text-[11px] font-semibold text-[color:var(--ink)]">Hábito de 7 dias</p>
+        {/* Floating level-up badge (outside the phone) */}
+        <div className="absolute -bottom-4 -right-10 flex items-center gap-2.5 rounded-full border border-[color:var(--line-strong)] bg-[color:var(--bg-elev-2)]/95 px-3.5 py-2 shadow-[0_16px_40px_rgba(0,0,0,0.5)] backdrop-blur">
+          <span className="grid h-6 w-6 place-items-center rounded-full bg-[color:var(--gold)]/20 text-[11px] text-[color:var(--gold-soft)]">
+            ✶
+          </span>
+          <div>
+            <p className="text-[8.5px] font-medium uppercase tracking-[0.18em] text-[color:var(--ink-dim)]">
+              Miguel subiu de nível
+            </p>
+            <p className="text-[10.5px] font-semibold text-[color:var(--ink)]">Hábito de 7 dias</p>
+          </div>
         </div>
       </div>
     </div>

@@ -77,6 +77,139 @@
   --is-light: 1;
 }
 
+/* Moss: dark forest green, champagne gold */
+[data-theme='moss'] {
+  --bg: #0e1612;
+  --bg-elev: #141e18;
+  --bg-elev-2: #1c2820;
+  --surface-deep: #0a110d;
+  --ink: #ecf0e2;
+  --ink-muted: #a8b39d;
+  --ink-dim: #6b7667;
+  --line: rgba(236, 240, 226, 0.08);
+  --line-strong: rgba(236, 240, 226, 0.18);
+  --gold: #cfa447;
+  --gold-soft: #e6c585;
+  --violet: #8ecba0;
+  --warm: #e6a06b;
+  --on-gold: #121a14;
+  --is-light: 0;
+}
+
+/* Bordô: deep wine, champagne */
+[data-theme='bordo'] {
+  --bg: #1a0d11;
+  --bg-elev: #241219;
+  --bg-elev-2: #2e1822;
+  --surface-deep: #15090d;
+  --ink: #f5e8e0;
+  --ink-muted: #c4a59b;
+  --ink-dim: #8a6e65;
+  --line: rgba(245, 232, 224, 0.08);
+  --line-strong: rgba(245, 232, 224, 0.18);
+  --gold: #e9b34a;
+  --gold-soft: #f1cd7e;
+  --violet: #c48ba0;
+  --warm: #e89872;
+  --on-gold: #1a0d11;
+  --is-light: 0;
+}
+
+/* Paper: near-white, deep ink, red accent */
+[data-theme='paper'] {
+  --bg: #f9f6ed;
+  --bg-elev: #f0ece0;
+  --bg-elev-2: #e6e0d0;
+  --surface-deep: #ebe6d5;
+  --ink: #14110b;
+  --ink-muted: #4d4538;
+  --ink-dim: #7d7668;
+  --line: rgba(20, 17, 11, 0.1);
+  --line-strong: rgba(20, 17, 11, 0.2);
+  --gold: #c63d24;
+  --gold-soft: #8f2a18;
+  --violet: #3a2c7c;
+  --warm: #b85317;
+  --on-gold: #faf7ee;
+  --is-light: 1;
+}
+
+/* Sand: warm beige, terracotta */
+[data-theme='sand'] {
+  --bg: #f1e8d6;
+  --bg-elev: #e8dec8;
+  --bg-elev-2: #ddd1b6;
+  --surface-deep: #e1d5ba;
+  --ink: #3d2812;
+  --ink-muted: #6e5538;
+  --ink-dim: #9a8768;
+  --line: rgba(61, 40, 18, 0.1);
+  --line-strong: rgba(61, 40, 18, 0.2);
+  --gold: #c25318;
+  --gold-soft: #8a3a0f;
+  --violet: #6a5bbf;
+  --warm: #d47538;
+  --on-gold: #fdf5e5;
+  --is-light: 1;
+}
+
+/* Slate: cool dark, teal accent */
+[data-theme='slate'] {
+  --bg: #0f1418;
+  --bg-elev: #161c22;
+  --bg-elev-2: #1f2830;
+  --surface-deep: #0a0e12;
+  --ink: #e8eef2;
+  --ink-muted: #96a3af;
+  --ink-dim: #5a6772;
+  --line: rgba(232, 238, 242, 0.08);
+  --line-strong: rgba(232, 238, 242, 0.18);
+  --gold: #5eb8a8;
+  --gold-soft: #8fd4c6;
+  --violet: #7996ff;
+  --warm: #e8b56a;
+  --on-gold: #0b1214;
+  --is-light: 0;
+}
+
+/* Madeira: warm walnut wood, honey amber */
+[data-theme='madeira'] {
+  --bg: #1d130c;
+  --bg-elev: #281a10;
+  --bg-elev-2: #342216;
+  --surface-deep: #150c07;
+  --ink: #f4e6cf;
+  --ink-muted: #c2a983;
+  --ink-dim: #7e6850;
+  --line: rgba(244, 230, 207, 0.08);
+  --line-strong: rgba(244, 230, 207, 0.18);
+  --gold: #e0a243;
+  --gold-soft: #f5c677;
+  --violet: #c49eff;
+  --warm: #e88a4a;
+  --on-gold: #1d130c;
+  --is-light: 0;
+}
+
+/* Dusk: deep plum, rose gold */
+[data-theme='dusk'] {
+  --bg: #130b1a;
+  --bg-elev: #1c1124;
+  --bg-elev-2: #26172f;
+  --surface-deep: #0d0612;
+  --ink: #f3e8f1;
+  --ink-muted: #b69dbd;
+  --ink-dim: #7a6680;
+  --line: rgba(243, 232, 241, 0.08);
+  --line-strong: rgba(243, 232, 241, 0.18);
+  --gold: #e8a4a0;
+  --gold-soft: #f0c3c0;
+  --violet: #a78bff;
+  --warm: #ecb480;
+  --on-gold: #1a0f22;
+  --is-light: 0;
+}
+
 @theme inline {
   --color-bg: var(--bg);
   --color-bg-elev: var(--bg-elev);

@@ -2,8 +2,21 @@
 
 import { useEffect, useRef, useState } from 'react';
 
+type ThemeId =
+  | 'midnight'
+  | 'espresso'
+  | 'ink'
+  | 'cream'
+  | 'moss'
+  | 'bordo'
+  | 'paper'
+  | 'sand'
+  | 'slate'
+  | 'dusk'
+  | 'madeira';
+
 type Theme = {
-  id: 'midnight' | 'espresso' | 'ink' | 'cream';
+  id: ThemeId;
   name: string;
   description: string;
   bg: string;
@@ -29,6 +42,14 @@ const themes: Theme[] = [
     accent: '#e0a648',
   },
   {
+    id: 'madeira',
+    name: 'Madeira',
+    description: 'Nogueira quente, mel âmbar',
+    bg: '#1d130c',
+    ring: 'rgba(244,230,207,0.18)',
+    accent: '#e0a243',
+  },
+  {
     id: 'ink',
     name: 'Ink',
     description: 'Azul-noite, tipografia limpa',
@@ -37,12 +58,60 @@ const themes: Theme[] = [
     accent: '#d9a84a',
   },
   {
+    id: 'moss',
+    name: 'Moss',
+    description: 'Verde floresta, champanhe',
+    bg: '#0e1612',
+    ring: 'rgba(236,240,226,0.18)',
+    accent: '#cfa447',
+  },
+  {
+    id: 'bordo',
+    name: 'Bordô',
+    description: 'Vinho profundo, tom luxuoso',
+    bg: '#1a0d11',
+    ring: 'rgba(245,232,224,0.18)',
+    accent: '#e9b34a',
+  },
+  {
+    id: 'slate',
+    name: 'Slate',
+    description: 'Cinza frio, accent turquesa',
+    bg: '#0f1418',
+    ring: 'rgba(232,238,242,0.18)',
+    accent: '#5eb8a8',
+  },
+  {
+    id: 'dusk',
+    name: 'Dusk',
+    description: 'Ameixa noturna, rosa dourado',
+    bg: '#130b1a',
+    ring: 'rgba(243,232,241,0.18)',
+    accent: '#e8a4a0',
+  },
+  {
     id: 'cream',
     name: 'Cream',
     description: 'Claro editorial, vibe papel',
     bg: '#f5efe3',
-    ring: 'rgba(36,29,21,0.16)',
+    ring: 'rgba(36,29,21,0.18)',
     accent: '#b8822a',
+  },
+  {
+    id: 'paper',
+    name: 'Paper',
+    description: 'Quase branco, tinta e vermelho',
+    bg: '#f9f6ed',
+    ring: 'rgba(20,17,11,0.2)',
+    accent: '#c63d24',
+  },
+  {
+    id: 'sand',
+    name: 'Sand',
+    description: 'Areia quente, terracota',
+    bg: '#f1e8d6',
+    ring: 'rgba(61,40,18,0.2)',
+    accent: '#c25318',
   },
 ];
 

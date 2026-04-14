@@ -47,7 +47,7 @@ export default function RootLayout({
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('aralabs-theme');if(t&&['midnight','espresso','ink','cream'].indexOf(t)>-1){document.documentElement.setAttribute('data-theme',t);}else{document.documentElement.setAttribute('data-theme','midnight');}}catch(e){}})();`,
+            __html: `(function(){try{var t=localStorage.getItem('aralabs-theme');var v=['midnight','espresso','ink','cream','moss','bordo','paper','sand','slate','dusk','madeira'];if(t&&v.indexOf(t)>-1){document.documentElement.setAttribute('data-theme',t);}else{document.documentElement.setAttribute('data-theme','midnight');}}catch(e){}})();`,
           }}
         />
       </head>

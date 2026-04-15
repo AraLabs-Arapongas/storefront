@@ -1,6 +1,6 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { PageHero } from '@/components/site/PageHero';
-import { ImagePlaceholder } from '@/components/site/ImagePlaceholder';
 import { Thesis } from '@/components/site/Thesis';
 import { Problem } from '@/components/site/Problem';
 
@@ -38,13 +38,16 @@ export default function TesePage() {
         }
         description="O diferencial de uma empresa de produtos não está em construir rápido, mas em enxergar melhor, formular melhor e sustentar melhor uma direção de longo prazo."
         visual={
-          <ImagePlaceholder
-            className="absolute inset-0 h-full w-full"
-            description="Cena contemplativa: mãos folheando um caderno com gráficos e anotações, luz dourada de fim de tarde entrando pela janela. Detalhe, macro, tom filme analógico."
-            width={1200}
-            height={900}
-            label="Tese · contemplação"
-          />
+          <div className="absolute inset-0 h-full w-full overflow-hidden rounded-[24px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] shadow-[0_40px_120px_rgba(0,0,0,0.28)]">
+            <Image
+              src="/images/tese-comtemplacao.png"
+              alt="Mãos folheando um caderno com gráficos e anotações sob luz dourada de fim de tarde"
+              fill
+              priority
+              sizes="(min-width: 1024px) 560px, 100vw"
+              className="object-cover"
+            />
+          </div>
         }
       />
 
@@ -53,13 +56,16 @@ export default function TesePage() {
       {/* Big editorial image break */}
       <section className="relative border-b border-[color:var(--line)]">
         <div className="mx-auto max-w-[1240px] px-6 py-20 lg:px-10 lg:py-24">
-          <ImagePlaceholder
-            description="Panorâmica de uma cozinha em uso: família preparando algo juntas, câmera ampla, luz natural, sensação de fluxo. Destaque para as mãos e o movimento, rostos em segundo plano."
-            width={2400}
-            height={1000}
-            label="Vida real"
-            className="min-h-[440px]"
-          />
+          <div className="relative overflow-hidden rounded-[24px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] shadow-[0_40px_120px_rgba(0,0,0,0.25)]">
+            <Image
+              src="/images/vida-real.png"
+              alt="Panorâmica de uma cozinha em uso, família preparando algo junta"
+              width={2400}
+              height={1000}
+              sizes="(min-width: 1240px) 1160px, 100vw"
+              className="h-auto w-full"
+            />
+          </div>
         </div>
       </section>
 

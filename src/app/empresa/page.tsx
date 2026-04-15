@@ -1,6 +1,6 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { PageHero } from '@/components/site/PageHero';
-import { ImagePlaceholder } from '@/components/site/ImagePlaceholder';
 import { Pillars } from '@/components/site/Pillars';
 import { Values } from '@/components/site/Values';
 import { NextSteps } from '@/components/site/NextSteps';
@@ -57,13 +57,16 @@ export default function EmpresaPage() {
         }
         description="A Aralabs é uma empresa brasileira em construção, criada como estrutura-mãe para conceber, organizar e evoluir produtos digitais com utilidade real e visão de longo prazo."
         visual={
-          <ImagePlaceholder
-            className="absolute inset-0 h-full w-full"
-            description="Retrato editorial do time/fundador em ambiente de trabalho intencional: caderno, computador, luz lateral. Tom quente, câmera analógica. Nada de clichê de startup."
-            width={1200}
-            height={900}
-            label="Empresa · retrato"
-          />
+          <div className="absolute inset-0 h-full w-full overflow-hidden rounded-[24px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] shadow-[0_40px_120px_rgba(0,0,0,0.28)]">
+            <Image
+              src="/images/empresa-retrato.png"
+              alt="Retrato editorial em ambiente de trabalho intencional, com caderno, computador e luz lateral"
+              fill
+              priority
+              sizes="(min-width: 1024px) 560px, 100vw"
+              className="object-cover"
+            />
+          </div>
         }
       />
 
@@ -91,13 +94,16 @@ export default function EmpresaPage() {
             </p>
           </div>
 
-          <ImagePlaceholder
-            description="Mesa vista de cima: caderno aberto com anotações manuscritas em português, caneta, livro, xícara de café. Estética editorial, tom quente, composição limpa. Sem laptop."
-            width={2000}
-            height={900}
-            label="Base documental"
-            className="min-h-[420px]"
-          />
+          <div className="relative overflow-hidden rounded-[24px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] shadow-[0_40px_120px_rgba(0,0,0,0.25)]">
+            <Image
+              src="/images/base-documental.png"
+              alt="Mesa vista de cima com caderno aberto, caneta, livro e xícara de café"
+              width={2000}
+              height={900}
+              sizes="(min-width: 1240px) 1160px, 100vw"
+              className="h-auto w-full"
+            />
+          </div>
         </div>
       </section>
 

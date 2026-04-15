@@ -1,5 +1,6 @@
+import Image from 'next/image';
 import Link from 'next/link';
-import { ImagePlaceholder } from '@/components/site/ImagePlaceholder';
+import { CasaLeveDualMockup } from '@/components/site/CasaLeveDualMockup';
 import { LogoMark } from '@/components/site/Logo';
 
 const pillars = [
@@ -93,13 +94,16 @@ export default function Home() {
           </div>
 
           <div className="relative min-h-[420px] lg:min-h-[560px]">
-            <ImagePlaceholder
-              className="absolute inset-0 h-full w-full"
-              description="Fotografia editorial em tom quente: um lar brasileiro em movimento — luz natural, objetos do cotidiano, sensação de calma sem ser minimalismo frio. Perspectiva baixa, grão sutil."
-              width={1440}
-              height={1120}
-              label="Hero · editorial"
-            />
+            <div className="relative h-full w-full overflow-hidden rounded-[24px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] shadow-[0_40px_120px_rgba(0,0,0,0.28)]">
+              <Image
+                src="/images/hero-editorial.png"
+                alt="Lar brasileiro em movimento — luz natural e objetos do cotidiano"
+                fill
+                priority
+                sizes="(min-width: 1024px) 560px, 100vw"
+                className="object-cover"
+              />
+            </div>
             <div className="pointer-events-none absolute -bottom-6 -right-6 hidden h-24 w-24 rounded-2xl border border-[color:var(--line-strong)] bg-[color:var(--bg-elev-2)] p-4 lg:block">
               <div className="text-[9px] font-medium uppercase tracking-[0.22em] text-[color:var(--ink-dim)]">
                 Longo prazo
@@ -174,13 +178,9 @@ export default function Home() {
               </Link>
             </div>
 
-            <ImagePlaceholder
-              description="Mockup do Casa Leve: duas telas de celular sobrepostas, uma mostrando a rotina da casa com tarefas e check-ins, outra mostrando pontos e hábitos dos filhos. Fundo com gradiente quente."
-              width={1200}
-              height={900}
-              label="Casa Leve · produto"
-              className="min-h-[420px]"
-            />
+            <div className="relative min-h-[520px] overflow-hidden rounded-[24px] border border-[color:var(--line-strong)] bg-gradient-to-br from-[color:var(--bg-elev-2)] via-[color:var(--bg-elev)] to-[color:var(--surface-deep)] p-6">
+              <CasaLeveDualMockup />
+            </div>
           </div>
         </div>
       </section>

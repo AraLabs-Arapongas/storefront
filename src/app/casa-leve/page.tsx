@@ -7,6 +7,25 @@ import {
   CollabMockup,
   HabitsMockup,
 } from '@/components/site/FeatureMockups';
+import type { Metadata } from 'next';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { softwareApplicationSchema } from '@/lib/seo/schemas';
+
+const pageTitle = 'Casa Leve — rotina familiar';
+const pageDescription =
+  'Casa Leve é o aplicativo da AraLabs para rotina familiar: tarefas recorrentes, colaboração entre os membros da família e incentivos positivos para crianças. Em exploração.';
+
+export const metadata: Metadata = {
+  title: pageTitle,
+  description: pageDescription,
+  alternates: { canonical: '/casa-leve' },
+  openGraph: {
+    title: pageTitle,
+    description: pageDescription,
+    url: '/casa-leve',
+    type: 'website',
+  },
+};
 
 const features = [
   {
@@ -51,6 +70,15 @@ const principles = [
 export default function CasaLevePage() {
   return (
     <>
+      <JsonLd
+        data={softwareApplicationSchema({
+          path: '/casa-leve',
+          name: 'Casa Leve',
+          description: pageDescription,
+          applicationCategory: 'LifestyleApplication',
+          operatingSystem: 'Web, iOS, Android',
+        })}
+      />
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-[color:var(--line)]">
         <div className="pointer-events-none absolute inset-0 -z-10">

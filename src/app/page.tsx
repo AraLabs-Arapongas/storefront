@@ -2,6 +2,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { CasaLeveDualMockup } from '@/components/site/CasaLeveDualMockup';
 import { LogoMark } from '@/components/site/Logo';
+import type { Metadata } from 'next';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { websiteSchema } from '@/lib/seo/schemas';
+
+export const metadata: Metadata = {
+  alternates: { canonical: '/' },
+  openGraph: { url: '/' },
+};
 
 const pillars = [
   {
@@ -50,6 +58,7 @@ const routes = [
 export default function Home() {
   return (
     <>
+      <JsonLd data={websiteSchema()} />
       {/* Hero */}
       <section id="top" className="relative overflow-hidden border-b border-[color:var(--line)]">
         <div className="pointer-events-none absolute inset-0 -z-10">

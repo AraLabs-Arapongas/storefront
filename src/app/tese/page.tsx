@@ -49,7 +49,7 @@ export default function TesePage() {
           path: '/tese',
           headline: pageHeadline,
           description: pageDescription,
-          datePublished: '2026-04-17',
+          datePublished: '2026-04-17T00:00:00-03:00',
           image: '/images/tese-comtemplacao.png',
         })}
       />

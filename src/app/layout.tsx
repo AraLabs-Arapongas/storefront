@@ -45,6 +45,12 @@ export const metadata: Metadata = {
     locale: 'pt-BR',
     type: 'website',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AraLabs — Produtos digitais para problemas reais',
+    description:
+      'Empresa brasileira que transforma desafios do cotidiano em produtos digitais úteis, claros e sustentáveis.',
+  },
 };
 
 export default function RootLayout({

@@ -4,6 +4,24 @@ import { PageHero } from '@/components/site/PageHero';
 import { Pillars } from '@/components/site/Pillars';
 import { Values } from '@/components/site/Values';
 import { NextSteps } from '@/components/site/NextSteps';
+import type { Metadata } from 'next';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { aboutPageSchema } from '@/lib/seo/schemas';
+
+const pageDescription =
+  'Conheça a AraLabs: empresa brasileira de produtos digitais, sediada em Arapongas (PR), com princípios de clareza, estrutura e problemas reais antes de funcionalidades.';
+
+export const metadata: Metadata = {
+  title: 'Sobre a empresa',
+  description: pageDescription,
+  alternates: { canonical: '/empresa' },
+  openGraph: {
+    title: 'Sobre a empresa',
+    description: pageDescription,
+    url: '/empresa',
+    type: 'website',
+  },
+};
 
 const principles = [
   {
@@ -46,6 +64,13 @@ const principles = [
 export default function EmpresaPage() {
   return (
     <>
+      <JsonLd
+        data={aboutPageSchema({
+          path: '/empresa',
+          name: 'Sobre a AraLabs',
+          description: pageDescription,
+        })}
+      />
       <PageHero
         eyebrow="A Aralabs"
         title={

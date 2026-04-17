@@ -40,16 +40,20 @@ export function Footer() {
                 {c.title}
               </h3>
               <ul className="mt-5 space-y-3">
-                {c.links.map((l) => (
-                  <li key={l}>
-                    <a
-                      href="#"
-                      className="text-[15.5px] text-[color:var(--ink)] transition hover:text-[color:var(--gold-soft)]"
-                    >
-                      {l}
-                    </a>
-                  </li>
-                ))}
+                {c.links.map((l) => {
+                  const isEmail = l.includes('@') && !l.includes(' ');
+                  const href = isEmail ? `mailto:${l}` : '#';
+                  return (
+                    <li key={l}>
+                      <a
+                        href={href}
+                        className="text-[15.5px] text-[color:var(--ink)] transition hover:text-[color:var(--gold-soft)]"
+                      >
+                        {l}
+                      </a>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}

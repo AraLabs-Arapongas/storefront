@@ -11,6 +11,7 @@ import {
   SITE_NAME,
   SITE_TAGLINE,
   SITE_DESCRIPTION,
+  SITE_TWITTER_DESCRIPTION,
   LOCALE,
 } from '@/lib/seo/site';
 
@@ -62,8 +63,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: `${SITE_NAME} — ${SITE_TAGLINE}`,
-    description:
-      'Empresa brasileira que transforma desafios do cotidiano em produtos digitais úteis, claros e sustentáveis.',
+    description: SITE_TWITTER_DESCRIPTION,
   },
   robots: {
     index: process.env.VERCEL_ENV === 'production',

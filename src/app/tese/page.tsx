@@ -50,6 +50,7 @@ export default function TesePage() {
           headline: pageHeadline,
           description: pageDescription,
           datePublished: '2026-04-17',
+          image: '/images/tese-comtemplacao.png',
         })}
       />
       <PageHero

@@ -3,6 +3,25 @@ import Link from 'next/link';
 import { PageHero } from '@/components/site/PageHero';
 import { Thesis } from '@/components/site/Thesis';
 import { Problem } from '@/components/site/Problem';
+import type { Metadata } from 'next';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { articleSchema } from '@/lib/seo/schemas';
+
+const pageHeadline = 'Nossa tese sobre famílias, rotina e produtos digitais';
+const pageDescription =
+  'A tese da AraLabs: famílias precisam de sistemas que distribuem responsabilidades, tornam acordos visíveis e incentivam hábitos. Nosso ponto de vista sobre organização doméstica e produtos para famílias no Brasil.';
+
+export const metadata: Metadata = {
+  title: 'Nossa tese',
+  description: pageDescription,
+  alternates: { canonical: '/tese' },
+  openGraph: {
+    title: pageHeadline,
+    description: pageDescription,
+    url: '/tese',
+    type: 'article',
+  },
+};
 
 const readings = [
   {
@@ -25,6 +44,14 @@ const readings = [
 export default function TesePage() {
   return (
     <>
+      <JsonLd
+        data={articleSchema({
+          path: '/tese',
+          headline: pageHeadline,
+          description: pageDescription,
+          datePublished: '2026-04-17',
+        })}
+      />
       <PageHero
         eyebrow="Nossa tese"
         title={

@@ -32,21 +32,6 @@ const pillars = [
   },
 ];
 
-const products = [
-  {
-    href: '/produtos/aragenda',
-    name: 'Aragenda',
-    tagline: 'Agenda online + presença digital para pequenos negócios de serviços.',
-    status: 'Em desenvolvimento',
-  },
-  {
-    href: '/produtos/casa-leve',
-    name: 'Casa Leve',
-    tagline: 'Sistema para ajudar famílias a organizar rotina, responsabilidades e hábitos.',
-    status: 'Em exploração',
-  },
-];
-
 const routes = [
   {
     href: '/empresa',
@@ -74,7 +59,7 @@ export default function Home() {
       <JsonLd data={organizationSchema()} />
       <JsonLd data={websiteSchema()} />
 
-      {/* Hero */}
+      {/* Hero · AraLabs */}
       <section id="top" className="relative overflow-hidden border-b border-[color:var(--line)]">
         <div className="pointer-events-none absolute inset-0 -z-10">
           <div className="absolute left-[-10%] top-[-20%] h-[46rem] w-[46rem] rounded-full bg-[radial-gradient(closest-side,rgba(217,168,74,0.14),transparent_70%)]" />
@@ -82,8 +67,8 @@ export default function Home() {
         </div>
         <div className="grain" />
 
-        <div className="mx-auto grid max-w-[1240px] grid-cols-1 gap-12 px-6 pb-20 pt-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:px-10 lg:pb-28 lg:pt-24">
-          <div className="flex flex-col justify-center rise">
+        <div className="mx-auto max-w-[1240px] px-6 pb-20 pt-16 lg:px-10 lg:pb-28 lg:pt-24">
+          <div className="flex max-w-2xl flex-col justify-center rise">
             <div className="mb-8 inline-flex w-fit items-center gap-3 rounded-full border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)]/60 py-2 pl-2 pr-4 text-[11px] font-medium uppercase tracking-[0.22em] text-[color:var(--ink-muted)] backdrop-blur">
               <span className="grid h-5 w-5 place-items-center rounded-full bg-[color:var(--gold)]/15 text-[color:var(--gold-soft)]">
                 <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--gold)] shimmer" />
@@ -117,49 +102,84 @@ export default function Home() {
               </Link>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Portfolio grid no lugar do mockup de produto */}
-          <div className="relative">
-            <div className="rounded-[24px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] p-8 shadow-[0_40px_120px_rgba(0,0,0,0.28)]">
-              <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
-                Portfólio
-              </p>
-              <div className="mt-2 flex items-baseline gap-3">
-                <LogoMark className="h-8 w-8 text-[color:var(--gold-soft)]" />
-                <span className="font-serif text-[20px] italic text-[color:var(--ink)]">
-                  AraLabs
-                </span>
-              </div>
-              <ul className="mt-8 space-y-4">
-                {products.map((p) => (
-                  <li key={p.href}>
-                    <Link
-                      href={p.href}
-                      className="group flex items-start justify-between gap-4 rounded-[18px] border border-[color:var(--line)] bg-[color:var(--bg)] p-5 transition hover:border-[color:var(--gold)]/40 hover:bg-[color:var(--bg-elev-2)]"
-                    >
-                      <div>
-                        <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-[color:var(--gold-soft)]">
-                          {p.status}
-                        </p>
-                        <p className="mt-2 text-[18px] font-semibold text-[color:var(--ink)]">
-                          {p.name}
-                        </p>
-                        <p className="mt-1 text-[13.5px] leading-[1.55] text-[color:var(--ink-muted)]">
-                          {p.tagline}
-                        </p>
-                      </div>
-                      <span className="mt-1 text-[color:var(--ink-dim)] transition group-hover:translate-x-0.5 group-hover:text-[color:var(--gold-soft)]">
-                        →
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-                <li className="rounded-[18px] border border-dashed border-[color:var(--line)] p-5 text-center">
-                  <p className="font-serif text-[14px] italic text-[color:var(--ink-dim)]">
-                    próximo produto
-                  </p>
-                </li>
-              </ul>
+      {/* Hero · Aragenda */}
+      <section className="relative overflow-hidden border-b border-[color:var(--line)]">
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute left-[-10%] top-[-20%] h-[46rem] w-[46rem] rounded-full bg-[radial-gradient(closest-side,rgba(217,168,74,0.14),transparent_70%)]" />
+          <div className="absolute right-[-10%] top-[20%] h-[38rem] w-[38rem] rounded-full bg-[radial-gradient(closest-side,rgba(167,139,255,0.10),transparent_70%)]" />
+        </div>
+        <div className="grain" />
+
+        <div className="mx-auto max-w-[1240px] px-6 pb-20 pt-16 lg:px-10 lg:pb-28 lg:pt-24">
+          <div className="flex max-w-2xl flex-col justify-center rise">
+            <div className="mb-8 inline-flex w-fit items-center gap-3 rounded-full border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)]/60 py-2 pl-2 pr-4 text-[11px] font-medium uppercase tracking-[0.22em] text-[color:var(--ink-muted)] backdrop-blur">
+              <span className="grid h-5 w-5 place-items-center rounded-full bg-[color:var(--gold)]/15 text-[color:var(--gold-soft)]">
+                <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--gold)] shimmer" />
+              </span>
+              Produto · Em desenvolvimento
+            </div>
+
+            <h2 className="text-balance text-[42px] font-semibold leading-[1.04] tracking-[-0.02em] text-[color:var(--ink)] md:text-[54px] lg:text-[62px]">
+              <span className="font-serif italic text-[color:var(--gold-soft)]">Aragenda</span>
+              {' — '}
+              agenda online e presença digital para pequenos negócios.
+            </h2>
+            <p className="mt-8 max-w-xl text-[19px] leading-[1.7] text-[color:var(--ink-muted)] md:text-[20px]">
+              Para salões, barbearias, clínicas, oficinas e profissionais autônomos que vendem tempo
+              por horário. Combina agendamento online, página pública do negócio e ferramentas que
+              reduzem o atrito do cliente — tirando a operação do WhatsApp e da memória.
+            </p>
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <Link
+                href="/produtos/aragenda"
+                className="group inline-flex items-center gap-3 rounded-full bg-[color:var(--gold)] px-6 py-3.5 text-[15px] font-semibold tracking-tight text-[color:var(--on-gold)] transition hover:bg-[color:var(--gold-soft)]"
+              >
+                Conhecer Aragenda
+                <span className="transition group-hover:translate-x-0.5">→</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Hero · Casa Leve */}
+      <section className="relative overflow-hidden border-b border-[color:var(--line)]">
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute left-[-10%] top-[-20%] h-[46rem] w-[46rem] rounded-full bg-[radial-gradient(closest-side,rgba(217,168,74,0.14),transparent_70%)]" />
+          <div className="absolute right-[-10%] top-[20%] h-[38rem] w-[38rem] rounded-full bg-[radial-gradient(closest-side,rgba(167,139,255,0.10),transparent_70%)]" />
+        </div>
+        <div className="grain" />
+
+        <div className="mx-auto max-w-[1240px] px-6 pb-20 pt-16 lg:px-10 lg:pb-28 lg:pt-24">
+          <div className="flex max-w-2xl flex-col justify-center rise">
+            <div className="mb-8 inline-flex w-fit items-center gap-3 rounded-full border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)]/60 py-2 pl-2 pr-4 text-[11px] font-medium uppercase tracking-[0.22em] text-[color:var(--ink-muted)] backdrop-blur">
+              <span className="grid h-5 w-5 place-items-center rounded-full bg-[color:var(--gold)]/15 text-[color:var(--gold-soft)]">
+                <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--gold)] shimmer" />
+              </span>
+              Produto · Em exploração
+            </div>
+
+            <h2 className="text-balance text-[42px] font-semibold leading-[1.04] tracking-[-0.02em] text-[color:var(--ink)] md:text-[54px] lg:text-[62px]">
+              <span className="font-serif italic text-[color:var(--gold-soft)]">Casa Leve</span>
+              {' — '}
+              rotina, responsabilidades e hábitos da família.
+            </h2>
+            <p className="mt-8 max-w-xl text-[19px] leading-[1.7] text-[color:var(--ink-muted)] md:text-[20px]">
+              Sistema para ajudar famílias a dividir responsabilidades, organizar rotina e manter
+              acordos visíveis. Menos cobrança, mais clareza, mais autonomia — pra que a casa não
+              dependa da memória de uma pessoa só.
+            </p>
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <Link
+                href="/produtos/casa-leve"
+                className="group inline-flex items-center gap-3 rounded-full bg-[color:var(--gold)] px-6 py-3.5 text-[15px] font-semibold tracking-tight text-[color:var(--on-gold)] transition hover:bg-[color:var(--gold-soft)]"
+              >
+                Conhecer Casa Leve
+                <span className="transition group-hover:translate-x-0.5">→</span>
+              </Link>
             </div>
           </div>
         </div>

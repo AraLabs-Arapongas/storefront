@@ -25,7 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${SITE_URL}/produtos/ara-agenda`,
+      url: `${SITE_URL}/produtos/aragenda`,
       lastModified: LAST_MODIFIED,
       changeFrequency: 'monthly',
       priority: 0.85,

@@ -13,7 +13,7 @@ const columns = [
     title: 'Produtos',
     links: [
       { label: 'Portfólio', href: '/produtos' },
-      { label: 'ara-agenda', href: '/produtos/ara-agenda' },
+      { label: 'Aragenda', href: '/produtos/aragenda' },
       { label: 'Casa Leve', href: '/produtos/casa-leve' },
     ],
   },

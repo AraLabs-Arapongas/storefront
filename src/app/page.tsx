@@ -34,8 +34,8 @@ const pillars = [
 
 const products = [
   {
-    href: '/produtos/ara-agenda',
-    name: 'ara-agenda',
+    href: '/produtos/aragenda',
+    name: 'Aragenda',
     tagline: 'Agenda online + presença digital para pequenos negócios de serviços.',
     status: 'Em desenvolvimento',
   },

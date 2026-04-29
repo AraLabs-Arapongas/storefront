@@ -5,7 +5,7 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { collectionPageSchema } from '@/lib/seo/schemas';
 
 const pageDescription =
-  'Produtos da AraLabs: ara-agenda (agenda online e presença digital para pequenos negócios) e Casa Leve (rotina familiar). Lab brasileiro de produtos digitais próprios.';
+  'Produtos da AraLabs: Aragenda (agenda online e presença digital para pequenos negócios) e Casa Leve (rotina familiar). Lab brasileiro de produtos digitais próprios.';
 
 export const metadata: Metadata = {
   title: 'Produtos',
@@ -21,8 +21,8 @@ export const metadata: Metadata = {
 
 const products = [
   {
-    href: '/produtos/ara-agenda',
-    name: 'ara-agenda',
+    href: '/produtos/aragenda',
+    name: 'Aragenda',
     tagline: 'Agenda online + presença digital para pequenos negócios de serviços.',
     status: 'Em desenvolvimento',
   },

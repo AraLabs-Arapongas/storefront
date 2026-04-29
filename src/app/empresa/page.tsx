@@ -227,7 +227,7 @@ export default function EmpresaPage() {
                 AraLabs.
               </h3>
               <p className="mt-2 text-[15.5px] text-[color:var(--ink-muted)]">
-                ara-agenda e Casa Leve — produtos próprios construídos a partir da nossa tese.
+                Aragenda e Casa Leve — produtos próprios construídos a partir da nossa tese.
               </p>
             </div>
             <Link

@@ -4,18 +4,18 @@ import { PageHero } from '@/components/site/PageHero';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { softwareApplicationSchema } from '@/lib/seo/schemas';
 
-const pageTitle = 'ara-agenda — Agenda online para pequenos negócios';
+const pageTitle = 'Aragenda — Agenda online para pequenos negócios';
 const pageDescription =
-  'ara-agenda é o produto da AraLabs para pequenos negócios de serviços: agendamento online, página pública do negócio e ferramentas de presença digital. Em desenvolvimento.';
+  'Aragenda é o produto da AraLabs para pequenos negócios de serviços: agendamento online, página pública do negócio e ferramentas de presença digital. Em desenvolvimento.';
 
 export const metadata: Metadata = {
-  title: 'ara-agenda',
+  title: 'Aragenda',
   description: pageDescription,
-  alternates: { canonical: '/produtos/ara-agenda' },
+  alternates: { canonical: '/produtos/aragenda' },
   openGraph: {
     title: pageTitle,
     description: pageDescription,
-    url: '/produtos/ara-agenda',
+    url: '/produtos/aragenda',
     type: 'website',
   },
 };
@@ -40,13 +40,13 @@ const problems = [
   'baixa previsibilidade para o dono',
 ];
 
-export default function AraAgendaPage() {
+export default function AragendaPage() {
   return (
     <>
       <JsonLd
         data={softwareApplicationSchema({
-          path: '/produtos/ara-agenda',
-          name: 'ara-agenda',
+          path: '/produtos/aragenda',
+          name: 'Aragenda',
           description: pageDescription,
           applicationCategory: 'BusinessApplication',
           operatingSystem: 'Web',
@@ -57,12 +57,12 @@ export default function AraAgendaPage() {
         eyebrow="Produto · Em desenvolvimento"
         title={
           <>
-            <span className="font-serif italic text-[color:var(--gold-soft)]">ara-agenda</span>
+            <span className="font-serif italic text-[color:var(--gold-soft)]">Aragenda</span>
             {' — '}
             agenda online e presença digital para pequenos negócios de serviços.
           </>
         }
-        description="O ara-agenda é um produto da AraLabs pensado para negócios que vendem tempo por horário."
+        description="A Aragenda é um produto da AraLabs pensado para negócios que vendem tempo por horário."
       />
 
       {/* Status */}
@@ -73,7 +73,7 @@ export default function AraAgendaPage() {
               Status: Em desenvolvimento
             </p>
             <p className="mt-4 text-[16px] leading-[1.7] text-[color:var(--ink-muted)]">
-              O ara-agenda está em construção ativa. As funcionalidades aqui descritas refletem a
+              A Aragenda está em construção ativa. As funcionalidades aqui descritas refletem a
               visão do produto em curso.
             </p>
           </div>
@@ -147,7 +147,7 @@ export default function AraAgendaPage() {
             para o cliente marcar.
           </h2>
           <p className="mt-8 max-w-2xl text-[17px] leading-[1.75] text-[color:var(--ink-muted)]">
-            O ara-agenda combina agendamento online, página pública do negócio e ferramentas que
+            A Aragenda combina agendamento online, página pública do negócio e ferramentas que
             ajudam o cliente a marcar horário sem depender de mensagens.
           </p>
         </div>

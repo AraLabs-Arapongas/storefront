@@ -3,15 +3,27 @@ import { LogoMark, LogoWordmark } from './Logo';
 const columns = [
   {
     title: 'Empresa',
-    links: ['Visão geral', 'Tese', 'Problema que resolvemos', 'Princípios'],
+    links: [
+      { label: 'Sobre', href: '/empresa' },
+      { label: 'Tese', href: '/tese' },
+      { label: 'Parcerias', href: '/empresa#parcerias' },
+    ],
   },
   {
-    title: 'Produto',
-    links: ['Casa Leve', 'Visão do produto', 'Proposta de valor', 'Ideias'],
+    title: 'Produtos',
+    links: [
+      { label: 'Portfólio', href: '/produtos' },
+      { label: 'ara-agenda', href: '/produtos/ara-agenda' },
+      { label: 'Casa Leve', href: '/produtos/casa-leve' },
+    ],
   },
   {
     title: 'Contato',
-    links: ['contato@aralabs.com.br', 'Arapongas, Paraná — Brasil', 'aralabs.com.br'],
+    links: [
+      { label: 'contato@aralabs.com.br', href: 'mailto:contato@aralabs.com.br' },
+      { label: 'trabalhe@aralabs.com.br', href: 'mailto:trabalhe@aralabs.com.br' },
+      { label: 'Arapongas, Paraná — Brasil', href: null },
+    ],
   },
 ];
 
@@ -40,20 +52,20 @@ export function Footer() {
                 {c.title}
               </h3>
               <ul className="mt-5 space-y-3">
-                {c.links.map((l) => {
-                  const isEmail = l.includes('@') && !l.includes(' ');
-                  const href = isEmail ? `mailto:${l}` : '#';
-                  return (
-                    <li key={l}>
+                {c.links.map((l) => (
+                  <li key={l.label}>
+                    {l.href ? (
                       <a
-                        href={href}
+                        href={l.href}
                         className="text-[15.5px] text-[color:var(--ink)] transition hover:text-[color:var(--gold-soft)]"
                       >
-                        {l}
+                        {l.label}
                       </a>
-                    </li>
-                  );
-                })}
+                    ) : (
+                      <span className="text-[15.5px] text-[color:var(--ink-muted)]">{l.label}</span>
+                    )}
+                  </li>
+                ))}
               </ul>
             </div>
           ))}

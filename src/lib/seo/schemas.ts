@@ -33,9 +33,7 @@ export function organizationSchema(): Json {
       '@type': 'ContactPoint',
       email: CONTACT_EMAIL,
       contactType: 'customer support',
-      availableLanguage: [
-        { '@type': 'Language', name: 'Portuguese', alternateName: LOCALE },
-      ],
+      availableLanguage: [{ '@type': 'Language', name: 'Portuguese', alternateName: LOCALE }],
     },
   };
 }
@@ -110,5 +108,22 @@ export function articleSchema(params: {
     author: { '@id': ORG_ID },
     publisher: { '@id': ORG_ID },
     image: params.image ? `${SITE_URL}${params.image}` : `${SITE_URL}/opengraph-image`,
+  };
+}
+
+export function collectionPageSchema(params: {
+  path: string;
+  name: string;
+  description: string;
+}): Json {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    url: `${SITE_URL}${params.path}`,
+    name: params.name,
+    description: params.description,
+    inLanguage: LOCALE,
+    isPartOf: { '@id': WEBSITE_ID },
+    publisher: { '@id': ORG_ID },
   };
 }

@@ -9,7 +9,7 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { aboutPageSchema } from '@/lib/seo/schemas';
 
 const pageDescription =
-  'Conheça a AraLabs: empresa brasileira de produtos digitais, sediada em Arapongas (PR), com princípios de clareza, estrutura e problemas reais antes de funcionalidades.';
+  'A AraLabs é um lab brasileiro de produtos digitais próprios, sediado em Arapongas (PR). Construímos software com utilidade real para problemas cotidianos de famílias, pequenos negócios e operações locais.';
 
 export const metadata: Metadata = {
   title: 'Sobre a empresa',
@@ -76,11 +76,11 @@ export default function EmpresaPage() {
         title={
           <>
             Uma empresa para{' '}
-            <span className="font-serif italic text-[color:var(--gold-soft)]">criar</span>{' '}
-            produtos, não apenas software.
+            <span className="font-serif italic text-[color:var(--gold-soft)]">criar</span> produtos,
+            não apenas software.
           </>
         }
-        description="A Aralabs é uma empresa brasileira em construção, criada como estrutura-mãe para conceber, organizar e evoluir produtos digitais com utilidade real e visão de longo prazo."
+        description="Lab brasileiro de produtos digitais próprios. Construímos software com utilidade real para problemas cotidianos — produto, design e engenharia como núcleo, com base em Arapongas e ambição digital maior."
         visual={
           <div className="absolute inset-0 h-full w-full overflow-hidden rounded-[24px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] shadow-[0_40px_120px_rgba(0,0,0,0.28)]">
             <Image
@@ -178,6 +178,42 @@ export default function EmpresaPage() {
         </div>
       </section>
 
+      {/* Parcerias selecionadas */}
+      <section id="parcerias" className="border-b border-[color:var(--line)]">
+        <div className="mx-auto max-w-[1240px] px-6 py-20 lg:px-10 lg:py-28">
+          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+            <div>
+              <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
+                Parcerias selecionadas
+              </p>
+              <h2 className="mt-6 text-balance text-[34px] font-semibold leading-[1.06] tracking-[-0.02em] text-[color:var(--ink)] md:text-[44px]">
+                Também construímos sob{' '}
+                <span className="font-serif italic text-[color:var(--gold-soft)]">demanda</span>, em
+                parcerias selecionadas.
+              </h2>
+            </div>
+            <div className="space-y-6 text-[17px] leading-[1.75] text-[color:var(--ink-muted)]">
+              <p>
+                A AraLabs nasce para construir produtos próprios, mas também pode participar de
+                projetos sob demanda quando existe alinhamento claro de visão, qualidade e longo
+                prazo.
+              </p>
+              <p>
+                Não atuamos como uma fábrica de demandas genéricas. Entramos em parcerias onde
+                conseguimos contribuir com produto, design, engenharia e clareza estratégica.
+              </p>
+              <p>Para conversar sobre uma possibilidade de parceria, entre em contato.</p>
+              <a
+                href="mailto:trabalhe@aralabs.com.br"
+                className="inline-flex items-center gap-2 rounded-full border border-[color:var(--line-strong)] px-5 py-3 text-[14px] font-semibold text-[color:var(--ink)] transition hover:border-[color:var(--gold)]/50 hover:text-[color:var(--gold-soft)]"
+              >
+                trabalhe@aralabs.com.br →
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <NextSteps />
 
       {/* Bottom CTA */}
@@ -186,19 +222,19 @@ export default function EmpresaPage() {
           <div className="flex flex-col items-start justify-between gap-6 rounded-[28px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] p-10 md:flex-row md:items-center">
             <div>
               <h3 className="text-balance text-[26px] font-semibold tracking-tight text-[color:var(--ink)] md:text-[32px]">
-                Quer entender{' '}
-                <span className="font-serif italic text-[color:var(--gold-soft)]">por que</span>{' '}
-                existimos?
+                Conheça os{' '}
+                <span className="font-serif italic text-[color:var(--gold-soft)]">produtos</span> da
+                AraLabs.
               </h3>
               <p className="mt-2 text-[15.5px] text-[color:var(--ink-muted)]">
-                Leia a tese que move cada produto da Aralabs.
+                ara-agenda e Casa Leve — produtos próprios construídos a partir da nossa tese.
               </p>
             </div>
             <Link
-              href="/tese"
+              href="/produtos"
               className="inline-flex items-center gap-2 rounded-full bg-[color:var(--gold)] px-6 py-3.5 text-[14.5px] font-semibold text-[color:var(--on-gold)] transition hover:bg-[color:var(--gold-soft)]"
             >
-              Ler nossa tese →
+              Ver produtos →
             </Link>
           </div>
         </div>

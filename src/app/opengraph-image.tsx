@@ -1,7 +1,6 @@
 import { ImageResponse } from 'next/og';
 
-export const runtime = 'edge';
-export const alt = 'AraLabs — Produtos digitais para problemas reais';
+export const alt = 'AraLabs — Software próprio para problemas reais do dia a dia';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -14,11 +13,12 @@ export default async function OpengraphImage() {
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'space-between',
-          padding: '72px 80px',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '80px',
           background:
-            'radial-gradient(circle at 20% 20%, #2a1f38 0%, transparent 45%), radial-gradient(circle at 85% 90%, #3a2618 0%, transparent 50%), #0d0c10',
-          color: '#f5f0e6',
+            'radial-gradient(circle at 18% 22%, rgba(217,168,74,0.22) 0%, transparent 55%), radial-gradient(circle at 82% 80%, rgba(217,168,74,0.18) 0%, transparent 50%), #f5efe4',
+          color: '#1f1a14',
           fontFamily: 'sans-serif',
         }}
       >
@@ -26,13 +26,14 @@ export default async function OpengraphImage() {
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: 20,
+            gap: 32,
+            marginBottom: 56,
           }}
         >
-          <svg width="72" height="66" viewBox="0 0 184 170">
+          <svg width="160" height="148" viewBox="0 0 184 170">
             <g
               transform="translate(0,170) scale(0.1,-0.1)"
-              fill="#e6c58a"
+              fill="#1f1a14"
               stroke="none"
             >
               <path d="M887 1509 c-20 -35 -72 -131 -116 -214 l-80 -149 71 -136 c39 -74 88 -166 110 -203 21 -38 38 -70 38 -72 0 -2 -30 -8 -67 -15 -292 -50 -549 -244 -687 -518 -15 -30 -26 -55 -24 -57 2 -1 115 0 252 3 l248 5 35 76 c19 42 82 171 140 288 78 157 111 213 127 217 11 3 69 11 127 17 88 9 124 8 214 -5 60 -9 109 -15 110 -13 6 7 -428 802 -450 826 -11 11 -19 2 -48 -50z" />
@@ -41,10 +42,11 @@ export default async function OpengraphImage() {
           </svg>
           <div
             style={{
-              fontSize: 40,
+              fontSize: 124,
               fontWeight: 700,
-              letterSpacing: -0.5,
-              color: '#f5f0e6',
+              letterSpacing: -3,
+              color: '#1f1a14',
+              lineHeight: 1,
             }}
           >
             AraLabs
@@ -53,58 +55,35 @@ export default async function OpengraphImage() {
 
         <div
           style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 24,
+            fontSize: 38,
+            fontWeight: 500,
+            lineHeight: 1.25,
+            letterSpacing: -0.5,
+            color: '#3a3024',
+            textAlign: 'center',
+            maxWidth: 940,
           }}
         >
-          <div
-            style={{
-              fontSize: 18,
-              textTransform: 'uppercase',
-              letterSpacing: 6,
-              color: '#e6c58a',
-              fontWeight: 600,
-            }}
-          >
-            — Empresa-mãe de produtos digitais
-          </div>
-          <div
-            style={{
-              fontSize: 76,
-              lineHeight: 1.05,
-              fontWeight: 600,
-              letterSpacing: -2,
-              color: '#f5f0e6',
-              maxWidth: 980,
-            }}
-          >
-            Produtos digitais para problemas reais do cotidiano.
-          </div>
+          Software próprio para problemas reais do dia a dia.
         </div>
 
         <div
           style={{
+            position: 'absolute',
+            bottom: 56,
+            left: 80,
+            right: 80,
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
-            borderTop: '1px solid rgba(243, 238, 228, 0.16)',
-            paddingTop: 28,
+            fontSize: 18,
+            color: '#7a6f5f',
+            letterSpacing: 4,
+            textTransform: 'uppercase',
+            fontWeight: 600,
           }}
         >
-          <div style={{ fontSize: 20, color: '#b9b1a3' }}>aralabs.com.br</div>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 10,
-              fontSize: 18,
-              color: '#e6c58a',
-              letterSpacing: 3,
-              textTransform: 'uppercase',
-              fontWeight: 600,
-            }}
-          >
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <span
               style={{
                 width: 8,
@@ -113,8 +92,9 @@ export default async function OpengraphImage() {
                 background: '#d9a84a',
               }}
             />
-            Arapongas · Brasil
+            Lab brasileiro de produtos digitais
           </div>
+          <div>aralabs.com.br</div>
         </div>
       </div>
     ),

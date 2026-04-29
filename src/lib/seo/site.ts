@@ -1,10 +1,10 @@
 export const SITE_URL = 'https://aralabs.com.br';
 export const SITE_NAME = 'AraLabs';
-export const SITE_TAGLINE = 'Produtos digitais para problemas reais';
+export const SITE_TAGLINE = 'Software próprio para problemas reais do dia a dia';
 export const SITE_DESCRIPTION =
-  'A AraLabs é uma empresa brasileira de produtos digitais que transforma problemas reais do cotidiano em soluções úteis, claras e sustentáveis.';
+  'A AraLabs é um lab brasileiro de produtos digitais próprios. Criamos sistemas simples, bem desenhados e sustentáveis para organizar rotinas, operações e serviços que ainda dependem de improviso.';
 export const SITE_TWITTER_DESCRIPTION =
-  'Empresa brasileira que transforma desafios do cotidiano em produtos digitais úteis, claros e sustentáveis.';
+  'Lab brasileiro de produtos digitais próprios — software simples e sustentável para problemas reais do dia a dia.';
 export const CONTACT_EMAIL = 'contato@aralabs.com.br';
 export const LOCALE = 'pt-BR';
 

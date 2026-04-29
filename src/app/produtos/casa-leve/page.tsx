@@ -1,12 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { ImagePlaceholder } from '@/components/site/ImagePlaceholder';
 import { CasaLeveMockup } from '@/components/site/CasaLeveMockup';
-import {
-  RoutineMockup,
-  CollabMockup,
-  HabitsMockup,
-} from '@/components/site/FeatureMockups';
+import { RoutineMockup, CollabMockup, HabitsMockup } from '@/components/site/FeatureMockups';
 import type { Metadata } from 'next';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { softwareApplicationSchema } from '@/lib/seo/schemas';
@@ -18,11 +13,11 @@ const pageDescription =
 export const metadata: Metadata = {
   title: pageTitle,
   description: pageDescription,
-  alternates: { canonical: '/casa-leve' },
+  alternates: { canonical: '/produtos/casa-leve' },
   openGraph: {
     title: pageTitle,
     description: pageDescription,
-    url: '/casa-leve',
+    url: '/produtos/casa-leve',
     type: 'website',
   },
 };
@@ -72,7 +67,7 @@ export default function CasaLevePage() {
     <>
       <JsonLd
         data={softwareApplicationSchema({
-          path: '/casa-leve',
+          path: '/produtos/casa-leve',
           name: 'Casa Leve',
           description: pageDescription,
           applicationCategory: 'LifestyleApplication',
@@ -94,12 +89,12 @@ export default function CasaLevePage() {
                 <span className="grid h-5 w-5 place-items-center rounded-full bg-[color:var(--gold)]/15">
                   <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--gold)] shimmer" />
                 </span>
-                Primeiro produto da Aralabs
+                Um produto da AraLabs
               </div>
 
               <h1 className="text-balance text-[42px] font-semibold leading-[1.04] tracking-[-0.02em] text-[color:var(--ink)] md:text-[52px] lg:text-[58px]">
-                <span className="font-serif italic text-[color:var(--gold-soft)]">Casa Leve</span>{' '}
-                — um sistema para a família funcionar melhor.
+                <span className="font-serif italic text-[color:var(--gold-soft)]">Casa Leve</span> —
+                um sistema para a família funcionar melhor.
               </h1>
 
               <p className="mt-8 max-w-xl text-[19px] leading-[1.7] text-[color:var(--ink-muted)] md:text-[20px]">
@@ -168,6 +163,21 @@ export default function CasaLevePage() {
         </div>
       </section>
 
+      {/* Status */}
+      <section className="border-b border-[color:var(--line)]">
+        <div className="mx-auto max-w-[1240px] px-6 py-10 lg:px-10 lg:py-14">
+          <div className="rounded-[24px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] p-8">
+            <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-[color:var(--gold-soft)]">
+              Status: Em exploração
+            </p>
+            <p className="mt-4 text-[16px] leading-[1.7] text-[color:var(--ink-muted)]">
+              O Casa Leve está em fase de definição de produto, validação de proposta e construção
+              conceitual.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Big visual showcase */}
       <section className="border-b border-[color:var(--line)]">
         <div className="mx-auto max-w-[1240px] px-6 py-20 lg:px-10 lg:py-24">
@@ -177,8 +187,8 @@ export default function CasaLevePage() {
             </p>
             <h2 className="mt-4 text-balance text-[34px] font-semibold leading-[1.06] tracking-[-0.02em] text-[color:var(--ink)] md:text-[44px]">
               Desenhado para{' '}
-              <span className="font-serif italic text-[color:var(--gold-soft)]">famílias</span>{' '}
-              com filhos que querem uma rotina mais leve.
+              <span className="font-serif italic text-[color:var(--gold-soft)]">famílias</span> com
+              filhos que querem uma rotina mais leve.
             </h2>
           </div>
 
@@ -246,8 +256,7 @@ export default function CasaLevePage() {
             </p>
             <h2 className="mt-4 text-balance text-[34px] font-semibold leading-[1.06] tracking-[-0.02em] text-[color:var(--ink)] md:text-[44px]">
               Como o Casa Leve{' '}
-              <span className="font-serif italic text-[color:var(--gold-soft)]">pensa</span>{' '}
-              rotina.
+              <span className="font-serif italic text-[color:var(--gold-soft)]">pensa</span> rotina.
             </h2>
           </div>
 
@@ -286,8 +295,8 @@ export default function CasaLevePage() {
                   Quer acompanhar a construção?
                 </h2>
                 <p className="mt-5 text-[16px] leading-[1.7] text-[color:var(--ink-muted)]">
-                  O Casa Leve está em exploração inicial. Entre em contato se você quer
-                  acompanhar, testar ou conversar sobre o produto.
+                  O Casa Leve está em exploração inicial. Entre em contato se você quer acompanhar,
+                  testar ou conversar sobre o produto.
                 </p>
               </div>
               <div className="flex flex-wrap gap-3">

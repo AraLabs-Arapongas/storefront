@@ -9,7 +9,7 @@ const links = [
   { label: 'Home', href: '/' },
   { label: 'Empresa', href: '/empresa' },
   { label: 'Tese', href: '/tese' },
-  { label: 'Casa Leve', href: '/casa-leve' },
+  { label: 'Produtos', href: '/produtos' },
   { label: 'Contato', href: '#contato' },
 ];
 

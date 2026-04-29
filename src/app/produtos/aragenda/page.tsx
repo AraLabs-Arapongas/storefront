@@ -1,6 +1,6 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Metadata } from 'next';
-import { PageHero } from '@/components/site/PageHero';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { softwareApplicationSchema } from '@/lib/seo/schemas';
 
@@ -53,28 +53,47 @@ export default function AragendaPage() {
         })}
       />
 
-      <PageHero
-        eyebrow="Produto · Em desenvolvimento"
-        title={
-          <>
-            <span className="font-serif italic text-[color:var(--gold-soft)]">Aragenda</span>
-            {' — '}
-            agenda online e presença digital para pequenos negócios de serviços.
-          </>
-        }
-        description="A Aragenda é um produto da AraLabs pensado para negócios que vendem tempo por horário."
-      />
+      {/* Hero banner · imagem livre */}
+      <section className="relative aspect-[4/5] overflow-hidden border-b border-[color:var(--line)] md:aspect-[16/9] lg:aspect-[3/1]">
+        <Image
+          src="/images/aragenda-banner-product-mobile.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center md:hidden"
+        />
+        <Image
+          src="/images/aragenda-banner-product-md.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="hidden object-cover object-center md:block lg:hidden"
+        />
+        <Image
+          src="/images/aragenda-banner-product.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="hidden object-cover object-center lg:block"
+        />
+      </section>
 
-      {/* Status */}
+      {/* Copy do produto */}
       <section className="border-b border-[color:var(--line)]">
-        <div className="mx-auto max-w-[1240px] px-6 py-10 lg:px-10 lg:py-14">
-          <div className="rounded-[24px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] p-8">
-            <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-[color:var(--gold-soft)]">
-              Status: Em desenvolvimento
-            </p>
-            <p className="mt-4 text-[16px] leading-[1.7] text-[color:var(--ink-muted)]">
-              A Aragenda está em construção ativa. As funcionalidades aqui descritas refletem a
-              visão do produto em curso.
+        <div className="mx-auto max-w-[1240px] px-6 py-14 lg:px-10 lg:py-20">
+          <div className="flex max-w-3xl flex-col">
+            <h1 className="text-balance text-[32px] font-semibold leading-[1.06] tracking-[-0.02em] text-[color:var(--ink)] md:text-[42px] lg:text-[52px]">
+              <span className="font-serif italic text-[color:var(--gold-soft)]">Aragenda</span>
+              {' — '}
+              agenda online e presença digital para pequenos negócios de serviços.
+            </h1>
+
+            <p className="mt-6 max-w-xl text-[16px] leading-[1.65] text-[color:var(--ink-muted)] md:text-[18px]">
+              A Aragenda é um produto da AraLabs pensado para negócios que vendem tempo por
+              horário.
             </p>
           </div>
         </div>

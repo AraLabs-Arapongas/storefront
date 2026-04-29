@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { LogoMark } from '@/components/site/Logo';
+import { HomeHeroCarousel } from '@/components/site/HomeHeroCarousel';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { websiteSchema, organizationSchema } from '@/lib/seo/schemas';
+import { websiteSchema } from '@/lib/seo/schemas';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/' },
@@ -56,134 +57,9 @@ const routes = [
 export default function Home() {
   return (
     <>
-      <JsonLd data={organizationSchema()} />
       <JsonLd data={websiteSchema()} />
 
-      {/* Hero · AraLabs */}
-      <section id="top" className="relative overflow-hidden border-b border-[color:var(--line)]">
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute left-[-10%] top-[-20%] h-[46rem] w-[46rem] rounded-full bg-[radial-gradient(closest-side,rgba(217,168,74,0.14),transparent_70%)]" />
-          <div className="absolute right-[-10%] top-[20%] h-[38rem] w-[38rem] rounded-full bg-[radial-gradient(closest-side,rgba(167,139,255,0.10),transparent_70%)]" />
-        </div>
-        <div className="grain" />
-
-        <div className="mx-auto max-w-[1240px] px-6 pb-20 pt-16 lg:px-10 lg:pb-28 lg:pt-24">
-          <div className="flex max-w-2xl flex-col justify-center rise">
-            <div className="mb-8 inline-flex w-fit items-center gap-3 rounded-full border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)]/60 py-2 pl-2 pr-4 text-[11px] font-medium uppercase tracking-[0.22em] text-[color:var(--ink-muted)] backdrop-blur">
-              <span className="grid h-5 w-5 place-items-center rounded-full bg-[color:var(--gold)]/15 text-[color:var(--gold-soft)]">
-                <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--gold)] shimmer" />
-              </span>
-              Lab brasileiro de produtos digitais
-            </div>
-
-            <h1 className="text-balance text-[42px] font-semibold leading-[1.04] tracking-[-0.02em] text-[color:var(--ink)] md:text-[54px] lg:text-[62px]">
-              Software{' '}
-              <span className="font-serif italic text-[color:var(--gold-soft)]">próprio</span> para
-              problemas reais do dia a dia.
-            </h1>
-            <p className="mt-8 max-w-xl text-[19px] leading-[1.7] text-[color:var(--ink-muted)] md:text-[20px]">
-              A AraLabs é uma fábrica brasileira de produtos digitais. Criamos sistemas simples, bem
-              desenhados e sustentáveis para organizar rotinas, operações e serviços que ainda
-              dependem de improviso.
-            </p>
-            <div className="mt-10 flex flex-wrap items-center gap-4">
-              <Link
-                href="/produtos"
-                className="group inline-flex items-center gap-3 rounded-full bg-[color:var(--gold)] px-6 py-3.5 text-[15px] font-semibold tracking-tight text-[color:var(--on-gold)] transition hover:bg-[color:var(--gold-soft)]"
-              >
-                Conhecer nossos produtos
-                <span className="transition group-hover:translate-x-0.5">→</span>
-              </Link>
-              <Link
-                href="/empresa"
-                className="inline-flex items-center gap-3 rounded-full border border-[color:var(--line-strong)] px-6 py-3.5 text-[15px] font-semibold text-[color:var(--ink)] transition hover:border-[color:var(--gold)]/50 hover:text-[color:var(--gold-soft)]"
-              >
-                Sobre a AraLabs
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Hero · Aragenda */}
-      <section className="relative overflow-hidden border-b border-[color:var(--line)]">
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute left-[-10%] top-[-20%] h-[46rem] w-[46rem] rounded-full bg-[radial-gradient(closest-side,rgba(217,168,74,0.14),transparent_70%)]" />
-          <div className="absolute right-[-10%] top-[20%] h-[38rem] w-[38rem] rounded-full bg-[radial-gradient(closest-side,rgba(167,139,255,0.10),transparent_70%)]" />
-        </div>
-        <div className="grain" />
-
-        <div className="mx-auto max-w-[1240px] px-6 pb-20 pt-16 lg:px-10 lg:pb-28 lg:pt-24">
-          <div className="flex max-w-2xl flex-col justify-center rise">
-            <div className="mb-8 inline-flex w-fit items-center gap-3 rounded-full border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)]/60 py-2 pl-2 pr-4 text-[11px] font-medium uppercase tracking-[0.22em] text-[color:var(--ink-muted)] backdrop-blur">
-              <span className="grid h-5 w-5 place-items-center rounded-full bg-[color:var(--gold)]/15 text-[color:var(--gold-soft)]">
-                <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--gold)] shimmer" />
-              </span>
-              Produto · Em desenvolvimento
-            </div>
-
-            <h2 className="text-balance text-[42px] font-semibold leading-[1.04] tracking-[-0.02em] text-[color:var(--ink)] md:text-[54px] lg:text-[62px]">
-              <span className="font-serif italic text-[color:var(--gold-soft)]">Aragenda</span>
-              {' — '}
-              agenda online e presença digital para pequenos negócios.
-            </h2>
-            <p className="mt-8 max-w-xl text-[19px] leading-[1.7] text-[color:var(--ink-muted)] md:text-[20px]">
-              Para salões, barbearias, clínicas, oficinas e profissionais autônomos que vendem tempo
-              por horário. Combina agendamento online, página pública do negócio e ferramentas que
-              reduzem o atrito do cliente — tirando a operação do WhatsApp e da memória.
-            </p>
-            <div className="mt-10 flex flex-wrap items-center gap-4">
-              <Link
-                href="/produtos/aragenda"
-                className="group inline-flex items-center gap-3 rounded-full bg-[color:var(--gold)] px-6 py-3.5 text-[15px] font-semibold tracking-tight text-[color:var(--on-gold)] transition hover:bg-[color:var(--gold-soft)]"
-              >
-                Conhecer Aragenda
-                <span className="transition group-hover:translate-x-0.5">→</span>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Hero · Casa Leve */}
-      <section className="relative overflow-hidden border-b border-[color:var(--line)]">
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute left-[-10%] top-[-20%] h-[46rem] w-[46rem] rounded-full bg-[radial-gradient(closest-side,rgba(217,168,74,0.14),transparent_70%)]" />
-          <div className="absolute right-[-10%] top-[20%] h-[38rem] w-[38rem] rounded-full bg-[radial-gradient(closest-side,rgba(167,139,255,0.10),transparent_70%)]" />
-        </div>
-        <div className="grain" />
-
-        <div className="mx-auto max-w-[1240px] px-6 pb-20 pt-16 lg:px-10 lg:pb-28 lg:pt-24">
-          <div className="flex max-w-2xl flex-col justify-center rise">
-            <div className="mb-8 inline-flex w-fit items-center gap-3 rounded-full border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)]/60 py-2 pl-2 pr-4 text-[11px] font-medium uppercase tracking-[0.22em] text-[color:var(--ink-muted)] backdrop-blur">
-              <span className="grid h-5 w-5 place-items-center rounded-full bg-[color:var(--gold)]/15 text-[color:var(--gold-soft)]">
-                <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--gold)] shimmer" />
-              </span>
-              Produto · Em exploração
-            </div>
-
-            <h2 className="text-balance text-[42px] font-semibold leading-[1.04] tracking-[-0.02em] text-[color:var(--ink)] md:text-[54px] lg:text-[62px]">
-              <span className="font-serif italic text-[color:var(--gold-soft)]">Casa Leve</span>
-              {' — '}
-              rotina, responsabilidades e hábitos da família.
-            </h2>
-            <p className="mt-8 max-w-xl text-[19px] leading-[1.7] text-[color:var(--ink-muted)] md:text-[20px]">
-              Sistema para ajudar famílias a dividir responsabilidades, organizar rotina e manter
-              acordos visíveis. Menos cobrança, mais clareza, mais autonomia — pra que a casa não
-              dependa da memória de uma pessoa só.
-            </p>
-            <div className="mt-10 flex flex-wrap items-center gap-4">
-              <Link
-                href="/produtos/casa-leve"
-                className="group inline-flex items-center gap-3 rounded-full bg-[color:var(--gold)] px-6 py-3.5 text-[15px] font-semibold tracking-tight text-[color:var(--on-gold)] transition hover:bg-[color:var(--gold-soft)]"
-              >
-                Conhecer Casa Leve
-                <span className="transition group-hover:translate-x-0.5">→</span>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HomeHeroCarousel />
 
       {/* Pilares */}
       <section className="border-b border-[color:var(--line)]">

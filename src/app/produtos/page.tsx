@@ -1,6 +1,6 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Metadata } from 'next';
-import { PageHero } from '@/components/site/PageHero';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { collectionPageSchema } from '@/lib/seo/schemas';
 
@@ -65,17 +65,51 @@ export default function ProdutosPage() {
         })}
       />
 
-      <PageHero
-        eyebrow="Portfólio"
-        title={
-          <>
-            A AraLabs cria produtos próprios para{' '}
-            <span className="font-serif italic text-[color:var(--gold-soft)]">problemas reais</span>{' '}
-            do cotidiano.
-          </>
-        }
-        description="Nosso portfólio reúne produtos digitais construídos com intenção de longo prazo, base técnica sólida e leitura direta do problema."
-      />
+      {/* Hero banner · imagem livre */}
+      <section className="relative aspect-[4/5] overflow-hidden border-b border-[color:var(--line)] md:aspect-[16/9] lg:aspect-[3/1]">
+        <Image
+          src="/images/portfolio-banner-mobile.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center md:hidden"
+        />
+        <Image
+          src="/images/portfolio-banner-md.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="hidden object-cover object-center md:block lg:hidden"
+        />
+        <Image
+          src="/images/portfolio-banner.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="hidden object-cover object-center lg:block"
+        />
+      </section>
+
+      {/* Copy do portfólio */}
+      <section className="border-b border-[color:var(--line)]">
+        <div className="mx-auto max-w-[1240px] px-6 py-14 lg:px-10 lg:py-20">
+          <div className="flex max-w-3xl flex-col">
+            <h1 className="text-balance text-[32px] font-semibold leading-[1.06] tracking-[-0.02em] text-[color:var(--ink)] md:text-[42px] lg:text-[52px]">
+              A AraLabs cria produtos próprios para{' '}
+              <span className="font-serif italic text-[color:var(--gold-soft)]">problemas reais</span>{' '}
+              do cotidiano.
+            </h1>
+
+            <p className="mt-6 max-w-xl text-[16px] leading-[1.65] text-[color:var(--ink-muted)] md:text-[18px]">
+              Nosso portfólio reúne produtos digitais construídos com intenção de longo prazo, base
+              técnica sólida e leitura direta do problema.
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* Produtos atuais */}
       <section className="border-b border-[color:var(--line)]">

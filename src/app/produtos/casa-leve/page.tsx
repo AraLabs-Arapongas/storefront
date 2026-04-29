@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { CasaLeveMockup } from '@/components/site/CasaLeveMockup';
 import { RoutineMockup, CollabMockup, HabitsMockup } from '@/components/site/FeatureMockups';
 import type { Metadata } from 'next';
 import { JsonLd } from '@/components/seo/JsonLd';
@@ -74,105 +73,46 @@ export default function CasaLevePage() {
           operatingSystem: 'Web, iOS, Android',
         })}
       />
-      {/* Hero */}
-      <section className="relative overflow-hidden border-b border-[color:var(--line)]">
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute left-[-10%] top-[-20%] h-[46rem] w-[46rem] rounded-full bg-[radial-gradient(closest-side,rgba(217,168,74,0.14),transparent_70%)]" />
-          <div className="absolute right-[-10%] top-[20%] h-[42rem] w-[42rem] rounded-full bg-[radial-gradient(closest-side,rgba(167,139,255,0.10),transparent_70%)]" />
-        </div>
-        <div className="grain" />
-
-        <div className="mx-auto max-w-[1240px] px-6 pb-16 pt-16 lg:px-10 lg:pb-24 lg:pt-20">
-          <div className="grid gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
-            <div className="flex flex-col justify-center rise">
-              <div className="mb-6 inline-flex w-fit items-center gap-3 rounded-full border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)]/60 py-2 pl-2 pr-4 text-[11px] font-medium uppercase tracking-[0.22em] text-[color:var(--ink-muted)] backdrop-blur">
-                <span className="grid h-5 w-5 place-items-center rounded-full bg-[color:var(--gold)]/15">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--gold)] shimmer" />
-                </span>
-                Um produto da AraLabs
-              </div>
-
-              <h1 className="text-balance text-[42px] font-semibold leading-[1.04] tracking-[-0.02em] text-[color:var(--ink)] md:text-[52px] lg:text-[58px]">
-                <span className="font-serif italic text-[color:var(--gold-soft)]">Casa Leve</span> —
-                um sistema para a família funcionar melhor.
-              </h1>
-
-              <p className="mt-8 max-w-xl text-[19px] leading-[1.7] text-[color:var(--ink-muted)] md:text-[20px]">
-                Rotina, responsabilidades, hábitos e colaboração em um só lugar. Menos cobrança,
-                mais clareza, mais autonomia.
-              </p>
-
-              <div className="mt-10 flex flex-wrap items-center gap-4">
-                <a
-                  href="#features"
-                  className="group inline-flex items-center gap-3 rounded-full bg-[color:var(--gold)] px-6 py-3.5 text-[15px] font-semibold tracking-tight text-[color:var(--on-gold)] transition hover:bg-[color:var(--gold-soft)]"
-                >
-                  Ver funcionalidades
-                  <span className="transition group-hover:translate-x-0.5">→</span>
-                </a>
-                <span className="rounded-full border border-[color:var(--gold)]/30 bg-[color:var(--gold)]/10 px-5 py-3.5 text-[13px] font-semibold uppercase tracking-[0.18em] text-[color:var(--gold-soft)]">
-                  Em exploração
-                </span>
-              </div>
-
-              <dl className="mt-14 grid max-w-lg grid-cols-3 gap-6 border-t border-[color:var(--line)] pt-8">
-                <div>
-                  <dt className="text-[11px] font-medium uppercase tracking-[0.22em] text-[color:var(--ink-dim)]">
-                    Foco
-                  </dt>
-                  <dd className="mt-2 text-sm leading-snug text-[color:var(--ink)]">Família</dd>
-                </div>
-                <div>
-                  <dt className="text-[11px] font-medium uppercase tracking-[0.22em] text-[color:var(--ink-dim)]">
-                    Plataforma
-                  </dt>
-                  <dd className="mt-2 text-sm leading-snug text-[color:var(--ink)]">
-                    Mobile first
-                  </dd>
-                </div>
-                <div>
-                  <dt className="text-[11px] font-medium uppercase tracking-[0.22em] text-[color:var(--ink-dim)]">
-                    Lançamento
-                  </dt>
-                  <dd className="mt-2 text-sm leading-snug text-[color:var(--ink)]">2026</dd>
-                </div>
-              </dl>
-            </div>
-
-            <div className="relative min-h-[520px]">
-              <div className="absolute inset-0 rounded-[28px] border border-[color:var(--line-strong)] bg-gradient-to-br from-[color:var(--bg-elev-2)] via-[color:var(--bg-elev)] to-[color:var(--surface-deep)] p-6 shadow-[0_40px_120px_rgba(0,0,0,0.5)]">
-                <div className="mb-5 flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="grid h-8 w-8 place-items-center rounded-xl bg-gradient-to-br from-[color:var(--gold)] to-[color:var(--gold-soft)] font-serif text-sm italic text-[color:var(--on-gold)]">
-                      C
-                    </span>
-                    <span className="text-[13px] font-semibold text-[color:var(--ink)]">
-                      Casa Leve
-                    </span>
-                  </div>
-                  <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-[color:var(--ink-dim)]">
-                    preview
-                  </span>
-                </div>
-                <div className="h-[calc(100%-60px)]">
-                  <CasaLeveMockup />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      {/* Hero banner · imagem livre */}
+      <section className="relative aspect-[4/5] overflow-hidden border-b border-[color:var(--line)] md:aspect-[16/9] lg:aspect-[3/1]">
+        <Image
+          src="/images/casa-leve-banner-product-mobile.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center md:hidden"
+        />
+        <Image
+          src="/images/casa-leve-banner-product-md.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="hidden object-cover object-center md:block lg:hidden"
+        />
+        <Image
+          src="/images/casa-leve-banner-product.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="hidden object-cover object-center lg:block"
+        />
       </section>
 
-      {/* Status */}
+      {/* Copy do produto */}
       <section className="border-b border-[color:var(--line)]">
-        <div className="mx-auto max-w-[1240px] px-6 py-10 lg:px-10 lg:py-14">
-          <div className="rounded-[24px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] p-8">
-            <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-[color:var(--gold-soft)]">
-              Status: Em exploração
-            </p>
-            <p className="mt-4 text-[16px] leading-[1.7] text-[color:var(--ink-muted)]">
-              O Casa Leve está em fase de definição de produto, validação de proposta e construção
-              conceitual.
+        <div className="mx-auto max-w-[1240px] px-6 py-14 lg:px-10 lg:py-20">
+          <div className="flex max-w-3xl flex-col">
+            <h1 className="text-balance text-[32px] font-semibold leading-[1.06] tracking-[-0.02em] text-[color:var(--ink)] md:text-[42px] lg:text-[52px]">
+              <span className="font-serif italic text-[color:var(--gold-soft)]">Casa Leve</span> —
+              um sistema para a família funcionar melhor.
+            </h1>
+
+            <p className="mt-6 max-w-xl text-[16px] leading-[1.65] text-[color:var(--ink-muted)] md:text-[18px]">
+              Rotina, responsabilidades, hábitos e colaboração em um só lugar. Menos cobrança, mais
+              clareza, mais autonomia.
             </p>
           </div>
         </div>

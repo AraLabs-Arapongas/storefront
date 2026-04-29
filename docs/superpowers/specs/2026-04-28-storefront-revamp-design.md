@@ -65,7 +65,18 @@ A conexão honesta entre Casa Leve e ara-agenda é amplitude, não filosofia for
 - Subcopy: ver acima.
 - CTA primário: "Conheça nossos produtos" → `/produtos`.
 - CTA secundário: "Sobre a AraLabs" → `/empresa`.
-- Visual: NÃO usar `CasaLeveDualMockup` como ilustração principal (vira monoproduto). Usar visual neutro que represente "lab/produtos" — composição com mockups dos dois produtos lado a lado, ou ilustração abstrata da marca. Decisão visual final fica para a fase de implementação.
+- **Visual:** NÃO usar mockup de produto específico (nem Casa Leve nem ara-agenda). Mockup de produto único faz a AraLabs voltar a parecer "ser aquele produto". O hero deve representar a empresa como sistema/fábrica de portfólio.
+
+  Direção preferida — **grid de cards do portfólio**:
+
+  ```
+  AraLabs
+  ├─ ara-agenda
+  ├─ Casa Leve
+  └─ próximo produto
+  ```
+
+  Comunica portfólio imediatamente. Alternativas válidas: diagrama AraLabs → Produtos → Problemas, cards abstratos de software, mini interfaces genéricas sem marca de produto, ou composição editorial com blocos (Produto · Problema · Sistema · Operação).
 
 **Pilares (refinar os atuais 4)**
 
@@ -82,10 +93,12 @@ Parágrafo curto extraído de `/tese`, com link "Leia nossa tese completa" → `
 
 **Portfólio**
 
-Cards dos dois produtos:
+Cards dos dois produtos com sinalização de maturidade:
 
-- ara-agenda — "Agenda online e presença digital para pequenos negócios de serviços." → `/produtos/ara-agenda`
-- Casa Leve — "Rotina familiar: tarefas, colaboração e incentivos." (manter signal "em exploração" se ainda for verdade) → `/produtos/casa-leve`
+- **ara-agenda** — "Agenda online e presença digital para pequenos negócios de serviços." Status: **Em desenvolvimento**. → `/produtos/ara-agenda`
+- **Casa Leve** — "Rotina familiar: tarefas, colaboração e incentivos." Status: **Em exploração**. → `/produtos/casa-leve`
+
+A diferença de status é deliberada — comunica honestidade sobre maturidade dos produtos sem dar peso operacional igual aos dois.
 
 **CTA final**
 
@@ -140,15 +153,32 @@ Reescrita completa. Texto fornecido pelo product owner:
 
 A página deve responder: **"Que tipo de problema a AraLabs procura?"** — não "Por que famílias precisam de um app?".
 
+**Tom:** concreto, não abstrato demais. As frases que conectam família + SMB + operação local são o que faz a ponte entre os produtos. Manter explicitamente algo como:
+
+> Alguns problemas aparecem dentro de casa. Outros aparecem em pequenos negócios. Outros aparecem em operações locais que ainda dependem de WhatsApp, planilhas, memória e improviso.
+
+Sem essa ponte, a tese vira manifesto vazio de startup. Com ela, o leitor entende imediatamente por que Casa Leve e ara-agenda coexistem.
+
 JSON-LD: trocar `articleSchema` atual (que está marcando a tese antiga como artigo) por algo apropriado — provavelmente `WebPage` ou manter Article mas com novo headline/description.
 
 ### `/produtos` (novo)
 
-Índice simples do portfólio:
+Página forte que vende a **lógica do portfólio**, não só listinha de cards.
 
-- Hero curto: "Nossos produtos".
-- Grid/lista de cards: ara-agenda + Casa Leve, com headline + 1 frase + link.
-- Sem CTA de "trabalhe com a gente" aqui (mantém foco no produto).
+**Estrutura:**
+
+1. **Hero curto** — "Produtos. A AraLabs cria produtos próprios para problemas reais do cotidiano."
+2. **Produtos atuais** — grid com:
+   - **ara-agenda** — "Agenda online + presença digital para pequenos negócios de serviços." Status: Em desenvolvimento. → `/produtos/ara-agenda`
+   - **Casa Leve** — "Sistema para ajudar famílias a organizar rotina, responsabilidades e hábitos." Status: Em exploração. → `/produtos/casa-leve`
+3. **Como um produto nasce na AraLabs** — seção que reforça a empresa como fábrica de produto:
+   1. Problema real
+   2. Tese clara
+   3. Produto simples
+   4. Base técnica sólida
+   5. Evolução contínua
+
+Sem CTA de "trabalhe com a gente" aqui (mantém foco no produto).
 
 ### `/produtos/ara-agenda` (novo)
 
@@ -169,7 +199,11 @@ Conteúdo atual de `/casa-leve` migra praticamente intacto. Ajustes:
 
 - Reforçar logo no hero: "Casa Leve é um produto da AraLabs." (não "a razão de ser").
 - Atualizar canonical e og:url para `/produtos/casa-leve`.
-- Manter status "em exploração" se ainda válido (verificar com PO antes de implementar).
+- Manter status **"Em exploração"**, com copy honesta para não parecer abandonado:
+
+  > **Status: Em exploração**
+  >
+  > O Casa Leve está em fase de definição de produto, validação de proposta e construção conceitual.
 
 ### Redirect
 
@@ -186,10 +220,22 @@ Conteúdo atual de `/casa-leve` migra praticamente intacto. Ajustes:
 
 ### SEO
 
-- [src/app/sitemap.ts](src/app/sitemap.ts) — adicionar `/produtos`, `/produtos/ara-agenda`, `/produtos/casa-leve`; remover `/casa-leve`.
-- [src/lib/seo/schemas.ts](src/lib/seo/schemas.ts) — revisar `articleSchema` (tese), `softwareApplicationSchema` (atualmente para Casa Leve — vai precisar de uma versão por produto), `websiteSchema`, `aboutPageSchema`.
+- [src/app/sitemap.ts](src/app/sitemap.ts) — adicionar `/produtos`, `/produtos/ara-agenda`, `/produtos/casa-leve`; remover `/casa-leve`. Validar que `/casa-leve` não fica no sitemap novo (apenas redirect 301).
 - Metadata por página: title, description, canonical, og:url, og:type — todas precisam refletir nova IA.
 - Atualizar `Organization` JSON-LD se houver menção a produto único.
+
+**Mapa de schemas JSON-LD por rota** (mantém consistência com o trabalho de SEO recente):
+
+| Rota | Schema(s) |
+|---|---|
+| `/` | `Organization` + `WebSite` |
+| `/empresa` | `AboutPage` + `Organization` |
+| `/tese` | `Article` ou `WebPage` |
+| `/produtos` | `CollectionPage` |
+| `/produtos/ara-agenda` | `SoftwareApplication` (ou `Product`) |
+| `/produtos/casa-leve` | `SoftwareApplication` (ou `Product`) |
+
+[src/lib/seo/schemas.ts](src/lib/seo/schemas.ts) — revisar/expandir: `articleSchema` (tese), `softwareApplicationSchema` precisa virar factory parametrizada por produto, adicionar `collectionPageSchema` para `/produtos`, manter `websiteSchema` e `aboutPageSchema`.
 
 ### Componentes
 
@@ -210,12 +256,19 @@ Revisar links de navegação para refletir nova IA: `Empresa` · `Tese` · `Prod
 - Animações ou interatividade nova.
 - Novo branding / logo.
 
+## Decisões finais antes da implementação
+
+- Hero **não** deve usar mockup de produto específico.
+- Hero deve representar a AraLabs como empresa de portfólio / produtos próprios. Direção preferida: grid de cards do portfólio (AraLabs → ara-agenda · Casa Leve · próximo produto).
+- Casa Leve permanece com status **"Em exploração"** (com copy honesta que evita parecer abandonado).
+- ara-agenda entra como **"Em desenvolvimento"** (produto ativo).
+- `trabalhe@aralabs.com.br` precisa ser validado **antes** do deploy. Se mailbox não existir, criar via Cloudflare Email Routing (ou provedor atual). Se houver risco de atraso, usar alias temporário já existente e trocar depois — mas nunca publicar email morto.
+- `/casa-leve` redireciona 301 para `/produtos/casa-leve`. Validar que sitemap novo não mantém `/casa-leve`.
+
 ## Riscos e questões abertas
 
-- **Visual do hero da home:** decisão de "como mostrar lab/portfólio sem virar Casa Leve hero" fica em aberto até a fase de implementação. Possíveis caminhos: composição multi-produto, ilustração abstrata da marca, ou hero apenas tipográfico com peso forte. Discutir ao iniciar.
-- **Status "em exploração" do Casa Leve:** confirmar com PO antes de remover/manter na nova página.
-- **`trabalhe@aralabs.com.br`:** confirmar se o mailbox existe ou precisa ser criado.
 - **Mockups do ara-agenda:** placeholder na primeira versão; substituir por mockups reais quando disponíveis.
+- **Visual concreto do hero (componente):** direção decidida (grid de cards), execução visual fina fica para a fase de implementação no design system.
 
 ## Critérios de sucesso
 

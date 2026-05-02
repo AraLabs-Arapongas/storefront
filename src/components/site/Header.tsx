@@ -20,7 +20,7 @@ const links: NavLink[] = [
     href: '/produtos',
     children: [
       { label: 'Portfólio', href: '/produtos' },
-      { label: 'Aragenda', href: '/produtos/aragenda' },
+      { label: 'Aragenda', href: '/ara-agenda' },
       { label: 'Casa Leve', href: '/produtos/casa-leve' },
     ],
   },

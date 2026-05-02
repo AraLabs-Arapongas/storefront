@@ -8,6 +8,16 @@ const nextConfig: NextConfig = {
         destination: '/produtos/casa-leve',
         permanent: true,
       },
+      {
+        source: '/produtos/aragenda',
+        destination: '/ara-agenda',
+        permanent: true,
+      },
+      {
+        source: '/aragenda',
+        destination: '/ara-agenda',
+        permanent: true,
+      },
     ];
   },
 };

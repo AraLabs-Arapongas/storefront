@@ -41,6 +41,30 @@ _(Vazio por enquanto — popular conforme aparecer.)_
 
 ---
 
+## Decisões adiadas
+
+- **Admin AraLabs no storefront — postergado em 2026-04-29.**
+  Spec completa em `docs/superpowers/specs/2026-04-29-admin-multiproduct-design.md`.
+  Enquanto ara-agenda for produto único, o admin vive dentro do próprio
+  ara-agenda: zero infra nova (sem Supabase do storefront, sem auth,
+  sem BFF), lógica de write co-localizada com o produto, e
+  `pnpm provision-tenant` continua sendo o caminho oficial até virar
+  RPC/UI dentro do ara-agenda.
+
+  **Reabrir quando:** ara-X (segundo produto) entrar em planejamento.
+  Aí decide se migra os dois admins pro storefront ou mantém separados —
+  com dados reais de "quanto admin do ara-agenda eu reuso?" em vez de
+  adivinhação.
+
+  Análise feita na spec cobre: padrão de navegação (switcher + Overview),
+  URL structure, permissões (SUPER_ADMIN/PRODUCT_ADMIN/SUPPORT), audit
+  log per-product, opções de auth (Sign in with Vercel vs Supabase Auth),
+  e três estratégias pra writes cross-product (secret key direto, BFF
+  HTTP, RPC no Supabase do produto — escolhida foi RPC). Tudo isso
+  continua válido como ponto de partida na reabertura.
+
+---
+
 ## Ideias em aberto
 
 _(Vazio.)_

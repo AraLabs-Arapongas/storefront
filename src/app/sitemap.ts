@@ -25,10 +25,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${SITE_URL}/produtos/aragenda`,
+      url: `${SITE_URL}/ara-agenda`,
       lastModified: LAST_MODIFIED,
       changeFrequency: 'monthly',
-      priority: 0.85,
+      priority: 0.95,
     },
     {
       url: `${SITE_URL}/produtos/casa-leve`,

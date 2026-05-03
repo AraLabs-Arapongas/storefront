@@ -1,6 +1,8 @@
 # Admin AraLabs — Estrutura multi-produto
 
-**Status:** Decisão tomada em 2026-04-29. Spec do shape do admin antes de começar a implementação.
+> **Status: Postergado em 2026-04-29.** Enquanto ara-agenda for produto único, o admin vai morar dentro do próprio ara-agenda — zero infra nova, lógica de write co-localizada com o produto. Esta spec fica como análise de terreno pra reabrir quando ara-X entrar em planejamento. Decisão registrada em `docs/futuro.md → Decisões adiadas`.
+
+**Status original:** Decisão tomada em 2026-04-29. Spec do shape do admin antes de começar a implementação.
 
 **Contexto:** o `aralabs-storefront` é o hub admin de **todos os produtos AraLabs**. Hoje só fala com `ara-agenda` (Supabase `sixgkgiirifigoiqbyow`); horizonte de 12-18 meses prevê 3-5 produtos. Cada produto tem seu próprio Supabase. Storefront acessa via **secret key server-to-server** (bypassa RLS).
 

@@ -50,9 +50,12 @@ export default function CasaLeveTermosPage() {
             <h2>1. Quem oferece o serviço</h2>
             <p>
               O Casa Leve é desenvolvido e mantido pela{' '}
-              <strong>AraLabs</strong> (Thiago Tavares ME), sediada em
-              Arapongas/PR, Brasil. Para qualquer comunicação relativa a estes
-              Termos, escreva para{' '}
+              <strong>Thiago Tavares Consulting Ltda. - ME</strong> (nome
+              fantasia <strong>AraLabs</strong>), CNPJ{' '}
+              <strong>50.010.836/0001-45</strong>, com sede na Rua Guaraná,
+              276, Lote 011 Quadra, Jardim Primavera, Arapongas/PR, CEP
+              86702-480. Para qualquer comunicação relativa a estes Termos,
+              escreva para{' '}
               <a href="mailto:contato@aralabs.com.br">contato@aralabs.com.br</a>.
             </p>
 
@@ -239,11 +242,15 @@ export default function CasaLeveTermosPage() {
 
             <h2>13. Contato</h2>
             <p>
-              <strong>AraLabs</strong>
+              <strong>Thiago Tavares Consulting Ltda. - ME</strong> (AraLabs)
+              <br />
+              CNPJ 50.010.836/0001-45
+              <br />
+              Rua Guaraná, 276 — Lote 011 Quadra — Jardim Primavera
+              <br />
+              Arapongas/PR — CEP 86702-480 — Brasil
               <br />
               <a href="mailto:contato@aralabs.com.br">contato@aralabs.com.br</a>
-              <br />
-              Arapongas — Paraná — Brasil
             </p>
 
             <hr />

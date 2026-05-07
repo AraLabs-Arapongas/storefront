@@ -36,5 +36,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    {
+      url: `${SITE_URL}/produtos/casa-leve/privacidade`,
+      lastModified: LAST_MODIFIED,
+      changeFrequency: 'yearly',
+      priority: 0.5,
+    },
+    {
+      url: `${SITE_URL}/produtos/casa-leve/termos`,
+      lastModified: LAST_MODIFIED,
+      changeFrequency: 'yearly',
+      priority: 0.5,
+    },
   ];
 }

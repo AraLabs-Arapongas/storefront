@@ -564,3 +564,78 @@ select {
 .shimmer {
   animation: shimmer 3.6s ease-in-out infinite;
 }
+
+/* ========================================================================
+ * Policy / Terms — typography for long-form legal pages
+ * Used by /produtos/casa-leve/privacidade and /produtos/casa-leve/termos.
+ * ======================================================================== */
+.prose-policy {
+  color: var(--ink);
+  font-size: 16.5px;
+  line-height: 1.75;
+}
+.prose-policy .lead {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--ink-muted);
+  margin: 0 0 32px;
+}
+.prose-policy h2 {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 48px 0 16px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.prose-policy h2:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+.prose-policy h3 {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 28px 0 12px;
+}
+.prose-policy p {
+  margin: 0 0 16px;
+  color: var(--ink-muted);
+}
+.prose-policy strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+.prose-policy ul {
+  margin: 0 0 20px;
+  padding-left: 22px;
+  list-style: disc;
+  color: var(--ink-muted);
+}
+.prose-policy ul li {
+  margin: 6px 0;
+  padding-left: 4px;
+}
+.prose-policy ul li::marker {
+  color: var(--gold-soft);
+}
+.prose-policy a {
+  color: var(--gold-soft);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color 0.2s ease;
+}
+.prose-policy a:hover {
+  color: var(--gold);
+}
+.prose-policy hr {
+  margin: 40px 0 20px;
+  border: none;
+  border-top: 1px solid var(--line);
+}
+.prose-policy em {
+  color: var(--ink);
+  font-style: italic;
+}

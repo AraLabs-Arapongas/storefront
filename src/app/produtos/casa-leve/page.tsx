@@ -257,6 +257,32 @@ export default function CasaLevePage() {
           </div>
         </div>
       </section>
+
+      {/* Legal — links exigidos para distribuição em loja e LGPD */}
+      <section className="border-b border-[color:var(--line)]">
+        <div className="mx-auto max-w-[1240px] px-6 py-10 lg:px-10 lg:py-12">
+          <div className="flex flex-col gap-2 text-[13.5px] text-[color:var(--ink-muted)] sm:flex-row sm:items-center sm:justify-between">
+            <p>
+              Documentos legais do Casa Leve — exigidos para distribuição em
+              loja e em conformidade com a LGPD.
+            </p>
+            <nav className="flex flex-wrap gap-x-6 gap-y-2">
+              <Link
+                href="/produtos/casa-leve/privacidade"
+                className="text-[color:var(--gold-soft)] transition hover:text-[color:var(--gold)]"
+              >
+                Política de Privacidade
+              </Link>
+              <Link
+                href="/produtos/casa-leve/termos"
+                className="text-[color:var(--gold-soft)] transition hover:text-[color:var(--gold)]"
+              >
+                Termos de Uso
+              </Link>
+            </nav>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

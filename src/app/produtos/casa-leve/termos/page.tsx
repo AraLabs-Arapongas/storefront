@@ -143,6 +143,47 @@ export default function CasaLeveTermosPage() {
               externos.
             </p>
 
+            <h3>5.1 Conteúdo objetável e moderação</h3>
+            <p>
+              É proibido enviar, compartilhar ou tornar disponível através do
+              Casa Leve qualquer conteúdo que seja ofensivo, ameaçador,
+              discriminatório, violento, sexualmente explícito, falso,
+              difamatório, ilegal ou que viole direitos de terceiros — sem
+              exceções e independentemente do destinatário.
+            </p>
+            <p>
+              Mantemos zero tolerância a esse tipo de conteúdo. A AraLabs
+              pode, a qualquer momento e a seu critério, remover conteúdo
+              identificado como objetável e suspender ou encerrar a conta do
+              autor sem aviso prévio.
+            </p>
+            <p>
+              <strong>Como reportar.</strong> Se você encontrar algum
+              conteúdo ou usuário inadequado dentro do Casa Leve:
+            </p>
+            <ul>
+              <li>
+                Use o botão <em>Reportar conteúdo</em> disponível na tela do
+                membro envolvido. Ele abre seu cliente de email com o
+                contexto pré-preenchido.
+              </li>
+              <li>
+                Ou mande um email direto para{' '}
+                <a href="mailto:legal@aralabs.com.br">legal@aralabs.com.br</a>
+                {' '}com a descrição do problema.
+              </li>
+            </ul>
+            <p>
+              Analisamos toda denúncia em até 24 horas úteis e tomamos a ação
+              cabível: notificação, remoção de conteúdo, suspensão ou
+              banimento do usuário responsável.
+            </p>
+            <p>
+              <strong>Como bloquear.</strong> Administradores da casa podem
+              remover membros pela tela <em>Família</em> a qualquer momento.
+              Membros removidos perdem acesso imediato ao conteúdo da casa.
+            </p>
+
             <h2>6. Aprovações e pontos</h2>
             <p>
               O sistema de pontuação, recompensas, desafios, mesada e

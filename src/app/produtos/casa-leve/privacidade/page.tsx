@@ -191,6 +191,20 @@ export default function CasaLevePrivacidadePage() {
                 </a>
               </li>
               <li>
+                <strong>Sentry</strong> (Estados Unidos) — monitoramento de
+                erros e performance do app. Recebe stack traces, identificador
+                interno do dispositivo e do usuário (UUID, sem nome ou email)
+                e versão do app. Não recebe conteúdo das suas tarefas, fotos
+                ou mensagens.{' '}
+                <a
+                  href="https://sentry.io/privacy/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  sentry.io/privacy
+                </a>
+              </li>
+              <li>
                 <strong>Apple App Store / Google Play</strong> — distribuição do
                 aplicativo. Recebem dados de instalação que pertencem ao
                 respectivo ecossistema.

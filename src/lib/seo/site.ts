@@ -9,7 +9,7 @@ export const CONTACT_EMAIL = 'contato@aralabs.com.br';
 export const LOCALE = 'pt-BR';
 
 export const ORG_ADDRESS = {
-  streetAddress: 'Rua Guarauna, 288 - Jardim Primavera',
+  streetAddress: 'Rua Guaraúna, 288 - Jardim Primavera',
   addressLocality: 'Arapongas',
   addressRegion: 'PR',
   postalCode: '86702-480',

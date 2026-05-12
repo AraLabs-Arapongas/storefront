@@ -46,7 +46,7 @@ export default function SonoLevePrivacidadePage() {
             <p>
               <strong>Controlador dos dados:</strong> Thiago Tavares Consulting Ltda. - ME (nome
               fantasia <strong>AraLabs</strong>), CNPJ <strong>50.010.836/0001-45</strong>, com
-              sede na Rua Guaraná, 276, Lote 011 Quadra, Jardim Primavera, Arapongas/PR, CEP
+              sede na Rua Guaraúna, 288, Jardim Primavera, Arapongas/PR, CEP
               86702-480.
               <br />
               <strong>Encarregado / contato de privacidade:</strong>{' '}

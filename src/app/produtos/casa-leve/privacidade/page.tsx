@@ -52,8 +52,8 @@ export default function CasaLevePrivacidadePage() {
             <p>
               <strong>Controlador dos dados:</strong> Thiago Tavares Consulting
               Ltda. - ME (nome fantasia <strong>AraLabs</strong>), CNPJ{' '}
-              <strong>50.010.836/0001-45</strong>, com sede na Rua Guaraná, 276,
-              Lote 011 Quadra, Jardim Primavera, Arapongas/PR, CEP 86702-480.
+              <strong>50.010.836/0001-45</strong>, com sede na Rua Guaraúna, 288,
+              Jardim Primavera, Arapongas/PR, CEP 86702-480.
               <br />
               <strong>Encarregado / contato de privacidade:</strong>{' '}
               <a href="mailto:contato@aralabs.com.br">contato@aralabs.com.br</a>.
@@ -310,7 +310,7 @@ export default function CasaLevePrivacidadePage() {
               <br />
               CNPJ 50.010.836/0001-45
               <br />
-              Rua Guaraná, 276 — Lote 011 Quadra — Jardim Primavera
+              Rua Guaraúna, 288 — Jardim Primavera
               <br />
               Arapongas/PR — CEP 86702-480 — Brasil
               <br />

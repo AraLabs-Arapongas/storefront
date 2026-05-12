@@ -5,7 +5,7 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { collectionPageSchema } from '@/lib/seo/schemas';
 
 const pageDescription =
-  'Produtos da AraLabs: Aragenda (agenda online e presença digital para pequenos negócios) e Casa Leve (rotina familiar). Lab brasileiro de produtos digitais próprios.';
+  'Produtos da AraLabs: Aragenda (agenda online e presença digital para pequenos negócios), Casa Leve (rotina familiar) e Sono Leve (treino de sono pra bebê). Lab brasileiro de produtos digitais próprios.';
 
 export const metadata: Metadata = {
   title: 'Produtos',
@@ -31,6 +31,12 @@ const products = [
     name: 'Casa Leve',
     tagline: 'Sistema para ajudar famílias a organizar rotina, responsabilidades e hábitos.',
     status: 'Em exploração',
+  },
+  {
+    href: '/produtos/sono-leve',
+    name: 'Sono Leve',
+    tagline: 'Treino de sono pro bebê com timer Ferber, progressão automática e dashboard.',
+    status: 'Beta privado',
   },
 ];
 

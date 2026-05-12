@@ -22,6 +22,7 @@ const links: NavLink[] = [
       { label: 'Portfólio', href: '/produtos' },
       { label: 'Aragenda', href: '/ara-agenda' },
       { label: 'Casa Leve', href: '/produtos/casa-leve' },
+      { label: 'Sono Leve', href: '/produtos/sono-leve' },
     ],
   },
   { label: 'Contato', href: '#contato' },

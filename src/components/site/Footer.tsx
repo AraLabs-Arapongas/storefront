@@ -16,6 +16,7 @@ const columns = [
       { label: 'Aragenda', href: '/ara-agenda' },
       { label: 'Casa Leve', href: '/produtos/casa-leve' },
       { label: 'Sono Leve', href: '/produtos/sono-leve' },
+      { label: 'Lumo', href: '/produtos/lumo' },
     ],
   },
   {

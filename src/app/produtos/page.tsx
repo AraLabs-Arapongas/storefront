@@ -38,6 +38,13 @@ const products = [
     tagline: 'Treino de sono pro bebê com timer Ferber, progressão automática e dashboard.',
     status: 'Beta privado',
   },
+  {
+    href: '/produtos/lumo',
+    name: 'Lumo',
+    tagline:
+      'Comunicação visual pra famílias com crianças não-verbais. Cards, rotinas e 13.798 pictogramas ARASAAC.',
+    status: 'Em breve na App Store',
+  },
 ];
 
 const lifecycle = [

@@ -58,6 +58,18 @@ const slides: Slide[] = [
     ctaLabel: 'Conhecer Casa Leve',
     ctaHref: '/produtos/casa-leve',
   },
+  {
+    image: '/images/lumo-banner-02.png',
+    imageMd: '/images/lumo-banner-md.png',
+    imageMobile: '/images/lumo-banner-mobile.png',
+    imageAlt: '',
+    headlinePrefix: '',
+    headlineAccent: 'Lumo',
+    headlineSuffix: ' — comunicação visual para crianças não-verbais.',
+    body: 'Cards, rotinas e pictogramas ARASAAC em quatro idiomas. Toda a comunicação no dispositivo da família — sem cadastro, sem rastreamento, gratuito pra sempre.',
+    ctaLabel: 'Conhecer Lumo',
+    ctaHref: '/produtos/lumo',
+  },
 ];
 
 export function HomeHeroCarousel() {

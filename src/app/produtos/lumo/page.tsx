@@ -139,64 +139,61 @@ export default function LumoLandingPage() {
         })}
       />
 
-      {/* HERO BANNER — full bleed */}
-      <section className="relative aspect-[4/5] overflow-hidden border-b border-[color:var(--line)] md:aspect-[16/9] lg:aspect-[3/1]">
-        <Image
-          src="/images/lumo-banner-mobile.png"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center md:hidden"
-        />
-        <Image
-          src="/images/lumo-banner-md.png"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="hidden object-cover object-center md:block lg:hidden"
-        />
-        <Image
-          src="/images/lumo-banner-02.png"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="hidden object-cover object-center lg:block"
-        />
-      </section>
-
-      {/* COPY — abaixo do banner */}
+      {/* HERO — banner full-bleed com copy sobreposta à esquerda */}
       <section className="relative overflow-hidden border-b border-[color:var(--line)]">
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute left-[-8%] top-[-20%] h-[38rem] w-[38rem] rounded-full bg-[radial-gradient(closest-side,rgba(217,168,74,0.12),transparent_70%)]" />
-          <div className="absolute right-[-10%] top-[10%] h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(closest-side,rgba(167,139,255,0.08),transparent_70%)]" />
+        {/* Imagem de fundo responsiva */}
+        <div className="absolute inset-0 -z-10">
+          <Image
+            src="/images/lumo-banner-mobile.png"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center md:hidden"
+          />
+          <Image
+            src="/images/lumo-banner-md.png"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="hidden object-cover object-center md:block lg:hidden"
+          />
+          <Image
+            src="/images/lumo-banner-02.png"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="hidden object-cover object-center lg:block"
+          />
+          {/* Gradient pra dar legibilidade ao texto à esquerda */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[color:var(--bg)]/95 via-[color:var(--bg)]/70 to-[color:var(--bg)]/10" />
+          <div className="grain absolute inset-0 opacity-60" />
         </div>
-        <div className="grain" />
 
-        <div className="mx-auto max-w-[1240px] px-6 pb-20 pt-16 lg:px-10 lg:pb-24 lg:pt-20">
-          <div className="flex flex-col">
+        <div className="relative mx-auto flex min-h-[560px] max-w-[1240px] flex-col justify-center px-6 py-16 md:min-h-[640px] md:py-20 lg:min-h-[720px] lg:px-10 lg:py-24">
+          <div className="flex max-w-2xl flex-col">
             <p className="mb-6 text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--gold-soft)]">
               — Lumo · Comunicação visual
             </p>
-            <h1 className="max-w-3xl text-balance text-[40px] font-semibold leading-[1.04] tracking-[-0.02em] text-[color:var(--ink)] md:text-[50px] lg:text-[58px]">
+            <h1 className="text-balance text-[40px] font-semibold leading-[1.04] tracking-[-0.02em] text-[color:var(--ink)] md:text-[50px] lg:text-[58px]">
               Toque pra{' '}
               <span className="font-serif italic text-[color:var(--gold-soft)]">dizer</span>.
             </h1>
-            <p className="mt-7 max-w-2xl text-[19px] leading-[1.7] text-[color:var(--ink-muted)] md:text-[20px]">
+            <p className="mt-7 text-[19px] leading-[1.7] text-[color:var(--ink-muted)] md:text-[20px]">
               Lumo dá pra sua criança um jeito visual de pedir, contar e
               conversar — sem precisar de palavras. Cards, rotinas e pictogramas
               ARASAAC em quatro idiomas. Gratuito pra sempre.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <span className="inline-flex items-center gap-2 rounded-full border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] px-4 py-2 text-[13px] font-medium text-[color:var(--ink)]">
+              <span className="inline-flex items-center gap-2 rounded-full border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)]/85 px-4 py-2 text-[13px] font-medium text-[color:var(--ink)] backdrop-blur">
                 Em breve na App Store
               </span>
-              <span className="inline-flex items-center gap-2 rounded-full border border-[color:var(--gold-soft)]/30 bg-[color:var(--bg-elev)] px-4 py-2 text-[13px] font-medium text-[color:var(--gold-soft)]">
+              <span className="inline-flex items-center gap-2 rounded-full border border-[color:var(--gold-soft)]/30 bg-[color:var(--bg-elev)]/85 px-4 py-2 text-[13px] font-medium text-[color:var(--gold-soft)] backdrop-blur">
                 Gratuito pra sempre
               </span>
-              <span className="inline-flex items-center gap-2 rounded-full border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] px-4 py-2 text-[13px] font-medium text-[color:var(--ink-muted)]">
+              <span className="inline-flex items-center gap-2 rounded-full border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)]/85 px-4 py-2 text-[13px] font-medium text-[color:var(--ink-muted)] backdrop-blur">
                 Offline real
               </span>
             </div>

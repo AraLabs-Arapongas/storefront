@@ -142,7 +142,7 @@ export default function LumoLandingPage() {
       {/* HERO — banner full-bleed com copy sobreposta à esquerda */}
       <section className="relative overflow-hidden border-b border-[color:var(--line)]">
         {/* Imagem de fundo responsiva */}
-        <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0">
           <Image
             src="/images/lumo-banner-mobile.png"
             alt=""

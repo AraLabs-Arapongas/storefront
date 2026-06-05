@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Metadata } from 'next';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { softwareApplicationSchema } from '@/lib/seo/schemas';
@@ -138,7 +139,35 @@ export default function LumoLandingPage() {
         })}
       />
 
-      {/* HERO */}
+      {/* HERO BANNER — full bleed */}
+      <section className="relative aspect-[4/5] overflow-hidden border-b border-[color:var(--line)] md:aspect-[16/9] lg:aspect-[3/1]">
+        <Image
+          src="/images/lumo-banner-mobile.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center md:hidden"
+        />
+        <Image
+          src="/images/lumo-banner-md.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="hidden object-cover object-center md:block lg:hidden"
+        />
+        <Image
+          src="/images/lumo-banner-02.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="hidden object-cover object-center lg:block"
+        />
+      </section>
+
+      {/* COPY — abaixo do banner */}
       <section className="relative overflow-hidden border-b border-[color:var(--line)]">
         <div className="pointer-events-none absolute inset-0 -z-10">
           <div className="absolute left-[-8%] top-[-20%] h-[38rem] w-[38rem] rounded-full bg-[radial-gradient(closest-side,rgba(217,168,74,0.12),transparent_70%)]" />

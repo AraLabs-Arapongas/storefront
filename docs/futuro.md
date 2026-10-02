@@ -37,11 +37,26 @@
 
 ## Backlog priorizado
 
-_(Vazio por enquanto — popular conforme aparecer.)_
+- **Domínio e URL do Komyx.** `src/lib/products.ts` aponta para
+  `https://komyx.aralabs.com.br` (mesmo padrão do Arakids). Quando o
+  domínio definitivo existir, trocar ali e nos deep links do app.
+- **WhatsApp de contato.** `CONTACT_WHATSAPP` em `src/lib/seo/site.ts`
+  está vazio; todos os "Falar com a gente" caem no e-mail. Preencher
+  com o número (55DDD...) para virar wa.me em todo o site.
+- **Imagens.** A home e as páginas novas (Komyx, Arakids, Sob medida)
+  não usam foto. Quando houver fotos reais de clientes/eventos, entram
+  no destaque do Komyx e na página Sob medida.
 
 ---
 
 ## Decisões adiadas
+
+- **Reposicionamento 2026-10-02.** Site refeito em torno de "Tecnologia
+  simples para pequenos negócios": produtos (Komyx, Casa Leve, Arakids,
+  Lumo) + linha "Sob medida" para terceiros. Saíram Aragenda, Sono Leve,
+  a página /tese e o seletor de temas (13 paletas); ficou uma paleta
+  (creme/tinta/dourado) e uma fonte (Plus Jakarta Sans), sem serifas.
+  Redirects em `next.config.ts`.
 
 - **Admin AraLabs no storefront — postergado em 2026-04-29.**
   Spec completa em `docs/superpowers/specs/2026-04-29-admin-multiproduct-design.md`.

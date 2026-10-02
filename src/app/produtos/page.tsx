@@ -1,11 +1,24 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import type { Metadata } from 'next';
+import { ArrowRight } from 'lucide-react';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { collectionPageSchema } from '@/lib/seo/schemas';
+import { PRODUCTS } from '@/lib/products';
+import { contactHref } from '@/lib/seo/site';
+import { ProductTile } from '@/components/site/ProductMarks';
+import {
+  Accent,
+  Cell,
+  CellGrid,
+  CtaPanel,
+  Eyebrow,
+  Lead,
+  Section,
+  Title,
+} from '@/components/site/ui';
 
 const pageDescription =
-  'Produtos da AraLabs: Aragenda (agenda online e presença digital para pequenos negócios), Casa Leve (rotina familiar) e Sono Leve (treino de sono pra bebê). Lab brasileiro de produtos digitais próprios.';
+  'Produtos da AraLabs: Komyx (gestão para buffets), Casa Leve (rotina da família), Arakids (jogos educativos sem anúncio) e Lumo (comunicação visual para crianças não-verbais).';
 
 export const metadata: Metadata = {
   title: 'Produtos',
@@ -19,55 +32,32 @@ export const metadata: Metadata = {
   },
 };
 
-const products = [
+const HOW = [
   {
-    href: '/produtos/aragenda',
-    name: 'Aragenda',
-    tagline: 'Agenda online + presença digital para pequenos negócios de serviços.',
-    status: 'Em desenvolvimento',
+    n: '01',
+    title: 'Um problema que a gente conhece',
+    body: 'Começamos por uma dor concreta de um negócio ou de uma casa, não por uma ideia de app.',
   },
-  {
-    href: '/produtos/casa-leve',
-    name: 'Casa Leve',
-    tagline: 'Sistema para ajudar famílias a organizar rotina, responsabilidades e hábitos.',
-    status: 'Em exploração',
-  },
-  {
-    href: '/produtos/sono-leve',
-    name: 'Sono Leve',
-    tagline: 'Treino de sono pro bebê com timer Ferber, progressão automática e dashboard.',
-    status: 'Beta privado',
-  },
-  {
-    href: '/produtos/lumo',
-    name: 'Lumo',
-    tagline:
-      'Comunicação visual pra famílias com crianças não-verbais. Cards, rotinas e 13.798 pictogramas ARASAAC.',
-    status: 'Em breve na App Store',
-  },
-];
-
-const lifecycle = [
-  { n: '01', title: 'Problema real', body: 'Começamos por uma dor concreta, não por uma ideia.' },
   {
     n: '02',
-    title: 'Tese clara',
-    body: 'Antes de construir, formulamos o ponto de vista que justifica o produto.',
+    title: 'A versão mais simples que resolve',
+    body: 'A primeira versão entrega o essencial e vai para a mão de quem usa em semanas.',
   },
   {
     n: '03',
-    title: 'Produto simples',
-    body: 'A primeira versão entrega o essencial sem inflar o escopo.',
+    title: 'Preço que cabe',
+    body: 'Mensalidade pequena ou gratuito quando faz sentido. Sem fidelidade, sem taxa por venda.',
   },
   {
     n: '04',
-    title: 'Base técnica sólida',
-    body: 'Engenharia e design servem o produto pelo longo prazo.',
+    title: 'Evolui com quem usa',
+    body: 'O que o cliente pede de manhã pode estar no ar na mesma semana. Produto vivo, não lançamento.',
   },
-  { n: '05', title: 'Evolução contínua', body: 'Produto vive — observa-se, ajusta-se, refina-se.' },
 ];
 
 export default function ProdutosPage() {
+  const business = PRODUCTS.filter((p) => p.line === 'negocios');
+  const family = PRODUCTS.filter((p) => p.line === 'familias');
   return (
     <>
       <JsonLd
@@ -78,112 +68,116 @@ export default function ProdutosPage() {
         })}
       />
 
-      {/* Hero banner · imagem livre */}
-      <section className="relative aspect-[4/5] overflow-hidden border-b border-[color:var(--line)] md:aspect-[16/9] lg:aspect-[3/1]">
-        <Image
-          src="/images/portfolio-banner-mobile.png"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center md:hidden"
-        />
-        <Image
-          src="/images/portfolio-banner-md.png"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="hidden object-cover object-center md:block lg:hidden"
-        />
-        <Image
-          src="/images/portfolio-banner.png"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="hidden object-cover object-center lg:block"
-        />
-      </section>
+      <Section>
+        <Eyebrow tone="gold">Produtos</Eyebrow>
+        <Title as="h1" size="lg">
+          Prontos para usar, <Accent>feitos para durar</Accent>.
+        </Title>
+        <Lead>
+          Para o negócio e para a casa. Cada produto nasce de um problema que a gente viu de perto e
+          fica simples o bastante para usar no primeiro dia.
+        </Lead>
+      </Section>
 
-      {/* Copy do portfólio */}
-      <section className="border-b border-[color:var(--line)]">
-        <div className="mx-auto max-w-[1240px] px-6 py-14 lg:px-10 lg:py-20">
-          <div className="flex max-w-3xl flex-col">
-            <h1 className="text-balance text-[32px] font-semibold leading-[1.06] tracking-[-0.02em] text-[color:var(--ink)] md:text-[42px] lg:text-[52px]">
-              A AraLabs cria produtos próprios para{' '}
-              <span className="font-serif italic text-[color:var(--gold-soft)]">problemas reais</span>{' '}
-              do cotidiano.
-            </h1>
-
-            <p className="mt-6 max-w-xl text-[16px] leading-[1.65] text-[color:var(--ink-muted)] md:text-[18px]">
-              Nosso portfólio reúne produtos digitais construídos com intenção de longo prazo, base
-              técnica sólida e leitura direta do problema.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Produtos atuais */}
-      <section className="border-b border-[color:var(--line)]">
-        <div className="mx-auto max-w-[1240px] px-6 py-20 lg:px-10 lg:py-24">
-          <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
-            Produtos atuais
-          </p>
-          <div className="mt-10 grid gap-5 md:grid-cols-2">
-            {products.map((p) => (
+      {[
+        { label: 'Para o negócio', items: business },
+        { label: 'Para a família', items: family },
+      ].map((group) => (
+        <Section key={group.label}>
+          <Eyebrow>{group.label}</Eyebrow>
+          <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {group.items.map((p) => (
               <Link
-                key={p.href}
+                key={p.slug}
                 href={p.href}
-                className="group flex flex-col justify-between overflow-hidden rounded-[22px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] p-8 transition hover:border-[color:var(--gold)]/40 hover:bg-[color:var(--bg-elev-2)]"
+                className="group flex flex-col justify-between rounded-[26px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] p-7 transition hover:-translate-y-0.5 hover:border-[color:var(--gold)]/50 hover:shadow-[0_18px_40px_rgba(32,24,48,0.10)]"
               >
                 <div>
-                  <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-[color:var(--gold-soft)]">
-                    Status: {p.status}
+                  <div className="flex items-start justify-between gap-3">
+                    <ProductTile product={p} size={56} />
+                    <span
+                      className="rounded-full px-2.5 py-1 text-[10.5px] font-semibold uppercase tracking-[0.14em]"
+                      style={{ background: p.colorSoft, color: p.color }}
+                    >
+                      {p.status}
+                    </span>
+                  </div>
+                  <p className="mt-7 text-[11px] font-semibold uppercase tracking-[0.18em] text-[color:var(--ink-dim)]">
+                    {p.audience}
                   </p>
-                  <h3 className="mt-5 text-[26px] font-semibold tracking-tight text-[color:var(--ink)]">
+                  <h2 className="mt-1 text-[26px] font-semibold tracking-tight text-[color:var(--ink)]">
                     {p.name}
-                  </h3>
+                  </h2>
                   <p className="mt-3 text-[15.5px] leading-[1.65] text-[color:var(--ink-muted)]">
-                    {p.tagline}
+                    {p.description}
                   </p>
                 </div>
-                <span className="mt-10 text-[color:var(--ink-dim)] transition group-hover:translate-x-0.5 group-hover:text-[color:var(--gold-soft)]">
-                  Conhecer →
-                </span>
+                <div className="mt-8 flex items-center justify-between text-[14px]">
+                  <span className="font-semibold text-[color:var(--ink)]">{p.offer}</span>
+                  <span className="inline-flex items-center gap-1 font-semibold text-[color:var(--gold-soft)]">
+                    Conhecer{' '}
+                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                  </span>
+                </div>
               </Link>
             ))}
+            {group.label === 'Para o negócio' ? (
+              <Link
+                href="/sob-medida"
+                className="group flex flex-col justify-between rounded-[26px] border border-dashed border-[color:var(--line-strong)] p-7 transition hover:border-[color:var(--gold)]/60 hover:bg-[color:var(--bg-elev)]"
+              >
+                <div>
+                  <span className="inline-grid h-14 w-14 place-items-center rounded-[16px] border border-dashed border-[color:var(--line-strong)] text-[22px] font-semibold text-[color:var(--gold-soft)]">
+                    +
+                  </span>
+                  <p className="mt-7 text-[11px] font-semibold uppercase tracking-[0.18em] text-[color:var(--ink-dim)]">
+                    Para o seu negócio
+                  </p>
+                  <h2 className="mt-1 text-[26px] font-semibold tracking-tight text-[color:var(--ink)]">
+                    Sob medida
+                  </h2>
+                  <p className="mt-3 text-[15.5px] leading-[1.65] text-[color:var(--ink-muted)]">
+                    Salão, clínica, oficina, escolinha: se o seu problema ainda não tem produto,
+                    montamos o sistema com as mesmas peças do Komyx. Primeira versão em semanas.
+                  </p>
+                </div>
+                <div className="mt-8 flex items-center justify-between text-[14px]">
+                  <span className="font-semibold text-[color:var(--ink)]">
+                    Preço fechado · o sistema é seu
+                  </span>
+                  <span className="inline-flex items-center gap-1 font-semibold text-[color:var(--gold-soft)]">
+                    Como funciona{' '}
+                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                  </span>
+                </div>
+              </Link>
+            ) : null}
           </div>
-        </div>
-      </section>
+        </Section>
+      ))}
 
-      {/* Como um produto nasce */}
-      <section className="border-b border-[color:var(--line)]">
-        <div className="mx-auto max-w-[1240px] px-6 py-20 lg:px-10 lg:py-28">
-          <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
-            Como construímos
-          </p>
-          <h2 className="mt-4 max-w-3xl text-balance text-[32px] font-semibold leading-[1.08] tracking-[-0.02em] text-[color:var(--ink)] md:text-[40px]">
-            Como um produto nasce na{' '}
-            <span className="font-serif italic text-[color:var(--gold-soft)]">AraLabs</span>.
-          </h2>
-          <ul className="mt-12 grid gap-px overflow-hidden rounded-[24px] border border-[color:var(--line-strong)] bg-[color:var(--line-strong)] sm:grid-cols-2 lg:grid-cols-5">
-            {lifecycle.map((s) => (
-              <li key={s.n} className="bg-[color:var(--bg-elev)] p-7">
-                <span className="font-serif text-[13px] italic tracking-wider text-[color:var(--gold-soft)]">
-                  {s.n}
-                </span>
-                <h3 className="mt-8 text-[18px] font-semibold tracking-tight text-[color:var(--ink)]">
-                  {s.title}
-                </h3>
-                <p className="mt-2.5 text-[14.5px] leading-[1.6] text-[color:var(--ink-muted)]">
-                  {s.body}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      <Section>
+        <Eyebrow>Como um produto nasce aqui</Eyebrow>
+        <Title>Quatro regras que valem para todos.</Title>
+        <CellGrid className="mt-12">
+          {HOW.map((h) => (
+            <Cell key={h.n} {...h} />
+          ))}
+        </CellGrid>
+      </Section>
+
+      <Section>
+        <CtaPanel
+          eyebrow="Não achou o seu?"
+          title="Se o seu problema ainda não tem produto, a gente faz sob medida."
+          body="Agenda, orçamento online, cadastro de clientes, cobrança por Pix, painel do dono: montamos o sistema do seu negócio com as mesmas peças dos nossos produtos."
+          primary={{ href: '/sob-medida', label: 'Ver o sob medida' }}
+          secondary={{
+            href: contactHref('Quero um sistema para o meu negócio'),
+            label: 'Falar com a gente',
+          }}
+        />
+      </Section>
     </>
   );
 }

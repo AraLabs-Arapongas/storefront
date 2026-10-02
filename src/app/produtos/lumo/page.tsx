@@ -23,18 +23,15 @@ export const metadata: Metadata = {
 const PRA_QUEM = [
   {
     titulo: 'Famílias com crianças não-verbais',
-    body:
-      'Crianças de 2 a 8 anos com atraso de fala, autismo não-verbal ou minimamente verbal. Precisam de jeito visual pra pedir o que querem.',
+    body: 'Crianças de 2 a 8 anos com atraso de fala, autismo não-verbal ou minimamente verbal. Precisam de jeito visual pra pedir o que querem.',
   },
   {
     titulo: 'Terapeutas e fonoaudiólogos',
-    body:
-      'Multi-perfil pra usar com vários pacientes. Cada perfil tem sua biblioteca de cards, voz e configurações independentes.',
+    body: 'Multi-perfil pra usar com vários pacientes. Cada perfil tem sua biblioteca de cards, voz e configurações independentes.',
   },
   {
     titulo: 'Avós, cuidadores e escolas',
-    body:
-      'Mesmo card, mesma palavra. Reduz confusão entre "água" em casa e "aguinha" na escola. Família alinha vocabulário.',
+    body: 'Mesmo card, mesma palavra. Reduz confusão entre "água" em casa e "aguinha" na escola. Família alinha vocabulário.',
   },
 ];
 
@@ -42,87 +39,72 @@ const COMO_FUNCIONA = [
   {
     n: '01',
     titulo: 'Cria o perfil',
-    body:
-      'Nome, foto opcional, idioma (PT-BR, PT-PT, EN-US ou ES-ES) e voz. Sem login. Sem cadastro. Dados ficam no celular.',
+    body: 'Nome, foto opcional, idioma (PT-BR, PT-PT, EN-US ou ES-ES) e voz. Sem login. Sem cadastro. Dados ficam no celular.',
   },
   {
     n: '02',
     titulo: 'Toca pra dizer',
-    body:
-      'Criança escolhe cards com pictogramas, monta frases (eu + quero + água) e toca o botão de fala. App fala em voz alta no idioma escolhido.',
+    body: 'Criança escolhe cards com pictogramas, monta frases (eu + quero + água) e toca o botão de fala. App fala em voz alta no idioma escolhido.',
   },
   {
     n: '03',
     titulo: 'Cria cards próprios',
-    body:
-      'Tira foto da mamadeira da casa, escolhe pictograma ARASAAC, ou usa só texto. Card vira parte da biblioteca pessoal.',
+    body: 'Tira foto da mamadeira da casa, escolhe pictograma ARASAAC, ou usa só texto. Card vira parte da biblioteca pessoal.',
   },
   {
     n: '04',
     titulo: 'Monta rotinas visuais',
-    body:
-      'Manhã, banho, escola, dormir, tomar remédio. Criança vê sequência do dia em cards, sabe o que vem agora, reduz ansiedade.',
+    body: 'Manhã, banho, escola, dormir, tomar remédio. Criança vê sequência do dia em cards, sabe o que vem agora, reduz ansiedade.',
   },
 ];
 
 const FEATURES = [
   {
     titulo: '13.798 pictogramas ARASAAC',
-    body:
-      'Biblioteca completa do Centro Aragonés de la Comunicación Aumentativa y Alternativa, bundled no app. Busca por palavra-chave em 4 idiomas.',
+    body: 'Biblioteca completa do Centro Aragonés de la Comunicación Aumentativa y Alternativa, bundled no app. Busca por palavra-chave em 4 idiomas.',
   },
   {
     titulo: 'Quatro idiomas desde o dia 1',
-    body:
-      'PT-BR, PT-PT, EN-US, ES-ES. Catalogs separados — variantes regionais respeitadas (banheiro/casa de banho, suco/sumo, mamãe/mãe).',
+    body: 'PT-BR, PT-PT, EN-US, ES-ES. Catalogs separados — variantes regionais respeitadas (banheiro/casa de banho, suco/sumo, mamãe/mãe).',
   },
   {
     titulo: 'Modo criança protegido',
-    body:
-      'Fullscreen, sem tab bar, sem edição, sem ajustes. Sai só com PIN. Pra entregar tablet pra criança sem ela sair do app.',
+    body: 'Fullscreen, sem tab bar, sem edição, sem ajustes. Sai só com PIN. Pra entregar tablet pra criança sem ela sair do app.',
   },
   {
     titulo: 'TTS nativo iOS/Android',
-    body:
-      'Síntese de voz do sistema operacional. Sem dependência de serviço cloud, sem custo por minuto, funciona offline.',
+    body: 'Síntese de voz do sistema operacional. Sem dependência de serviço cloud, sem custo por minuto, funciona offline.',
   },
   {
     titulo: 'Rotinas visuais integradas',
-    body:
-      'Não precisa segundo app de rotina. Os mesmos cards viram itens de rotina visual sequencial: manhã, banho, dormir, remédio.',
+    body: 'Não precisa segundo app de rotina. Os mesmos cards viram itens de rotina visual sequencial: manhã, banho, dormir, remédio.',
   },
   {
     titulo: 'Multi-perfil',
-    body:
-      'Vários filhos, ou terapeuta com vários pacientes. Cada perfil tem biblioteca, voz, idioma e configurações próprias.',
+    body: 'Vários filhos, ou terapeuta com vários pacientes. Cada perfil tem biblioteca, voz, idioma e configurações próprias.',
   },
   {
     titulo: 'Offline real',
-    body:
-      'SQLite local. Funciona em modo avião, sala de espera sem wifi, casa da avó, carro. Zero cloud na Fase 1.',
+    body: 'SQLite local. Funciona em modo avião, sala de espera sem wifi, casa da avó, carro. Zero cloud na Fase 1.',
   },
   {
     titulo: 'Privacidade total',
-    body:
-      'Foto, nome e frequência de uso de criança ficam no device. Sem cadastro, sem login, sem rastreamento, sem analytics.',
+    body: 'Foto, nome e frequência de uso de criança ficam no device. Sem cadastro, sem login, sem rastreamento, sem analytics.',
   },
 ];
 
 const COMPROMISSO = [
   {
     titulo: 'Gratuito pra sempre',
-    body:
-      'Sem assinatura, sem Premium, sem in-app purchases que desbloqueiem nada. Sem ads. Comunicação não deve ser privilégio.',
+    body: 'Sem assinatura, sem Premium, sem in-app purchases que desbloqueiem nada. Sem ads. Comunicação não deve ser privilégio.',
   },
   {
     titulo: 'Pictogramas profissionais',
-    body:
-      'ARASAAC é referência global em comunicação alternativa. CC BY-NC-SA 4.0, com autorização explícita do Centro Aragonés.',
+    body: 'ARASAAC é referência global em comunicação alternativa. CC BY-NC-SA 4.0, com autorização explícita do Centro Aragonés.',
   },
   {
     titulo: 'Sem agenda comercial',
-    body:
-      'Projeto pessoal da AraLabs pra comunidade AAC. No futuro pode haver parcerias institucionais e doações opt-in — uso familiar continua gratuito.',
+    body: 'Projeto pessoal da AraLabs pra comunidade AAC. No futuro pode haver parcerias institucionais e doações opt-in — uso familiar continua gratuito.',
   },
 ];
 
@@ -182,9 +164,8 @@ export default function LumoLandingPage() {
               <span className="font-serif italic text-[color:var(--gold-soft)]">dizer</span>.
             </h1>
             <p className="mt-7 text-[19px] leading-[1.7] text-[color:var(--ink-muted)] md:text-[20px]">
-              Lumo dá pra sua criança um jeito visual de pedir, contar e
-              conversar — sem precisar de palavras. Cards, rotinas e pictogramas
-              ARASAAC em quatro idiomas. Gratuito pra sempre.
+              Lumo dá pra sua criança um jeito visual de pedir, contar e conversar — sem precisar de
+              palavras. Cards, rotinas e pictogramas ARASAAC em quatro idiomas. Gratuito pra sempre.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <span className="inline-flex items-center gap-2 rounded-full border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)]/85 px-4 py-2 text-[13px] font-medium text-[color:var(--ink)] backdrop-blur">
@@ -212,7 +193,10 @@ export default function LumoLandingPage() {
           </p>
           <h2 className="mt-4 max-w-3xl text-balance text-[32px] font-semibold leading-[1.08] tracking-[-0.02em] text-[color:var(--ink)] md:text-[40px]">
             Quando as palavras{' '}
-            <span className="font-serif italic text-[color:var(--gold-soft)]">não são o caminho</span>.
+            <span className="font-serif italic text-[color:var(--gold-soft)]">
+              não são o caminho
+            </span>
+            .
           </h2>
           <div className="mt-12 grid gap-5 md:grid-cols-3">
             {PRA_QUEM.map((p) => (
@@ -294,12 +278,12 @@ export default function LumoLandingPage() {
           </p>
           <h2 className="mt-4 max-w-3xl text-balance text-[32px] font-semibold leading-[1.08] tracking-[-0.02em] text-[color:var(--ink)] md:text-[40px]">
             Lumo é e sempre será{' '}
-            <span className="font-serif italic text-[color:var(--gold-soft)]">gratuito</span> pra famílias.
+            <span className="font-serif italic text-[color:var(--gold-soft)]">gratuito</span> pra
+            famílias.
           </h2>
           <p className="mt-6 max-w-2xl text-[17px] leading-[1.7] text-[color:var(--ink-muted)]">
-            Acreditamos que comunicação não deve ser privilégio. Toda criança
-            merece uma forma de se expressar, ser ouvida e participar da própria
-            rotina.
+            Acreditamos que comunicação não deve ser privilégio. Toda criança merece uma forma de se
+            expressar, ser ouvida e participar da própria rotina.
           </p>
           <div className="mt-12 grid gap-5 md:grid-cols-3">
             {COMPROMISSO.map((c) => (
@@ -330,16 +314,13 @@ export default function LumoLandingPage() {
           </h2>
           <p className="mt-7 text-[17px] leading-[1.75] text-[color:var(--ink-muted)]">
             O Lumo nasceu em homenagem à{' '}
-            <strong className="text-[color:var(--ink)]">
-              Profa. Dra. Selma Lanhellas
-            </strong>{' '}
-            — educadora, inspiração e presença por trás deste projeto.
+            <strong className="text-[color:var(--ink)]">Profa. Dra. Selma Lanhellas</strong> —
+            educadora, inspiração e presença por trás deste projeto.
           </p>
           <p className="mt-5 text-[17px] leading-[1.75] text-[color:var(--ink-muted)]">
-            Sua trajetória na educação, na inclusão e no cuidado com crianças
-            que aprendem e se comunicam de formas diferentes inspirou uma
-            ferramenta feita para ajudar crianças a serem ouvidas, mesmo quando
-            as palavras não são o caminho.
+            Sua trajetória na educação, na inclusão e no cuidado com crianças que aprendem e se
+            comunicam de formas diferentes inspirou uma ferramenta feita para ajudar crianças a
+            serem ouvidas, mesmo quando as palavras não são o caminho.
           </p>
           <Link
             href="/produtos/lumo/dedicatoria"
@@ -360,9 +341,8 @@ export default function LumoLandingPage() {
             Pictogramas ARASAAC.
           </h2>
           <p className="mt-7 text-[17px] leading-[1.7] text-[color:var(--ink-muted)]">
-            Símbolos pictográficos: ARASAAC, autor Sergio Palao, licença
-            Creative Commons BY-NC-SA 4.0, propriedade do Governo de Aragón
-            (Espanha).
+            Símbolos pictográficos: ARASAAC, autor Sergio Palao, licença Creative Commons BY-NC-SA
+            4.0, propriedade do Governo de Aragón (Espanha).
           </p>
           <Link
             href="/produtos/lumo/creditos"
@@ -384,8 +364,8 @@ export default function LumoLandingPage() {
               Lumo será disponibilizado na App Store em breve.
             </h2>
             <p className="mt-5 max-w-xl text-[16px] leading-[1.7] text-[color:var(--ink-muted)]">
-              Famílias e terapeutas que quiserem participar do beta no
-              TestFlight podem escrever pra gente.
+              Famílias e terapeutas que quiserem participar do beta no TestFlight podem escrever pra
+              gente.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a

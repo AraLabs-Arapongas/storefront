@@ -1,63 +1,66 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { PageHero } from '@/components/site/PageHero';
-import { Pillars } from '@/components/site/Pillars';
-import { Values } from '@/components/site/Values';
-import { NextSteps } from '@/components/site/NextSteps';
 import type { Metadata } from 'next';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { aboutPageSchema } from '@/lib/seo/schemas';
+import { PRODUCTS } from '@/lib/products';
+import { contactHref, CONTACT_EMAIL, JOBS_EMAIL } from '@/lib/seo/site';
+import { ProductTile } from '@/components/site/ProductMarks';
+import {
+  Accent,
+  Cell,
+  CellGrid,
+  CtaPanel,
+  Eyebrow,
+  Lead,
+  Section,
+  Title,
+} from '@/components/site/ui';
+import Link from 'next/link';
 
 const pageDescription =
-  'A AraLabs é um lab brasileiro de produtos digitais próprios, sediado em Arapongas (PR). Construímos software com utilidade real para problemas cotidianos de famílias, pequenos negócios e operações locais.';
+  'A AraLabs é uma empresa de software de Arapongas (PR) que faz tecnologia simples para pequenos negócios e para as famílias deles: produtos próprios e sistemas sob medida.';
 
 export const metadata: Metadata = {
-  title: 'Sobre a empresa',
+  title: 'Empresa',
   description: pageDescription,
   alternates: { canonical: '/empresa' },
   openGraph: {
-    title: 'Sobre a empresa',
+    title: 'Sobre a AraLabs',
     description: pageDescription,
     url: '/empresa',
     type: 'website',
   },
 };
 
-const principles = [
+const PRINCIPLES = [
   {
     n: '01',
-    title: 'Problemas reais antes de funcionalidades',
-    body: 'Entender a dor antes de decidir o que construir.',
+    title: 'Problema real antes de funcionalidade',
+    body: 'Entendemos a rotina de quem usa antes de decidir o que construir. Funcionalidade sem dor por trás não entra.',
   },
   {
     n: '02',
-    title: 'Clareza antes de velocidade',
-    body: 'Construir rápido sem entendimento gera retrabalho e perda de foco.',
+    title: 'Simples no uso, cuidadoso por dentro',
+    body: 'A tela tem que ser óbvia no primeiro dia. A engenharia por trás pode ser profunda, o produto não.',
   },
   {
     n: '03',
-    title: 'Empresa antes de produto isolado',
-    body: 'Decisões pensam no portfólio e na consistência de longo prazo.',
+    title: 'Preço de pequeno negócio',
+    body: 'Software bom não precisa custar o que custa para empresa grande. Mensalidade pequena, sem fidelidade.',
   },
   {
     n: '04',
-    title: 'Simplicidade na experiência, profundidade na estratégia',
-    body: 'Simples no resultado, profundo na leitura do problema.',
+    title: 'Perto de quem usa',
+    body: 'Atendimento direto com quem constrói. Pedido de manhã, ajuste no ar na mesma semana quando dá.',
   },
   {
     n: '05',
-    title: 'Foco no que gera valor real',
-    body: 'Favorecer o que aumenta clareza, utilidade e diferenciação.',
+    title: 'Produtos que a gente também usa',
+    body: 'Casa Leve roda na casa de quem fez. Komyx nasceu olhando a rotina de um buffet de verdade.',
   },
   {
     n: '06',
-    title: 'Documentar para pensar melhor',
-    body: 'Documentação não é burocracia, é parte do processo de clareza.',
-  },
-  {
-    n: '07',
     title: 'Longo prazo como filtro',
-    body: 'Avaliar cada decisão pelo impacto no médio e longo prazo.',
+    body: 'Preferimos um produto que dura anos a um lançamento que faz barulho um mês. Decisão que não resiste ao tempo não entra.',
   },
 ];
 
@@ -71,174 +74,119 @@ export default function EmpresaPage() {
           description: pageDescription,
         })}
       />
-      <PageHero
-        eyebrow="A Aralabs"
-        title={
-          <>
-            Uma empresa para{' '}
-            <span className="font-serif italic text-[color:var(--gold-soft)]">criar</span> produtos,
-            não apenas software.
-          </>
-        }
-        description="Lab brasileiro de produtos digitais próprios. Construímos software com utilidade real para problemas cotidianos — produto, design e engenharia como núcleo, com base em Arapongas e ambição digital maior."
-        visual={
-          <div className="absolute inset-0 h-full w-full overflow-hidden rounded-[24px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] shadow-[0_40px_120px_rgba(0,0,0,0.28)]">
-            <Image
-              src="/images/empresa-retrato.png"
-              alt="Retrato editorial em ambiente de trabalho intencional, com caderno, computador e luz lateral"
-              fill
-              priority
-              sizes="(min-width: 1024px) 560px, 100vw"
-              className="object-cover"
-            />
-          </div>
-        }
-      />
 
-      <Pillars />
+      <Section>
+        <Eyebrow tone="gold">Empresa</Eyebrow>
+        <Title as="h1" size="lg">
+          Uma empresa de software de Arapongas que trabalha para <Accent>quem trabalha</Accent>.
+        </Title>
+        <Lead>
+          A AraLabs faz tecnologia simples para pequenos negócios e para as famílias deles. Temos
+          produtos próprios, como o Komyx para buffets e o Casa Leve para a casa, e construímos
+          sistemas sob medida quando o problema de alguém ainda não tem produto.
+        </Lead>
+      </Section>
 
-      {/* Big visual break */}
-      <section className="border-b border-[color:var(--line)]">
-        <div className="mx-auto max-w-[1240px] px-6 py-20 lg:px-10 lg:py-24">
-          <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-            <div>
-              <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
-                Base da empresa
-              </p>
-              <h2 className="mt-4 text-balance text-[32px] font-semibold leading-[1.08] tracking-[-0.02em] text-[color:var(--ink)] md:text-[40px]">
-                Documentação como{' '}
-                <span className="font-serif italic text-[color:var(--gold-soft)]">
-                  forma de pensar
-                </span>
-                .
-              </h2>
-            </div>
-            <p className="max-w-sm text-[15.5px] leading-[1.7] text-[color:var(--ink-muted)]">
-              A Aralabs constrói sua base documental antes de escalar execução. Visão, tese,
-              problema e decisões são registradas pra sustentar o crescimento com clareza.
+      <Section className="bg-[color:var(--bg-elev)]/50">
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+          <div>
+            <Eyebrow>O que fazemos</Eyebrow>
+            <Title size="sm">Duas linhas, uma regra.</Title>
+            <p className="mt-5 text-[16px] leading-[1.7] text-[color:var(--ink-muted)]">
+              Produtos prontos para assinar e sistemas sob medida. Nos dois casos a regra é a mesma:
+              o dono tem que conseguir usar no primeiro dia, e o preço tem que caber no caixa de um
+              negócio pequeno.
             </p>
           </div>
-
-          <div className="relative overflow-hidden rounded-[24px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] shadow-[0_40px_120px_rgba(0,0,0,0.25)]">
-            <Image
-              src="/images/base-documental.png"
-              alt="Mesa vista de cima com caderno aberto, caneta, livro e xícara de café"
-              width={2000}
-              height={900}
-              sizes="(min-width: 1240px) 1160px, 100vw"
-              className="h-auto w-full"
-            />
-          </div>
-        </div>
-      </section>
-
-      <Values />
-
-      {/* Princípios de decisão */}
-      <section className="relative border-b border-[color:var(--line)]">
-        <div className="mx-auto max-w-[1240px] px-6 py-20 lg:px-10 lg:py-28">
-          <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr]">
-            <div className="lg:sticky lg:top-28 lg:self-start">
-              <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
-                Princípios de decisão
-              </p>
-              <h2 className="mt-6 text-balance text-[34px] font-semibold leading-[1.06] tracking-[-0.02em] text-[color:var(--ink)] md:text-[44px]">
-                Diretrizes que guiam{' '}
-                <span className="font-serif italic text-[color:var(--gold-soft)]">
-                  cada escolha
-                </span>
-                .
-              </h2>
-              <p className="mt-7 max-w-md text-[17px] leading-[1.75] text-[color:var(--ink-muted)]">
-                Essas diretrizes existem para manter consistência estratégica, reduzir decisões
-                impulsivas e criar uma base clara para priorização e foco.
-              </p>
-            </div>
-
-            <ul className="divide-y divide-[color:var(--line)] border-y border-[color:var(--line)]">
-              {principles.map((p) => (
-                <li key={p.n} className="py-6">
-                  <div className="flex items-baseline gap-5">
-                    <span className="font-serif text-[13px] italic text-[color:var(--gold-soft)]">
-                      {p.n}
+          <ul className="grid gap-3 sm:grid-cols-2">
+            {PRODUCTS.map((p) => (
+              <li key={p.slug}>
+                <Link
+                  href={p.href}
+                  className="flex items-center gap-3 rounded-2xl border border-[color:var(--line-strong)] bg-[color:var(--bg)] px-4 py-3.5 transition hover:border-[color:var(--gold)]/50"
+                >
+                  <ProductTile product={p} size={40} />
+                  <span className="min-w-0">
+                    <span className="block text-[15.5px] font-semibold text-[color:var(--ink)]">
+                      {p.name}
                     </span>
-                    <div>
-                      <h3 className="text-[18px] font-semibold text-[color:var(--ink)]">
-                        {p.title}
-                      </h3>
-                      <p className="mt-2 text-[15px] leading-[1.65] text-[color:var(--ink-muted)]">
-                        {p.body}
-                      </p>
-                    </div>
-                  </div>
-                </li>
-              ))}
+                    <span className="block truncate text-[13px] text-[color:var(--ink-dim)]">
+                      {p.audience}
+                    </span>
+                  </span>
+                </Link>
+              </li>
+            ))}
+            <li className="sm:col-span-2">
+              <Link
+                href="/sob-medida"
+                className="flex items-center justify-between rounded-2xl border border-dashed border-[color:var(--line-strong)] px-4 py-3.5 text-[15px] font-semibold text-[color:var(--gold-soft)] transition hover:border-[color:var(--gold)]/60"
+              >
+                Sistemas sob medida para o seu negócio <span>→</span>
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </Section>
+
+      <Section>
+        <Eyebrow>Como trabalhamos</Eyebrow>
+        <Title>Seis princípios que decidem o que entra e o que fica de fora.</Title>
+        <CellGrid className="mt-12" cols="sm:grid-cols-2 lg:grid-cols-3">
+          {PRINCIPLES.map((p) => (
+            <Cell key={p.n} {...p} />
+          ))}
+        </CellGrid>
+      </Section>
+
+      <Section className="bg-[color:var(--bg-elev)]/50">
+        <div className="grid gap-10 lg:grid-cols-2">
+          <div>
+            <Eyebrow>Onde estamos</Eyebrow>
+            <Title size="sm">Arapongas, Paraná.</Title>
+            <p className="mt-5 text-[16px] leading-[1.7] text-[color:var(--ink-muted)]">
+              Rua Guaraúna, 288 · Jardim Primavera · Arapongas, PR. Atendemos clientes de qualquer
+              cidade por chamada e WhatsApp; quem é da região é bem-vindo para um café.
+            </p>
+          </div>
+          <div>
+            <Eyebrow>Contato</Eyebrow>
+            <ul className="mt-5 space-y-3 text-[16px]">
+              <li>
+                <a
+                  href={`mailto:${CONTACT_EMAIL}`}
+                  className="font-semibold text-[color:var(--ink)] hover:text-[color:var(--gold-soft)]"
+                >
+                  {CONTACT_EMAIL}
+                </a>
+                <span className="text-[color:var(--ink-dim)]"> · clientes e parcerias</span>
+              </li>
+              <li>
+                <a
+                  href={`mailto:${JOBS_EMAIL}`}
+                  className="font-semibold text-[color:var(--ink)] hover:text-[color:var(--gold-soft)]"
+                >
+                  {JOBS_EMAIL}
+                </a>
+                <span className="text-[color:var(--ink-dim)]"> · trabalhe com a gente</span>
+              </li>
             </ul>
           </div>
         </div>
-      </section>
+      </Section>
 
-      {/* Parcerias selecionadas */}
-      <section id="parcerias" className="border-b border-[color:var(--line)]">
-        <div className="mx-auto max-w-[1240px] px-6 py-20 lg:px-10 lg:py-28">
-          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
-            <div>
-              <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
-                Parcerias selecionadas
-              </p>
-              <h2 className="mt-6 text-balance text-[34px] font-semibold leading-[1.06] tracking-[-0.02em] text-[color:var(--ink)] md:text-[44px]">
-                Também construímos sob{' '}
-                <span className="font-serif italic text-[color:var(--gold-soft)]">demanda</span>, em
-                parcerias selecionadas.
-              </h2>
-            </div>
-            <div className="space-y-6 text-[17px] leading-[1.75] text-[color:var(--ink-muted)]">
-              <p>
-                A AraLabs nasce para construir produtos próprios, mas também pode participar de
-                projetos sob demanda quando existe alinhamento claro de visão, qualidade e longo
-                prazo.
-              </p>
-              <p>
-                Não atuamos como uma fábrica de demandas genéricas. Entramos em parcerias onde
-                conseguimos contribuir com produto, design, engenharia e clareza estratégica.
-              </p>
-              <p>Para conversar sobre uma possibilidade de parceria, entre em contato.</p>
-              <a
-                href="mailto:trabalhe@aralabs.com.br"
-                className="inline-flex items-center gap-2 rounded-full border border-[color:var(--line-strong)] px-5 py-3 text-[14px] font-semibold text-[color:var(--ink)] transition hover:border-[color:var(--gold)]/50 hover:text-[color:var(--gold-soft)]"
-              >
-                trabalhe@aralabs.com.br →
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <NextSteps />
-
-      {/* Bottom CTA */}
-      <section className="border-b border-[color:var(--line)]">
-        <div className="mx-auto max-w-[1240px] px-6 py-20 lg:px-10 lg:py-24">
-          <div className="flex flex-col items-start justify-between gap-6 rounded-[28px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] p-10 md:flex-row md:items-center">
-            <div>
-              <h3 className="text-balance text-[26px] font-semibold tracking-tight text-[color:var(--ink)] md:text-[32px]">
-                Conheça os{' '}
-                <span className="font-serif italic text-[color:var(--gold-soft)]">produtos</span> da
-                AraLabs.
-              </h3>
-              <p className="mt-2 text-[15.5px] text-[color:var(--ink-muted)]">
-                Aragenda e Casa Leve — produtos próprios construídos a partir da nossa tese.
-              </p>
-            </div>
-            <Link
-              href="/produtos"
-              className="inline-flex items-center gap-2 rounded-full bg-[color:var(--gold)] px-6 py-3.5 text-[14.5px] font-semibold text-[color:var(--on-gold)] transition hover:bg-[color:var(--gold-soft)]"
-            >
-              Ver produtos →
-            </Link>
-          </div>
-        </div>
-      </section>
+      <Section>
+        <CtaPanel
+          eyebrow="Fale com a gente"
+          title="Tem um negócio pequeno e um problema grande?"
+          body="Conta pra gente como é o seu dia. Se um dos nossos produtos resolve, a gente indica. Se não, desenhamos junto."
+          primary={{
+            href: contactHref('Quero conversar com a AraLabs'),
+            label: 'Falar com a gente',
+          }}
+          secondary={{ href: '/produtos', label: 'Ver os produtos' }}
+        />
+      </Section>
     </>
   );
 }

@@ -28,9 +28,7 @@ export function PageHero({ eyebrow, title, description, visual }: PageHeroProps)
             {description}
           </p>
         </div>
-        {visual ? (
-          <div className="relative min-h-[340px] lg:min-h-[460px]">{visual}</div>
-        ) : null}
+        {visual ? <div className="relative min-h-[340px] lg:min-h-[460px]">{visual}</div> : null}
       </div>
     </section>
   );

@@ -153,7 +153,9 @@ export function CollabMockup() {
             <p className="text-[7.5px] font-medium uppercase tracking-[0.16em] text-[color:var(--ink-dim)]">
               Tarefas do dia
             </p>
-            <p className="mt-0.5 font-serif text-[13px] italic text-[color:var(--ink)]">15 ativas</p>
+            <p className="mt-0.5 font-serif text-[13px] italic text-[color:var(--ink)]">
+              15 ativas
+            </p>
           </div>
           <div className="flex -space-x-1.5">
             {members.map((m) => (

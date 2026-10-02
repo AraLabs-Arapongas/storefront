@@ -116,20 +116,17 @@ const PAPEIS = [
   {
     titulo: 'Admin (dono da casa)',
     icone: '👤',
-    body:
-      'Configura a casa, convida até 10 membros, define tags, ícones, níveis. Aprova revisões de tarefas. Vê dashboard da família, gastos e pontos de cada um.',
+    body: 'Configura a casa, convida até 10 membros, define tags, ícones, níveis. Aprova revisões de tarefas. Vê dashboard da família, gastos e pontos de cada um.',
   },
   {
     titulo: 'Adulto',
     icone: '👥',
-    body:
-      'Cria e edita tarefas, aprova as da criança, vê agenda e cardápio. Tem hábitos pessoais e Pomodoro pra produtividade.',
+    body: 'Cria e edita tarefas, aprova as da criança, vê agenda e cardápio. Tem hábitos pessoais e Pomodoro pra produtividade.',
   },
   {
     titulo: 'Criança',
     icone: '🧒',
-    body:
-      'Tela simplificada com seu progresso do dia, foco em pontos e desafios. Marca tarefas (com foto se exigir) e resgata recompensas. Sem ajustes complexos.',
+    body: 'Tela simplificada com seu progresso do dia, foco em pontos e desafios. Marca tarefas (com foto se exigir) e resgata recompensas. Sem ajustes complexos.',
   },
 ];
 
@@ -137,26 +134,22 @@ const PLANNER_FEATURES = [
   {
     icon: 'activity',
     titulo: 'Hábitos pessoais',
-    body:
-      'Recorrentes só seus (esteira, meditar, ler). Streak diário, heatmap GitHub-style. Sem pontos — só consistência.',
+    body: 'Recorrentes só seus (esteira, meditar, ler). Streak diário, heatmap GitHub-style. Sem pontos — só consistência.',
   },
   {
     icon: 'target',
     titulo: 'Foco do dia',
-    body:
-      'Pin manual em até 3 tarefas/hábitos como prioridades. Aparece no topo da tela inicial.',
+    body: 'Pin manual em até 3 tarefas/hábitos como prioridades. Aparece no topo da tela inicial.',
   },
   {
     icon: 'edit-3',
     titulo: 'Reflexão diária',
-    body:
-      '3 perguntas no fim do dia: gratidão, aprendizado, foco pra amanhã. Histórico privado, journaling honest.',
+    body: '3 perguntas no fim do dia: gratidão, aprendizado, foco pra amanhã. Histórico privado, journaling honest.',
   },
   {
     icon: 'calendar',
     titulo: 'Visão semanal',
-    body:
-      'Grid 7 dias consolidando tarefas, hábitos, eventos e marcos de desafios. Vê a semana toda de relance.',
+    body: 'Grid 7 dias consolidando tarefas, hábitos, eventos e marcos de desafios. Vê a semana toda de relance.',
   },
 ];
 
@@ -199,23 +192,19 @@ const TIERS = [
 const PRINCIPIOS = [
   {
     titulo: 'Menos cobrança',
-    body:
-      'O sistema mostra o que precisa ser feito. Ninguém precisa ficar lembrando ninguém.',
+    body: 'O sistema mostra o que precisa ser feito. Ninguém precisa ficar lembrando ninguém.',
   },
   {
     titulo: 'Mais clareza',
-    body:
-      'Responsabilidades e acordos ficam visíveis. Todo mundo enxerga o mesmo.',
+    body: 'Responsabilidades e acordos ficam visíveis. Todo mundo enxerga o mesmo.',
   },
   {
     titulo: 'Mais autonomia',
-    body:
-      'Crianças acompanham sua rotina com incentivo, não com pressão.',
+    body: 'Crianças acompanham sua rotina com incentivo, não com pressão.',
   },
   {
     titulo: 'Sem burocracia',
-    body:
-      'Rápido de usar no dia a dia. Profundo na leitura do problema.',
+    body: 'Rápido de usar no dia a dia. Profundo na leitura do problema.',
   },
 ];
 
@@ -223,26 +212,22 @@ const COMOFUNCIONA = [
   {
     n: '01',
     titulo: 'Cria sua casa',
-    body:
-      'Faz login com email (sem senha — código de 6 dígitos). Sua casa aparece pronta com 30 dias grátis liberando tudo do Premium.',
+    body: 'Faz login com email (sem senha — código de 6 dígitos). Sua casa aparece pronta com 30 dias grátis liberando tudo do Premium.',
   },
   {
     n: '02',
     titulo: 'Convida a família',
-    body:
-      'Adiciona até 10 membros (esposa, filhos, sogros, faxineira). Define o papel de cada um — adulto ou criança. Eles entram pelo email convite.',
+    body: 'Adiciona até 10 membros (esposa, filhos, sogros, faxineira). Define o papel de cada um — adulto ou criança. Eles entram pelo email convite.',
   },
   {
     n: '03',
     titulo: 'Configura rotina',
-    body:
-      'Cria tarefas recorrentes (diárias, semanais, quinzenais, mensais), define pontos, atribui pra alguém ou rotaciona. Recompensas e desafios pra premiar.',
+    body: 'Cria tarefas recorrentes (diárias, semanais, quinzenais, mensais), define pontos, atribui pra alguém ou rotaciona. Recompensas e desafios pra premiar.',
   },
   {
     n: '04',
     titulo: 'Família roda junto',
-    body:
-      'Cada um vê suas tarefas hoje, marca quando faz. Pontos somam, ranking aparece, push avisa do que importa. Adulto aprova quando criança termina.',
+    body: 'Cada um vê suas tarefas hoje, marca quando faz. Pontos somam, ranking aparece, push avisa do que importa. Adulto aprova quando criança termina.',
   },
 ];
 
@@ -301,8 +286,8 @@ export default function CasaLevePage() {
 
             <p className="mt-6 max-w-xl text-[16px] leading-[1.65] text-[color:var(--ink-muted)] md:text-[18px]">
               9 apps integrados pra rotina familiar: tarefas com pontos, compras, agenda,
-              recompensas, desafios, finanças, cardápio, hábitos e Pomodoro. Sem cobrança,
-              com clareza, com autonomia.
+              recompensas, desafios, finanças, cardápio, hábitos e Pomodoro. Sem cobrança, com
+              clareza, com autonomia.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -337,9 +322,8 @@ export default function CasaLevePage() {
             </h2>
             <p className="mt-6 max-w-2xl text-[16px] leading-[1.65] text-[color:var(--ink-muted)] md:text-[17px]">
               Casa de casal com filhos. Pais separados que dividem responsabilidades. Trabalho
-              remoto + filhos em casa. Mãe ou pai sozinho querendo dividir o jogo com as
-              crianças. Avós próximos, sogros, faxineira — todo mundo cabe (até 10 pessoas
-              na mesma casa).
+              remoto + filhos em casa. Mãe ou pai sozinho querendo dividir o jogo com as crianças.
+              Avós próximos, sogros, faxineira — todo mundo cabe (até 10 pessoas na mesma casa).
             </p>
           </div>
 
@@ -366,7 +350,10 @@ export default function CasaLevePage() {
             </p>
             <h2 className="mt-4 text-balance text-[34px] font-semibold leading-[1.06] tracking-[-0.02em] text-[color:var(--ink)] md:text-[44px]">
               4 passos pra{' '}
-              <span className="font-serif italic text-[color:var(--gold-soft)]">tirar do papel</span>.
+              <span className="font-serif italic text-[color:var(--gold-soft)]">
+                tirar do papel
+              </span>
+              .
             </h2>
           </div>
 
@@ -401,8 +388,8 @@ export default function CasaLevePage() {
               pra ele.
             </h2>
             <p className="mt-6 max-w-2xl text-[16px] leading-[1.65] text-[color:var(--ink-muted)]">
-              A interface adapta automaticamente. Criança não vê configuração de plano. Adulto
-              não vê dashboard de admin. Cada papel tem o foco certo.
+              A interface adapta automaticamente. Criança não vê configuração de plano. Adulto não
+              vê dashboard de admin. Cada papel tem o foco certo.
             </p>
           </div>
 
@@ -437,9 +424,9 @@ export default function CasaLevePage() {
               <span className="font-serif italic text-[color:var(--gold-soft)]">num app só</span>.
             </h2>
             <p className="mt-6 max-w-2xl text-[16px] leading-[1.65] text-[color:var(--ink-muted)]">
-              6 apps no plano Essencial. Mais 3 apps premium liberados no plano Premium.
-              Os dados são compartilhados — uma tarefa pode virar pomodoro, um item de cardápio
-              vira lista de compras, etc.
+              6 apps no plano Essencial. Mais 3 apps premium liberados no plano Premium. Os dados
+              são compartilhados — uma tarefa pode virar pomodoro, um item de cardápio vira lista de
+              compras, etc.
             </p>
           </div>
 
@@ -478,8 +465,8 @@ export default function CasaLevePage() {
               canto pessoal dentro da casa.
             </h2>
             <p className="mt-6 text-[16px] leading-[1.65] text-[color:var(--ink-muted)] md:text-[17px]">
-              Tarefa é pra família. Hábito é pra você. O Planner reúne suas práticas pessoais
-              de auto-melhoria — sem pontos, sem ranking. Só consistência.
+              Tarefa é pra família. Hábito é pra você. O Planner reúne suas práticas pessoais de
+              auto-melhoria — sem pontos, sem ranking. Só consistência.
             </p>
           </div>
 
@@ -516,9 +503,24 @@ export default function CasaLevePage() {
 
           <div className="grid gap-6 md:grid-cols-3">
             {[
-              { n: '01', title: 'Rotina da casa', body: 'Tarefas hoje, streak de dias em chamas, recompensas perto.', mockup: <RoutineMockup /> },
-              { n: '02', title: 'Família junto', body: 'Ranking, gastos, eventos da semana. Quem é responsável por quê.', mockup: <CollabMockup /> },
-              { n: '03', title: 'Hábitos pessoais', body: 'Heatmap, streak por hábito, reflexão diária privada.', mockup: <HabitsMockup /> },
+              {
+                n: '01',
+                title: 'Rotina da casa',
+                body: 'Tarefas hoje, streak de dias em chamas, recompensas perto.',
+                mockup: <RoutineMockup />,
+              },
+              {
+                n: '02',
+                title: 'Família junto',
+                body: 'Ranking, gastos, eventos da semana. Quem é responsável por quê.',
+                mockup: <CollabMockup />,
+              },
+              {
+                n: '03',
+                title: 'Hábitos pessoais',
+                body: 'Heatmap, streak por hábito, reflexão diária privada.',
+                mockup: <HabitsMockup />,
+              },
             ].map((f) => (
               <article
                 key={f.n}
@@ -602,7 +604,8 @@ export default function CasaLevePage() {
           </div>
 
           <p className="mt-12 text-center text-[13px] text-[color:var(--ink-dim)]">
-            * Crianças e adultos convidados são gratuitos · até 10 membros por casa · cobrança via App Store
+            * Crianças e adultos convidados são gratuitos · até 10 membros por casa · cobrança via
+            App Store
           </p>
         </div>
       </section>
@@ -655,8 +658,8 @@ export default function CasaLevePage() {
                   Quer testar antes do lançamento?
                 </h2>
                 <p className="mt-5 text-[16px] leading-[1.7] text-[color:var(--ink-muted)]">
-                  Casa Leve está em beta privado no TestFlight (iOS). Mande seu email e a
-                  gente te coloca no próximo grupo de convidados — sem custo durante o beta.
+                  Casa Leve está em beta privado no TestFlight (iOS). Mande seu email e a gente te
+                  coloca no próximo grupo de convidados — sem custo durante o beta.
                 </p>
               </div>
               <div className="flex flex-wrap gap-3">
@@ -683,8 +686,8 @@ export default function CasaLevePage() {
         <div className="mx-auto max-w-[1240px] px-6 py-10 lg:px-10 lg:py-12">
           <div className="flex flex-col gap-2 text-[13.5px] text-[color:var(--ink-muted)] sm:flex-row sm:items-center sm:justify-between">
             <p>
-              Documentos legais do Casa Leve — exigidos para distribuição em loja e em
-              conformidade com a LGPD.
+              Documentos legais do Casa Leve — exigidos para distribuição em loja e em conformidade
+              com a LGPD.
             </p>
             <nav className="flex flex-wrap gap-x-6 gap-y-2">
               <Link

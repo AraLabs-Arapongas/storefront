@@ -28,10 +28,7 @@ export default function CasaLevePrivacidadePage() {
         title={
           <>
             Política de{' '}
-            <span className="font-serif italic text-[color:var(--gold-soft)]">
-              privacidade
-            </span>
-            .
+            <span className="font-serif italic text-[color:var(--gold-soft)]">privacidade</span>.
           </>
         }
         description={`Como o Casa Leve coleta, usa e protege os dados das famílias que usam o aplicativo. Em vigor desde ${VIGENCIA}.`}
@@ -41,19 +38,17 @@ export default function CasaLevePrivacidadePage() {
         <div className="mx-auto max-w-[820px] px-6 py-20 lg:px-10 lg:py-24">
           <article className="prose-policy">
             <p className="lead">
-              O Casa Leve é um aplicativo da AraLabs voltado para a rotina familiar
-              — tarefas, recompensas, desafios e cardápio compartilhados entre os
-              membros de uma mesma casa. Esta política descreve, em linguagem
-              direta, quais dados coletamos, com qual finalidade e como você pode
-              exercer seus direitos.
+              O Casa Leve é um aplicativo da AraLabs voltado para a rotina familiar — tarefas,
+              recompensas, desafios e cardápio compartilhados entre os membros de uma mesma casa.
+              Esta política descreve, em linguagem direta, quais dados coletamos, com qual
+              finalidade e como você pode exercer seus direitos.
             </p>
 
             <h2>1. Quem somos</h2>
             <p>
-              <strong>Controlador dos dados:</strong> Thiago Tavares Consulting
-              Ltda. - ME (nome fantasia <strong>AraLabs</strong>), CNPJ{' '}
-              <strong>50.010.836/0001-45</strong>, com sede na Rua Guaraúna, 288,
-              Jardim Primavera, Arapongas/PR, CEP 86702-480.
+              <strong>Controlador dos dados:</strong> Thiago Tavares Consulting Ltda. - ME (nome
+              fantasia <strong>AraLabs</strong>), CNPJ <strong>50.010.836/0001-45</strong>, com sede
+              na Rua Guaraúna, 288, Jardim Primavera, Arapongas/PR, CEP 86702-480.
               <br />
               <strong>Encarregado / contato de privacidade:</strong>{' '}
               <a href="mailto:contato@aralabs.com.br">contato@aralabs.com.br</a>.
@@ -61,115 +56,102 @@ export default function CasaLevePrivacidadePage() {
 
             <h2>2. Dados que coletamos</h2>
             <p>
-              Coletamos apenas o necessário para o aplicativo funcionar e
-              cumprir as expectativas que você tem ao usá-lo:
+              Coletamos apenas o necessário para o aplicativo funcionar e cumprir as expectativas
+              que você tem ao usá-lo:
             </p>
             <ul>
               <li>
-                <strong>E-mail</strong> — usado para login com código numérico
-                (OTP). Não usamos senha.
+                <strong>E-mail</strong> — usado para login com código numérico (OTP). Não usamos
+                senha.
               </li>
               <li>
-                <strong>Nome e apelido na casa</strong> — para identificar quem é
-                responsável por cada tarefa.
+                <strong>Nome e apelido na casa</strong> — para identificar quem é responsável por
+                cada tarefa.
               </li>
               <li>
-                <strong>Identificador da casa (household)</strong> — para
-                conectar membros da mesma família.
+                <strong>Identificador da casa (household)</strong> — para conectar membros da mesma
+                família.
               </li>
               <li>
-                <strong>Papel</strong> — admin, adulto ou criança — para
-                permissões dentro do app.
+                <strong>Papel</strong> — admin, adulto ou criança — para permissões dentro do app.
               </li>
               <li>
-                <strong>Cor do avatar e (opcionalmente) data de aniversário</strong>{' '}
-                — usados visualmente e para lembrete de aniversário.
+                <strong>Cor do avatar e (opcionalmente) data de aniversário</strong> — usados
+                visualmente e para lembrete de aniversário.
               </li>
               <li>
                 <strong>Foto de perfil</strong> — quando você decide enviar uma.
               </li>
               <li>
-                <strong>Fotos anexadas a tarefas (foto-prova)</strong> —{' '}
-                <em>opcional</em>, somente quando a tarefa tem essa exigência e
-                o usuário escolhe anexar uma. Visíveis apenas para os membros da
-                mesma casa.
+                <strong>Fotos anexadas a tarefas (foto-prova)</strong> — <em>opcional</em>, somente
+                quando a tarefa tem essa exigência e o usuário escolhe anexar uma. Visíveis apenas
+                para os membros da mesma casa.
               </li>
               <li>
-                <strong>Token de notificação push</strong> — gerado pelo dispositivo
-                para receber avisos do app (ex: tarefa atrasada, aprovação
-                pendente).
+                <strong>Token de notificação push</strong> — gerado pelo dispositivo para receber
+                avisos do app (ex: tarefa atrasada, aprovação pendente).
               </li>
               <li>
-                <strong>Conteúdo gerado por você</strong> — tarefas, recompensas,
-                desafios, comentários, reações com emoji e mensagens de feedback.
+                <strong>Conteúdo gerado por você</strong> — tarefas, recompensas, desafios,
+                comentários, reações com emoji e mensagens de feedback.
               </li>
               <li>
-                <strong>Metadados técnicos</strong> — versão do app, sistema
-                operacional (iOS/Android) e horário das ações, usados para
-                diagnóstico e priorização de melhorias.
+                <strong>Metadados técnicos</strong> — versão do app, sistema operacional
+                (iOS/Android) e horário das ações, usados para diagnóstico e priorização de
+                melhorias.
               </li>
             </ul>
             <p>
-              <strong>Não coletamos</strong> localização precisa, contatos da
-              agenda, dados bancários, histórico de navegação, leitura de SMS,
-              microfone ou câmera em segundo plano. Câmera e galeria só são
-              acessadas quando você toca em &ldquo;adicionar foto&rdquo;.
+              <strong>Não coletamos</strong> localização precisa, contatos da agenda, dados
+              bancários, histórico de navegação, leitura de SMS, microfone ou câmera em segundo
+              plano. Câmera e galeria só são acessadas quando você toca em &ldquo;adicionar
+              foto&rdquo;.
             </p>
 
             <h2>3. Para quê usamos os dados</h2>
             <ul>
               <li>
-                <strong>Autenticação:</strong> enviar o código de login para seu
-                e-mail e manter sua sessão ativa entre aberturas do app.
+                <strong>Autenticação:</strong> enviar o código de login para seu e-mail e manter sua
+                sessão ativa entre aberturas do app.
               </li>
               <li>
-                <strong>Sincronização entre membros:</strong> permitir que sua
-                família veja, atualize e converse sobre as tarefas em tempo
-                real.
+                <strong>Sincronização entre membros:</strong> permitir que sua família veja,
+                atualize e converse sobre as tarefas em tempo real.
               </li>
               <li>
-                <strong>Notificações push:</strong> avisar sobre eventos
-                relevantes (tarefa nova, aprovação pendente, lembrete de
-                vencimento, aniversário).
+                <strong>Notificações push:</strong> avisar sobre eventos relevantes (tarefa nova,
+                aprovação pendente, lembrete de vencimento, aniversário).
               </li>
               <li>
-                <strong>Registro de feedback e suporte:</strong> quando você
-                envia uma mensagem pela tela &ldquo;Enviar feedback&rdquo;, ela
-                chega ao nosso e-mail interno.
+                <strong>Registro de feedback e suporte:</strong> quando você envia uma mensagem pela
+                tela &ldquo;Enviar feedback&rdquo;, ela chega ao nosso e-mail interno.
               </li>
               <li>
-                <strong>Diagnóstico técnico:</strong> identificar e corrigir
-                erros, sem rastrear o conteúdo das suas tarefas para fins de
-                marketing.
+                <strong>Diagnóstico técnico:</strong> identificar e corrigir erros, sem rastrear o
+                conteúdo das suas tarefas para fins de marketing.
               </li>
             </ul>
             <p>
-              <strong>Não vendemos seus dados.</strong> Não usamos seus dados
-              para anúncios. Não compartilhamos para uso publicitário de
-              terceiros.
+              <strong>Não vendemos seus dados.</strong> Não usamos seus dados para anúncios. Não
+              compartilhamos para uso publicitário de terceiros.
             </p>
 
             <h2>4. Com quem compartilhamos (subprocessadores)</h2>
             <p>
-              Para operar o app usamos serviços de infraestrutura confiáveis.
-              Cada um recebe apenas o mínimo necessário para a sua função:
+              Para operar o app usamos serviços de infraestrutura confiáveis. Cada um recebe apenas
+              o mínimo necessário para a sua função:
             </p>
             <ul>
               <li>
-                <strong>Supabase Inc.</strong> (Estados Unidos) — banco de dados,
-                storage de fotos e autenticação. Dados em repouso e em trânsito
-                são criptografados.{' '}
-                <a
-                  href="https://supabase.com/privacy"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
+                <strong>Supabase Inc.</strong> (Estados Unidos) — banco de dados, storage de fotos e
+                autenticação. Dados em repouso e em trânsito são criptografados.{' '}
+                <a href="https://supabase.com/privacy" rel="noopener noreferrer" target="_blank">
                   supabase.com/privacy
                 </a>
               </li>
               <li>
-                <strong>Resend</strong> (Estados Unidos) — envio dos e-mails de
-                login (OTP) e dos e-mails de feedback que você envia para nós.{' '}
+                <strong>Resend</strong> (Estados Unidos) — envio dos e-mails de login (OTP) e dos
+                e-mails de feedback que você envia para nós.{' '}
                 <a
                   href="https://resend.com/legal/privacy-policy"
                   rel="noopener noreferrer"
@@ -179,73 +161,56 @@ export default function CasaLevePrivacidadePage() {
                 </a>
               </li>
               <li>
-                <strong>Expo Push Service</strong> (Estados Unidos) — entrega das
-                notificações push para o seu dispositivo via Apple APNs ou
-                Google FCM.{' '}
-                <a
-                  href="https://expo.dev/privacy"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
+                <strong>Expo Push Service</strong> (Estados Unidos) — entrega das notificações push
+                para o seu dispositivo via Apple APNs ou Google FCM.{' '}
+                <a href="https://expo.dev/privacy" rel="noopener noreferrer" target="_blank">
                   expo.dev/privacy
                 </a>
               </li>
               <li>
-                <strong>Sentry</strong> (Estados Unidos) — monitoramento de
-                erros e performance do app. Recebe stack traces, identificador
-                interno do dispositivo e do usuário (UUID, sem nome ou email)
-                e versão do app. Não recebe conteúdo das suas tarefas, fotos
-                ou mensagens.{' '}
-                <a
-                  href="https://sentry.io/privacy/"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
+                <strong>Sentry</strong> (Estados Unidos) — monitoramento de erros e performance do
+                app. Recebe stack traces, identificador interno do dispositivo e do usuário (UUID,
+                sem nome ou email) e versão do app. Não recebe conteúdo das suas tarefas, fotos ou
+                mensagens.{' '}
+                <a href="https://sentry.io/privacy/" rel="noopener noreferrer" target="_blank">
                   sentry.io/privacy
                 </a>
               </li>
               <li>
-                <strong>Apple App Store / Google Play</strong> — distribuição do
-                aplicativo. Recebem dados de instalação que pertencem ao
-                respectivo ecossistema.
+                <strong>Apple App Store / Google Play</strong> — distribuição do aplicativo. Recebem
+                dados de instalação que pertencem ao respectivo ecossistema.
               </li>
             </ul>
             <p>
-              Eventuais transferências internacionais são feitas com cláusulas
-              contratuais padrão e medidas equivalentes às exigidas pela LGPD.
+              Eventuais transferências internacionais são feitas com cláusulas contratuais padrão e
+              medidas equivalentes às exigidas pela LGPD.
             </p>
 
             <h2>5. Crianças e adolescentes</h2>
             <p>
-              O Casa Leve foi desenhado para uso familiar e prevê um perfil
-              específico de &ldquo;criança&rdquo;. Em todos os casos, o cadastro
-              de uma criança e a vinculação à conta da família devem ser feitos
-              ou autorizados por um adulto responsável (admin) da casa.
-              Recompensas resgatadas e tarefas marcadas pela criança passam
-              por aprovação dos adultos antes de gerar pontuação ou efeito
-              monetário.
+              O Casa Leve foi desenhado para uso familiar e prevê um perfil específico de
+              &ldquo;criança&rdquo;. Em todos os casos, o cadastro de uma criança e a vinculação à
+              conta da família devem ser feitos ou autorizados por um adulto responsável (admin) da
+              casa. Recompensas resgatadas e tarefas marcadas pela criança passam por aprovação dos
+              adultos antes de gerar pontuação ou efeito monetário.
             </p>
             <p>
-              Não exibimos publicidade nem coletamos dados para perfilamento
-              comportamental de crianças. Se você é responsável por uma criança
-              e quer remover os dados dela, basta excluir o membro pelo
-              aplicativo ou solicitar exclusão pelo e-mail acima.
+              Não exibimos publicidade nem coletamos dados para perfilamento comportamental de
+              crianças. Se você é responsável por uma criança e quer remover os dados dela, basta
+              excluir o membro pelo aplicativo ou solicitar exclusão pelo e-mail acima.
             </p>
 
             <h2>6. Retenção</h2>
             <p>
-              Mantemos seus dados enquanto sua conta estiver ativa. Quando você
-              exclui a conta dentro do app (Ajustes → Excluir conta) ou solicita
-              por e-mail, removemos seus dados pessoais em até 30 dias dos nossos
-              sistemas operacionais. Backups criptografados podem reter os dados
-              por até mais 60 dias antes de serem sobrescritos pela rotação
-              normal.
+              Mantemos seus dados enquanto sua conta estiver ativa. Quando você exclui a conta
+              dentro do app (Ajustes → Excluir conta) ou solicita por e-mail, removemos seus dados
+              pessoais em até 30 dias dos nossos sistemas operacionais. Backups criptografados podem
+              reter os dados por até mais 60 dias antes de serem sobrescritos pela rotação normal.
             </p>
             <p>
-              Conteúdos colaborativos (tarefas que outros membros completaram,
-              comentários trocados em conjunto) podem ser anonimizados em vez de
-              apagados, para preservar o histórico da casa para os demais
-              membros.
+              Conteúdos colaborativos (tarefas que outros membros completaram, comentários trocados
+              em conjunto) podem ser anonimizados em vez de apagados, para preservar o histórico da
+              casa para os demais membros.
             </p>
 
             <h2>7. Seus direitos (LGPD)</h2>
@@ -254,50 +219,41 @@ export default function CasaLevePrivacidadePage() {
               <li>Confirmar a existência de tratamento dos seus dados</li>
               <li>Acessar os dados que temos sobre você</li>
               <li>Corrigir dados incompletos, inexatos ou desatualizados</li>
-              <li>
-                Solicitar anonimização, bloqueio ou eliminação de dados
-                desnecessários
-              </li>
+              <li>Solicitar anonimização, bloqueio ou eliminação de dados desnecessários</li>
               <li>Portar os dados a outro fornecedor</li>
               <li>Eliminar dados pessoais (excluir a conta)</li>
-              <li>
-                Saber com quais entidades públicas e privadas seus dados foram
-                compartilhados
-              </li>
+              <li>Saber com quais entidades públicas e privadas seus dados foram compartilhados</li>
               <li>Revogar o consentimento</li>
             </ul>
             <p>
               Para exercer qualquer um desses direitos, escreva para{' '}
-              <a href="mailto:contato@aralabs.com.br">contato@aralabs.com.br</a>.
-              Respondemos em até 15 dias úteis.
+              <a href="mailto:contato@aralabs.com.br">contato@aralabs.com.br</a>. Respondemos em até
+              15 dias úteis.
             </p>
 
             <h2>8. Segurança</h2>
             <p>
-              Aplicamos medidas técnicas e organizacionais razoáveis para
-              proteger seus dados: criptografia em trânsito (TLS) e em repouso,
-              autenticação por OTP em vez de senha, controle de acesso por papel
-              e isolamento de dados por household via{' '}
-              <em>row-level security</em> no banco. Mesmo assim, nenhum sistema
-              é 100% imune. Em caso de incidente que afete seus dados, vamos
-              comunicar você e a ANPD nos prazos previstos pela LGPD.
+              Aplicamos medidas técnicas e organizacionais razoáveis para proteger seus dados:
+              criptografia em trânsito (TLS) e em repouso, autenticação por OTP em vez de senha,
+              controle de acesso por papel e isolamento de dados por household via{' '}
+              <em>row-level security</em> no banco. Mesmo assim, nenhum sistema é 100% imune. Em
+              caso de incidente que afete seus dados, vamos comunicar você e a ANPD nos prazos
+              previstos pela LGPD.
             </p>
 
             <h2>9. Cookies e rastreamento na web</h2>
             <p>
-              O site institucional aralabs.com.br não utiliza cookies de
-              publicidade nem rastreadores de terceiros. O aplicativo móvel
-              também não utiliza cookies — apenas armazenamento local
-              (AsyncStorage) para guardar a sua sessão e suas preferências
+              O site institucional aralabs.com.br não utiliza cookies de publicidade nem
+              rastreadores de terceiros. O aplicativo móvel também não utiliza cookies — apenas
+              armazenamento local (AsyncStorage) para guardar a sua sessão e suas preferências
               (tema, ajustes de UI).
             </p>
 
             <h2>10. Mudanças nesta política</h2>
             <p>
-              Podemos atualizar esta política para refletir mudanças no produto
-              ou exigências legais. Quando a mudança for material, vamos avisar
-              dentro do app ou por e-mail. A versão em vigor está sempre
-              disponível em{' '}
+              Podemos atualizar esta política para refletir mudanças no produto ou exigências
+              legais. Quando a mudança for material, vamos avisar dentro do app ou por e-mail. A
+              versão em vigor está sempre disponível em{' '}
               <Link href="/produtos/casa-leve/privacidade">
                 aralabs.com.br/produtos/casa-leve/privacidade
               </Link>
@@ -319,9 +275,8 @@ export default function CasaLevePrivacidadePage() {
 
             <hr />
             <p className="text-sm text-[color:var(--ink-muted)]">
-              Veja também os{' '}
-              <Link href="/produtos/casa-leve/termos">Termos de Uso</Link> do
-              Casa Leve.
+              Veja também os <Link href="/produtos/casa-leve/termos">Termos de Uso</Link> do Casa
+              Leve.
             </p>
           </article>
         </div>

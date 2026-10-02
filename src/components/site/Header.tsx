@@ -3,31 +3,16 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { LogoMark, LogoWordmark } from './Logo';
-import { ThemeSwitcher } from './ThemeSwitcher';
+import { ProductTile } from './ProductMarks';
+import { PRODUCTS } from '@/lib/products';
+import { contactHref } from '@/lib/seo/site';
 
-type NavLink = {
-  label: string;
-  href: string;
-  children?: { label: string; href: string }[];
-};
-
-const links: NavLink[] = [
-  { label: 'Home', href: '/' },
+const TOP_LINKS = [
+  { label: 'Sob medida', href: '/sob-medida' },
   { label: 'Empresa', href: '/empresa' },
-  { label: 'Tese', href: '/tese' },
-  {
-    label: 'Produtos',
-    href: '/produtos',
-    children: [
-      { label: 'Portfólio', href: '/produtos' },
-      { label: 'Aragenda', href: '/ara-agenda' },
-      { label: 'Casa Leve', href: '/produtos/casa-leve' },
-      { label: 'Sono Leve', href: '/produtos/sono-leve' },
-      { label: 'Lumo', href: '/produtos/lumo' },
-    ],
-  },
-  { label: 'Contato', href: '#contato' },
 ];
+
+const CONTACT = contactHref('Quero falar com a AraLabs');
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -46,109 +31,110 @@ export function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-[color:var(--line)] bg-[color:var(--bg)]/80 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-[1240px] items-center justify-between px-6 py-5 lg:px-10">
+      <header className="sticky top-0 z-50 border-b border-[color:var(--line)] bg-[color:var(--bg)]/85 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-[1240px] items-center justify-between px-6 py-4 lg:px-10">
           <Link
             href="/"
             className="group flex items-center gap-3"
             aria-label="AraLabs — ir para a home"
             onClick={() => setOpen(false)}
           >
-            <LogoMark className="h-11 w-11 text-[color:var(--ink)] transition group-hover:text-[color:var(--gold-soft)]" />
-            <LogoWordmark className="block h-7 w-auto text-[color:var(--ink)] transition group-hover:text-[color:var(--gold-soft)]" />
+            <LogoMark className="h-10 w-10 text-[color:var(--ink)] transition group-hover:text-[color:var(--gold-soft)]" />
+            <span className="flex flex-col leading-none">
+              <LogoWordmark className="block h-6 w-auto text-[color:var(--ink)] transition group-hover:text-[color:var(--gold-soft)]" />
+              <span className="mt-1 hidden text-[11px] font-medium text-[color:var(--ink-dim)] sm:block">
+                Tecnologia simples para pequenos negócios
+              </span>
+            </span>
           </Link>
 
           <nav
             className="hidden items-center gap-8 text-[15px] font-medium text-[color:var(--ink-muted)] lg:flex"
             aria-label="Navegação principal"
           >
-            {links.map((l) => {
-              if (l.children) {
-                return (
-                  <div
-                    key={l.label}
-                    className="relative"
-                    onMouseEnter={() => setProductsOpen(true)}
-                    onMouseLeave={() => setProductsOpen(false)}
-                    onFocus={() => setProductsOpen(true)}
-                    onBlur={(e) => {
-                      if (!e.currentTarget.contains(e.relatedTarget as Node)) {
-                        setProductsOpen(false);
-                      }
-                    }}
-                  >
-                    <Link
-                      href={l.href}
-                      onClick={() => setProductsOpen(false)}
-                      className="inline-flex items-center gap-1 transition hover:text-[color:var(--ink)]"
-                      aria-haspopup="menu"
-                      aria-expanded={productsOpen}
-                    >
-                      {l.label}
-                      <span
-                        aria-hidden="true"
-                        className={`text-[10px] transition ${productsOpen ? 'rotate-180' : ''}`}
+            <div
+              className="relative"
+              onMouseEnter={() => setProductsOpen(true)}
+              onMouseLeave={() => setProductsOpen(false)}
+              onFocus={() => setProductsOpen(true)}
+              onBlur={(e) => {
+                if (!e.currentTarget.contains(e.relatedTarget as Node)) setProductsOpen(false);
+              }}
+            >
+              <Link
+                href="/produtos"
+                onClick={() => setProductsOpen(false)}
+                className="inline-flex items-center gap-1 transition hover:text-[color:var(--ink)]"
+                aria-haspopup="menu"
+                aria-expanded={productsOpen}
+              >
+                Produtos
+                <span
+                  aria-hidden="true"
+                  className={`text-[10px] transition ${productsOpen ? 'rotate-180' : ''}`}
+                >
+                  ▾
+                </span>
+              </Link>
+              <div
+                role="menu"
+                className={`absolute left-1/2 top-full z-50 w-[340px] -translate-x-1/2 pt-3 transition-all duration-150 ${
+                  productsOpen ? 'visible opacity-100' : 'pointer-events-none invisible opacity-0'
+                }`}
+              >
+                <ul className="overflow-hidden rounded-2xl border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] p-2 shadow-[0_20px_50px_rgba(0,0,0,0.18)]">
+                  {PRODUCTS.map((p) => (
+                    <li key={p.slug} role="none">
+                      <Link
+                        href={p.href}
+                        role="menuitem"
+                        onClick={() => setProductsOpen(false)}
+                        className="flex items-center gap-3 rounded-xl px-3 py-2.5 transition hover:bg-[color:var(--bg)]"
                       >
-                        ▾
-                      </span>
-                    </Link>
-                    <div
-                      role="menu"
-                      className={`absolute left-1/2 top-full z-50 w-56 -translate-x-1/2 pt-3 transition-all duration-150 ${
-                        productsOpen
-                          ? 'visible opacity-100'
-                          : 'pointer-events-none invisible opacity-0'
-                      }`}
+                        <ProductTile product={p} size={36} />
+                        <span className="min-w-0">
+                          <span className="block text-[14.5px] font-semibold text-[color:var(--ink)]">
+                            {p.name}
+                          </span>
+                          <span className="block truncate text-[12.5px] text-[color:var(--ink-dim)]">
+                            {p.audience} · {p.tagline}
+                          </span>
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                  <li role="none" className="border-t border-[color:var(--line)] mt-1 pt-1">
+                    <Link
+                      href="/produtos"
+                      role="menuitem"
+                      onClick={() => setProductsOpen(false)}
+                      className="block rounded-xl px-3 py-2 text-[13.5px] font-semibold text-[color:var(--gold-soft)] transition hover:bg-[color:var(--bg)]"
                     >
-                      <ul className="overflow-hidden rounded-2xl border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] p-2 shadow-[0_20px_50px_rgba(0,0,0,0.18)] backdrop-blur">
-                        {l.children.map((c) => (
-                          <li key={c.href} role="none">
-                            <Link
-                              href={c.href}
-                              role="menuitem"
-                              onClick={() => setProductsOpen(false)}
-                              className="block rounded-xl px-4 py-2.5 text-[14.5px] text-[color:var(--ink)] transition hover:bg-[color:var(--bg)] hover:text-[color:var(--gold-soft)]"
-                            >
-                              {c.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                );
-              }
-              return l.href.startsWith('#') ? (
-                <a
-                  key={l.label}
-                  href={l.href}
-                  className="relative transition hover:text-[color:var(--ink)]"
-                >
-                  {l.label}
-                </a>
-              ) : (
-                <Link
-                  key={l.label}
-                  href={l.href}
-                  className="relative transition hover:text-[color:var(--ink)]"
-                >
-                  {l.label}
-                </Link>
-              );
-            })}
+                      Ver todos os produtos →
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            {TOP_LINKS.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                className="relative transition hover:text-[color:var(--ink)]"
+              >
+                {l.label}
+              </Link>
+            ))}
           </nav>
 
           <div className="hidden items-center gap-3 lg:flex">
             <a
-              href="#contato"
-              className="inline-flex items-center gap-2 rounded-full border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] px-4 py-2 text-[15px] font-semibold text-[color:var(--ink)] transition hover:border-[color:var(--gold)]/50 hover:text-[color:var(--gold-soft)]"
+              href={CONTACT}
+              className="inline-flex items-center gap-2 rounded-full bg-[color:var(--ink)] px-5 py-2.5 text-[14.5px] font-semibold text-[color:var(--bg)] transition hover:bg-[color:var(--gold-soft)]"
             >
               Falar com a gente
-              <span aria-hidden="true" className="text-[color:var(--gold-soft)]">
-                →
-              </span>
+              <span aria-hidden="true">→</span>
             </a>
-            <ThemeSwitcher />
           </div>
 
           {/* Mobile hamburger */}
@@ -182,87 +168,68 @@ export function Header() {
         </div>
       </header>
 
-      {/* Mobile sheet — overlay, doesn't push header */}
+      {/* Mobile sheet */}
       <div
         id="mobile-menu"
         className={`fixed inset-0 z-40 lg:hidden ${open ? 'pointer-events-auto' : 'pointer-events-none'}`}
         aria-hidden={!open}
       >
-        {/* Backdrop */}
         <button
           type="button"
           tabIndex={open ? 0 : -1}
           aria-label="Fechar menu"
           onClick={() => setOpen(false)}
-          className={`absolute inset-0 bg-[color:var(--bg)]/40 backdrop-blur-md transition-opacity duration-300 ${
+          className={`absolute inset-0 bg-[color:var(--ink)]/30 backdrop-blur-md transition-opacity duration-300 ${
             open ? 'opacity-100' : 'opacity-0'
           }`}
         />
-
-        {/* Sheet */}
         <div
-          className={`absolute inset-x-0 top-[84px] mx-6 rounded-[24px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] p-5 shadow-[0_30px_80px_rgba(0,0,0,0.4)] transition-all duration-300 ${
+          className={`absolute inset-x-0 top-[76px] mx-4 max-h-[calc(100svh-96px)] overflow-y-auto rounded-[24px] border border-[color:var(--line-strong)] bg-[color:var(--bg)] p-4 shadow-[0_30px_80px_rgba(0,0,0,0.3)] transition-all duration-300 ${
             open ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
           }`}
         >
           <nav className="flex flex-col" aria-label="Menu móvel">
-            {links.map((l, i) => {
-              const borderClass =
-                i < links.length - 1 ? 'border-b border-[color:var(--line)]' : '';
-              if (l.children) {
-                return (
-                  <div key={l.label} className={borderClass}>
-                    <Link
-                      href={l.href}
-                      onClick={() => setOpen(false)}
-                      className="flex items-center justify-between rounded-2xl px-4 pt-4 text-[17px] font-medium text-[color:var(--ink)] transition hover:bg-[color:var(--bg)]/80"
-                    >
-                      {l.label}
-                      <span className="text-[color:var(--ink-dim)]">→</span>
-                    </Link>
-                    <ul className="mb-3 ml-4 mt-2 space-y-1">
-                      {l.children.map((c) => (
-                        <li key={c.href}>
-                          <Link
-                            href={c.href}
-                            onClick={() => setOpen(false)}
-                            className="flex items-center justify-between rounded-xl px-4 py-2 text-[15px] text-[color:var(--ink-muted)] transition hover:bg-[color:var(--bg)]/80 hover:text-[color:var(--gold-soft)]"
-                          >
-                            {c.label}
-                            <span className="text-[color:var(--ink-dim)]">→</span>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                );
-              }
-              return l.href.startsWith('#') ? (
-                <a
-                  key={l.label}
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  className={`flex items-center justify-between rounded-2xl px-4 py-4 text-[17px] font-medium text-[color:var(--ink)] transition hover:bg-[color:var(--bg)]/80 ${borderClass}`}
-                >
-                  {l.label}
-                  <span className="text-[color:var(--ink-dim)]">→</span>
-                </a>
-              ) : (
+            <p className="px-3 pt-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-[color:var(--ink-dim)]">
+              Produtos
+            </p>
+            <ul className="mt-2 space-y-1">
+              {PRODUCTS.map((p) => (
+                <li key={p.slug}>
+                  <Link
+                    href={p.href}
+                    onClick={() => setOpen(false)}
+                    className="flex items-center gap-3 rounded-2xl px-3 py-2.5 transition hover:bg-[color:var(--bg-elev)]"
+                  >
+                    <ProductTile product={p} size={40} />
+                    <span className="min-w-0">
+                      <span className="block text-[16px] font-semibold text-[color:var(--ink)]">
+                        {p.name}
+                      </span>
+                      <span className="block truncate text-[13px] text-[color:var(--ink-dim)]">
+                        {p.audience}
+                      </span>
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-3 border-t border-[color:var(--line)] pt-2">
+              {[{ label: 'Todos os produtos', href: '/produtos' }, ...TOP_LINKS].map((l) => (
                 <Link
-                  key={l.label}
+                  key={l.href}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className={`flex items-center justify-between rounded-2xl px-4 py-4 text-[17px] font-medium text-[color:var(--ink)] transition hover:bg-[color:var(--bg)]/80 ${borderClass}`}
+                  className="flex items-center justify-between rounded-2xl px-3 py-3.5 text-[17px] font-medium text-[color:var(--ink)] transition hover:bg-[color:var(--bg-elev)]"
                 >
                   {l.label}
                   <span className="text-[color:var(--ink-dim)]">→</span>
                 </Link>
-              );
-            })}
+              ))}
+            </div>
             <a
-              href="#contato"
+              href={CONTACT}
               onClick={() => setOpen(false)}
-              className="mt-4 flex items-center justify-center gap-2 rounded-full bg-[color:var(--gold)] px-4 py-4 text-[15px] font-semibold text-[color:var(--on-gold)] transition hover:bg-[color:var(--gold-soft)]"
+              className="mt-3 flex items-center justify-center gap-2 rounded-full bg-[color:var(--ink)] px-4 py-4 text-[15px] font-semibold text-[color:var(--bg)] transition hover:bg-[color:var(--gold-soft)]"
             >
               Falar com a gente →
             </a>

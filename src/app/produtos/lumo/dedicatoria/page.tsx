@@ -24,8 +24,7 @@ export default function LumoDedicatoriaPage() {
         eyebrow="Lumo · Dedicatória"
         title={
           <>
-            Para{' '}
-            <span className="font-serif italic text-[color:var(--gold-soft)]">Selma</span>.
+            Para <span className="font-serif italic text-[color:var(--gold-soft)]">Selma</span>.
           </>
         }
         description="O Lumo nasceu em homenagem à educadora que inspirou este projeto."
@@ -35,15 +34,13 @@ export default function LumoDedicatoriaPage() {
         <div className="mx-auto max-w-[720px] px-6 py-20 lg:px-10 lg:py-24">
           <article className="prose-policy">
             <p className="lead">
-              O Lumo nasceu em homenagem à{' '}
-              <strong>Profa. Dra. Selma Lanhellas</strong> — educadora, inspiração
-              e presença por trás deste projeto.
+              O Lumo nasceu em homenagem à <strong>Profa. Dra. Selma Lanhellas</strong> — educadora,
+              inspiração e presença por trás deste projeto.
             </p>
             <p>
-              Sua trajetória na educação, na inclusão e no cuidado com crianças
-              que aprendem e se comunicam de formas diferentes inspirou uma
-              ferramenta feita para ajudar crianças a serem ouvidas, mesmo
-              quando as palavras não são o caminho.
+              Sua trajetória na educação, na inclusão e no cuidado com crianças que aprendem e se
+              comunicam de formas diferentes inspirou uma ferramenta feita para ajudar crianças a
+              serem ouvidas, mesmo quando as palavras não são o caminho.
             </p>
 
             <blockquote>

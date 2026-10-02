@@ -67,53 +67,45 @@ export default function LumoCreditosPage() {
             </dl>
 
             <p>
-              O Lumo utiliza pictogramas para apoiar a comunicação visual de
-              crianças e famílias. Os pictogramas são exibidos dentro do contexto
-              de comunicação AAC do aplicativo, não são redistribuídos
-              separadamente, e mantêm os créditos visíveis na tela "Sobre o Lumo"
-              do app.
+              O Lumo utiliza pictogramas para apoiar a comunicação visual de crianças e famílias. Os
+              pictogramas são exibidos dentro do contexto de comunicação AAC do aplicativo, não são
+              redistribuídos separadamente, e mantêm os créditos visíveis na tela “Sobre o Lumo” do
+              app.
             </p>
 
-            <p>
-              Termos da licença CC BY-NC-SA 4.0:
-            </p>
+            <p>Termos da licença CC BY-NC-SA 4.0:</p>
             <ul>
               <li>
-                <strong>Atribuição (BY)</strong> — créditos visíveis no app,
-                conforme acima.
+                <strong>Atribuição (BY)</strong> — créditos visíveis no app, conforme acima.
               </li>
               <li>
-                <strong>Não Comercial (NC)</strong> — o Lumo é distribuído
-                gratuitamente para famílias e não gera receita por venda da app,
-                assinatura, anúncios ou licenciamento. Eventuais opções futuras
-                de "Apoiar o Lumo" via doação não desbloquearão pictogramas nem
-                funcionalidade.
+                <strong>Não Comercial (NC)</strong> — o Lumo é distribuído gratuitamente para
+                famílias e não gera receita por venda da app, assinatura, anúncios ou licenciamento.
+                Eventuais opções futuras de “Apoiar o Lumo” via doação não desbloquearão pictogramas
+                nem funcionalidade.
               </li>
               <li>
-                <strong>Compartilha Igual (SA)</strong> — qualquer modificação
-                técnica dos pictogramas (redimensionamento, conversão de formato)
-                é distribuída sob a mesma licença CC BY-NC-SA 4.0.
+                <strong>Compartilha Igual (SA)</strong> — qualquer modificação técnica dos
+                pictogramas (redimensionamento, conversão de formato) é distribuída sob a mesma
+                licença CC BY-NC-SA 4.0.
               </li>
             </ul>
 
             <h2>Tipografia</h2>
             <p>
-              <strong>Inter</strong> — Google Fonts, licença SIL Open Font
-              License 1.1 (OFL).
+              <strong>Inter</strong> — Google Fonts, licença SIL Open Font License 1.1 (OFL).
             </p>
 
             <h2>Tecnologias</h2>
             <p>
-              O Lumo é construído sobre tecnologias open source: Expo, React
-              Native, SQLite, expo-image, expo-speech. Agradecemos às
-              comunidades que mantêm essas ferramentas.
+              O Lumo é construído sobre tecnologias open source: Expo, React Native, SQLite,
+              expo-image, expo-speech. Agradecemos às comunidades que mantêm essas ferramentas.
             </p>
 
             <h2>Contato sobre direitos</h2>
             <p>
-              Se você representa uma das partes envolvidas e quer ajustar
-              alguma atribuição, escreva pra{' '}
-              <a href="mailto:contato@aralabs.com.br">contato@aralabs.com.br</a>.
+              Se você representa uma das partes envolvidas e quer ajustar alguma atribuição, escreva
+              pra <a href="mailto:contato@aralabs.com.br">contato@aralabs.com.br</a>.
             </p>
           </article>
         </div>

@@ -22,7 +22,7 @@ export type Product = {
   line: 'negocios' | 'familias';
 };
 
-export const KOMYX_URL = 'https://komyx.aralabs.com.br';
+export const KOMYX_URL = 'https://komyx.com.br';
 export const ARAKIDS_URL = 'https://arakids.aralabs.com.br';
 export const LUMO_APPSTORE_URL = 'https://apps.apple.com/br/app/lumo/id6777104032';
 

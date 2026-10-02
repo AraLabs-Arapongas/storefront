@@ -30,7 +30,7 @@ import {
 const komyx = productBySlug('komyx');
 const pageTitle = 'Komyx — Gestão para buffets';
 const pageDescription =
-  'Komyx é o sistema da AraLabs para buffets infantis e de eventos: agenda com um evento por dia, orçamento online, reserva com Pix e identificador, contrato automático, convite com RSVP, portaria no celular e cobrança pelo WhatsApp. Tudo incluído, de R$ 149 no mensal a R$ 99/mês no anual.';
+  'Komyx é o sistema da AraLabs para buffets infantis e de eventos: agenda com um evento por dia, orçamento online, reserva com Pix e identificador, contrato automático, convite com RSVP, portaria no celular e cobrança pelo WhatsApp. 1 mês grátis; depois de R$ 199 por R$ 149 no mensal, até R$ 99/mês no anual.';
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -180,7 +180,7 @@ export default function KomyxPage() {
                 className="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-[15px] font-semibold text-white transition hover:brightness-110"
                 style={{ background: komyx.color }}
               >
-                Criar meu buffet →
+                Testar 1 mês grátis →
               </a>
               <a
                 href={contactHref('Quero conhecer o Komyx')}
@@ -246,11 +246,14 @@ export default function KomyxPage() {
       </Section>
 
       <Section id="preco">
-        <Eyebrow tone="gold">Preço</Eyebrow>
-        <Title>Um plano, tudo incluído. Você escolhe o período.</Title>
+        <Eyebrow tone="gold">1 mês grátis</Eyebrow>
+        <Title>
+          Teste 30 dias sem cartão. Depois, um plano com tudo e o período que você escolher.
+        </Title>
         <Lead>
-          Todos os recursos em qualquer período. Quanto maior o período, menor o valor por mês. Sem
-          taxa por festa; ao fim do período, renova ou para.
+          Todos os recursos em qualquer período. Quanto maior o período, menor o valor por mês: de
+          R$ 199 por R$ 149 no mensal, até R$ 99 no anual. Sem taxa por festa; ao fim do período,
+          renova ou para.
         </Lead>
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {PERIODS.map((p) => (
@@ -270,7 +273,10 @@ export default function KomyxPage() {
               <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-[color:var(--ink-dim)]">
                 {p.label}
               </p>
-              <p className="mt-3 text-[38px] font-extrabold tracking-tight text-[color:var(--ink)]">
+              <p className="mt-3 text-[13px] font-semibold text-[color:var(--ink-dim)] line-through">
+                de R$ 199
+              </p>
+              <p className="text-[38px] font-extrabold tracking-tight text-[color:var(--ink)]">
                 R$ {p.perMonth}
                 <span className="text-[14px] font-semibold text-[color:var(--ink-dim)]">/mês</span>
               </p>
@@ -290,7 +296,7 @@ export default function KomyxPage() {
                     : { border: `1px solid var(--line-strong)`, color: 'var(--ink)' }
                 }
               >
-                Começar
+                Testar 1 mês grátis
               </a>
             </article>
           ))}

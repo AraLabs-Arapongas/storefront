@@ -34,7 +34,7 @@ export const PRODUCTS: Product[] = [
     tagline: 'Gestão para buffets.',
     description:
       'Agenda, orçamento online, reserva com Pix, contrato automático, convite com RSVP e portaria no celular. O cliente monta a festa pela sua página; você só confirma.',
-    offer: 'A partir de R$ 99/mês no anual',
+    offer: '1 mês grátis, depois a partir de R$ 99/mês',
     status: 'No ar',
     href: '/produtos/komyx',
     externalUrl: KOMYX_URL,

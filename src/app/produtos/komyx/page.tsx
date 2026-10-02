@@ -301,6 +301,45 @@ export default function KomyxPage() {
             </article>
           ))}
         </div>
+        <div
+          className="mt-8 grid gap-6 rounded-[28px] p-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center"
+          style={{ background: '#1b1f3a', color: '#fffdf7' }}
+        >
+          <div>
+            <p
+              className="text-[11px] font-semibold uppercase tracking-[0.26em]"
+              style={{ color: '#ffc43d' }}
+            >
+              Komyx Balcão · com tablet
+            </p>
+            <h3 className="mt-3 text-[26px] font-semibold leading-[1.1] tracking-[-0.02em]">
+              Um tablet de 10&quot; na portaria, já configurado em modo quiosque.
+            </h3>
+            <p className="mt-3 text-[15.5px] leading-[1.7]" style={{ color: '#cfd2e6' }}>
+              Abre direto na portaria da festa do dia e não sai dali: a equipe marca quem chegou e
+              fecha a conta dos extras; a dona destrava com um PIN. Tablet e suporte em comodato,
+              entrega configurada, troca em caso de defeito.
+            </p>
+          </div>
+          <div className="rounded-[22px] p-6" style={{ background: 'rgba(255,255,255,0.06)' }}>
+            <p className="text-[38px] font-extrabold tracking-tight" style={{ color: '#ffc43d' }}>
+              R$ 149
+              <span className="text-[14px] font-semibold" style={{ color: '#cfd2e6' }}>
+                /mês
+              </span>
+            </p>
+            <p className="mt-1 text-[13.5px]" style={{ color: '#cfd2e6' }}>
+              Plano anual (R$ 1.788) com o tablet incluído.
+            </p>
+            <a
+              href={contactHref('Quero o Komyx Balcão com tablet')}
+              className="mt-5 inline-flex w-full items-center justify-center rounded-full py-3 text-[14px] font-bold transition hover:brightness-110"
+              style={{ background: '#ffc43d', color: '#1b1f3a' }}
+            >
+              Quero o tablet na portaria
+            </a>
+          </div>
+        </div>
         <ul className="mt-10 grid gap-x-6 gap-y-2 text-[14.5px] text-[color:var(--ink)] sm:grid-cols-2 lg:grid-cols-3">
           {INCLUDED.map((i) => (
             <li key={i} className="flex gap-2">

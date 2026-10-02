@@ -3,10 +3,11 @@ import Image from 'next/image';
 import type { Metadata } from 'next';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { softwareApplicationSchema } from '@/lib/seo/schemas';
+import { LUMO_APPSTORE_URL } from '@/lib/products';
 
 const pageTitle = 'Lumo — comunicação visual pra famílias';
 const pageDescription =
-  'Lumo é o app da AraLabs de comunicação visual e rotina pra famílias com crianças não-verbais. 13.798 pictogramas ARASAAC, 4 idiomas, modo criança com PIN. Gratuito pra sempre. Funciona offline. Em breve na App Store.';
+  'Lumo é o app da AraLabs de comunicação visual e rotina pra famílias com crianças não-verbais. 13.798 pictogramas ARASAAC, 4 idiomas, modo criança com PIN. Gratuito pra sempre. Funciona offline. Disponível na App Store.';
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -117,7 +118,7 @@ export default function LumoLandingPage() {
           name: 'Lumo',
           description: pageDescription,
           applicationCategory: 'EducationApplication',
-          operatingSystem: 'iOS, Android',
+          operatingSystem: 'iOS',
         })}
       />
 
@@ -168,9 +169,14 @@ export default function LumoLandingPage() {
               palavras. Cards, rotinas e pictogramas ARASAAC em quatro idiomas. Gratuito pra sempre.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <span className="inline-flex items-center gap-2 rounded-full border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)]/85 px-4 py-2 text-[13px] font-medium text-[color:var(--ink)] backdrop-blur">
-                Em breve na App Store
-              </span>
+              <a
+                href={LUMO_APPSTORE_URL}
+                target="_blank"
+                rel="noopener"
+                className="inline-flex items-center gap-2 rounded-full bg-[color:var(--ink)] px-5 py-2.5 text-[14px] font-semibold text-[color:var(--bg)] transition hover:bg-[color:var(--gold-soft)]"
+              >
+                Baixar na App Store →
+              </a>
               <span className="inline-flex items-center gap-2 rounded-full border border-[color:var(--gold-soft)]/30 bg-[color:var(--bg-elev)]/85 px-4 py-2 text-[13px] font-medium text-[color:var(--gold-soft)] backdrop-blur">
                 Gratuito pra sempre
               </span>
@@ -358,21 +364,29 @@ export default function LumoLandingPage() {
         <div className="mx-auto max-w-[1240px] px-6 py-20 lg:px-10 lg:py-24">
           <div className="rounded-[28px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] p-10 lg:p-14">
             <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--gold-soft)]">
-              — Em breve
+              — Na App Store
             </p>
             <h2 className="mt-4 max-w-2xl text-balance text-[28px] font-semibold leading-[1.1] tracking-[-0.02em] text-[color:var(--ink)] md:text-[36px]">
-              Lumo será disponibilizado na App Store em breve.
+              Lumo já está disponível na App Store, gratuito.
             </h2>
             <p className="mt-5 max-w-xl text-[16px] leading-[1.7] text-[color:var(--ink-muted)]">
-              Famílias e terapeutas que quiserem participar do beta no TestFlight podem escrever pra
-              gente.
+              Baixe, crie o perfil da criança e comece a usar sem cadastro. Famílias e terapeutas
+              com sugestões ou dúvidas podem escrever pra gente.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
-                href="mailto:contato@aralabs.com.br?subject=Lumo%20-%20Interesse%20no%20beta%20TestFlight"
+                href={LUMO_APPSTORE_URL}
+                target="_blank"
+                rel="noopener"
                 className="inline-flex items-center gap-2 rounded-full bg-[color:var(--ink)] px-5 py-3 text-[15px] font-medium text-[color:var(--bg)] hover:opacity-90"
               >
-                Quero entrar no beta
+                Baixar na App Store →
+              </a>
+              <a
+                href="mailto:contato@aralabs.com.br?subject=Lumo"
+                className="inline-flex items-center gap-2 rounded-full border border-[color:var(--line-strong)] bg-transparent px-5 py-3 text-[15px] font-medium text-[color:var(--ink)] hover:border-[color:var(--gold-soft)]/40"
+              >
+                Falar com a gente
               </a>
               <Link
                 href="/produtos/lumo/privacidade"

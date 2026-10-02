@@ -24,6 +24,7 @@ export type Product = {
 
 export const KOMYX_URL = 'https://komyx.aralabs.com.br';
 export const ARAKIDS_URL = 'https://arakids.aralabs.com.br';
+export const LUMO_APPSTORE_URL = 'https://apps.apple.com/br/app/lumo/id6777104032';
 
 export const PRODUCTS: Product[] = [
   {
@@ -77,8 +78,9 @@ export const PRODUCTS: Product[] = [
     tagline: 'Toque pra dizer.',
     description:
       'Cards, rotinas e 13.798 pictogramas ARASAAC para crianças não-verbais, em quatro idiomas. Tudo no dispositivo da família, sem cadastro e sem rastreamento.',
-    offer: 'Gratuito para sempre',
-    status: 'Em breve',
+    offer: 'Gratuito, na App Store',
+    status: 'No ar',
+    externalUrl: LUMO_APPSTORE_URL,
     href: '/produtos/lumo',
     color: '#6a4bd6',
     colorSoft: '#e9e3fa',

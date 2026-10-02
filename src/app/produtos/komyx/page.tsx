@@ -30,7 +30,7 @@ import {
 const komyx = productBySlug('komyx');
 const pageTitle = 'Komyx — Gestão para buffets';
 const pageDescription =
-  'Komyx é o sistema da AraLabs para buffets infantis e de eventos: agenda com um evento por dia, orçamento online, reserva com Pix e identificador, contrato automático, convite com RSVP, portaria no celular e cobrança pelo WhatsApp. R$ 99/mês, tudo incluído.';
+  'Komyx é o sistema da AraLabs para buffets infantis e de eventos: agenda com um evento por dia, orçamento online, reserva com Pix e identificador, contrato automático, convite com RSVP, portaria no celular e cobrança pelo WhatsApp. Tudo incluído, de R$ 149 no mensal a R$ 99/mês no anual.';
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -110,6 +110,13 @@ const STEPS = [
   },
 ];
 
+const PERIODS = [
+  { months: 1, label: 'Mensal', perMonth: 149, best: false },
+  { months: 3, label: '3 meses', perMonth: 134, best: false },
+  { months: 6, label: '6 meses', perMonth: 119, best: false },
+  { months: 12, label: 'Anual', perMonth: 99, best: true },
+];
+
 const INCLUDED = [
   'Agenda, orçamentos e eventos',
   'Clientes e aniversariantes',
@@ -183,7 +190,7 @@ export default function KomyxPage() {
               </a>
             </div>
             <p className="mt-4 text-[14px]" style={{ color: '#9da1bd' }}>
-              {komyx.offer}. Cancele quando quiser.
+              {komyx.offer}. Tudo incluído, sem taxa por festa.
             </p>
           </div>
           <ul className="grid gap-3 sm:grid-cols-2">
@@ -239,48 +246,62 @@ export default function KomyxPage() {
       </Section>
 
       <Section id="preco">
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-          <div>
-            <Eyebrow tone="gold">Oferta de lançamento</Eyebrow>
-            <Title>Um plano, tudo incluído.</Title>
-            <Lead>
-              Quem entra agora fica com todos os recursos, inclusive os que um dia virarão Premium,
-              por este preço. Para sempre. Sem taxa por festa, sem fidelidade: cancele e reative
-              quando quiser.
-            </Lead>
-          </div>
-          <div
-            className="rounded-[28px] border-2 bg-white p-7 shadow-[0_18px_50px_rgba(27,31,58,0.10)]"
-            style={{ borderColor: komyx.color }}
-          >
-            <div className="flex flex-wrap items-baseline justify-between gap-3">
-              <p className="text-[20px] font-extrabold text-[color:var(--ink)]">Komyx completo</p>
-              <p
-                className="text-[40px] font-extrabold tracking-tight"
-                style={{ color: komyx.color }}
-              >
-                R$ 99
-                <span className="text-[15px] font-semibold text-[color:var(--ink-dim)]">/mês</span>
-              </p>
-            </div>
-            <ul className="mt-5 grid gap-x-4 gap-y-2 text-[14.5px] text-[color:var(--ink)] sm:grid-cols-2">
-              {INCLUDED.map((i) => (
-                <li key={i} className="flex gap-2">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0" style={{ color: '#2ec4a6' }} /> {i}
-                </li>
-              ))}
-            </ul>
-            <a
-              href={komyx.externalUrl}
-              target="_blank"
-              rel="noopener"
-              className="mt-6 inline-flex w-full items-center justify-center rounded-full py-4 text-[15px] font-extrabold text-white transition hover:brightness-110"
-              style={{ background: komyx.color }}
+        <Eyebrow tone="gold">Preço</Eyebrow>
+        <Title>Um plano, tudo incluído. Você escolhe o período.</Title>
+        <Lead>
+          Todos os recursos em qualquer período. Quanto maior o período, menor o valor por mês. Sem
+          taxa por festa; ao fim do período, renova ou para.
+        </Lead>
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {PERIODS.map((p) => (
+            <article
+              key={p.months}
+              className="relative rounded-[24px] border-2 bg-white p-6 shadow-[0_12px_40px_rgba(27,31,58,0.08)]"
+              style={{ borderColor: p.best ? komyx.color : 'var(--line-strong)' }}
             >
-              Criar meu buffet por R$ 99/mês
-            </a>
-          </div>
+              {p.best ? (
+                <span
+                  className="absolute -top-3 left-6 rounded-full px-3 py-1 text-[10.5px] font-semibold uppercase tracking-[0.15em] text-white"
+                  style={{ background: komyx.color }}
+                >
+                  Melhor preço
+                </span>
+              ) : null}
+              <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-[color:var(--ink-dim)]">
+                {p.label}
+              </p>
+              <p className="mt-3 text-[38px] font-extrabold tracking-tight text-[color:var(--ink)]">
+                R$ {p.perMonth}
+                <span className="text-[14px] font-semibold text-[color:var(--ink-dim)]">/mês</span>
+              </p>
+              <p className="mt-1 text-[13.5px] text-[color:var(--ink-muted)]">
+                {p.months === 1
+                  ? 'Cobrado todo mês'
+                  : `R$ ${(p.perMonth * p.months).toLocaleString('pt-BR')} por ${p.months} meses`}
+              </p>
+              <a
+                href={komyx.externalUrl}
+                target="_blank"
+                rel="noopener"
+                className="mt-6 inline-flex w-full items-center justify-center rounded-full py-3 text-[14px] font-bold transition"
+                style={
+                  p.best
+                    ? { background: komyx.color, color: '#fff' }
+                    : { border: `1px solid var(--line-strong)`, color: 'var(--ink)' }
+                }
+              >
+                Começar
+              </a>
+            </article>
+          ))}
         </div>
+        <ul className="mt-10 grid gap-x-6 gap-y-2 text-[14.5px] text-[color:var(--ink)] sm:grid-cols-2 lg:grid-cols-3">
+          {INCLUDED.map((i) => (
+            <li key={i} className="flex gap-2">
+              <Check className="mt-0.5 h-4 w-4 shrink-0" style={{ color: '#2ec4a6' }} /> {i}
+            </li>
+          ))}
+        </ul>
       </Section>
 
       <Section>

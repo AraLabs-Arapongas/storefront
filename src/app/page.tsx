@@ -190,7 +190,7 @@ export default function Home() {
               </Button>
             </div>
             <p className="mt-4 text-[14px] text-[color:var(--ink-dim)]">
-              {komyx.offer}. Cancele quando quiser.
+              {komyx.offer}. Tudo incluído, sem taxa por festa.
             </p>
           </div>
           <ul className="grid gap-3 sm:grid-cols-2">

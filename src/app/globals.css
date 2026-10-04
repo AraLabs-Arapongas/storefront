@@ -328,14 +328,27 @@ select {
   }
 }
 
+/* As the headline grows toward its full size, slide the whole orbit right so the windows keep a
+   clear gap from the last line (and stay inside the viewport). */
+@media (min-width: 1340px) {
+  .orbit-layer {
+    translate: 32px 0;
+  }
+}
+@media (min-width: 1380px) {
+  .orbit-layer {
+    translate: 80px 0;
+  }
+}
+
 /* Windows drift a few px back and forth along the orbit's tangent, in a slow travelling wave. */
 @keyframes orbit-drift {
   0%,
   100% {
-    transform: translate3d(calc(var(--tx) * -7px), calc(var(--ty) * -7px), 0);
+    transform: translate3d(calc(var(--tx) * -5px), calc(var(--ty) * -5px), 0);
   }
   50% {
-    transform: translate3d(calc(var(--tx) * 7px), calc(var(--ty) * 7px), 0);
+    transform: translate3d(calc(var(--tx) * 5px), calc(var(--ty) * 5px), 0);
   }
 }
 @keyframes orbit-dash {

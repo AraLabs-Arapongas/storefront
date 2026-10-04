@@ -245,7 +245,7 @@ export default function Home() {
             </div>
             <figure className="relative lg:sticky lg:top-32 lg:pt-12">
               <KomyxLive />
-              <figcaption className="mt-10 text-center text-[12px] text-white/70 sm:mt-40">
+              <figcaption className="mt-10 text-center text-[12px] text-white/70 sm:mt-56">
                 Interface ilustrativa · nomes e valores de exemplo
               </figcaption>
             </figure>

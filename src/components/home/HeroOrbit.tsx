@@ -83,7 +83,7 @@ export function HeroOrbit({ children }: { children: ReactNode }) {
         aria-hidden="true"
         viewBox="0 0 100 100"
         preserveAspectRatio="none"
-        className="pointer-events-none absolute inset-0 hidden h-full w-full overflow-visible xl:block"
+        className="orbit-layer pointer-events-none absolute inset-0 hidden h-full w-full overflow-visible xl:block"
       >
         <path d={arcPath()} className="orbit-path" vectorEffect="non-scaling-stroke" />
       </svg>
@@ -91,7 +91,7 @@ export function HeroOrbit({ children }: { children: ReactNode }) {
         <span
           key={i}
           aria-hidden="true"
-          className="orbit-marker tri absolute hidden xl:block"
+          className="orbit-layer orbit-marker tri absolute hidden xl:block"
           style={
             {
               left: `${m.x.toFixed(3)}%`,
@@ -106,7 +106,7 @@ export function HeroOrbit({ children }: { children: ReactNode }) {
 
       <ul
         aria-label="Produtos da AraLabs"
-        className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 xl:pointer-events-none xl:absolute xl:inset-0 xl:mt-0 xl:block"
+        className="orbit-layer mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 xl:pointer-events-none xl:absolute xl:inset-0 xl:mt-0 xl:block"
       >
         {PRODUCTS.map((p, i) => (
           <OrbitWindow key={p.slug} product={p} index={i} at={arcPoint(START + step * i)} />
@@ -131,7 +131,7 @@ function OrbitWindow({
     '--tx': at.tx.toFixed(3),
     '--ty': at.ty.toFixed(3),
     '--rot': `${TILT[index % TILT.length]}deg`,
-    '--depth': 10 + ((index * 7) % 16),
+    '--depth': 4 + ((index * 3) % 6),
     '--delay': `${index * -0.6}s`,
   } as CSSProperties;
   return (

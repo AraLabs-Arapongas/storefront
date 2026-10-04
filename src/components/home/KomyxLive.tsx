@@ -107,6 +107,24 @@ export function KomyxLive() {
           </div>
         </div>
 
+        {/* RSVP arriving */}
+        <div
+          data-rsvp
+          className="komyx-rsvp is-on mt-5 flex items-center gap-3 rounded-2xl border border-[color:var(--line)] bg-white px-3.5 py-2.5 text-[13px]"
+        >
+          <span
+            className="grid h-8 w-8 shrink-0 place-items-center rounded-full text-white"
+            style={{ background: k.color }}
+          >
+            <UserPlus className="h-4 w-4" />
+          </span>
+          <span className="min-w-0 flex-1">
+            <strong className="font-semibold">Marina confirmou presença</strong>
+            <span className="block text-[11.5px] text-[color:var(--ink-dim)]">
+              com mais 3 pessoas · agora
+            </span>
+          </span>
+        </div>
         <ul className="mt-6 grid grid-cols-3 gap-2 text-[11.5px] font-semibold text-[color:var(--ink-muted)]">
           {[
             { icon: CalendarDays, label: 'Agenda' },
@@ -122,25 +140,6 @@ export function KomyxLive() {
             </li>
           ))}
         </ul>
-
-        {/* RSVP arriving */}
-        <div
-          data-rsvp
-          className="komyx-rsvp is-on mt-4 flex items-center gap-3 rounded-2xl border border-[color:var(--line)] bg-white px-3.5 py-2.5 text-[13px]"
-        >
-          <span
-            className="grid h-8 w-8 shrink-0 place-items-center rounded-full text-white"
-            style={{ background: k.color }}
-          >
-            <UserPlus className="h-4 w-4" />
-          </span>
-          <span className="min-w-0 flex-1">
-            <strong className="font-semibold">Marina confirmou presença</strong>
-            <span className="block text-[11.5px] text-[color:var(--ink-dim)]">
-              com mais 3 pessoas · agora
-            </span>
-          </span>
-        </div>
       </div>
 
       {/* Quote: waiting → approved */}
@@ -164,7 +163,7 @@ export function KomyxLive() {
       </div>
 
       {/* Client app: the family follows the party */}
-      <div className="relative z-20 -mt-3 w-[min(82%,250px)] -rotate-[3deg] rounded-[30px] border-[6px] border-[color:var(--dark)] bg-[#fffaf3] p-3.5 text-[color:var(--ink)] shadow-[0_30px_60px_-25px_rgba(40,0,15,0.6)] sm:absolute sm:-bottom-32 sm:-left-6 sm:mt-0 lg:-left-14">
+      <div className="relative z-20 -mt-3 w-[min(82%,250px)] -rotate-[3deg] rounded-[30px] border-[6px] border-[color:var(--dark)] bg-[#fffaf3] p-3.5 text-[color:var(--ink)] shadow-[0_30px_60px_-25px_rgba(40,0,15,0.6)] sm:absolute sm:-bottom-44 sm:-left-6 sm:mt-0 lg:-left-14">
         <p className="text-center text-[10px] font-semibold uppercase tracking-[0.16em] text-[color:var(--ink-dim)]">
           App do cliente
         </p>

@@ -38,6 +38,15 @@ function arcPath() {
 const TILT = [-3, 3, -4, 3, -2, 4];
 /** Resting depth (px toward the viewer) and float amplitude per window, in PRODUCTS order. */
 const DEPTH_Z = [8, 5, 3, 1, -2, -4];
+/** Where each window goes when the hero scrolls away (px, deg, scale at the end of the exit). */
+const EXIT: Record<Product['slug'], { x: number; y: number; r: number; s: number }> = {
+  komyx: { x: -40, y: -460, r: -9, s: 1.2 },
+  'casa-leve': { x: 420, y: -60, r: 12, s: 0.95 },
+  arakids: { x: 360, y: 90, r: -15, s: 0.92 },
+  lumo: { x: 460, y: 220, r: 14, s: 1 },
+  'sono-leve': { x: 140, y: 420, r: 18, s: 0.9 },
+  jornadas: { x: -200, y: 460, r: -13, s: 0.95 },
+};
 const FLOAT = [4, 6, 3, 8, 5, 7];
 
 export function HeroOrbit({ children }: { children: ReactNode }) {
@@ -75,11 +84,15 @@ export function HeroOrbit({ children }: { children: ReactNode }) {
     // Scroll: on desktop the Komyx window grows and travels toward the Komyx section while the
     // others ease away; below xl each window gets a little scroll depth instead.
     const items = Array.from(el.querySelectorAll<HTMLElement>('.orbit-item'));
+    const orbitBits = Array.from(
+      el.querySelectorAll<HTMLElement | SVGElement>('[data-intro-orbit]'),
+    );
     const hero = el.closest('section');
     let base: { li: HTMLElement; cx: number; cy: number }[] | null = null;
     const measure = () => {
       items.forEach((li) => {
         li.style.translate = '';
+        li.style.rotate = '';
         li.style.scale = '';
         li.style.opacity = '';
       });
@@ -98,29 +111,24 @@ export function HeroOrbit({ children }: { children: ReactNode }) {
       if (wide.matches) {
         if (!base) measure();
         if (!base) return;
-        const vw = window.innerWidth;
-        const heroBottom = hero.offsetTop + h;
-        const stageCx = vw / 2;
-        base.forEach(({ li, cx, cy }) => {
+        // Disassembly: every window leaves in its own direction (reversible on scroll up), and
+        // the orbit line fades with them.
+        orbitBits.forEach((o) => {
+          o.style.opacity = p === 0 ? '' : Math.max(0, 1 - e * 1.6).toFixed(3);
+        });
+        base.forEach(({ li }) => {
           if (p === 0) {
             li.style.translate = '';
+            li.style.rotate = '';
             li.style.scale = '';
             li.style.opacity = '';
-            li.style.zIndex = '';
             return;
           }
-          if (li.dataset.slug === 'komyx') {
-            const dx = (stageCx - cx) * e;
-            const dy = (heroBottom + 80 - cy) * e;
-            li.style.translate = `${dx.toFixed(1)}px ${dy.toFixed(1)}px`;
-            li.style.scale = (1 + 1.9 * e).toFixed(3);
-            li.style.zIndex = '6';
-          } else {
-            const away = cx >= stageCx ? 1 : -1;
-            li.style.translate = `${(away * 140 * e).toFixed(1)}px ${(-70 * e).toFixed(1)}px`;
-            li.style.scale = (1 - 0.12 * e).toFixed(3);
-            li.style.opacity = Math.max(0, 1 - e * 1.4).toFixed(3);
-          }
+          const d = EXIT[li.dataset.slug as Product['slug']] ?? EXIT.komyx;
+          li.style.translate = `${(d.x * e).toFixed(1)}px ${(d.y * e).toFixed(1)}px`;
+          li.style.rotate = `${(d.r * e).toFixed(2)}deg`;
+          li.style.scale = (1 + (d.s - 1) * e).toFixed(3);
+          li.style.opacity = Math.max(0, 1 - Math.max(0, e - 0.5) * 2).toFixed(3);
         });
       } else {
         const depth = [0.05, 0.08, 0.03, 0.07, 0.04, 0.06];

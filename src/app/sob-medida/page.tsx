@@ -25,7 +25,7 @@ import {
 } from '@/components/site/ui';
 
 const pageDescription =
-  'Sistemas sob medida para pequenos negócios: agenda e reservas, orçamento online, cadastro de clientes, cobrança por Pix, painel do dono e app simples. Primeira versão em semanas, preço fechado, o sistema é seu. AraLabs, Arapongas (PR).';
+  'Sistema sob medida para o seu negócio: agenda, orçamento, Pix e painel do dono. Primeira versão no ar rápido, preço fechado, o sistema é seu. AraLabs, Arapongas (PR).';
 
 export const metadata: Metadata = {
   title: 'Sob medida',
@@ -98,8 +98,8 @@ const STEPS = [
   },
   {
     n: '02',
-    title: 'Primeira versão em semanas',
-    body: 'Montamos com as peças dos nossos produtos. Você usa de verdade antes de pagar o restante; ajuste no que atrapalha vem antes do que é bonito.',
+    title: 'Sem esperar seis meses',
+    body: 'A primeira versão entra no ar rápido. Você usa de verdade antes de pagar o restante; ajuste no que atrapalha vem antes do que é bonito.',
   },
   {
     n: '03',
@@ -148,8 +148,8 @@ export default function SobMedidaPage() {
           Quando o seu problema ainda não tem produto, <Accent>a gente faz</Accent>.
         </Title>
         <Lead>
-          Sistemas feitos para o seu negócio com as mesmas peças dos nossos produtos. Simples para
-          quem usa, preço fechado, primeira versão em semanas. E o sistema é seu.
+          Sistemas feitos para o seu negócio, simples para quem usa. A primeira versão entra no ar
+          rápido, com preço fechado. E o sistema é seu.
         </Lead>
         <div className="mt-8 flex flex-wrap gap-3">
           <Button
@@ -187,10 +187,10 @@ export default function SobMedidaPage() {
 
       <Section>
         <Eyebrow>O que costumamos construir</Eyebrow>
-        <Title>Peças prontas, montadas do seu jeito.</Title>
+        <Title>A gente não começa do zero.</Title>
         <Lead>
-          O Komyx nasceu assim: agenda, orçamento, Pix, contrato e portaria para buffets. As mesmas
-          peças viram o sistema de um salão, de uma oficina ou de uma escolinha.
+          Já temos uma base pronta para agenda, pagamentos, orçamentos e operação. Ela vira o
+          sistema de um salão, de uma oficina ou de uma escolinha, do jeito que o seu dia funciona.
         </Lead>
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {PIECES.map((p) => (

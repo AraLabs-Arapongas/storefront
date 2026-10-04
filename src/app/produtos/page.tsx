@@ -42,7 +42,7 @@ const HOW = [
   {
     n: '02',
     title: 'A versão mais simples que resolve',
-    body: 'A primeira versão entrega o essencial e vai para a mão de quem usa em semanas.',
+    body: 'A primeira versão entrega o essencial e vai cedo para a mão de quem usa.',
   },
   {
     n: '03',
@@ -134,8 +134,8 @@ export default function ProdutosPage() {
                     Sob medida
                   </h2>
                   <p className="mt-3 text-[15.5px] leading-[1.65] text-[color:var(--ink-muted)]">
-                    Salão, clínica, oficina, escolinha: se o seu problema ainda não tem produto,
-                    montamos o sistema com as mesmas peças do Komyx. Primeira versão em semanas.
+                    Salão, clínica, oficina, escolinha: se o seu problema ainda não tem produto, a
+                    gente faz. A primeira versão entra no ar rápido e depois a gente melhora junto.
                   </p>
                 </div>
                 <div className="mt-8 flex items-center justify-between text-[14px]">
@@ -167,7 +167,7 @@ export default function ProdutosPage() {
         <CtaPanel
           eyebrow="Não achou o seu?"
           title="Se o seu problema ainda não tem produto, a gente faz sob medida."
-          body="Agenda, orçamento online, cadastro de clientes, cobrança por Pix, painel do dono: montamos o sistema do seu negócio com as mesmas peças dos nossos produtos."
+          body="A gente não começa do zero: já temos uma base pronta para agenda, pagamentos, orçamentos e operação. A primeira versão entra no ar rápido, e depois a gente melhora junto."
           primary={{ href: '/sob-medida', label: 'Ver o sob medida' }}
           secondary={{
             href: contactHref('Quero um sistema para o meu negócio'),

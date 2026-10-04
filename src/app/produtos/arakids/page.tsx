@@ -1,21 +1,18 @@
 import type { Metadata } from 'next';
-import { ShieldCheck, EyeOff, Clock3, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { softwareApplicationSchema } from '@/lib/seo/schemas';
 import { productBySlug } from '@/lib/products';
 import { contactHref } from '@/lib/seo/site';
-import { ProductTile } from '@/components/site/ProductMarks';
+import { InView } from '@/components/home/InView';
+import { AppButton, AppHero, AppKicker, cssI } from '@/components/site/AppHero';
 import {
-  Accent,
-  Button,
-  Cell,
-  CellGrid,
-  CtaPanel,
-  Eyebrow,
-  Lead,
-  Section,
-  Title,
-} from '@/components/site/ui';
+  AGES,
+  AgeStairs,
+  CastleArt,
+  LighthouseArt,
+  YELLOW,
+} from '@/components/products/arakids/ArakidsVisuals';
 
 const arakids = productBySlug('arakids');
 const pageTitle = 'Arakids — jogos educativos sem anúncio';
@@ -34,50 +31,24 @@ export const metadata: Metadata = {
   },
 };
 
-const AGES = [
-  {
-    n: '2–3',
-    title: 'Exploradores',
-    body: 'Toque, cor, som e forma. Jogos curtos para dedos pequenos, sem texto e sem pressa.',
-  },
-  {
-    n: '4–5',
-    title: 'Curiosos',
-    body: 'Letras, números, pares e sequências. A criança descobre sozinha, sem contagem regressiva.',
-  },
-  {
-    n: '6–7',
-    title: 'Inventores',
-    body: 'Leitura inicial, lógica e memória. Desafios que terminam e deixam a criança sair satisfeita.',
-  },
-  {
-    n: '8–10',
-    title: 'Navegadores',
-    body: 'Raciocínio, estratégia e criação. Mais profundidade, mesma regra: nada de vício por desenho.',
-  },
-];
+const TRACK_BODY: Record<string, string> = {
+  '2–3': 'Toque, cor, som e forma. Jogos curtos para dedos pequenos, sem texto e sem pressa.',
+  '4–5':
+    'Letras, números, pares e sequências. A criança descobre sozinha, sem contagem regressiva.',
+  '6–7':
+    'Leitura inicial, lógica e memória. Desafios que terminam e deixam a criança sair satisfeita.',
+  '8–10':
+    'Raciocínio, estratégia e criação. Mais profundidade, mesma regra: nada de vício por desenho.',
+};
 
-const RULES = [
-  {
-    icon: EyeOff,
-    title: 'Sem anúncio, sem cadastro',
-    body: 'Nenhuma propaganda, nenhuma conta, nenhum dado da criança coletado. Abre e joga.',
-  },
-  {
-    icon: Clock3,
-    title: 'Tela com propósito e com limite',
-    body: 'Jogos terminam. Não há recompensas infinitas, notificações nem "só mais uma" para prender a criança.',
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Castelo dos Pais',
-    body: 'Área dos adultos protegida por toque longo, com as regras do portal e o que a criança está aprendendo em cada jogo.',
-  },
-  {
-    icon: Sparkles,
-    title: 'Farol da Privacidade',
-    body: 'Explicamos, em linguagem simples, o que o portal guarda (quase nada) e o que nunca vai guardar.',
-  },
+/** What the portal refuses to do, crossed out one by one (same motion as the home manifesto). */
+const NAO = [
+  'Anúncio.',
+  'Cadastro.',
+  'Dado da criança.',
+  'Notificação.',
+  'Recompensa infinita.',
+  '“Só mais uma.”',
 ];
 
 export default function ArakidsPage() {
@@ -93,104 +64,237 @@ export default function ArakidsPage() {
         })}
       />
 
-      <section
-        className="relative overflow-hidden border-b border-[color:var(--line)]"
-        style={{ background: arakids.color, color: '#fff' }}
-      >
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute right-[-10%] top-[-30%] h-[36rem] w-[36rem] rounded-full bg-[radial-gradient(closest-side,rgba(255,255,255,0.22),transparent_70%)]" />
-        </div>
-        <div className="relative mx-auto max-w-[1240px] px-6 pb-16 pt-14 lg:px-10 lg:pb-24 lg:pt-20">
-          <div className="flex items-center gap-3">
-            <ProductTile product={{ ...arakids, color: 'rgba(255,255,255,0.18)' }} size={48} />
-            <div className="leading-none">
-              <p className="text-[26px] font-extrabold tracking-tight">Arakids</p>
-              <p className="mt-1 text-[12px] font-semibold text-white/80">{arakids.audience}</p>
-            </div>
-          </div>
-          <h1 className="mt-8 max-w-3xl text-balance text-[38px] font-extrabold leading-[1.02] tracking-[-0.02em] md:text-[52px]">
-            Pra onde vamos hoje? Jogos que ensinam e{' '}
-            <span className="text-[#ffe08a]">deixam a criança sair</span>.
-          </h1>
-          <p className="mt-6 max-w-xl text-[17px] leading-[1.7] text-white/85 md:text-[19px]">
+      {/* 1 · HERO — full blue, the age staircase */}
+      <AppHero
+        product={arakids}
+        tone="color"
+        titleSize="xl"
+        backdrop={
+          <>
+            <div className="absolute right-[-12%] top-[-30%] h-[46rem] w-[46rem] rounded-full bg-[radial-gradient(closest-side,rgba(255,255,255,0.2),transparent_70%)]" />
+            <div className="pa-tri-grid-light absolute inset-0" />
+          </>
+        }
+        title={
+          <>
+            Pra onde vamos <span style={{ color: YELLOW }}>hoje?</span>
+          </>
+        }
+        lead={
+          <p>
+            <strong className="font-semibold text-white">
+              Jogos que ensinam e deixam a criança sair.
+            </strong>{' '}
             Um portal no navegador, por faixa etária, sem anúncio, sem cadastro e sem truque para
-            prender a criança na tela. Com área dos pais e regras claras de tempo de tela.
+            prender a criança na tela.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href={arakids.externalUrl}
-              target="_blank"
-              rel="noopener"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-[15px] font-semibold transition hover:bg-[#ffe08a]"
-              style={{ color: arakids.color }}
-            >
-              Abrir o Arakids →
-            </a>
-            <span className="inline-flex items-center rounded-full border border-white/35 px-5 py-3.5 text-[14px] font-semibold">
-              {arakids.offer}
+        }
+        actions={
+          <>
+            <AppButton href={arakids.externalUrl!} external bg="#fff" fg={arakids.colorInk}>
+              Abrir o Arakids <ArrowRight className="h-4 w-4" />
+            </AppButton>
+            <AppButton href="#trilhas" variant="ghost-dark">
+              Ver as trilhas
+            </AppButton>
+          </>
+        }
+        note={`${arakids.offer} · Com área dos pais e regras de tempo de tela`}
+        aside={<AgeStairs />}
+      />
+
+      {/* 2 · TRILHAS — each age a step further right */}
+      <section id="trilhas" className="cut-top overflow-x-clip bg-[color:var(--bg)]">
+        <div className="mx-auto max-w-[1240px] px-6 py-24 lg:px-10 lg:py-36">
+          <AppKicker color={arakids.colorInk}>Por idade</AppKicker>
+          <h2 className="display mt-6 max-w-[15ch] text-[clamp(2.6rem,6.4vw,5.8rem)] text-[color:var(--ink)]">
+            Do primeiro toque à{' '}
+            <span style={{ color: arakids.colorInk }}>primeira estratégia.</span>
+          </h2>
+          <InView as="ol" className="mt-14 border-t border-[color:var(--line-strong)] lg:mt-20">
+            {AGES.map((a, k) => (
+              <li
+                key={a.n}
+                className="pa-stair border-b border-[color:var(--line-strong)] py-8 lg:py-10"
+                style={cssI(k)}
+              >
+                <div className="iv iv-up grid gap-3 sm:grid-cols-[minmax(0,19rem)_1fr] sm:items-baseline sm:gap-10">
+                  <p
+                    className="display whitespace-nowrap text-[clamp(3.4rem,7vw,6.2rem)]"
+                    style={{ color: k === 1 ? '#b8860b' : arakids.colorInk }}
+                  >
+                    {a.n}
+                    <span className="ml-2 text-[0.22em] font-semibold tracking-[0.02em] text-[color:var(--ink-dim)]">
+                      anos
+                    </span>
+                  </p>
+                  <div>
+                    <h3 className="text-[23px] font-bold tracking-tight text-[color:var(--ink)]">
+                      {a.title}
+                    </h3>
+                    <p className="mt-2 max-w-md text-[16px] leading-[1.65] text-[color:var(--ink-muted)]">
+                      {TRACK_BODY[a.n]}
+                    </p>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </InView>
+        </div>
+      </section>
+
+      {/* 3 · REGRAS DA CASA — black, the refusals crossed out */}
+      <section
+        className="cut-top-rev overflow-x-clip bg-[color:var(--dark)] text-white"
+        aria-labelledby="arakids-regras"
+      >
+        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+          <div className="absolute right-[-15%] top-[-10%] h-[44rem] w-[44rem] rounded-full bg-[radial-gradient(closest-side,rgba(47,143,214,0.3),transparent_70%)]" />
+        </div>
+        <div className="relative mx-auto max-w-[1240px] px-6 py-24 lg:px-10 lg:py-36">
+          <AppKicker color={YELLOW}>Regras da casa</AppKicker>
+          <h2
+            id="arakids-regras"
+            className="display mt-6 max-w-[16ch] text-[clamp(2.6rem,6vw,5.4rem)]"
+          >
+            O que o Arakids não faz é o que importa.
+          </h2>
+          <InView
+            as="ul"
+            className="mt-12 grid border-t border-white/12 md:grid-cols-2 md:gap-x-12"
+            threshold={0.35}
+          >
+            {NAO.map((line, k) => (
+              <li
+                key={line}
+                className="border-b border-white/12 py-4 text-[clamp(1.4rem,3vw,2.5rem)] font-semibold leading-[1.15] tracking-[-0.025em] text-white/55 lg:py-6"
+              >
+                <span className="strike" style={cssI(k)}>
+                  {line}
+                </span>
+              </li>
+            ))}
+          </InView>
+          <InView as="p" className="display mt-16 text-[clamp(3.2rem,10vw,9rem)] lg:mt-24">
+            <span className="iv iv-word inline-block" style={cssI(0)}>
+              Abre.
+            </span>{' '}
+            <span className="iv iv-word inline-block" style={cssI(2)}>
+              Joga.
+            </span>{' '}
+            <span className="iv iv-word inline-block" style={{ color: YELLOW, ...cssI(4) }}>
+              Vai brincar.
             </span>
+          </InView>
+          <p className="mt-8 max-w-xl text-[17px] leading-[1.7] text-white/70">
+            Jogo para criança costuma ser desenhado para segurar atenção e vender. O Arakids é
+            desenhado para a criança aprender alguma coisa e ir brincar de outra. Os jogos terminam:
+            não tem “só mais uma” nem notificação chamando de volta.
+          </p>
+        </div>
+      </section>
+
+      {/* 4 · OS LUGARES DOS ADULTOS — the castle and the lighthouse */}
+      <section
+        className="cut-top overflow-x-clip bg-[color:var(--bg)]"
+        aria-labelledby="arakids-pais"
+      >
+        <div className="mx-auto max-w-[1240px] px-6 py-24 lg:px-10 lg:py-36">
+          <AppKicker color={arakids.colorInk}>Para os adultos</AppKicker>
+          <h2
+            id="arakids-pais"
+            className="display mt-6 max-w-[16ch] text-[clamp(2.6rem,6vw,5.4rem)] text-[color:var(--ink)]"
+          >
+            Dois lugares do portal são <span style={{ color: arakids.colorInk }}>só seus.</span>
+          </h2>
+          <div className="mt-14 grid gap-16 md:grid-cols-2 md:gap-10 lg:mt-20 lg:gap-16">
+            <article>
+              <div
+                className="flex aspect-[16/10] items-end justify-center rounded-[28px] px-[12%] pt-[8%]"
+                style={{ background: arakids.colorSoft }}
+              >
+                <CastleArt color={arakids.colorInk} />
+              </div>
+              <h3
+                className="display mt-8 text-[clamp(2rem,3.6vw,3.2rem)]"
+                style={{ color: arakids.colorInk }}
+              >
+                Castelo dos Pais
+              </h3>
+              <p className="mt-4 max-w-md text-[16.5px] leading-[1.7] text-[color:var(--ink-muted)]">
+                A área dos adultos, protegida por toque longo. Lá ficam as regras do portal, as
+                regras de tempo de tela e o que a criança está aprendendo em cada jogo.
+              </p>
+            </article>
+            <article className="md:mt-24">
+              <div
+                className="flex aspect-[16/10] items-end justify-center overflow-hidden rounded-[28px] px-[12%] pt-[8%]"
+                style={{ background: arakids.colorInk }}
+              >
+                <LighthouseArt color="#0d3a63" />
+              </div>
+              <h3
+                className="display mt-8 text-[clamp(2rem,3.6vw,3.2rem)]"
+                style={{ color: arakids.colorInk }}
+              >
+                Farol da Privacidade
+              </h3>
+              <p className="mt-4 max-w-md text-[16.5px] leading-[1.7] text-[color:var(--ink-muted)]">
+                Em linguagem simples, o que o portal guarda (quase nada) e o que nunca vai guardar.
+                Nenhuma conta, nenhuma propaganda, nenhum dado da criança coletado.
+              </p>
+            </article>
           </div>
         </div>
       </section>
 
-      <Section>
-        <Eyebrow>Por idade</Eyebrow>
-        <Title>
-          Quatro trilhas, do primeiro toque à <Accent>primeira estratégia</Accent>.
-        </Title>
-        <CellGrid className="mt-12">
-          {AGES.map((a) => (
-            <Cell key={a.n} n={`${a.n} anos`} title={a.title} body={a.body} />
-          ))}
-        </CellGrid>
-      </Section>
-
-      <Section className="bg-[color:var(--bg-elev)]/50">
-        <Eyebrow>Regras da casa</Eyebrow>
-        <Title>O que o Arakids não faz é o que importa.</Title>
-        <Lead>
-          Jogos para criança costumam ser desenhados para segurar atenção e vender. O Arakids é
-          desenhado para a criança aprender algo e ir brincar de outra coisa.
-        </Lead>
-        <div className="mt-12 grid gap-5 md:grid-cols-2">
-          {RULES.map((r) => (
-            <article
-              key={r.title}
-              className="flex gap-4 rounded-[22px] border border-[color:var(--line-strong)] bg-[color:var(--bg)] p-7"
+      {/* 5 · CTA — blue again: play now, or bring it to a school */}
+      <section
+        className="cut-top overflow-x-clip text-white"
+        style={{ background: arakids.colorInk }}
+        aria-labelledby="arakids-cta"
+      >
+        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+          <div className="absolute bottom-[-30%] left-[-10%] h-[40rem] w-[40rem] rounded-full bg-[radial-gradient(closest-side,rgba(255,255,255,0.16),transparent_70%)]" />
+          <div className="pa-tri-grid-light absolute inset-0" />
+        </div>
+        <div className="relative mx-auto grid max-w-[1240px] gap-16 px-6 py-24 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20 lg:px-10 lg:py-32">
+          <div>
+            <AppKicker color={YELLOW}>{arakids.offer}</AppKicker>
+            <h2
+              id="arakids-cta"
+              className="display mt-6 max-w-[12ch] text-[clamp(2.8rem,6.6vw,6rem)]"
             >
-              <span
-                className="grid h-11 w-11 shrink-0 place-items-center rounded-xl"
-                style={{ background: arakids.colorSoft, color: arakids.color }}
-              >
-                <r.icon className="h-5 w-5" />
-              </span>
-              <div>
-                <h3 className="text-[18px] font-semibold tracking-tight text-[color:var(--ink)]">
-                  {r.title}
-                </h3>
-                <p className="mt-2 text-[15px] leading-[1.65] text-[color:var(--ink-muted)]">
-                  {r.body}
-                </p>
-              </div>
-            </article>
-          ))}
+              Abre no navegador <span style={{ color: YELLOW }}>e joga.</span>
+            </h2>
+            <p className="mt-8 max-w-lg text-[17px] leading-[1.7] text-white/85">
+              No celular, no tablet ou no computador. Sem instalar nada e sem criar conta.
+            </p>
+            <div className="mt-9">
+              <AppButton href={arakids.externalUrl!} external bg="#fff" fg={arakids.colorInk}>
+                Abrir o Arakids <ArrowRight className="h-4 w-4" />
+              </AppButton>
+            </div>
+          </div>
+          <div className="border-t border-white/25 pt-8 lg:mt-auto">
+            <h3 className="text-[24px] font-bold leading-[1.2] tracking-tight">
+              Quer o Arakids na sua escola, ou com jogos do seu jeito?
+            </h3>
+            <p className="mt-4 text-[16px] leading-[1.7] text-white/80">
+              O portal é gratuito para famílias. Para escolas, creches e projetos sociais, montamos
+              trilhas e jogos sob medida com a mesma regra: sem anúncio, sem cadastro, sem truque.
+            </p>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <AppButton href={contactHref('Arakids para a minha escola')} bg={YELLOW} fg="#123f66">
+                Falar com a gente
+              </AppButton>
+              <AppButton href="/sob-medida" variant="ghost-dark">
+                Ver o sob medida
+              </AppButton>
+            </div>
+          </div>
         </div>
-        <div className="mt-10">
-          <Button href={arakids.externalUrl!} variant="secondary">
-            Abrir o Arakids no navegador
-          </Button>
-        </div>
-      </Section>
-
-      <Section>
-        <CtaPanel
-          eyebrow="Escolas e famílias"
-          title="Quer o Arakids na sua escola ou com jogos do seu jeito?"
-          body="O portal é gratuito para famílias. Para escolas, creches e projetos sociais montamos trilhas e jogos sob medida com a mesma regra: sem anúncio, sem cadastro, sem truque."
-          primary={{ href: contactHref('Arakids para a minha escola'), label: 'Falar com a gente' }}
-          secondary={{ href: '/sob-medida', label: 'Ver o sob medida' }}
-        />
-      </Section>
+      </section>
     </>
   );
 }

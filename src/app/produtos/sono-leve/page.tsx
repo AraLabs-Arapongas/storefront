@@ -4,17 +4,24 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { softwareApplicationSchema } from '@/lib/seo/schemas';
 import { productBySlug } from '@/lib/products';
 import { contactHref } from '@/lib/seo/site';
-import { AppHero, AppLegalLinks } from '@/components/site/AppHero';
+import { InView } from '@/components/home/InView';
 import {
-  Accent,
-  Cell,
-  CellGrid,
-  CtaPanel,
-  Eyebrow,
-  Lead,
-  Section,
-  Title,
-} from '@/components/site/ui';
+  AppButton,
+  AppHero,
+  AppKicker,
+  AppLegalLinks,
+  MockCaption,
+  cssI,
+} from '@/components/site/AppHero';
+import {
+  HistoryMock,
+  LAVENDER,
+  NIGHT_BG,
+  NightSky,
+  NightTimer,
+  ProgressionChart,
+  RitualMock,
+} from '@/components/products/sono-leve/SonoVisuals';
 
 const sonoLeve = productBySlug('sono-leve');
 const pageTitle = 'Sono Leve — treino de sono do bebê';
@@ -32,6 +39,8 @@ export const metadata: Metadata = {
     type: 'website',
   },
 };
+
+const NOTIFY = contactHref('Quero saber quando o Sono Leve sair');
 
 const NIGHT = [
   {
@@ -54,6 +63,20 @@ const NIGHT = [
     title: 'Histórico e painel',
     body: 'Minutos até dormir e número de despertares, noite a noite. Uma noite difícil não apaga a semana que deu certo.',
   },
+];
+
+/** The timer's own states, in the order a night goes through them (texts from the app). */
+const STATES = [
+  {
+    t: 'monitorando',
+    body: 'Bebê no berço, você fora do quarto. Se dormir, um toque em “dormiu”.',
+  },
+  {
+    t: 'até o próximo check‑in',
+    body: 'Começou a chorar: o timer conta o intervalo daquela noite. Você só espera.',
+  },
+  { t: 'hora de checar', body: 'O intervalo zerou. Olhe e ouça antes de entrar.' },
+  { t: 'no quarto', body: 'Voz calma, luz apagada. Passou de 1 minuto, o app avisa: saia agora.' },
 ];
 
 const PROMISES = [
@@ -80,6 +103,7 @@ const PROMISES = [
 ];
 
 export default function SonoLevePage() {
+  const ink = sonoLeve.colorInk;
   return (
     <>
       <JsonLd
@@ -93,24 +117,50 @@ export default function SonoLevePage() {
         })}
       />
 
+      {/* 1 · HERO — night, the timer between check-ins */}
       <AppHero
         product={sonoLeve}
+        tone="night"
+        background={NIGHT_BG}
+        backdrop={<NightSky />}
         title={
           <>
-            Treino de sono do bebê, <span className="text-[#ffe08a]">com calma e com dados</span>.
+            Treino de sono, <span style={{ color: LAVENDER }}>com calma e com dados.</span>
           </>
         }
-        lead="Para mães e pais que escolheram o treino de sono gradual, como o método Ferber, e querem fazer com estrutura: o ritual, o tempo de cada check-in e o registro de cada noite no mesmo lugar. Sem chute e sem caderno."
-        pills={[sonoLeve.statusNote ?? sonoLeve.status, 'Sem conta', 'Funciona offline']}
+        lead={
+          <p>
+            Para quem escolheu o treino de sono gradual, como o método Ferber: o ritual, o tempo de
+            cada check-in e o registro de cada noite no mesmo lugar. Sem chute e sem caderno.
+          </p>
+        }
+        actions={
+          <>
+            <AppButton href={NOTIFY} bg={LAVENDER} fg="#1a1640">
+              Me avise quando sair
+            </AppButton>
+            <AppButton href="#noite" variant="ghost-dark">
+              Como funciona
+            </AppButton>
+          </>
+        }
+        note="iPhone · Sem conta · Funciona offline · Dados ficam no celular"
+        aside={<NightTimer />}
       />
 
-      <section className="border-b border-[color:var(--line)] bg-[color:var(--bg-elev)]/60">
-        <div className="mx-auto flex max-w-[1240px] gap-4 px-6 py-6 lg:px-10">
+      {/* 2 · AVISO — kept prominent, right under the opening */}
+      <section
+        className="cut-top"
+        style={{ background: sonoLeve.colorSoft }}
+        aria-label="Aviso importante"
+      >
+        <div className="mx-auto flex max-w-[1240px] gap-4 px-6 py-9 lg:px-10 lg:py-11">
           <TriangleAlert
             aria-hidden="true"
-            className="mt-0.5 h-5 w-5 shrink-0 text-[color:var(--gold-soft)]"
+            className="mt-0.5 h-6 w-6 shrink-0"
+            style={{ color: ink }}
           />
-          <p className="text-[14.5px] leading-[1.65] text-[color:var(--ink-muted)]">
+          <p className="max-w-4xl text-[15.5px] leading-[1.65] text-[color:var(--ink-muted)] md:text-[16.5px]">
             <strong className="text-[color:var(--ink)]">Não é conselho médico.</strong> O Sono Leve
             é uma ferramenta de apoio e não substitui o pediatra nem a supervisão direta do bebê.
             Converse com o pediatra antes de começar um treino de sono. Em emergência, ligue{' '}
@@ -119,86 +169,222 @@ export default function SonoLevePage() {
         </div>
       </section>
 
-      <Section>
-        <Eyebrow>Uma noite com o Sono Leve</Eyebrow>
-        <Title>
-          Do ritual ao último despertar, <Accent>tudo num lugar só</Accent>.
-        </Title>
-        <CellGrid className="mt-12">
-          {NIGHT.map((s) => (
-            <Cell key={s.n} {...s} />
-          ))}
-        </CellGrid>
-      </Section>
-
-      <Section className="bg-[color:var(--bg-elev)]/50">
-        <Eyebrow>Como a gente pensa</Eyebrow>
-        <Title>Feito para pais cansados, não para pais perfeitos.</Title>
-        <Lead>
-          Treino de sono é uma decisão da família e não serve para todo bebê. O app não toma lado,
-          não pressiona e não cobra resultado. Ele tira a conta de cabeça e a dúvida do caminho.
-        </Lead>
-        <div className="mt-12 grid gap-5 md:grid-cols-2">
-          {PROMISES.map((r) => (
-            <article
-              key={r.title}
-              className="flex gap-4 rounded-[22px] border border-[color:var(--line-strong)] bg-[color:var(--bg)] p-7"
-            >
-              <span
-                className="grid h-11 w-11 shrink-0 place-items-center rounded-xl"
-                style={{ background: sonoLeve.colorSoft, color: sonoLeve.color }}
-              >
-                <r.icon className="h-5 w-5" />
-              </span>
-              <div className="min-w-0">
-                <h3 className="text-[18px] font-semibold tracking-tight text-[color:var(--ink)]">
-                  {r.title}
+      {/* 3 · UMA NOITE — the four parts along the night, then the ritual and the history */}
+      <section id="noite" className="overflow-x-clip" aria-labelledby="sl-noite">
+        <div className="mx-auto max-w-[1240px] px-6 py-24 lg:px-10 lg:py-36">
+          <AppKicker color={ink}>Uma noite com o Sono Leve</AppKicker>
+          <h2
+            id="sl-noite"
+            className="display mt-6 max-w-[17ch] text-[clamp(2.6rem,6.2vw,5.6rem)] text-[color:var(--ink)]"
+          >
+            Do ritual ao último despertar, <span style={{ color: ink }}>num lugar só.</span>
+          </h2>
+          <InView
+            as="ol"
+            className="relative mt-14 grid gap-10 sm:grid-cols-2 lg:mt-20 lg:grid-cols-4 lg:gap-8"
+          >
+            <span
+              aria-hidden="true"
+              className="pa-sl-axis absolute left-0 right-0 top-[11px] hidden lg:block"
+            />
+            {NIGHT.map((s, k) => (
+              <li key={s.n} className="iv iv-up relative" style={cssI(k * 2)}>
+                <span className="relative flex w-fit items-center gap-3 bg-[color:var(--bg)] pr-3">
+                  <span className="tri text-[18px]" style={{ color: ink }} aria-hidden="true" />
+                  <span
+                    className="text-[12px] font-semibold uppercase tracking-[0.2em]"
+                    style={{ color: ink }}
+                  >
+                    {s.n}
+                  </span>
+                </span>
+                <h3 className="mt-6 text-[22px] font-bold leading-[1.2] tracking-tight text-[color:var(--ink)]">
+                  {s.title}
                 </h3>
-                <p className="mt-2 text-[15px] leading-[1.65] text-[color:var(--ink-muted)]">
-                  {r.body}
+                <p className="mt-3 text-[15.5px] leading-[1.65] text-[color:var(--ink-muted)]">
+                  {s.body}
                 </p>
+              </li>
+            ))}
+          </InView>
+          <div className="mt-20 grid gap-8 md:grid-cols-2 lg:mt-28 lg:gap-12">
+            <div className="md:-rotate-[1.5deg]">
+              <RitualMock ink={ink} />
+            </div>
+            <div className="md:mt-16 md:rotate-[1.5deg]">
+              <HistoryMock ink={ink} />
+            </div>
+          </div>
+          <MockCaption className="mt-8 text-center">
+            Interface ilustrativa · valores de exemplo
+          </MockCaption>
+        </div>
+      </section>
+
+      {/* 4 · A PROGRESSÃO — night again; the preset as it ships, then the timer's states */}
+      <section
+        className="cut-top overflow-x-clip text-white"
+        style={{ background: NIGHT_BG }}
+        aria-labelledby="sl-progressao"
+      >
+        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+          <NightSky />
+        </div>
+        <div className="relative mx-auto max-w-[1240px] px-6 py-24 lg:px-10 lg:py-36">
+          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+            <div>
+              <AppKicker color={LAVENDER}>A progressão</AppKicker>
+              <h2
+                id="sl-progressao"
+                className="display mt-6 max-w-[14ch] text-[clamp(2.6rem,6.2vw,5.6rem)]"
+              >
+                O intervalo cresce <span style={{ color: LAVENDER }}>sozinho, noite a noite.</span>
+              </h2>
+            </div>
+            <p className="max-w-md text-[17px] leading-[1.7] text-white/75">
+              Você escolhe o método e o app sabe em que noite está. Às três da manhã, ninguém
+              precisa lembrar de tabela.
+            </p>
+          </div>
+          <div className="mt-14 lg:mt-20">
+            <ProgressionChart />
+            <p className="mt-6 text-[13px] leading-[1.6] text-white/60">
+              Minutos de espera antes de cada check-in no Ferber clássico, como vem no app. O Ferber
+              suave começa com 1, 2 e 3 minutos.
+            </p>
+          </div>
+
+          <InView
+            as="ol"
+            className="mt-20 grid gap-px overflow-hidden rounded-[28px] border border-white/12 bg-white/12 sm:grid-cols-2 lg:mt-28 lg:grid-cols-4"
+          >
+            {STATES.map((s, k) => (
+              <li
+                key={s.t}
+                className="iv iv-up p-6 lg:p-7"
+                style={{ background: NIGHT_BG, ...cssI(k * 2) }}
+              >
+                <span className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/50">
+                  <span
+                    className="tri tri-r text-[7px]"
+                    style={{ color: LAVENDER }}
+                    aria-hidden="true"
+                  />
+                  Tela {k + 1}
+                </span>
+                <p
+                  className="mt-4 text-[22px] font-bold leading-[1.15] tracking-tight"
+                  style={{ color: LAVENDER }}
+                >
+                  {s.t}
+                </p>
+                <p className="mt-3 text-[15px] leading-[1.6] text-white/75">{s.body}</p>
+              </li>
+            ))}
+          </InView>
+        </div>
+      </section>
+
+      {/* 5 · COMO A GENTE PENSA */}
+      <section
+        className="cut-top-rev overflow-x-clip bg-[color:var(--bg)]"
+        aria-labelledby="sl-pensa"
+      >
+        <div className="mx-auto max-w-[1240px] px-6 py-24 lg:px-10 lg:py-36">
+          <AppKicker color={ink}>Como a gente pensa</AppKicker>
+          <h2
+            id="sl-pensa"
+            className="display mt-6 max-w-[16ch] text-[clamp(2.6rem,6.4vw,5.8rem)] text-[color:var(--ink)]"
+          >
+            Feito para pais cansados, <span style={{ color: ink }}>não para pais perfeitos.</span>
+          </h2>
+          <p className="mt-8 max-w-2xl text-[17px] leading-[1.7] text-[color:var(--ink-muted)]">
+            Treino de sono é uma decisão da família e não serve para todo bebê. O app não toma lado,
+            não pressiona e não cobra resultado. Ele tira a conta de cabeça e a dúvida do caminho.
+          </p>
+          <ul className="mt-14 grid gap-x-14 border-t border-[color:var(--line-strong)] md:grid-cols-2 lg:mt-20">
+            {PROMISES.map((r) => (
+              <li
+                key={r.title}
+                className="flex gap-5 border-b border-[color:var(--line-strong)] py-8"
+              >
+                <r.icon
+                  className="mt-1 h-6 w-6 shrink-0"
+                  style={{ color: ink }}
+                  aria-hidden="true"
+                />
+                <div className="min-w-0">
+                  <h3 className="text-[21px] font-bold tracking-tight text-[color:var(--ink)]">
+                    {r.title}
+                  </h3>
+                  <p className="mt-2 text-[15.5px] leading-[1.65] text-[color:var(--ink-muted)]">
+                    {r.body}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* 6 · PRIVACIDADE + DISPONIBILIDADE — night to close */}
+      <section
+        className="cut-top overflow-x-clip text-white"
+        style={{ background: NIGHT_BG }}
+        aria-labelledby="sl-privacidade"
+      >
+        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+          <NightSky />
+        </div>
+        <div className="relative mx-auto max-w-[1240px] px-6 py-24 lg:px-10 lg:py-32">
+          <AppKicker color={LAVENDER}>Privacidade</AppKicker>
+          <h2
+            id="sl-privacidade"
+            className="display mt-6 max-w-[15ch] text-[clamp(2.8rem,6.6vw,6rem)]"
+          >
+            O sono do seu bebê <span style={{ color: LAVENDER }}>não é dado de ninguém.</span>
+          </h2>
+          <div className="mt-14 grid gap-14 lg:mt-20 lg:grid-cols-2 lg:gap-20">
+            <div>
+              <p className="max-w-lg text-[17px] leading-[1.7] text-white/80">
+                Bebê, método, noites e mamadas ficam num banco de dados local, dentro do app. Não
+                tem login, não tem servidor e nada é compartilhado com terceiros. Como não existe
+                cópia fora do aparelho, apagar o app apaga os dados junto.
+              </p>
+              <div className="mt-10">
+                <AppLegalLinks product={sonoLeve} onDark />
               </div>
-            </article>
-          ))}
-        </div>
-      </Section>
-
-      <Section>
-        <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-start">
-          <div>
-            <Eyebrow>Privacidade</Eyebrow>
-            <Title size="sm">O sono do seu bebê não é dado de ninguém.</Title>
-            <p className="mt-5 text-[16px] leading-[1.7] text-[color:var(--ink-muted)]">
-              Bebê, método, noites e mamadas ficam num banco de dados local, dentro do app. Não tem
-              login, não tem servidor e nada é compartilhado com terceiros. Como não existe cópia
-              fora do aparelho, apagar o app apaga os dados junto.
-            </p>
-            <AppLegalLinks product={sonoLeve} />
+            </div>
+            <div className="border-t border-white/20 pt-8">
+              <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/60">
+                <span
+                  aria-hidden="true"
+                  className="shimmer h-2 w-2 rounded-full"
+                  style={{ background: LAVENDER }}
+                />
+                {sonoLeve.statusNote ?? sonoLeve.status}
+              </p>
+              <p className="mt-5 text-[clamp(1.6rem,2.6vw,2.2rem)] font-bold leading-[1.15] tracking-tight">
+                Quer saber quando o Sono Leve sair?
+              </p>
+              <p className="mt-4 text-[16px] leading-[1.7] text-white/75">
+                O app para iPhone foi enviado para a App Store em 3 de outubro de 2026 e está em
+                revisão pela Apple. Assim que for aprovado, o link para baixar aparece nesta página.
+                Mande uma mensagem e a gente avisa. Se você já passou por um treino de sono, sua
+                experiência ajuda a gente a fazer um app melhor.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <AppButton href={NOTIFY} bg={LAVENDER} fg="#1a1640">
+                  Me avise
+                </AppButton>
+                <AppButton href="/produtos" variant="ghost-dark">
+                  Ver os outros produtos
+                </AppButton>
+              </div>
+            </div>
           </div>
-          <div className="rounded-[24px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] p-7">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[color:var(--ink-dim)]">
-              Disponibilidade
-            </p>
-            <p className="mt-3 text-[20px] font-semibold tracking-tight text-[color:var(--ink)]">
-              {sonoLeve.statusNote}
-            </p>
-            <p className="mt-3 text-[15px] leading-[1.65] text-[color:var(--ink-muted)]">
-              O app para iPhone foi enviado para a App Store em 3 de outubro de 2026 e está em
-              revisão pela Apple. Assim que for aprovado, o link para baixar aparece nesta página.
-            </p>
-          </div>
         </div>
-      </Section>
-
-      <Section>
-        <CtaPanel
-          eyebrow="Em breve na App Store"
-          title="Quer saber quando o Sono Leve sair?"
-          body="Mande uma mensagem e a gente avisa quando o app estiver disponível. Se você já passou por um treino de sono, sua experiência ajuda a gente a fazer um app melhor."
-          primary={{ href: contactHref('Quero saber quando o Sono Leve sair'), label: 'Me avise' }}
-          secondary={{ href: '/produtos', label: 'Ver os outros produtos' }}
-        />
-      </Section>
+      </section>
     </>
   );
 }

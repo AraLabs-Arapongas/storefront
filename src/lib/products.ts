@@ -22,6 +22,8 @@ export type Product = {
   /** Accent used on cards and tiles. */
   color: string;
   colorSoft: string;
+  /** Deeper shade of the accent: readable text on cream and white text on top of it (AA). */
+  colorInk: string;
   /** Business line, or the family/personal line. */
   line: 'negocios' | 'familias';
 };
@@ -45,6 +47,7 @@ export const PRODUCTS: Product[] = [
     externalUrl: KOMYX_URL,
     color: '#e8356d',
     colorSoft: '#fde7ef',
+    colorInk: '#c81e55',
     line: 'negocios',
   },
   {
@@ -60,6 +63,7 @@ export const PRODUCTS: Product[] = [
     href: '/produtos/casa-leve',
     color: '#c26a1e',
     colorSoft: '#f7e6d6',
+    colorInk: '#a85a17',
     line: 'familias',
   },
   {
@@ -76,6 +80,7 @@ export const PRODUCTS: Product[] = [
     externalUrl: ARAKIDS_URL,
     color: '#2f8fd6',
     colorSoft: '#dcecfa',
+    colorInk: '#1f6fb0',
     line: 'familias',
   },
   {
@@ -92,6 +97,7 @@ export const PRODUCTS: Product[] = [
     href: '/produtos/lumo',
     color: '#6a4bd6',
     colorSoft: '#e9e3fa',
+    colorInk: '#6a4bd6',
     line: 'familias',
   },
   {
@@ -108,6 +114,7 @@ export const PRODUCTS: Product[] = [
     href: '/produtos/sono-leve',
     color: '#36407a',
     colorSoft: '#e3e5f4',
+    colorInk: '#36407a',
     line: 'familias',
   },
   {
@@ -124,6 +131,7 @@ export const PRODUCTS: Product[] = [
     href: '/produtos/jornadas',
     color: '#0e7c74',
     colorSoft: '#d8efec',
+    colorInk: '#0e7c74',
     line: 'familias',
   },
 ];

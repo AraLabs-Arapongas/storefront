@@ -219,3 +219,125 @@ select {
   color: var(--ink);
   font-style: italic;
 }
+
+/* ========================================================================
+ * Home — editorial pass: orbiting product windows, scroll reveals
+ * ======================================================================== */
+.orbit-stage {
+  --px: 0;
+  --py: 0;
+}
+
+.orbit-more {
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+    opacity 0.25s ease;
+}
+
+@media (min-width: 1280px) {
+  .orbit-item {
+    left: var(--x);
+    top: var(--y);
+    transform: translate3d(
+      calc(var(--px) * var(--depth) * -1px),
+      calc(var(--py) * var(--depth) * -1px),
+      0
+    );
+    transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+    will-change: transform;
+  }
+  .orbit-window {
+    transform: rotate(var(--rot));
+    transition:
+      transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+      box-shadow 0.35s ease;
+  }
+  .orbit-item:hover,
+  .orbit-item:focus-within {
+    z-index: 5;
+  }
+  .orbit-window:hover,
+  .orbit-window:focus-visible {
+    transform: rotate(0deg) scale(1.05);
+    box-shadow: 0 28px 60px -16px rgba(36, 29, 21, 0.55);
+  }
+  .orbit-window:hover .orbit-more,
+  .orbit-window:focus-visible .orbit-more {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+}
+
+@keyframes orbit-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@media (min-width: 1280px) and (prefers-reduced-motion: no-preference) {
+  .orbit-float {
+    animation: orbit-float 7s ease-in-out infinite;
+    animation-delay: var(--delay);
+  }
+}
+
+@media (max-width: 1279px) {
+  .orbit-item:nth-child(odd) .orbit-window {
+    transform: rotate(-1.5deg);
+  }
+  .orbit-item:nth-child(even) .orbit-window {
+    transform: rotate(1.5deg);
+  }
+}
+
+/* Scroll reveal with CSS scroll-driven animations; without support (or with reduced motion)
+   everything is simply visible. */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(36px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes reveal-pop {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 70%;
+    }
+    .reveal-pop {
+      animation: reveal-pop linear both;
+      animation-timeline: view();
+      animation-range: entry 10% entry 90%;
+    }
+  }
+}
+
+/* Giant display type used by the home. */
+.display {
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 0.9;
+}

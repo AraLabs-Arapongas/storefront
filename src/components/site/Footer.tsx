@@ -47,6 +47,10 @@ export function Footer() {
               Tecnologia simples para pequenos negócios. Produtos prontos para assinar e sistemas
               sob medida, feitos em Arapongas, PR.
             </p>
+            <p className="mt-6 flex items-center gap-2.5 text-[19px] font-bold tracking-[-0.02em] text-[color:var(--ink)]">
+              <span className="tri text-[8px] text-[color:var(--gold)]" aria-hidden="true" />
+              Abra. Entenda. <span className="text-[color:var(--gold-soft)]">Use.</span>
+            </p>
           </div>
 
           {columns.map((c) => (

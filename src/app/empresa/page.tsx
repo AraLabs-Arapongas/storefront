@@ -91,7 +91,9 @@ export default function EmpresaPage() {
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
             <Eyebrow>O que fazemos</Eyebrow>
-            <Title size="sm">Duas linhas, uma regra.</Title>
+            <Title size="sm">
+              Duas linhas, uma regra: <Accent>abra, entenda, use.</Accent>
+            </Title>
             <p className="mt-5 text-[16px] leading-[1.7] text-[color:var(--ink-muted)]">
               Produtos prontos para assinar e sistemas sob medida. Nos dois casos a regra é a mesma:
               o dono tem que conseguir usar no primeiro dia, e o preço tem que caber no caixa de um

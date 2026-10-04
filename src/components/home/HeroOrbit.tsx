@@ -5,25 +5,37 @@ import Link from 'next/link';
 import { PRODUCTS, type Product } from '@/lib/products';
 import { ProductTile } from '@/components/site/ProductMarks';
 
-/**
- * Where each product "window" floats around the headline on wide screens (xl) (percent of the hero
- * stage), how much it tilts and how far it drifts with the pointer. Below xl they sit in a
- * loose, wrapped cluster under the headline instead.
+/*
+ * On wide screens (xl+) the product windows sit on one elliptical arc that wraps the right end of
+ * the headline, evenly spaced, each drifting a few pixels along the arc's tangent. Coordinates are
+ * percentages of the hero stage. Below xl they become a tilted 2/3-column cluster instead.
  */
-const ORBIT: Record<Product['slug'], { x: string; y: string; rot: number; depth: number }> = {
-  komyx: { x: '50%', y: '1%', rot: -3, depth: 18 },
-  'casa-leve': { x: '79%', y: '-3%', rot: 4, depth: 10 },
-  arakids: { x: '71%', y: '26%', rot: -5, depth: 24 },
-  lumo: { x: '80%', y: '46%', rot: 3, depth: 14 },
-  'sono-leve': { x: '57%', y: '79%', rot: -2, depth: 20 },
-  jornadas: { x: '80%', y: '76%', rot: 5, depth: 12 },
-};
+const ARC = { cx: 52, cy: 50, rx: 41, ry: 52 };
+const START = -78;
+const END = 78;
 
-/**
- * Giant headline with the product windows orbiting it. Pointer parallax only for mouse users and
- * only without prefers-reduced-motion; everything is a plain link, so touch and keyboard get the
- * same information (name, audience, status) with no hover needed.
- */
+const rad = (deg: number) => (deg * Math.PI) / 180;
+
+function arcPoint(deg: number) {
+  const t = rad(deg);
+  const x = ARC.cx + ARC.rx * Math.cos(t);
+  const y = ARC.cy + ARC.ry * Math.sin(t);
+  // Tangent (direction of travel along the arc), normalised.
+  const tx = -ARC.rx * Math.sin(t);
+  const ty = ARC.ry * Math.cos(t);
+  const len = Math.hypot(tx, ty) || 1;
+  return { x, y, tx: tx / len, ty: ty / len };
+}
+
+/** SVG path of the visible arc (a little longer than the span of the windows). */
+function arcPath() {
+  const a = arcPoint(START - 14);
+  const b = arcPoint(END + 16);
+  return `M ${a.x.toFixed(2)} ${a.y.toFixed(2)} A ${ARC.rx} ${ARC.ry} 0 0 1 ${b.x.toFixed(2)} ${b.y.toFixed(2)}`;
+}
+
+const TILT = [-3, 3, -4, 3, -2, 4];
+
 export function HeroOrbit({ children }: { children: ReactNode }) {
   const stage = useRef<HTMLDivElement>(null);
 
@@ -60,44 +72,78 @@ export function HeroOrbit({ children }: { children: ReactNode }) {
     };
   }, []);
 
+  const step = (END - START) / (PRODUCTS.length - 1);
+  // Small direction markers halfway between windows.
+  const markers = PRODUCTS.slice(1).map((_, i) => arcPoint(START + step * (i + 0.5)));
+
   return (
     <div ref={stage} className="orbit-stage relative">
+      {/* The orbit itself: dashed arc + triangle markers pointing the way. */}
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        className="pointer-events-none absolute inset-0 hidden h-full w-full overflow-visible xl:block"
+      >
+        <path d={arcPath()} className="orbit-path" vectorEffect="non-scaling-stroke" />
+      </svg>
+      {markers.map((m, i) => (
+        <span
+          key={i}
+          aria-hidden="true"
+          className="orbit-marker tri absolute hidden xl:block"
+          style={
+            {
+              left: `${m.x.toFixed(3)}%`,
+              top: `${m.y.toFixed(3)}%`,
+              '--angle': `${((Math.atan2(m.ty, m.tx) * 180) / Math.PI + 90).toFixed(2)}deg`,
+            } as CSSProperties
+          }
+        />
+      ))}
+
       {children}
+
       <ul
         aria-label="Produtos da AraLabs"
         className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 xl:pointer-events-none xl:absolute xl:inset-0 xl:mt-0 xl:block"
       >
         {PRODUCTS.map((p, i) => (
-          <OrbitWindow key={p.slug} product={p} index={i} />
+          <OrbitWindow key={p.slug} product={p} index={i} at={arcPoint(START + step * i)} />
         ))}
       </ul>
     </div>
   );
 }
 
-function OrbitWindow({ product: p, index }: { product: Product; index: number }) {
-  const o = ORBIT[p.slug];
+function OrbitWindow({
+  product: p,
+  index,
+  at,
+}: {
+  product: Product;
+  index: number;
+  at: ReturnType<typeof arcPoint>;
+}) {
   const style = {
-    '--x': o.x,
-    '--y': o.y,
-    '--rot': `${o.rot}deg`,
-    '--depth': o.depth,
-    '--delay': `${index * -1.3}s`,
+    '--x': `${at.x.toFixed(3)}%`,
+    '--y': `${at.y.toFixed(3)}%`,
+    '--tx': at.tx.toFixed(3),
+    '--ty': at.ty.toFixed(3),
+    '--rot': `${TILT[index % TILT.length]}deg`,
+    '--depth': 10 + ((index * 7) % 16),
+    '--delay': `${index * -0.6}s`,
   } as CSSProperties;
   return (
     <li className="orbit-item xl:pointer-events-auto xl:absolute" style={style}>
       <div className="orbit-float">
         <Link
           href={p.href}
-          className="orbit-window group block w-full overflow-hidden rounded-[18px] text-white shadow-[0_18px_40px_-12px_rgba(36,29,21,0.45)] outline-offset-4 xl:w-[236px]"
+          className="orbit-window group block w-full overflow-hidden rounded-[18px] text-white shadow-[0_18px_40px_-12px_rgba(36,29,21,0.45)] outline-offset-4 xl:w-[208px]"
           style={{ background: p.colorInk }}
         >
           <span className="flex items-center justify-between gap-2 border-b border-white/15 px-3 py-1.5">
-            <span aria-hidden="true" className="flex gap-1">
-              <span className="h-1.5 w-1.5 rounded-full bg-white/45" />
-              <span className="h-1.5 w-1.5 rounded-full bg-white/30" />
-              <span className="h-1.5 w-1.5 rounded-full bg-white/20" />
-            </span>
+            <span aria-hidden="true" className="tri text-[9px] text-white/60" />
             <span className="text-[9.5px] font-semibold uppercase tracking-[0.16em] text-white/85">
               <span className="xl:hidden">{p.status}</span>
               <span className="hidden xl:inline">{p.statusNote ?? p.status}</span>

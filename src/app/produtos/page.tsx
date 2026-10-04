@@ -19,7 +19,7 @@ import {
 
 const pageDescription = `Produtos da AraLabs: ${joinNames(
   PRODUCTS.map((p) => ({ name: `${p.name} (${p.summary})` })),
-)}.`;
+)}. Abra. Entenda. Use.`;
 
 export const metadata: Metadata = {
   title: 'Produtos',
@@ -75,7 +75,7 @@ export default function ProdutosPage() {
         <Lead>
           {countWord(PRODUCTS.length).replace(/^./, (c) => c.toUpperCase())} produtos, para o
           negócio e para a casa. Cada um nasce de um problema que a gente viu de perto e fica
-          simples o bastante para usar no primeiro dia.
+          simples o bastante para usar no primeiro dia. Abra, entenda, use.
         </Lead>
       </Section>
 

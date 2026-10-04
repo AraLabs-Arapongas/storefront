@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { ArrowRight } from 'lucide-react';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { collectionPageSchema } from '@/lib/seo/schemas';
-import { PRODUCTS } from '@/lib/products';
+import { PRODUCTS, PRODUCT_LINES, countWord, joinNames } from '@/lib/products';
 import { contactHref } from '@/lib/seo/site';
 import { ProductTile } from '@/components/site/ProductMarks';
 import {
@@ -17,8 +17,9 @@ import {
   Title,
 } from '@/components/site/ui';
 
-const pageDescription =
-  'Produtos da AraLabs: Komyx (gestão para buffets), Casa Leve (rotina da família), Arakids (jogos educativos sem anúncio) e Lumo (comunicação visual para crianças não-verbais).';
+const pageDescription = `Produtos da AraLabs: ${joinNames(
+  PRODUCTS.map((p) => ({ name: `${p.name} (${p.summary})` })),
+)}.`;
 
 export const metadata: Metadata = {
   title: 'Produtos',
@@ -56,8 +57,6 @@ const HOW = [
 ];
 
 export default function ProdutosPage() {
-  const business = PRODUCTS.filter((p) => p.line === 'negocios');
-  const family = PRODUCTS.filter((p) => p.line === 'familias');
   return (
     <>
       <JsonLd
@@ -74,16 +73,14 @@ export default function ProdutosPage() {
           Prontos para usar, <Accent>feitos para durar</Accent>.
         </Title>
         <Lead>
-          Para o negócio e para a casa. Cada produto nasce de um problema que a gente viu de perto e
-          fica simples o bastante para usar no primeiro dia.
+          {countWord(PRODUCTS.length).replace(/^./, (c) => c.toUpperCase())} produtos, para o
+          negócio e para a casa. Cada um nasce de um problema que a gente viu de perto e fica
+          simples o bastante para usar no primeiro dia.
         </Lead>
       </Section>
 
-      {[
-        { label: 'Para o negócio', items: business },
-        { label: 'Para a família', items: family },
-      ].map((group) => (
-        <Section key={group.label}>
+      {PRODUCT_LINES.map((group) => (
+        <Section key={group.line}>
           <Eyebrow>{group.label}</Eyebrow>
           <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {group.items.map((p) => (
@@ -121,7 +118,7 @@ export default function ProdutosPage() {
                 </div>
               </Link>
             ))}
-            {group.label === 'Para o negócio' ? (
+            {group.line === 'negocios' ? (
               <Link
                 href="/sob-medida"
                 className="group flex flex-col justify-between rounded-[26px] border border-dashed border-[color:var(--line-strong)] p-7 transition hover:border-[color:var(--gold)]/60 hover:bg-[color:var(--bg-elev)]"

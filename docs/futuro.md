@@ -58,6 +58,13 @@
   (creme/tinta/dourado) e uma fonte (Plus Jakarta Sans), sem serifas.
   Redirects em `next.config.ts`.
 
+- **Seis produtos em 2026-10-03.** Sono Leve voltou (app iOS) e entrou o
+  Jornadas (app iOS), os dois em revisão na App Store. Home refeita com
+  índice de produtos agrupado por linha (negócio / família e você) em
+  vez da grade 2x2; contagens derivam de `src/lib/products.ts`. Quando
+  a Apple aprovar, trocar `status`/`statusNote`/`offer` e pôr o link da
+  App Store nas páginas `/produtos/jornadas` e `/produtos/sono-leve`.
+
 - **Admin AraLabs no storefront — postergado em 2026-04-29.**
   Spec completa em `docs/superpowers/specs/2026-04-29-admin-multiproduct-design.md`.
   Enquanto ara-agenda for produto único, o admin vive dentro do próprio

@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { LogoMark, LogoWordmark } from './Logo';
+import { LogoLockup } from './Logo';
 import { ProductTile } from './ProductMarks';
-import { PRODUCTS } from '@/lib/products';
+import { PRODUCT_LINES } from '@/lib/products';
 import { contactHref } from '@/lib/seo/site';
 
 const TOP_LINKS = [
@@ -35,17 +35,16 @@ export function Header() {
         <div className="mx-auto flex max-w-[1240px] items-center justify-between px-6 py-4 lg:px-10">
           <Link
             href="/"
-            className="group flex items-center gap-3"
+            className="group flex shrink-0 items-center"
             aria-label="AraLabs — ir para a home"
             onClick={() => setOpen(false)}
           >
-            <LogoMark className="h-10 w-10 text-[color:var(--ink)] transition group-hover:text-[color:var(--gold-soft)]" />
-            <span className="flex flex-col leading-none">
-              <LogoWordmark className="block h-6 w-auto text-[color:var(--ink)] transition group-hover:text-[color:var(--gold-soft)]" />
-              <span className="mt-1 hidden text-[11px] font-medium text-[color:var(--ink-dim)] sm:block">
-                Tecnologia simples para pequenos negócios
-              </span>
-            </span>
+            <LogoLockup
+              markHeight={38}
+              className="text-[color:var(--ink)] transition group-hover:text-[color:var(--gold-soft)]"
+              tagline="Tecnologia simples para pequenos negócios"
+              taglineClassName="hidden text-[color:var(--ink-dim)] sm:block"
+            />
           </Link>
 
           <nav
@@ -78,29 +77,46 @@ export function Header() {
               </Link>
               <div
                 role="menu"
-                className={`absolute left-1/2 top-full z-50 w-[340px] -translate-x-1/2 pt-3 transition-all duration-150 ${
+                className={`absolute left-1/2 top-full z-50 w-[330px] -translate-x-1/2 pt-3 transition-all duration-150 ${
                   productsOpen ? 'visible opacity-100' : 'pointer-events-none invisible opacity-0'
                 }`}
               >
                 <ul className="overflow-hidden rounded-2xl border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] p-2 shadow-[0_20px_50px_rgba(0,0,0,0.18)]">
-                  {PRODUCTS.map((p) => (
-                    <li key={p.slug} role="none">
-                      <Link
-                        href={p.href}
-                        role="menuitem"
-                        onClick={() => setProductsOpen(false)}
-                        className="flex items-center gap-3 rounded-xl px-3 py-2.5 transition hover:bg-[color:var(--bg)]"
-                      >
-                        <ProductTile product={p} size={36} />
-                        <span className="min-w-0">
-                          <span className="block text-[14.5px] font-semibold text-[color:var(--ink)]">
-                            {p.name}
-                          </span>
-                          <span className="block truncate text-[12.5px] text-[color:var(--ink-dim)]">
-                            {p.audience} · {p.tagline}
-                          </span>
-                        </span>
-                      </Link>
+                  {PRODUCT_LINES.map((g) => (
+                    <li key={g.line} role="none">
+                      <p className="px-3 pb-1 pt-2.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-[color:var(--ink-dim)]">
+                        {g.label}
+                      </p>
+                      <ul role="none">
+                        {g.items.map((p) => (
+                          <li key={p.slug} role="none">
+                            <Link
+                              href={p.href}
+                              role="menuitem"
+                              onClick={() => setProductsOpen(false)}
+                              className="flex items-center gap-3 rounded-xl px-3 py-2 transition hover:bg-[color:var(--bg)]"
+                            >
+                              <ProductTile product={p} size={34} />
+                              <span className="min-w-0 flex-1">
+                                <span className="flex items-center gap-2 text-[14.5px] font-semibold text-[color:var(--ink)]">
+                                  {p.name}
+                                  {p.status !== 'No ar' ? (
+                                    <span
+                                      className="rounded-full px-1.5 py-0.5 text-[9.5px] font-semibold uppercase tracking-[0.12em]"
+                                      style={{ background: p.colorSoft, color: p.color }}
+                                    >
+                                      {p.status}
+                                    </span>
+                                  ) : null}
+                                </span>
+                                <span className="block truncate text-[12.5px] text-[color:var(--ink-dim)]">
+                                  {p.audience}
+                                </span>
+                              </span>
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
                     </li>
                   ))}
                   <li role="none" className="border-t border-[color:var(--line)] mt-1 pt-1">
@@ -189,30 +205,42 @@ export function Header() {
           }`}
         >
           <nav className="flex flex-col" aria-label="Menu móvel">
-            <p className="px-3 pt-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-[color:var(--ink-dim)]">
-              Produtos
-            </p>
-            <ul className="mt-2 space-y-1">
-              {PRODUCTS.map((p) => (
-                <li key={p.slug}>
-                  <Link
-                    href={p.href}
-                    onClick={() => setOpen(false)}
-                    className="flex items-center gap-3 rounded-2xl px-3 py-2.5 transition hover:bg-[color:var(--bg-elev)]"
-                  >
-                    <ProductTile product={p} size={40} />
-                    <span className="min-w-0">
-                      <span className="block text-[16px] font-semibold text-[color:var(--ink)]">
-                        {p.name}
-                      </span>
-                      <span className="block truncate text-[13px] text-[color:var(--ink-dim)]">
-                        {p.audience}
-                      </span>
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            {PRODUCT_LINES.map((g) => (
+              <div key={g.line} className="mb-1">
+                <p className="px-3 pt-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-[color:var(--ink-dim)]">
+                  {g.label}
+                </p>
+                <ul className="mt-1.5 space-y-0.5">
+                  {g.items.map((p) => (
+                    <li key={p.slug}>
+                      <Link
+                        href={p.href}
+                        onClick={() => setOpen(false)}
+                        className="flex items-center gap-3 rounded-2xl px-3 py-2 transition hover:bg-[color:var(--bg-elev)]"
+                      >
+                        <ProductTile product={p} size={38} />
+                        <span className="min-w-0 flex-1">
+                          <span className="block text-[16px] font-semibold text-[color:var(--ink)]">
+                            {p.name}
+                          </span>
+                          <span className="block truncate text-[13px] text-[color:var(--ink-dim)]">
+                            {p.audience}
+                          </span>
+                        </span>
+                        {p.status !== 'No ar' ? (
+                          <span
+                            className="shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em]"
+                            style={{ background: p.colorSoft, color: p.color }}
+                          >
+                            {p.status}
+                          </span>
+                        ) : null}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
             <div className="mt-3 border-t border-[color:var(--line)] pt-2">
               {[{ label: 'Todos os produtos', href: '/produtos' }, ...TOP_LINKS].map((l) => (
                 <Link

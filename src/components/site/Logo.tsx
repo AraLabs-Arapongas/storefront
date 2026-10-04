@@ -1,14 +1,25 @@
+import type { CSSProperties } from 'react';
+
 type LogoProps = {
   className?: string;
+  style?: CSSProperties;
   title?: string;
 };
 
-export function LogoMark({ className, title = 'Aralabs' }: LogoProps) {
+/*
+ * Both viewBoxes are cropped to the ink, so the mark and the wordmark can sit side by side with a
+ * real (small) gap instead of the padding baked into the original exports.
+ */
+const MARK_RATIO = 157 / 143;
+const WORDMARK_RATIO = 1943 / 458;
+
+export function LogoMark({ className, style, title = 'Aralabs' }: LogoProps) {
   return (
     <svg
-      viewBox="0 0 184 170"
+      viewBox="13 13 157 143"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      style={style}
       role="img"
       aria-label={title}
       preserveAspectRatio="xMidYMid meet"
@@ -22,12 +33,13 @@ export function LogoMark({ className, title = 'Aralabs' }: LogoProps) {
   );
 }
 
-export function LogoWordmark({ className, title = 'AraLabs' }: LogoProps) {
+export function LogoWordmark({ className, style, title = 'AraLabs' }: LogoProps) {
   return (
     <svg
-      viewBox="0 0 1978 534"
+      viewBox="7 41 1943 458"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      style={style}
       role="img"
       aria-label={title}
       preserveAspectRatio="xMidYMid meet"
@@ -43,5 +55,46 @@ export function LogoWordmark({ className, title = 'AraLabs' }: LogoProps) {
         <path d="M18060 3539 c-255 -54 -426 -143 -575 -301 -158 -167 -235 -372 -235 -625 0 -237 67 -408 220 -562 90 -91 184 -155 322 -221 161 -77 282 -113 588 -175 258 -52 381 -114 434 -217 24 -49 29 -69 29 -136 0 -103 -33 -181 -107 -250 -91 -85 -194 -122 -348 -122 -140 0 -295 37 -393 94 -83 49 -155 157 -186 281 l-12 47 -41 -5 c-23 -4 -131 -16 -241 -27 -110 -11 -220 -23 -244 -26 l-44 -6 6 -86 c25 -337 236 -613 572 -747 177 -70 348 -99 585 -99 458 0 772 144 964 441 98 152 140 302 140 498 -1 279 -108 511 -313 679 -130 106 -247 152 -586 231 -313 72 -502 142 -592 219 -87 76 -115 193 -74 311 50 143 184 227 385 241 152 11 298 -35 398 -125 67 -60 101 -115 134 -215 15 -45 28 -82 29 -84 2 -2 44 4 94 12 149 26 261 44 353 57 48 7 91 15 97 19 15 8 -12 173 -45 274 -48 149 -114 261 -215 363 -139 140 -295 216 -541 264 -140 27 -423 26 -558 -2z" />
       </g>
     </svg>
+  );
+}
+
+/**
+ * Mark + "AraLabs" wordmark locked together, optionally with the tagline under the name. Sizes are
+ * explicit (not w-auto) so a flex parent can never stretch the wordmark and push it away from the
+ * mark.
+ */
+export function LogoLockup({
+  markHeight = 36,
+  className = '',
+  tagline,
+  taglineClassName = '',
+}: {
+  markHeight?: number;
+  className?: string;
+  tagline?: string;
+  taglineClassName?: string;
+}) {
+  const wordHeight = Math.round(markHeight * 0.52);
+  return (
+    <span className={`inline-flex items-center ${className}`} style={{ gap: markHeight * 0.28 }}>
+      <LogoMark
+        className="block shrink-0"
+        title="AraLabs"
+        style={{ height: markHeight, width: markHeight * MARK_RATIO }}
+      />
+      <span className="flex flex-col items-start leading-none">
+        <LogoWordmark
+          className="block shrink-0"
+          style={{ height: wordHeight, width: wordHeight * WORDMARK_RATIO }}
+        />
+        {tagline ? (
+          <span
+            className={`mt-[5px] whitespace-nowrap text-[11px] font-medium leading-none ${taglineClassName}`}
+          >
+            {tagline}
+          </span>
+        ) : null}
+      </span>
+    </span>
   );
 }

@@ -69,6 +69,8 @@ export function softwareApplicationSchema(params: {
   description: string;
   applicationCategory: string;
   operatingSystem: string;
+  /** Pass false when the price is not public yet; the free Offer is then left out. */
+  free?: boolean;
 }): Json {
   return {
     '@context': 'https://schema.org',
@@ -80,11 +82,15 @@ export function softwareApplicationSchema(params: {
     operatingSystem: params.operatingSystem,
     inLanguage: LOCALE,
     publisher: { '@id': ORG_ID },
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'BRL',
-    },
+    ...(params.free === false
+      ? {}
+      : {
+          offers: {
+            '@type': 'Offer',
+            price: '0',
+            priceCurrency: 'BRL',
+          },
+        }),
   };
 }
 

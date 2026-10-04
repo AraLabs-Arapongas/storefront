@@ -50,8 +50,8 @@ const SOB_MEDIDA = [
   { n: '01', title: 'Uma conversa.', body: 'Você conta como é o seu dia e onde ele trava.' },
   {
     n: '02',
-    title: 'Primeira versão em semanas.',
-    body: 'Montada com as mesmas peças do Komyx: agenda, orçamento, Pix, painel do dono.',
+    title: 'Sem esperar seis meses para ver alguma coisa funcionando.',
+    body: 'A primeira versão entra no ar rápido. Depois, a gente melhora junto.',
   },
   {
     n: '03',
@@ -81,12 +81,22 @@ function portfolioLine() {
   return `${capitalize(countWord(PRODUCTS.length))} produtos: ${list}.`;
 }
 
-function Kicker({ children, onDark }: { children: ReactNode; onDark?: boolean }) {
+function Kicker({
+  children,
+  onDark,
+  compact,
+}: {
+  children: ReactNode;
+  onDark?: boolean;
+  compact?: boolean;
+}) {
   return (
     <p
-      className={`flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.28em] ${
-        onDark ? 'text-[color:var(--gold)]' : 'text-[color:var(--gold-soft)]'
-      }`}
+      className={`flex items-center gap-3 font-semibold uppercase ${
+        compact
+          ? 'text-[10px] tracking-[0.16em] sm:text-[11px] sm:tracking-[0.28em]'
+          : 'text-[11px] tracking-[0.28em]'
+      } ${onDark ? 'text-[color:var(--gold)]' : 'text-[color:var(--gold-soft)]'}`}
     >
       <span className="tri text-[8px]" aria-hidden="true" />
       {children}
@@ -112,12 +122,12 @@ export default function Home() {
           <div className="absolute left-[-15%] top-[-35%] h-[46rem] w-[46rem] rounded-full bg-[radial-gradient(closest-side,rgba(197,140,43,0.16),transparent_70%)]" />
           <div className="tri-grid absolute inset-0" />
         </div>
-        <div className="relative mx-auto max-w-[1240px] px-6 pb-24 pt-10 lg:px-10 lg:pb-36 lg:pt-14">
+        <div className="hero-shell relative mx-auto max-w-[1240px] px-6 pb-20 pt-8 lg:px-10 lg:pb-32 lg:pt-12">
           <HeroOrbit>
             <div data-intro-fade>
-              <Kicker>Tecnologia simples para pequenos negócios · Arapongas, PR</Kicker>
+              <Kicker compact>Tecnologia simples para pequenos negócios · Arapongas, PR</Kicker>
             </div>
-            <h1 className="display mt-6 text-[clamp(3.2rem,9.4vw,8.6rem)] text-[color:var(--ink)]">
+            <h1 className="hero-title display mt-5 text-[color:var(--ink)] xl:mt-6">
               <span className="hero-line">
                 <span className="hero-line-in">Software</span>
               </span>{' '}
@@ -131,26 +141,26 @@ export default function Home() {
                 <span className="hero-line-in">Não o contrário.</span>
               </span>
             </h1>
-            <div data-intro-fade className="mt-10 max-w-[460px] lg:mt-14">
-              <p className="text-[18px] leading-[1.6] text-[color:var(--ink-muted)] md:text-[19px]">
+            <div data-intro-fade className="mt-7 max-w-[540px] lg:mt-10">
+              <p className="text-[17px] leading-[1.55] text-[color:var(--ink-muted)] md:text-[18.5px]">
                 Produtos prontos para assinar e sistemas sob medida, para quem não tem tempo de
                 aprender software.
               </p>
-              <div className="mt-7 flex flex-wrap gap-3">
+              <div className="mt-6 flex flex-wrap gap-2.5 sm:gap-3">
                 <Link
                   href="/produtos"
-                  className="inline-flex items-center gap-2 rounded-full bg-[color:var(--ink)] px-6 py-3.5 text-[15px] font-semibold text-[color:var(--bg)] transition hover:bg-[color:var(--gold-soft)]"
+                  className="inline-flex items-center gap-2 rounded-full bg-[color:var(--ink)] px-5 py-3 text-[14.5px] font-semibold sm:px-6 sm:py-3.5 sm:text-[15px] text-[color:var(--bg)] transition hover:bg-[color:var(--gold-soft)]"
                 >
                   Ver os produtos <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link
                   href="/sob-medida"
-                  className="inline-flex items-center gap-2 rounded-full border border-[color:var(--line-strong)] px-6 py-3.5 text-[15px] font-semibold text-[color:var(--ink)] transition hover:border-[color:var(--gold)]/60 hover:text-[color:var(--gold-soft)]"
+                  className="inline-flex items-center gap-2 rounded-full border border-[color:var(--line-strong)] px-5 py-3 text-[14.5px] font-semibold sm:px-6 sm:py-3.5 sm:text-[15px] text-[color:var(--ink)] transition hover:border-[color:var(--gold)]/60 hover:text-[color:var(--gold-soft)]"
                 >
                   Sob medida
                 </Link>
               </div>
-              <p className="mt-5 text-[13.5px] text-[color:var(--ink-dim)]">{portfolioLine()}</p>
+              <p className="mt-4 text-[13.5px] text-[color:var(--ink-dim)]">{portfolioLine()}</p>
             </div>
           </HeroOrbit>
         </div>

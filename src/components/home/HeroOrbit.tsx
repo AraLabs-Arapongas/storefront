@@ -11,7 +11,8 @@ import { runHeroIntro } from './heroIntro';
  * the headline, evenly spaced, each drifting a few pixels along the arc's tangent. Coordinates are
  * percentages of the hero stage. Below xl they become a tilted 2/3-column cluster instead.
  */
-const ARC = { cx: 52, cy: 50, rx: 41, ry: 52 };
+// y runs 0–100 across the usable height of the stage (see .orbit-item / svg in globals.css).
+const ARC = { cx: 52, cy: 50, rx: 41, ry: 50 };
 const START = -78;
 const END = 78;
 
@@ -185,7 +186,7 @@ export function HeroOrbit({ children }: { children: ReactNode }) {
         data-intro-orbit
         viewBox="0 0 100 100"
         preserveAspectRatio="none"
-        className="orbit-layer pointer-events-none absolute inset-0 hidden h-full w-full overflow-visible xl:block"
+        className="orbit-layer orbit-svg pointer-events-none absolute hidden overflow-visible xl:block"
       >
         <path d={arcPath()} className="orbit-path" vectorEffect="non-scaling-stroke" />
       </svg>
@@ -198,7 +199,7 @@ export function HeroOrbit({ children }: { children: ReactNode }) {
           style={
             {
               left: `${m.x.toFixed(3)}%`,
-              top: `${m.y.toFixed(3)}%`,
+              top: `calc(var(--orbit-pad) + (100% - 2 * var(--orbit-pad)) * ${(m.y / 100).toFixed(4)})`,
               '--angle': `${((Math.atan2(m.ty, m.tx) * 180) / Math.PI + 90).toFixed(2)}deg`,
             } as CSSProperties
           }
@@ -230,7 +231,7 @@ function OrbitWindow({
 }) {
   const style = {
     '--x': `${at.x.toFixed(3)}%`,
-    '--y': `${at.y.toFixed(3)}%`,
+    '--yf': (at.y / 100).toFixed(4),
     '--tx': at.tx.toFixed(3),
     '--ty': at.ty.toFixed(3),
     '--rot': `${TILT[index % TILT.length]}deg`,
@@ -260,7 +261,9 @@ function OrbitWindow({
               <span className="block text-[16px] font-bold leading-tight tracking-tight">
                 {p.name}
               </span>
-              <span className="block text-[12px] leading-snug text-white/80">{p.audience}</span>
+              <span className="orbit-audience block text-[12px] leading-snug text-white/80">
+                {p.audience}
+              </span>
             </span>
           </span>
           <span className="orbit-more grid px-3 text-[12.5px] leading-[1.45] text-white/90">

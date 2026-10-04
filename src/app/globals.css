@@ -267,6 +267,70 @@ select {
 .orbit-stage {
   --px: 0;
   --py: 0;
+  /* Window centres stay this far from the stage's top and bottom edges. */
+  --orbit-pad: 56px;
+}
+.orbit-svg {
+  left: 0;
+  right: 0;
+  top: var(--orbit-pad);
+  height: calc(100% - 2 * var(--orbit-pad));
+  width: 100%;
+}
+
+/*
+ * The hero fits one viewport on desktop: the stage fills the height left under the header (minus
+ * the next section's diagonal overlap), and the headline size is derived from that height.
+ */
+:root {
+  --header-h: 76px;
+  --hero-cut: clamp(28px, 4.5vw, 72px);
+}
+.hero-title {
+  font-size: clamp(2.7rem, min(13vw, 7.4svh), 4.4rem);
+}
+@media (min-width: 640px) {
+  .hero-title {
+    font-size: clamp(3.2rem, 9.4vw, 6rem);
+  }
+}
+@media (min-width: 1024px) {
+  .hero-title {
+    font-size: clamp(3.2rem, 9.4vw, 8.6rem);
+  }
+}
+@media (min-width: 1280px) {
+  .hero-shell {
+    padding-top: 20px;
+    padding-bottom: calc(20px + var(--hero-cut));
+  }
+  .orbit-stage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100svh - var(--header-h) - 40px - var(--hero-cut));
+  }
+  /* Short desktop viewports: compact windows (name + status) so six fit the height. */
+  @media (max-height: 820px) {
+    .orbit-stage {
+      --orbit-pad: 42px;
+    }
+    .orbit-audience {
+      display: none;
+    }
+    .orbit-item {
+      margin-top: 12px;
+    }
+  }
+  .hero-title {
+    /* 4 lines at line-height .9 = 3.6em; the rest of the stage content is ~260px. Capped at 7.3rem
+       so the last line always clears the lower orbit windows by 40px+. */
+    font-size: clamp(
+      3.4rem,
+      min(8.4vw, calc((100svh - var(--header-h) - 40px - var(--hero-cut) - 262px) / 3.6)),
+      7.3rem
+    );
+  }
 }
 
 .orbit-path {
@@ -298,7 +362,7 @@ select {
 @media (min-width: 1280px) {
   .orbit-item {
     left: calc(var(--x) - 104px);
-    top: calc(var(--y) - 46px);
+    top: calc(var(--orbit-pad) - 50px + (100% - 2 * var(--orbit-pad)) * var(--yf));
     transform: translate3d(
         calc(var(--px) * var(--depth) * -1px),
         calc(var(--py) * var(--depth) * -1px),

@@ -1,9 +1,21 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { RoutineMockup, CollabMockup, HabitsMockup } from '@/components/site/FeatureMockups';
 import type { Metadata } from 'next';
+import type { CSSProperties, ReactNode } from 'react';
+import { ArrowRight, Home } from 'lucide-react';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { softwareApplicationSchema } from '@/lib/seo/schemas';
+import { productBySlug } from '@/lib/products';
+import { contactHref } from '@/lib/seo/site';
+import { ProductTile } from '@/components/site/ProductMarks';
+import { InView } from '@/components/home/InView';
+import {
+  AdminMock,
+  AdultMock,
+  ChildMock,
+  HeroHouse,
+  PlannerMock,
+} from '@/components/products/casa-leve/Mocks';
 
 const pageTitle = 'Casa Leve — família organizada, juntos';
 const pageDescription =
@@ -21,217 +33,207 @@ export const metadata: Metadata = {
   },
 };
 
-type FeatherIcon =
-  | 'check-square'
-  | 'shopping-cart'
-  | 'calendar'
-  | 'gift'
-  | 'star'
-  | 'clock'
-  | 'coffee'
-  | 'dollar-sign'
-  | 'activity'
-  | 'users'
-  | 'home'
-  | 'target'
-  | 'edit-3'
-  | 'bell'
-  | 'shield'
-  | 'zap';
+const PRINCIPLES = [
+  {
+    t: 'Menos cobrança.',
+    b: 'O app mostra o que precisa ser feito. Ninguém precisa ficar lembrando ninguém.',
+  },
+  {
+    t: 'Mais clareza.',
+    b: 'Responsabilidades e acordos ficam visíveis. Todo mundo enxerga o mesmo.',
+  },
+  {
+    t: 'Mais autonomia.',
+    b: 'As crianças acompanham a própria rotina com incentivo, não com pressão.',
+  },
+  { t: 'Sem burocracia.', b: 'Rápido de usar no dia a dia. Marcar uma tarefa leva um toque.' },
+];
 
-type AppEntry = {
-  key: string;
-  titulo: string;
-  descricao: string;
-  premium: boolean;
-};
-
-const APPS: AppEntry[] = [
+const STEPS = [
   {
-    key: 'tarefas',
-    titulo: 'Tarefas',
-    descricao:
-      'Recorrentes (diária, quinzenal, mensal, dia da semana), com pontos, hora, foto opcional e aprovação de adulto pra criança.',
-    premium: false,
+    n: '01',
+    t: 'Crie a sua casa',
+    b: 'Entre com o e-mail, sem senha: um código de 6 dígitos. A casa nasce com 30 dias grátis e tudo do Premium liberado.',
   },
   {
-    key: 'compras',
-    titulo: 'Compras',
-    descricao:
-      'Lista compartilhada da casa, catálogo de 300+ itens com emoji, recorrentes semanais, histórico.',
-    premium: false,
+    n: '02',
+    t: 'Chame a família',
+    b: 'Até 10 pessoas, cada uma como adulto ou criança. O convite chega por e-mail.',
   },
   {
-    key: 'agenda',
-    titulo: 'Agenda',
-    descricao:
-      'Eventos da casa, lembretes 30min antes, push pra todo mundo. Aniversários puxados automaticamente.',
-    premium: false,
+    n: '03',
+    t: 'Monte a rotina',
+    b: 'Tarefas diárias, semanais, quinzenais ou mensais, com pontos, para alguém ou em rodízio. Recompensas e desafios para premiar.',
   },
   {
-    key: 'recompensas',
-    titulo: 'Recompensas',
-    descricao:
-      'Pais cadastram prêmios (1h de tela, sorvete, brinquedo). Filhos juntam pontos e resgatam — com ou sem aprovação.',
-    premium: false,
-  },
-  {
-    key: 'desafios',
-    titulo: 'Desafios',
-    descricao:
-      'Metas curtas com bônus de pontos ("ler 5 livros até dezembro"). Família compete junto, ranking visível.',
-    premium: false,
-  },
-  {
-    key: 'pomodoro',
-    titulo: 'Pomodoro',
-    descricao:
-      'Timer 25/5 com tela acordada enquanto roda, vinculação opcional a uma tarefa, histórico do dia.',
-    premium: false,
-  },
-  {
-    key: 'cardapio',
-    titulo: 'Cardápio',
-    descricao:
-      'Planejamento semanal de refeições. Cada dia 4 slots (café, almoço, lanche, jantar). Toda quinta puxa lista de compras dos itens.',
-    premium: true,
-  },
-  {
-    key: 'financas',
-    titulo: 'Finanças',
-    descricao:
-      'Contas a pagar com vencimento, mesada gamificada (criança troca pontos por dinheiro), metas com cofrinho compartilhado.',
-    premium: true,
-  },
-  {
-    key: 'planner',
-    titulo: 'Planner',
-    descricao:
-      'Hábitos pessoais com streak e heatmap, foco do dia (3 prioridades), reflexão diária e visão semanal.',
-    premium: true,
+    n: '04',
+    t: 'A casa roda junto',
+    b: 'Cada um vê as suas tarefas do dia e marca quando faz. Os pontos somam, o adulto aprova o que a criança terminou.',
   },
 ];
 
-const PAPEIS = [
+const ROLES = [
   {
-    titulo: 'Admin (dono da casa)',
-    icone: '👤',
-    body: 'Configura a casa, convida até 10 membros, define tags, ícones, níveis. Aprova revisões de tarefas. Vê dashboard da família, gastos e pontos de cada um.',
+    t: 'Quem cuida da casa',
+    tag: 'Admin',
+    b: 'Configura a casa, convida até 10 pessoas e aprova as tarefas revisadas. Vê o painel da família: pontos de cada um e gastos.',
+    mock: <AdminMock />,
   },
   {
-    titulo: 'Adulto',
-    icone: '👥',
-    body: 'Cria e edita tarefas, aprova as da criança, vê agenda e cardápio. Tem hábitos pessoais e Pomodoro pra produtividade.',
+    t: 'Os adultos',
+    tag: 'Adulto',
+    b: 'Criam e editam tarefas, aprovam as das crianças, veem agenda e cardápio. E têm hábitos e Pomodoro para si.',
+    mock: <AdultMock />,
   },
   {
-    titulo: 'Criança',
-    icone: '🧒',
-    body: 'Tela simplificada com seu progresso do dia, foco em pontos e desafios. Marca tarefas (com foto se exigir) e resgata recompensas. Sem ajustes complexos.',
+    t: 'As crianças',
+    tag: 'Criança',
+    b: 'Uma tela simples com o progresso do dia, pontos e desafios. Marcam tarefas (com foto, quando pedido) e resgatam recompensas.',
+    mock: <ChildMock />,
   },
 ];
 
-const PLANNER_FEATURES = [
+type AppEntry = { t: string; b: string };
+
+const ESSENCIAL: AppEntry[] = [
   {
-    icon: 'activity',
-    titulo: 'Hábitos pessoais',
-    body: 'Recorrentes só seus (esteira, meditar, ler). Streak diário, heatmap GitHub-style. Sem pontos — só consistência.',
+    t: 'Tarefas',
+    b: 'Recorrentes (diária, quinzenal, mensal, dia da semana), com pontos, hora, foto opcional e aprovação de adulto para a criança.',
   },
   {
-    icon: 'target',
-    titulo: 'Foco do dia',
-    body: 'Pin manual em até 3 tarefas/hábitos como prioridades. Aparece no topo da tela inicial.',
+    t: 'Compras',
+    b: 'Lista compartilhada da casa, catálogo com mais de 300 itens, recorrentes da semana e histórico.',
   },
   {
-    icon: 'edit-3',
-    titulo: 'Reflexão diária',
-    body: '3 perguntas no fim do dia: gratidão, aprendizado, foco pra amanhã. Histórico privado, journaling honest.',
+    t: 'Agenda',
+    b: 'Eventos da casa com lembrete 30 minutos antes para todo mundo. Aniversários entram sozinhos.',
   },
   {
-    icon: 'calendar',
-    titulo: 'Visão semanal',
-    body: 'Grid 7 dias consolidando tarefas, hábitos, eventos e marcos de desafios. Vê a semana toda de relance.',
+    t: 'Recompensas',
+    b: 'Os pais cadastram prêmios (1h de tela, sorvete, brinquedo); os filhos juntam pontos e resgatam, com ou sem aprovação.',
+  },
+  {
+    t: 'Desafios',
+    b: 'Metas curtas com bônus de pontos, como “ler 5 livros até dezembro”. A família compete junto, com ranking.',
+  },
+  {
+    t: 'Pomodoro',
+    b: 'Timer 25/5 com a tela acordada, ligado a uma tarefa se quiser, e o histórico do dia.',
+  },
+];
+
+const PREMIUM: AppEntry[] = [
+  {
+    t: 'Cardápio',
+    b: 'Refeições da semana em 4 momentos por dia. Toda quinta, os itens viram lista de compras.',
+  },
+  {
+    t: 'Finanças',
+    b: 'Contas com vencimento, mesada em que a criança troca pontos por dinheiro e metas com cofrinho compartilhado.',
+  },
+  {
+    t: 'Planner',
+    b: 'Hábitos pessoais com sequência e mapa de calor, foco do dia, reflexão diária e visão da semana.',
+  },
+];
+
+const PLANNER = [
+  {
+    t: 'Hábitos pessoais',
+    b: 'Só seus (esteira, meditar, ler). Sequência diária e mapa de calor.',
+  },
+  { t: 'Foco do dia', b: 'Até 3 prioridades fixadas no topo da tela inicial.' },
+  {
+    t: 'Reflexão diária',
+    b: 'Três perguntas no fim do dia: gratidão, aprendizado, foco para amanhã. Histórico privado.',
+  },
+  {
+    t: 'Visão semanal',
+    b: 'Os 7 dias numa grade: tarefas, hábitos, eventos e marcos de desafios.',
   },
 ];
 
 const TIERS = [
   {
     id: 'essencial',
-    nome: 'Casa Leve Essencial',
-    preco: 'R$ 9,90',
-    periodo: '/mês',
-    descricao: 'O básico pra família funcionar',
-    features: [
+    name: 'Essencial',
+    price: '9,90',
+    note: 'O básico para a família funcionar',
+    items: [
       'Tarefas com pontos e ranking',
       'Lista de compras compartilhada',
       'Agenda da casa',
-      'Recompensas',
-      'Desafios',
-      'Família e ranking',
+      'Recompensas e desafios',
       'Pomodoro',
-      'Push notifications',
-      'Até 10 membros por casa',
+      'Notificações no celular',
+      'Até 10 pessoas por casa',
     ],
-    destaque: false,
   },
   {
     id: 'premium',
-    nome: 'Casa Leve Premium',
-    preco: 'R$ 19,90',
-    periodo: '/mês',
-    descricao: 'Tudo do Essencial + apps premium',
-    features: [
+    name: 'Premium',
+    price: '19,90',
+    note: 'Tudo do Essencial, mais três apps',
+    items: [
       'Tudo do Essencial',
-      '🥗 Cardápio (planejamento de refeições)',
-      '💰 Finanças (contas, mesada, metas)',
-      '📔 Planner (hábitos, foco, reflexão, semana)',
+      'Cardápio: refeições da semana',
+      'Finanças: contas, mesada e metas',
+      'Planner: hábitos, foco, reflexão e semana',
     ],
-    destaque: true,
   },
 ];
 
-const PRINCIPIOS = [
-  {
-    titulo: 'Menos cobrança',
-    body: 'O sistema mostra o que precisa ser feito. Ninguém precisa ficar lembrando ninguém.',
-  },
-  {
-    titulo: 'Mais clareza',
-    body: 'Responsabilidades e acordos ficam visíveis. Todo mundo enxerga o mesmo.',
-  },
-  {
-    titulo: 'Mais autonomia',
-    body: 'Crianças acompanham sua rotina com incentivo, não com pressão.',
-  },
-  {
-    titulo: 'Sem burocracia',
-    body: 'Rápido de usar no dia a dia. Profundo na leitura do problema.',
-  },
-];
+const i = (n: number) => ({ '--i': n }) as CSSProperties;
 
-const COMOFUNCIONA = [
-  {
-    n: '01',
-    titulo: 'Cria sua casa',
-    body: 'Faz login com email (sem senha — código de 6 dígitos). Sua casa aparece pronta com 30 dias grátis liberando tudo do Premium.',
-  },
-  {
-    n: '02',
-    titulo: 'Convida a família',
-    body: 'Adiciona até 10 membros (esposa, filhos, sogros, faxineira). Define o papel de cada um — adulto ou criança. Eles entram pelo email convite.',
-  },
-  {
-    n: '03',
-    titulo: 'Configura rotina',
-    body: 'Cria tarefas recorrentes (diárias, semanais, quinzenais, mensais), define pontos, atribui pra alguém ou rotaciona. Recompensas e desafios pra premiar.',
-  },
-  {
-    n: '04',
-    titulo: 'Família roda junto',
-    body: 'Cada um vê suas tarefas hoje, marca quando faz. Pontos somam, ranking aparece, push avisa do que importa. Adulto aprova quando criança termina.',
-  },
-];
+function Kicker({ children, color }: { children: ReactNode; color: string }) {
+  return (
+    <p
+      className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.28em]"
+      style={{ color }}
+    >
+      <span className="tri text-[8px]" aria-hidden="true" />
+      {children}
+    </p>
+  );
+}
+
+function AppRow({
+  a,
+  n,
+  color,
+  premium,
+}: {
+  a: AppEntry;
+  n: number;
+  color: string;
+  premium?: boolean;
+}) {
+  return (
+    <li
+      className={`iv iv-up grid grid-cols-[3.2rem_1fr] gap-x-4 border-b border-[color:var(--line-strong)] py-6 sm:items-baseline ${
+        premium ? 'sm:grid-cols-[4.5rem_1fr]' : 'sm:grid-cols-[4.5rem_11rem_1fr]'
+      }`}
+      style={i(n % 6)}
+    >
+      <span className="display text-[clamp(1.8rem,3vw,2.6rem)] tabular-nums" style={{ color }}>
+        {String(n).padStart(2, '0')}
+      </span>
+      <h3 className="text-[21px] font-bold tracking-tight">{a.t}</h3>
+      <p
+        className={`col-start-2 mt-1 text-[15.5px] leading-[1.65] text-[color:var(--ink-muted)] ${
+          premium ? '' : 'sm:col-start-3 sm:mt-0'
+        }`}
+      >
+        {a.b}
+      </p>
+    </li>
+  );
+}
 
 export default function CasaLevePage() {
+  const p = productBySlug('casa-leve');
+  const betaHref = contactHref('Quero testar o Casa Leve (beta)');
+
   return (
     <>
       <JsonLd
@@ -244,466 +246,498 @@ export default function CasaLevePage() {
         })}
       />
 
-      {/* Hero banner */}
-      <section className="relative aspect-[4/5] overflow-hidden border-b border-[color:var(--line)] md:aspect-[16/9] lg:aspect-[3/1]">
-        <Image
-          src="/images/casa-leve-banner-product-mobile.png"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center md:hidden"
-        />
-        <Image
-          src="/images/casa-leve-banner-product-md.png"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="hidden object-cover object-center md:block lg:hidden"
-        />
-        <Image
-          src="/images/casa-leve-banner-product.png"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="hidden object-cover object-center lg:block"
-        />
-      </section>
-
-      {/* Hero copy */}
-      <section className="border-b border-[color:var(--line)]">
-        <div className="mx-auto max-w-[1240px] px-6 py-14 lg:px-10 lg:py-20">
-          <div className="flex max-w-3xl flex-col">
-            <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--gold-soft)]">
-              Beta privado · TestFlight aberto
-            </p>
-            <h1 className="mt-5 text-balance text-[32px] font-semibold leading-[1.06] tracking-[-0.02em] text-[color:var(--ink)] md:text-[42px] lg:text-[52px]">
-              <span className="font-serif italic text-[color:var(--gold-soft)]">Casa Leve</span> —
-              família organizada, juntos.
+      {/* 1 · HERO — warm, the day's tasks ticking off */}
+      <section
+        className="pk-hero relative flex items-center overflow-hidden"
+        style={{ background: p.colorSoft }}
+      >
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute right-[-8%] top-[-25%] h-[44rem] w-[44rem] rounded-full bg-[radial-gradient(closest-side,rgba(255,255,255,0.7),transparent_70%)]" />
+          <div className="tri-grid absolute inset-0" />
+        </div>
+        <div className="relative mx-auto grid w-full max-w-[1240px] gap-14 px-6 pb-[calc(72px+var(--hero-cut))] pt-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:gap-10 lg:px-10 lg:pb-[calc(48px+var(--hero-cut))] lg:pt-8">
+          <div>
+            <div className="pk-load-up flex flex-wrap items-center gap-3">
+              <ProductTile product={p} size={40} />
+              <p
+                className="text-[24px] font-extrabold tracking-tight"
+                style={{ color: p.colorInk }}
+              >
+                {p.name}
+              </p>
+              <span
+                className="rounded-full px-2.5 py-1 text-[10.5px] font-semibold uppercase tracking-[0.16em] text-white"
+                style={{ background: p.colorInk }}
+              >
+                {p.status} · {p.audience.replace(/^Para /, 'para ')}
+              </span>
+            </div>
+            <h1 className="pk-hero-title display mt-7 text-balance text-[color:var(--ink)] lg:mt-8">
+              <span className="pk-load-up block" style={{ '--d': 120 } as CSSProperties}>
+                Ninguém precisa ficar
+              </span>
+              <span
+                className="pk-load-up block"
+                style={{ color: p.colorInk, '--d': 320 } as CSSProperties}
+              >
+                lembrando ninguém.
+              </span>
             </h1>
-
-            <p className="mt-6 max-w-xl text-[16px] leading-[1.65] text-[color:var(--ink-muted)] md:text-[18px]">
-              9 apps integrados pra rotina familiar: tarefas com pontos, compras, agenda,
-              recompensas, desafios, finanças, cardápio, hábitos e Pomodoro. Sem cobrança, com
-              clareza, com autonomia.
-            </p>
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href="#pricing"
-                className="inline-flex items-center gap-2 rounded-full bg-[color:var(--gold)] px-6 py-3.5 text-[14.5px] font-semibold text-[color:var(--on-gold)] transition hover:bg-[color:var(--gold-soft)]"
-              >
-                Ver planos →
-              </a>
-              <a
-                href="#contato"
-                className="inline-flex items-center gap-2 rounded-full border border-[color:var(--line-strong)] px-6 py-3.5 text-[14.5px] font-semibold text-[color:var(--ink)] transition hover:border-[color:var(--gold)]/50"
-              >
-                Pedir acesso ao beta
-              </a>
+            <div className="pk-load-up" style={{ '--d': 520 } as CSSProperties}>
+              <p className="mt-7 max-w-[34rem] text-[17px] leading-[1.6] text-[color:var(--ink-muted)] md:text-[18.5px]">
+                {p.tagline} Tarefas com pontos, compras, agenda, recompensas e desafios num app só.
+                O app mostra o que precisa ser feito; as crianças cuidam da própria rotina.
+              </p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <a
+                  href={betaHref}
+                  className="group inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-[15px] font-semibold text-white transition hover:brightness-110"
+                  style={{ background: p.colorInk }}
+                >
+                  Pedir acesso ao beta
+                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                </a>
+                <a
+                  href="#planos"
+                  className="inline-flex items-center gap-2 rounded-full border border-[color:var(--line-strong)] px-6 py-3.5 text-[15px] font-semibold text-[color:var(--ink)] transition hover:border-[color:var(--ink)]"
+                >
+                  Ver planos
+                </a>
+              </div>
+              <p className="mt-4 text-[14px] text-[color:var(--ink-muted)]">
+                {p.offer} · beta privado no TestFlight (iOS)
+              </p>
             </div>
           </div>
+          <figure>
+            <HeroHouse />
+            <figcaption className="mt-16 text-center text-[12px] text-[color:var(--ink-dim)] lg:mt-32 lg:text-right">
+              Interface ilustrativa · nomes e valores de exemplo
+            </figcaption>
+          </figure>
         </div>
       </section>
 
-      {/* Para quem é */}
-      <section className="border-b border-[color:var(--line)]">
-        <div className="mx-auto max-w-[1240px] px-6 py-20 lg:px-10 lg:py-24">
-          <div className="mb-12">
-            <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
-              Para quem é
-            </p>
-            <h2 className="mt-4 text-balance text-[34px] font-semibold leading-[1.06] tracking-[-0.02em] text-[color:var(--ink)] md:text-[44px]">
-              Desenhado para{' '}
-              <span className="font-serif italic text-[color:var(--gold-soft)]">famílias</span> que
-              querem rodar com menos atrito.
-            </h2>
-            <p className="mt-6 max-w-2xl text-[16px] leading-[1.65] text-[color:var(--ink-muted)] md:text-[17px]">
-              Casa de casal com filhos. Pais separados que dividem responsabilidades. Trabalho
-              remoto + filhos em casa. Mãe ou pai sozinho querendo dividir o jogo com as crianças.
-              Avós próximos, sogros, faxineira — todo mundo cabe (até 10 pessoas na mesma casa).
-            </p>
-          </div>
-
-          <div className="relative overflow-hidden rounded-[24px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] shadow-[0_40px_120px_rgba(0,0,0,0.25)]">
-            <Image
-              src="/images/family-1.png"
-              alt="Família em casa dividindo uma tarefa cotidiana"
-              width={1536}
-              height={1024}
-              priority
-              sizes="(min-width: 1240px) 1160px, 100vw"
-              className="h-auto w-full"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Como funciona — 4 passos */}
-      <section className="border-b border-[color:var(--line)]">
-        <div className="mx-auto max-w-[1240px] px-6 py-20 lg:px-10 lg:py-24">
-          <div className="mb-14">
-            <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
-              Como funciona
-            </p>
-            <h2 className="mt-4 text-balance text-[34px] font-semibold leading-[1.06] tracking-[-0.02em] text-[color:var(--ink)] md:text-[44px]">
-              4 passos pra{' '}
-              <span className="font-serif italic text-[color:var(--gold-soft)]">
-                tirar do papel
-              </span>
-              .
-            </h2>
-          </div>
-
-          <div className="grid gap-px overflow-hidden rounded-[24px] border border-[color:var(--line-strong)] bg-[color:var(--line-strong)] sm:grid-cols-2 lg:grid-cols-4">
-            {COMOFUNCIONA.map((step) => (
-              <article key={step.n} className="bg-[color:var(--bg-elev)] p-7">
-                <span className="font-serif text-xs italic text-[color:var(--gold-soft)]">
-                  {step.n}
+      {/* 2 · PRINCIPLES — black */}
+      <section className="cut-top bg-[color:var(--dark)] text-[color:var(--bg)]">
+        <div className="mx-auto max-w-[1240px] px-6 py-24 lg:px-10 lg:py-32">
+          <Kicker color={p.color}>Como o Casa Leve pensa a rotina</Kicker>
+          <InView as="ul" className="mt-12 border-t border-white/12" threshold={0.2}>
+            {PRINCIPLES.map((x, k) => (
+              <li
+                key={x.t}
+                className="grid gap-3 border-b border-white/12 py-7 md:grid-cols-[1.25fr_0.75fr] md:items-center md:gap-10 lg:py-9"
+              >
+                <span
+                  className="iv iv-word display block text-[clamp(2.5rem,5.6vw,5.4rem)]"
+                  style={{ ...(k === 0 ? { color: p.color } : {}), ...i(k * 2) }}
+                >
+                  {x.t}
                 </span>
-                <h3 className="mt-6 text-[18px] font-semibold tracking-tight text-[color:var(--ink)]">
-                  {step.titulo}
-                </h3>
-                <p className="mt-3 text-[14px] leading-[1.65] text-[color:var(--ink-muted)]">
-                  {step.body}
-                </p>
-              </article>
+                <span
+                  className="iv iv-up max-w-sm text-[16.5px] leading-[1.65] text-white/70"
+                  style={i(k * 2 + 1)}
+                >
+                  {x.b}
+                </span>
+              </li>
             ))}
-          </div>
+          </InView>
         </div>
       </section>
 
-      {/* Papéis na casa */}
-      <section className="border-b border-[color:var(--line)]">
-        <div className="mx-auto max-w-[1240px] px-6 py-20 lg:px-10 lg:py-24">
-          <div className="mb-12">
-            <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
-              Papéis na casa
-            </p>
-            <h2 className="mt-4 text-balance text-[34px] font-semibold leading-[1.06] tracking-[-0.02em] text-[color:var(--ink)] md:text-[44px]">
-              Cada um vê o que{' '}
-              <span className="font-serif italic text-[color:var(--gold-soft)]">faz sentido</span>{' '}
-              pra ele.
+      {/* 3 · WHO + HOW — cream */}
+      <section className="cut-top-rev overflow-x-clip bg-[color:var(--bg)] text-[color:var(--ink)]">
+        <div className="mx-auto max-w-[1240px] px-6 py-24 lg:px-10 lg:py-36">
+          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-16">
+            <div>
+              <Kicker color={p.colorInk}>Para quem é</Kicker>
+              <h2 className="display mt-6 max-w-[14ch] text-[clamp(2.6rem,5.4vw,5rem)]">
+                Toda família cabe. <span style={{ color: p.colorInk }}>Do jeito que ela é.</span>
+              </h2>
+              <p className="mt-7 max-w-lg text-[17px] leading-[1.7] text-[color:var(--ink-muted)]">
+                Casal com filhos. Pais separados que dividem as responsabilidades. Trabalho remoto
+                com as crianças em casa. Mãe ou pai sozinho querendo dividir o jogo com os filhos.
+                Avós, sogros, quem ajuda em casa: todo mundo entra.
+              </p>
+              <p className="mt-10 flex items-end gap-4 border-t border-[color:var(--line-strong)] pt-8">
+                <span
+                  className="display text-[clamp(5rem,10vw,8.5rem)] leading-[0.78]"
+                  style={{ color: p.colorInk }}
+                >
+                  10
+                </span>
+                <span className="mb-1 max-w-[12ch] text-[17px] font-semibold leading-[1.3]">
+                  pessoas na mesma casa, no mesmo app
+                </span>
+              </p>
+            </div>
+            <div className="relative lg:-mr-[max(0px,calc((100vw-1240px)/2+40px))]">
+              <div
+                aria-hidden="true"
+                className="absolute -bottom-6 -left-6 h-2/3 w-2/3 rounded-bl-[64px]"
+                style={{ background: p.colorSoft }}
+              />
+              <Image
+                src="/images/family-1.png"
+                alt="Família em casa dividindo as tarefas do dia: arrumar a mesa, organizar as mochilas, fazer o almoço"
+                width={1536}
+                height={1024}
+                sizes="(min-width: 1024px) 60vw, 100vw"
+                className="relative h-auto w-full rounded-[28px] lg:rounded-r-none"
+              />
+            </div>
+          </div>
+
+          <div className="mt-28 lg:mt-40">
+            <Kicker color={p.colorInk}>Como funciona</Kicker>
+            <h2 className="display mt-6 max-w-[16ch] text-[clamp(2.6rem,5.4vw,5rem)]">
+              Quatro passos para <span style={{ color: p.colorInk }}>tirar do papel.</span>
             </h2>
-            <p className="mt-6 max-w-2xl text-[16px] leading-[1.65] text-[color:var(--ink-muted)]">
-              A interface adapta automaticamente. Criança não vê configuração de plano. Adulto não
-              vê dashboard de admin. Cada papel tem o foco certo.
-            </p>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-3">
-            {PAPEIS.map((p) => (
-              <article
-                key={p.titulo}
-                className="rounded-[24px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] p-7"
-              >
-                <span className="text-3xl">{p.icone}</span>
-                <h3 className="mt-5 text-[20px] font-semibold tracking-tight text-[color:var(--ink)]">
-                  {p.titulo}
-                </h3>
-                <p className="mt-3 text-[14.5px] leading-[1.65] text-[color:var(--ink-muted)]">
-                  {p.body}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Galeria de Apps */}
-      <section id="apps" className="border-b border-[color:var(--line)]">
-        <div className="mx-auto max-w-[1240px] px-6 py-20 lg:px-10 lg:py-28">
-          <div className="mb-14">
-            <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
-              9 apps integrados
-            </p>
-            <h2 className="mt-4 text-balance text-[34px] font-semibold leading-[1.06] tracking-[-0.02em] text-[color:var(--ink)] md:text-[44px]">
-              Tudo que sua casa precisa{' '}
-              <span className="font-serif italic text-[color:var(--gold-soft)]">num app só</span>.
-            </h2>
-            <p className="mt-6 max-w-2xl text-[16px] leading-[1.65] text-[color:var(--ink-muted)]">
-              6 apps no plano Essencial. Mais 3 apps premium liberados no plano Premium. Os dados
-              são compartilhados — uma tarefa pode virar pomodoro, um item de cardápio vira lista de
-              compras, etc.
-            </p>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {APPS.map((app) => (
-              <article
-                key={app.key}
-                className="relative rounded-[20px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] p-6 transition hover:border-[color:var(--gold)]/40"
-              >
-                {app.premium && (
-                  <span className="absolute right-4 top-4 rounded-full bg-[color:var(--gold)]/15 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.15em] text-[color:var(--gold-soft)]">
-                    ✨ Premium
+            <InView
+              as="ol"
+              className="mt-14 grid gap-10 border-t border-[color:var(--line-strong)] pt-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8"
+            >
+              {STEPS.map((s, k) => (
+                <li key={s.n} className="iv iv-up" style={i(k * 2)}>
+                  <span
+                    className="display flex items-start gap-3 text-[clamp(3.4rem,6vw,5.2rem)]"
+                    style={{ color: p.colorInk }}
+                  >
+                    {s.n}
+                    <span className="tri mt-[0.12em] text-[0.18em]" aria-hidden="true" />
                   </span>
-                )}
-                <h3 className="text-[18px] font-semibold tracking-tight text-[color:var(--ink)]">
-                  {app.titulo}
-                </h3>
-                <p className="mt-3 text-[14px] leading-[1.65] text-[color:var(--ink-muted)]">
-                  {app.descricao}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Planner spotlight */}
-      <section className="border-b border-[color:var(--line)] bg-gradient-to-b from-[color:var(--bg-elev)] to-[color:var(--surface-deep)]">
-        <div className="mx-auto max-w-[1240px] px-6 py-20 lg:px-10 lg:py-24">
-          <div className="mb-12 max-w-3xl">
-            <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--gold-soft)]">
-              Destaque · Premium
-            </p>
-            <h2 className="mt-4 text-balance text-[34px] font-semibold leading-[1.06] tracking-[-0.02em] text-[color:var(--ink)] md:text-[44px]">
-              <span className="font-serif italic text-[color:var(--gold-soft)]">Planner</span> — seu
-              canto pessoal dentro da casa.
-            </h2>
-            <p className="mt-6 text-[16px] leading-[1.65] text-[color:var(--ink-muted)] md:text-[17px]">
-              Tarefa é pra família. Hábito é pra você. O Planner reúne suas práticas pessoais de
-              auto-melhoria — sem pontos, sem ranking. Só consistência.
-            </p>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {PLANNER_FEATURES.map((f) => (
-              <article
-                key={f.titulo}
-                className="rounded-[20px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] p-6"
-              >
-                <h3 className="text-[16px] font-semibold tracking-tight text-[color:var(--ink)]">
-                  {f.titulo}
-                </h3>
-                <p className="mt-3 text-[13.5px] leading-[1.65] text-[color:var(--ink-muted)]">
-                  {f.body}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Mockups */}
-      <section id="features" className="border-b border-[color:var(--line)]">
-        <div className="mx-auto max-w-[1240px] px-6 py-20 lg:px-10 lg:py-28">
-          <div className="mb-14">
-            <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
-              Em ação
-            </p>
-            <h2 className="mt-4 text-balance text-[34px] font-semibold leading-[1.06] tracking-[-0.02em] text-[color:var(--ink)] md:text-[44px]">
-              No celular,{' '}
-              <span className="font-serif italic text-[color:var(--gold-soft)]">todo dia</span>.
-            </h2>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-3">
-            {[
-              {
-                n: '01',
-                title: 'Rotina da casa',
-                body: 'Tarefas hoje, streak de dias em chamas, recompensas perto.',
-                mockup: <RoutineMockup />,
-              },
-              {
-                n: '02',
-                title: 'Família junto',
-                body: 'Ranking, gastos, eventos da semana. Quem é responsável por quê.',
-                mockup: <CollabMockup />,
-              },
-              {
-                n: '03',
-                title: 'Hábitos pessoais',
-                body: 'Heatmap, streak por hábito, reflexão diária privada.',
-                mockup: <HabitsMockup />,
-              },
-            ].map((f) => (
-              <article
-                key={f.n}
-                className="group flex flex-col overflow-hidden rounded-[24px] border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] transition hover:border-[color:var(--gold)]/30"
-              >
-                <div className="relative h-[520px] border-b border-[color:var(--line)] bg-gradient-to-b from-[color:var(--bg-elev-2)] to-[color:var(--bg-elev)]">
-                  {f.mockup}
-                </div>
-                <div className="p-7">
-                  <span className="font-serif text-xs italic text-[color:var(--gold-soft)]">
-                    {f.n}
-                  </span>
-                  <h3 className="mt-3 text-[22px] font-semibold tracking-tight text-[color:var(--ink)]">
-                    {f.title}
-                  </h3>
-                  <p className="mt-3 text-[15px] leading-[1.65] text-[color:var(--ink-muted)]">
-                    {f.body}
+                  <p className="mt-4 text-[21px] font-semibold tracking-tight">{s.t}</p>
+                  <p className="mt-2 text-[15.5px] leading-[1.65] text-[color:var(--ink-muted)]">
+                    {s.b}
                   </p>
-                </div>
-              </article>
-            ))}
+                </li>
+              ))}
+            </InView>
           </div>
         </div>
       </section>
 
-      {/* Pricing */}
-      <section id="pricing" className="border-b border-[color:var(--line)]">
-        <div className="mx-auto max-w-[1240px] px-6 py-20 lg:px-10 lg:py-24">
-          <div className="mb-14 text-center">
-            <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
-              Planos
-            </p>
-            <h2 className="mt-4 text-balance text-[34px] font-semibold leading-[1.06] tracking-[-0.02em] text-[color:var(--ink)] md:text-[44px]">
-              Trial de 30 dias com{' '}
-              <span className="font-serif italic text-[color:var(--gold-soft)]">tudo</span>{' '}
-              liberado.
-            </h2>
-            <p className="mx-auto mt-6 max-w-xl text-[15.5px] leading-[1.65] text-[color:var(--ink-muted)]">
-              Cobrança por casa, não por usuário. Convidados não pagam. Cancela quando quiser.
-            </p>
-          </div>
-
-          <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
-            {TIERS.map((tier) => (
-              <article
-                key={tier.id}
-                className={`relative rounded-[24px] border p-8 ${
-                  tier.destaque
-                    ? 'border-[color:var(--gold)]/60 bg-[color:var(--bg-elev-2)] shadow-[0_40px_120px_rgba(217,168,74,0.15)]'
-                    : 'border-[color:var(--line-strong)] bg-[color:var(--bg-elev)]'
-                }`}
-              >
-                {tier.destaque && (
-                  <span className="absolute -top-3 left-8 rounded-full bg-[color:var(--gold)] px-3 py-1 text-[10.5px] font-semibold uppercase tracking-[0.15em] text-[color:var(--on-gold)]">
-                    Recomendado
-                  </span>
-                )}
-                <h3 className="text-[20px] font-semibold tracking-tight text-[color:var(--ink)]">
-                  {tier.nome}
-                </h3>
-                <p className="mt-2 text-[14px] text-[color:var(--ink-muted)]">{tier.descricao}</p>
-                <p className="mt-6 text-[40px] font-semibold tracking-tight text-[color:var(--ink)]">
-                  {tier.preco}
-                  <span className="text-[16px] font-normal text-[color:var(--ink-muted)]">
-                    {tier.periodo}
-                  </span>
-                </p>
-                <ul className="mt-7 space-y-3 border-t border-[color:var(--line)] pt-7">
-                  {tier.features.map((f) => (
-                    <li
-                      key={f}
-                      className="flex items-start gap-3 text-[14px] text-[color:var(--ink-muted)]"
-                    >
-                      <span className="mt-0.5 text-[color:var(--gold-soft)]">✓</span>
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                </ul>
-              </article>
+      {/* 4 · ROLES — full-bleed orange, one screen per person */}
+      <section className="cut-top overflow-x-clip text-white" style={{ background: p.colorInk }}>
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute left-[-15%] top-[5%] h-[40rem] w-[40rem] rounded-full bg-[radial-gradient(closest-side,rgba(255,255,255,0.14),transparent_70%)]" />
+          <div className="pk-tri-grid-light absolute inset-0" />
+        </div>
+        <div className="relative mx-auto max-w-[1240px] px-6 py-24 lg:px-10 lg:py-36">
+          <Kicker color="#ffe1c4">Papéis na casa</Kicker>
+          <h2 className="display mt-6 max-w-[15ch] text-[clamp(2.8rem,6.4vw,6rem)]">
+            A mesma casa. <span className="text-[#ffe1c4]">Uma tela para cada um.</span>
+          </h2>
+          <p className="mt-7 max-w-xl text-[17px] leading-[1.7] text-white/85">
+            O app se adapta a quem abre. A criança não vê configuração de plano; o adulto não vê o
+            painel de quem cuida da casa. Cada um com o foco certo.
+          </p>
+          <InView
+            as="ul"
+            className="mt-16 grid gap-14 md:grid-cols-3 md:gap-8 lg:gap-12"
+            threshold={0.25}
+          >
+            {ROLES.map((r, k) => (
+              <li key={r.tag} className="iv iv-up" style={i(k * 2)}>
+                <div className={k === 1 ? 'md:translate-y-10' : ''}>
+                  {r.mock}
+                  <div className="mt-8 border-t border-white/25 pt-5">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/65">
+                      {r.tag}
+                    </p>
+                    <h3 className="mt-2 text-[24px] font-bold tracking-tight">{r.t}</h3>
+                    <p className="mt-2 text-[15.5px] leading-[1.65] text-white/80">{r.b}</p>
+                  </div>
+                </div>
+              </li>
             ))}
-          </div>
-
-          <p className="mt-12 text-center text-[13px] text-[color:var(--ink-dim)]">
-            * Crianças e adultos convidados são gratuitos · até 10 membros por casa · cobrança via
-            App Store
+          </InView>
+          <p className="mt-20 text-center text-[12px] text-white/60">
+            Interface ilustrativa · nomes e valores de exemplo
           </p>
         </div>
       </section>
 
-      {/* Princípios */}
-      <section className="border-b border-[color:var(--line)]">
-        <div className="mx-auto max-w-[1240px] px-6 py-20 lg:px-10 lg:py-24">
-          <div className="mb-12">
-            <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">
-              Princípios do produto
-            </p>
-            <h2 className="mt-4 text-balance text-[34px] font-semibold leading-[1.06] tracking-[-0.02em] text-[color:var(--ink)] md:text-[44px]">
-              Como o Casa Leve{' '}
-              <span className="font-serif italic text-[color:var(--gold-soft)]">pensa</span> rotina.
-            </h2>
-          </div>
-
-          <div className="grid gap-px overflow-hidden rounded-[24px] border border-[color:var(--line-strong)] bg-[color:var(--line-strong)] sm:grid-cols-2">
-            {PRINCIPIOS.map((p, i) => (
-              <article
-                key={p.titulo}
-                className="group bg-[color:var(--bg-elev)] p-8 transition hover:bg-[color:var(--bg-elev-2)]"
-              >
-                <span className="font-serif text-xs italic text-[color:var(--gold-soft)]">
-                  0{i + 1}
+      {/* 5 · THE NINE APPS — cream, as an index */}
+      <section
+        id="apps"
+        className="cut-top-rev overflow-x-clip bg-[color:var(--bg)] text-[color:var(--ink)]"
+      >
+        <div className="mx-auto max-w-[1240px] px-6 pt-24 lg:px-10 lg:pt-36">
+          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+            <div>
+              <Kicker color={p.colorInk}>No celular, todo dia</Kicker>
+              <h2 className="display mt-6 text-[clamp(2.8rem,7vw,6.6rem)]">
+                Nove apps.{' '}
+                <span className="block" style={{ color: p.colorInk }}>
+                  Uma casa.
                 </span>
-                <h3 className="mt-10 text-[22px] font-semibold tracking-tight text-[color:var(--ink)]">
-                  {p.titulo}
-                </h3>
-                <p className="mt-3 text-[15px] leading-[1.65] text-[color:var(--ink-muted)]">
-                  {p.body}
-                </p>
-              </article>
-            ))}
+              </h2>
+            </div>
+            <p className="max-w-md text-[17px] leading-[1.7] text-[color:var(--ink-muted)]">
+              Seis no Essencial, mais três no Premium. Os dados conversam: uma tarefa vira Pomodoro,
+              o cardápio da semana vira lista de compras.
+            </p>
           </div>
         </div>
-      </section>
-
-      {/* CTA */}
-      <section id="contato" className="border-b border-[color:var(--line)]">
-        <div className="mx-auto max-w-[1240px] px-6 py-20 lg:px-10 lg:py-24">
-          <div className="relative overflow-hidden rounded-[32px] border border-[color:var(--line-strong)] bg-gradient-to-br from-[color:var(--bg-elev-2)] via-[color:var(--bg-elev)] to-[color:var(--surface-deep)] px-8 py-14 md:px-14 md:py-16">
-            <div className="pointer-events-none absolute -right-20 -top-20 h-[26rem] w-[26rem] rounded-full bg-[radial-gradient(closest-side,rgba(217,168,74,0.18),transparent_70%)]" />
-            <div className="relative flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
-              <div className="max-w-xl">
-                <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[color:var(--gold-soft)]">
-                  — Acesso ao beta
-                </p>
-                <h2 className="mt-5 text-balance text-[32px] font-semibold leading-[1.06] tracking-[-0.02em] text-[color:var(--ink)] md:text-[40px]">
-                  Quer testar antes do lançamento?
-                </h2>
-                <p className="mt-5 text-[16px] leading-[1.7] text-[color:var(--ink-muted)]">
-                  Casa Leve está em beta privado no TestFlight (iOS). Mande seu email e a gente te
-                  coloca no próximo grupo de convidados — sem custo durante o beta.
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                <Link
-                  href="/tese"
-                  className="inline-flex items-center gap-2 rounded-full border border-[color:var(--line-strong)] px-6 py-3.5 text-[14.5px] font-semibold text-[color:var(--ink)] transition hover:border-[color:var(--gold)]/50"
-                >
-                  Ler a tese
-                </Link>
+        <figure className="mt-14 lg:mt-20" style={{ background: p.colorSoft }}>
+          <div className="relative mx-auto max-w-[1440px]">
+            <Image
+              src="/images/casa-leve-banner-product-mobile.png"
+              alt="Telas do Casa Leve: rotina da família, pontos e conquistas da criança, planejamento da semana"
+              width={1122}
+              height={1402}
+              sizes="100vw"
+              className="h-auto w-full md:hidden"
+            />
+            <Image
+              src="/images/casa-leve-banner-product.png"
+              alt="Telas do Casa Leve: rotina da família, pontos e conquistas da criança, planejamento da semana"
+              width={2172}
+              height={724}
+              sizes="(min-width: 1440px) 1440px, 100vw"
+              className="hidden h-auto w-full md:block"
+            />
+          </div>
+          <figcaption className="sr-only">Imagem ilustrativa do app</figcaption>
+        </figure>
+        <div className="mx-auto max-w-[1240px] px-6 pb-24 pt-16 lg:px-10 lg:pb-36 lg:pt-24">
+          <div className="grid gap-16 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[color:var(--ink-dim)]">
+                Essencial · {ESSENCIAL.length} apps
+              </p>
+              <InView
+                as="ol"
+                className="mt-4 border-t border-[color:var(--line-strong)]"
+                threshold={0.1}
+              >
+                {ESSENCIAL.map((a, k) => (
+                  <AppRow key={a.t} a={a} n={k + 1} color={p.colorInk} />
+                ))}
+              </InView>
+            </div>
+            <div className="lg:pt-0">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[color:var(--ink-dim)]">
+                Premium · mais {PREMIUM.length}
+              </p>
+              <InView
+                as="ol"
+                className="mt-4 border-t border-[color:var(--line-strong)]"
+                threshold={0.1}
+              >
+                {PREMIUM.map((a, k) => (
+                  <AppRow key={a.t} a={a} n={ESSENCIAL.length + k + 1} color={p.colorInk} premium />
+                ))}
+              </InView>
+              <p className="mt-6 text-[15px] leading-[1.65] text-[color:var(--ink-muted)]">
+                Liberados nos 30 dias grátis e no{' '}
                 <a
-                  href="mailto:contato@aralabs.com.br?subject=Beta%20Casa%20Leve"
-                  className="inline-flex items-center gap-2 rounded-full bg-[color:var(--gold)] px-6 py-3.5 text-[14.5px] font-semibold text-[color:var(--on-gold)] transition hover:bg-[color:var(--gold-soft)]"
+                  href="#planos"
+                  className="font-semibold underline underline-offset-4"
+                  style={{ color: p.colorInk }}
                 >
-                  Pedir acesso ao beta →
+                  plano Premium
                 </a>
-              </div>
+                .
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Legal */}
-      <section className="border-b border-[color:var(--line)]">
-        <div className="mx-auto max-w-[1240px] px-6 py-10 lg:px-10 lg:py-12">
-          <div className="flex flex-col gap-2 text-[13.5px] text-[color:var(--ink-muted)] sm:flex-row sm:items-center sm:justify-between">
-            <p>
-              Documentos legais do Casa Leve — exigidos para distribuição em loja e em conformidade
-              com a LGPD.
+      {/* 6 · PLANNER — dark, the personal corner */}
+      <section className="cut-top overflow-x-clip bg-[color:var(--dark)] text-white">
+        <div className="pointer-events-none absolute -right-40 top-0 h-[40rem] w-[40rem] rounded-full bg-[radial-gradient(closest-side,rgba(194,106,30,0.25),transparent_70%)]" />
+        <div className="relative mx-auto grid max-w-[1240px] gap-16 px-6 py-24 lg:grid-cols-2 lg:items-center lg:gap-20 lg:px-10 lg:py-36">
+          <div>
+            <Kicker color={p.color}>Destaque do Premium · Planner</Kicker>
+            <h2 className="display mt-6 max-w-[13ch] text-[clamp(2.6rem,5.4vw,5rem)]">
+              Tarefa é da família. <span style={{ color: p.color }}>Hábito é seu.</span>
+            </h2>
+            <p className="mt-7 max-w-lg text-[17px] leading-[1.7] text-white/70">
+              Um canto pessoal dentro da casa, sem pontos e sem ranking. Só consistência.
             </p>
-            <nav className="flex flex-wrap gap-x-6 gap-y-2">
+            <ul className="mt-10 border-t border-white/15">
+              {PLANNER.map((x) => (
+                <li
+                  key={x.t}
+                  className="grid gap-1 border-b border-white/15 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6"
+                >
+                  <span className="flex items-center gap-3 text-[15.5px] font-semibold">
+                    <span
+                      className="tri tri-r text-[7px]"
+                      style={{ color: p.color }}
+                      aria-hidden="true"
+                    />
+                    {x.t}
+                  </span>
+                  <span className="pl-[22px] text-[15px] leading-[1.6] text-white/65 sm:pl-0">
+                    {x.b}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <figure>
+            <InView threshold={0.3}>
+              <PlannerMock />
+            </InView>
+            <figcaption className="mt-8 text-center text-[12px] text-white/55">
+              Interface ilustrativa · nomes e valores de exemplo
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      {/* 7 · PLANS — cream, the prices as headlines */}
+      <section
+        id="planos"
+        className="cut-top-rev overflow-x-clip bg-[color:var(--bg)] text-[color:var(--ink)]"
+      >
+        <div className="mx-auto max-w-[1240px] px-6 py-24 lg:px-10 lg:py-36">
+          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+            <div>
+              <Kicker color={p.colorInk}>Planos</Kicker>
+              <h2 className="display mt-6 text-[clamp(2.6rem,6vw,5.6rem)]">
+                30 dias com tudo liberado.{' '}
+                <span className="block" style={{ color: p.colorInk }}>
+                  Depois, você escolhe.
+                </span>
+              </h2>
+            </div>
+            <p className="max-w-md text-[17px] leading-[1.7] text-[color:var(--ink-muted)]">
+              Cobrança por casa, não por pessoa: crianças e adultos convidados não pagam. Cancela
+              quando quiser.
+            </p>
+          </div>
+          <InView
+            as="ol"
+            className="mt-16 grid border-t border-[color:var(--line-strong)] md:grid-cols-2"
+          >
+            {TIERS.map((t, k) => {
+              const premium = t.id === 'premium';
+              return (
+                <li
+                  key={t.id}
+                  className={`iv iv-up px-0 pb-10 pt-8 sm:px-8 md:pb-12 ${
+                    premium
+                      ? 'px-5 md:border-l md:border-[color:var(--line-strong)]'
+                      : 'border-b border-[color:var(--line-strong)] md:border-b-0'
+                  }`}
+                  style={{ ...(premium ? { background: p.colorSoft } : {}), ...i(k * 2) }}
+                >
+                  <p className="flex flex-wrap items-center gap-3 text-[11.5px] font-semibold uppercase tracking-[0.2em] text-[color:var(--ink-dim)]">
+                    Casa Leve {t.name}
+                    {premium ? (
+                      <span
+                        className="rounded-full px-2 py-0.5 text-[9.5px] tracking-[0.14em] text-white"
+                        style={{ background: p.colorInk }}
+                      >
+                        Recomendado
+                      </span>
+                    ) : null}
+                  </p>
+                  <p
+                    className="display mt-5 text-[clamp(3.6rem,7.4vw,6.4rem)] leading-[0.9]"
+                    style={premium ? { color: p.colorInk } : undefined}
+                  >
+                    <span className="align-top text-[0.3em] tracking-normal">R$</span>
+                    {t.price}
+                    <span className="text-[0.2em] font-semibold tracking-normal text-[color:var(--ink-dim)]">
+                      /mês
+                    </span>
+                  </p>
+                  <p className="mt-3 text-[15px] text-[color:var(--ink-muted)]">{t.note}</p>
+                  <ul className="mt-7 space-y-2.5 border-t border-[color:var(--line-strong)] pt-6 text-[15.5px] font-semibold">
+                    {t.items.map((x) => (
+                      <li key={x} className="flex items-center gap-3">
+                        <span
+                          className="tri tri-r text-[7px]"
+                          style={{ color: p.colorInk }}
+                          aria-hidden="true"
+                        />
+                        {x}
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              );
+            })}
+          </InView>
+          <p className="mt-8 text-[13.5px] text-[color:var(--ink-dim)]">
+            Até 10 pessoas por casa · cobrança pela App Store · sem custo durante o beta
+          </p>
+        </div>
+      </section>
+
+      {/* 8 · BETA — full-bleed orange */}
+      <section
+        id="contato"
+        className="cut-top overflow-x-clip text-white"
+        style={{ background: p.colorInk }}
+        aria-labelledby="beta-title"
+      >
+        <div className="pointer-events-none absolute inset-0">
+          <div className="pk-tri-grid-light absolute inset-0" />
+          {/* The house, at the scale of the section, leaning off the right edge. */}
+          <Home
+            className="absolute -right-[18%] top-[46%] lg:top-[12%] h-[min(40rem,88vw)] w-[min(40rem,88vw)] rotate-[8deg] text-white/[0.09] lg:-right-[3%]"
+            strokeWidth={1.4}
+          />
+        </div>
+        <div className="relative mx-auto max-w-[1240px] px-6 py-24 lg:px-10 lg:py-36">
+          <Kicker color="#ffe1c4">Acesso ao beta</Kicker>
+          <h2 id="beta-title" className="display mt-6 max-w-[15ch] text-[clamp(2.8rem,7vw,6.6rem)]">
+            Quer testar antes do lançamento?
+          </h2>
+          <p className="mt-8 max-w-xl text-[17px] leading-[1.7] text-white/85">
+            O Casa Leve está em beta privado no TestFlight (iOS). Mande uma mensagem e a gente põe a
+            sua casa no próximo grupo de convidados, sem custo durante o beta.
+          </p>
+          <div className="mt-10 flex flex-wrap gap-3">
+            <a
+              href={betaHref}
+              className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-[15px] font-semibold transition hover:bg-[#ffe1c4]"
+              style={{ color: p.colorInk }}
+            >
+              Pedir acesso ao beta
+              <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+            </a>
+            <Link
+              href="/produtos"
+              className="inline-flex items-center gap-2 rounded-full border border-white/45 px-6 py-3.5 text-[15px] font-semibold text-white transition hover:bg-white/10"
+            >
+              Ver os outros produtos
+            </Link>
+          </div>
+          <nav
+            aria-label="Documentos do Casa Leve"
+            className="mt-20 flex flex-col gap-3 border-t border-white/25 pt-6 text-[13.5px] text-white/75 sm:flex-row sm:items-center sm:justify-between"
+          >
+            <p>Documentos do Casa Leve, para as lojas de apps e para a LGPD.</p>
+            <span className="flex flex-wrap gap-x-6 gap-y-2 font-semibold text-white">
               <Link
                 href="/produtos/casa-leve/privacidade"
-                className="text-[color:var(--gold-soft)] transition hover:text-[color:var(--gold)]"
+                className="underline-offset-4 hover:underline"
               >
                 Política de Privacidade
               </Link>
               <Link
                 href="/produtos/casa-leve/termos"
-                className="text-[color:var(--gold-soft)] transition hover:text-[color:var(--gold)]"
+                className="underline-offset-4 hover:underline"
               >
                 Termos de Uso
               </Link>
-            </nav>
-          </div>
+              <Link
+                href="/produtos/casa-leve/excluir-conta"
+                className="underline-offset-4 hover:underline"
+              >
+                Excluir conta
+              </Link>
+            </span>
+          </nav>
         </div>
       </section>
     </>

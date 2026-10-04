@@ -220,6 +220,553 @@ select {
   font-style: italic;
 }
 
+/* === pages: legal === */
+/*
+ * Product privacy / terms / support pages (components/legal/LegalPage.tsx). Reading pages: a
+ * product-coloured band, sticky contents, a ~68ch measure and triangle markers from the mark.
+ * --lg-accent / --lg-soft are set inline on .lg-page from the product (colorInk / colorSoft).
+ */
+.lg-page {
+  --lg-accent: var(--gold-soft);
+  --lg-soft: var(--bg-elev);
+}
+.lg-band {
+  position: relative;
+  overflow: hidden;
+  background: var(--lg-accent);
+  color: #fff;
+}
+.lg-band-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(60deg, rgba(255, 255, 255, 0.1) 0 1px, transparent 1px 96px),
+    repeating-linear-gradient(-60deg, rgba(255, 255, 255, 0.1) 0 1px, transparent 1px 96px);
+  mask-image: radial-gradient(ellipse 55% 85% at 88% 30%, #000 0%, transparent 75%);
+}
+.lg-band-hl {
+  color: var(--lg-soft);
+}
+.lg-band-muted {
+  color: rgba(255, 255, 255, 0.86);
+}
+.lg-tri-l {
+  transform: rotate(-90deg);
+}
+.lg-back {
+  color: rgba(255, 255, 255, 0.86);
+  transition: color 0.2s ease;
+}
+.lg-back:hover {
+  color: #fff;
+}
+.lg-docnav a {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  border-radius: 999px;
+  padding: 0.42rem 0.9rem;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+.lg-docnav a:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+.lg-docnav a[aria-current='page'] {
+  background: #fff;
+  border-color: #fff;
+  color: var(--lg-accent);
+}
+.lg-date {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.6rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  padding-top: 0.9rem;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.86);
+}
+.lg-date time {
+  font-weight: 700;
+  color: #fff;
+}
+
+/* Body column */
+.lg-body {
+  background: var(--bg);
+}
+.lg-lead {
+  margin: 0 0 2.25rem;
+  font-size: clamp(1.13rem, 1.5vw, 1.3rem);
+  font-weight: 500;
+  line-height: 1.62;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.lg-lead p {
+  margin: 0 0 1em;
+}
+.lg-lead strong {
+  font-weight: 700;
+}
+.lg-lead a,
+.lg-prose a {
+  color: var(--lg-accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+.lg-lead a:hover,
+.lg-prose a:hover {
+  text-decoration-thickness: 2px;
+}
+
+/* "Em 1 minuto": plain-language restatement, corner cut on the mark's slope. */
+.lg-summary {
+  margin: 0 0 3rem;
+  padding: 1.6rem 1.4rem 1.2rem;
+  background: var(--lg-soft);
+  clip-path: polygon(0 0, calc(100% - 28px) 0, 100% 28px, 100% 100%, 0 100%);
+}
+.lg-kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--lg-accent);
+}
+.lg-summary dl {
+  margin: 1.1rem 0 0;
+}
+.lg-summary dl > div {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.85rem 0;
+  border-top: 1px solid color-mix(in srgb, var(--lg-accent) 24%, transparent);
+}
+.lg-summary dt {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.lg-summary dd {
+  margin: 0;
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--ink-muted);
+}
+.lg-summary dd strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+.lg-summary-note {
+  margin-top: 0.4rem;
+  font-size: 13px;
+  color: var(--ink-dim);
+}
+@media (min-width: 640px) {
+  .lg-summary {
+    padding: 1.9rem 2.1rem 1.4rem;
+  }
+  .lg-summary dl > div {
+    grid-template-columns: 9rem minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* Long-form text */
+.lg-prose {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--ink-muted);
+}
+.lg-prose h2 {
+  position: relative;
+  margin: 3.75rem 0 1.1rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--line-strong);
+  font-size: clamp(1.4rem, 2.1vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  scroll-margin-top: 104px;
+}
+/* A small triangle standing on the section rule. */
+.lg-prose h2::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -11px;
+  width: 13px;
+  height: 11px;
+  background: var(--lg-accent);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+.lg-prose > section:first-child > h2 {
+  margin-top: 0;
+}
+.lg-num {
+  color: var(--lg-accent);
+  font-variant-numeric: tabular-nums;
+}
+.lg-prose h3 {
+  margin: 2.25rem 0 0.7rem;
+  font-size: 1.12rem;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  scroll-margin-top: 104px;
+}
+.lg-prose h3::before {
+  content: '';
+  display: inline-block;
+  width: 0.55em;
+  height: 0.6em;
+  margin-right: 0.6em;
+  background: var(--lg-accent);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+.lg-prose p {
+  margin: 0 0 1.1em;
+}
+.lg-prose strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+.lg-prose em {
+  font-style: italic;
+  color: var(--ink);
+}
+.lg-prose ul {
+  margin: 0.2em 0 1.4em;
+  padding: 0;
+  list-style: none;
+}
+.lg-prose ul > li {
+  position: relative;
+  margin: 0.5em 0;
+  padding-left: 1.5em;
+}
+.lg-prose ul > li::before {
+  content: '';
+  position: absolute;
+  left: 0.1em;
+  top: 0.66em;
+  width: 0.48em;
+  height: 0.5em;
+  background: var(--lg-accent);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+/* Numbered steps (account deletion). */
+.lg-prose ol {
+  margin: 0.4em 0 1.6em;
+  padding: 0;
+  list-style: none;
+  counter-reset: lg-step;
+  border-top: 1px solid var(--line);
+}
+.lg-prose ol > li {
+  position: relative;
+  padding: 0.95em 0 0.95em 3.2em;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  counter-increment: lg-step;
+}
+.lg-prose ol > li::before {
+  content: counter(lg-step);
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  display: grid;
+  place-items: center;
+  width: 2.15em;
+  height: 2.15em;
+  border-radius: 999px;
+  background: var(--lg-soft);
+  color: var(--lg-accent);
+  font-size: 0.92em;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.lg-prose hr {
+  margin: 3rem 0 1.25rem;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+/* Key/value sheet (Lumo credits). */
+.lg-prose dl {
+  margin: 1.6em 0 1.8em;
+  border-top: 2px solid var(--lg-accent);
+}
+.lg-prose dt {
+  padding-top: 0.85rem;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-dim);
+}
+.lg-prose dd {
+  margin: 0;
+  padding: 0.1rem 0 0.85rem;
+  border-bottom: 1px solid var(--line);
+  font-weight: 600;
+  color: var(--ink);
+}
+@media (min-width: 640px) {
+  .lg-prose dl {
+    display: grid;
+    grid-template-columns: 11rem minmax(0, 1fr);
+  }
+  .lg-prose dt,
+  .lg-prose dd {
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+}
+/* Support: questions as separate blocks; health alert. */
+.lg-qa {
+  padding-top: 0.25rem;
+}
+.lg-qa + .lg-qa {
+  margin-top: 1.75rem;
+  border-top: 1px dashed var(--line-strong);
+}
+.lg-qa > h3 {
+  margin-top: 1.5rem;
+}
+.lg-alert {
+  margin: 0 0 2.5rem;
+  padding: 1.1rem 1.3rem;
+  border-left: 3px solid var(--lg-accent);
+  background: var(--lg-soft);
+  font-size: 16.5px;
+  line-height: 1.65;
+  color: var(--ink);
+}
+.lg-alert p {
+  margin: 0;
+}
+.lg-mail {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  border-radius: 999px;
+  background: var(--lg-accent);
+  padding: 0.85rem 1.4rem;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  transition: filter 0.2s ease;
+}
+.lg-mail:hover {
+  filter: brightness(1.12);
+}
+/* Dedicatória */
+.lg-prose p.lg-letter {
+  font-size: clamp(1.12rem, 1.5vw, 1.28rem);
+  line-height: 1.7;
+  color: var(--ink);
+}
+.lg-quote {
+  position: relative;
+  margin: 3.5rem 0 0;
+  padding-top: 2.25rem;
+  border-top: 1px solid var(--line-strong);
+  font-size: clamp(1.6rem, 3.4vw, 2.45rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+.lg-quote::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -15px;
+  width: 17px;
+  height: 15px;
+  background: var(--lg-accent);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+/* Contents: sticky on desktop, collapsible on mobile. */
+.lg-toc-label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+.lg-toc ol {
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+  border-left: 1px solid var(--line-strong);
+}
+.lg-toc ol ol {
+  margin: 0;
+  border-left: 0;
+}
+.lg-toc a {
+  display: flex;
+  gap: 0.55em;
+  margin-left: -1px;
+  padding: 0.36rem 0 0.36rem 1rem;
+  border-left: 2px solid transparent;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--ink-muted);
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+.lg-toc ol ol a {
+  padding-left: 2.1rem;
+  font-size: 13px;
+}
+.lg-toc a:hover {
+  color: var(--ink);
+}
+.lg-toc a[aria-current='true'] {
+  border-left-color: var(--lg-accent);
+  color: var(--lg-accent);
+  font-weight: 600;
+}
+.lg-toc-n {
+  min-width: 1.35em;
+  color: var(--ink-dim);
+  font-variant-numeric: tabular-nums;
+}
+.lg-toc a[aria-current='true'] .lg-toc-n {
+  color: inherit;
+}
+.lg-toc-scroll {
+  max-height: calc(100svh - 200px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.lg-toc-m {
+  margin: 0 0 2.75rem;
+  border-top: 1px solid var(--line-strong);
+  border-bottom: 1px solid var(--line-strong);
+}
+.lg-toc-m > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.95rem 0;
+  list-style: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.lg-toc-m > summary::after {
+  content: '';
+  width: 0.65em;
+  height: 0.55em;
+  background: var(--lg-accent);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transition: transform 0.25s ease;
+}
+.lg-toc-m[open] > summary::after {
+  transform: rotate(180deg);
+}
+.lg-toc-m .lg-toc ol {
+  margin: 0 0 1.1rem;
+}
+.lg-print {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-muted);
+  transition: color 0.2s ease;
+}
+.lg-print:hover {
+  color: var(--lg-accent);
+}
+
+@media print {
+  html:has(.lg-page),
+  html:has(.lg-page) body {
+    background: #fff !important;
+  }
+  body:has(.lg-page) > header,
+  body:has(.lg-page) > footer,
+  .lg-noprint {
+    display: none !important;
+  }
+  .lg-band {
+    background: none;
+    color: #000;
+  }
+  .lg-band-inner {
+    padding-top: 0;
+    padding-bottom: 1.5rem;
+  }
+  .lg-band-grid {
+    display: none;
+  }
+  .lg-band,
+  .lg-band-hl,
+  .lg-band-muted,
+  .lg-date,
+  .lg-date time {
+    color: #000;
+  }
+  .lg-body.cut-top {
+    margin-top: 0;
+    padding-top: 0;
+    clip-path: none;
+  }
+  .lg-body {
+    background: #fff;
+  }
+  .lg-summary {
+    clip-path: none;
+    border: 1px solid #bbb;
+    break-inside: avoid;
+  }
+  .lg-prose {
+    font-size: 11pt;
+    line-height: 1.55;
+    color: #222;
+  }
+  .lg-prose h2,
+  .lg-prose h3 {
+    break-after: avoid;
+  }
+  .lg-prose p,
+  .lg-prose li {
+    orphans: 3;
+    widows: 3;
+  }
+  .lg-prose a[href^='http']::after {
+    content: ' (' attr(href) ')';
+    font-weight: 400;
+    font-size: 0.85em;
+  }
+}
+/* === end pages: legal === */
+
 /* ========================================================================
  * Home — editorial pass: triangle signature, orbit, product motion
  * ======================================================================== */
@@ -658,3 +1205,623 @@ select {
     }
   }
 }
+
+/* === pages: produtos/empresa/sob-medida === */
+
+/* Opening of each page: fits the first viewport on desktop (header + next section's diagonal). */
+@media (min-width: 1280px) {
+  .pg-hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100svh - var(--header-h));
+    padding-top: 24px;
+    padding-bottom: calc(32px + var(--hero-cut));
+  }
+}
+/* The lattice sits on the right, away from the headline. */
+.pg-grid-right {
+  mask-image: radial-gradient(ellipse 55% 75% at 85% 30%, #000 0%, transparent 75%);
+}
+.pg-grid-left {
+  mask-image: radial-gradient(ellipse 55% 75% at 10% 70%, #000 0%, transparent 75%);
+}
+
+/* /produtos: two giant lines; on desktop the size comes from the viewport height too. */
+.pg-title-produtos {
+  font-size: clamp(2.9rem, 15vw, 4.6rem);
+}
+@media (min-width: 640px) {
+  .pg-title-produtos {
+    font-size: clamp(3.4rem, 11vw, 7rem);
+  }
+}
+@media (min-width: 1024px) {
+  .pg-title-produtos {
+    font-size: clamp(4rem, 10.6vw, 9.6rem);
+  }
+}
+@media (min-width: 1280px) {
+  .pg-title-produtos {
+    /* 2 lines at .9 = 1.8em; kicker, lead and contents strip take ~420px. */
+    /* "Nenhum manual." is ~7.8em wide: 9.2rem is the most the 1160px column holds. */
+    font-size: clamp(
+      4.4rem,
+      min(10.1vw, calc((100svh - var(--header-h) - var(--hero-cut) - 420px) / 1.8)),
+      9.2rem
+    );
+  }
+}
+
+/* Contents strip: each product's colour bar grows in, and fully on hover. */
+.pg-index-item {
+  position: relative;
+}
+.pg-index-item::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--c);
+  transform-origin: left center;
+  transform: scaleX(0.3);
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: calc(0.2s + var(--i, 0) * 90ms);
+}
+.pg-index-item:hover::before,
+.pg-index-item:focus-visible::before {
+  transform: scaleX(1);
+  transition-delay: 0s;
+}
+[data-inview='false'] .pg-index-item::before {
+  transform: scaleX(0);
+}
+
+/* Business band: the product mark bleeding off the right edge. */
+.pg-band-mark {
+  right: -6vw;
+  top: 4%;
+  width: clamp(16rem, 46vw, 40rem);
+  height: auto;
+  opacity: 0.1;
+  rotate: 8deg;
+}
+
+/* Family rows: the product colour arrives as a triangle from the right edge. */
+.pg-prow-tri {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -14vw;
+  width: clamp(10rem, 40vw, 34rem);
+  background: var(--cs);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  transform-origin: right bottom;
+  transition:
+    transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
+    opacity 0.6s ease;
+}
+[data-inview='false'] .pg-prow-tri {
+  opacity: 0;
+  transform: translateX(30%);
+}
+.pg-prow:hover .pg-prow-tri {
+  transform: scale(1.12);
+}
+@media (min-width: 1024px) {
+  .pg-prow-alt .pg-prow-tri {
+    right: auto;
+    left: -14vw;
+    clip-path: polygon(0 0, 100% 100%, 0 100%);
+    transform-origin: left bottom;
+  }
+  [data-inview='false'] .pg-prow-alt .pg-prow-tri {
+    transform: translateX(-30%);
+  }
+}
+.pg-prow-name {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 92%;
+  background-size: 0 4px;
+  transition: background-size 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.pg-prow-name:hover,
+.pg-prow-name:focus-visible {
+  background-size: 100% 4px;
+}
+
+/* Big dark triangle in the corner of a gold section: the mark, tone on tone. */
+.pg-corner-tri {
+  position: absolute;
+  right: -8vw;
+  bottom: -2px;
+  width: clamp(16rem, 52vw, 46rem);
+  aspect-ratio: 1.15;
+  background: var(--dark);
+  opacity: 0.09;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pg-index-item::before,
+  .pg-prow-tri,
+  .pg-prow-name {
+    transition: none;
+  }
+}
+/* /empresa: three giant lines beside the masthead. */
+.pg-title-empresa {
+  font-size: clamp(2.8rem, 14vw, 4.6rem);
+}
+@media (min-width: 640px) {
+  .pg-title-empresa {
+    font-size: clamp(3.4rem, 13vw, 6.4rem);
+  }
+}
+@media (min-width: 1024px) {
+  .pg-title-empresa {
+    font-size: clamp(4rem, 8.4vw, 8rem);
+  }
+}
+@media (min-width: 1280px) {
+  .pg-title-empresa {
+    /* 3 lines at .9 = 2.7em; kicker and lead take ~200px. */
+    font-size: clamp(
+      4.4rem,
+      min(8.6vw, calc((100svh - var(--header-h) - var(--hero-cut) - 290px) / 2.7)),
+      8.8rem
+    );
+  }
+}
+
+/* The triangular lattice, in light lines, for black sections. */
+.pg-grid-dark {
+  background-image:
+    repeating-linear-gradient(60deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 96px),
+    repeating-linear-gradient(-60deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 96px);
+  mask-image: radial-gradient(ellipse 60% 70% at 80% 30%, #000 0%, transparent 75%);
+}
+/* /sob-medida: question in two lines, answer in the third. */
+.pg-title-sob {
+  font-size: clamp(2.6rem, 12vw, 4.4rem);
+}
+@media (min-width: 640px) {
+  .pg-title-sob {
+    font-size: clamp(3.2rem, 9vw, 5.8rem);
+  }
+}
+@media (min-width: 1024px) {
+  .pg-title-sob {
+    font-size: clamp(3.6rem, 9.2vw, 8rem);
+  }
+}
+@media (min-width: 1280px) {
+  .pg-title-sob {
+    /* "Seu problema ainda" is ~9.6em wide: 7.5rem is the most the 1160px column holds. */
+    font-size: clamp(
+      4rem,
+      min(8.3vw, calc((100svh - var(--header-h) - var(--hero-cut) - 300px) / 2.7)),
+      7.5rem
+    );
+  }
+}
+
+/* The base: pieces on a blueprint of thin rules. */
+.pg-blueprint {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+}
+.pg-blueprint > li {
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  transition:
+    opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+    background-color 0.3s ease;
+  transition-delay: calc(var(--i, 0) * 80ms), calc(var(--i, 0) * 80ms), 0s;
+}
+.pg-blueprint > li:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+/* Steps: a track drawn through three triangle nodes (vertical on phones). */
+.pg-track {
+  position: absolute;
+  left: 9px;
+  top: 6px;
+  bottom: 0;
+  width: 2px;
+  background: var(--dark);
+  transform-origin: top center;
+  transition: transform 1.4s cubic-bezier(0.5, 0, 0.2, 1) 0.1s;
+}
+[data-inview='false'] .pg-track {
+  transform: scaleY(0);
+}
+.pg-node {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 18px;
+  background: var(--dark);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+@media (min-width: 768px) {
+  .pg-track {
+    left: 0;
+    right: 0;
+    top: 8px;
+    bottom: auto;
+    width: auto;
+    height: 2px;
+    transform-origin: left center;
+  }
+  [data-inview='false'] .pg-track {
+    transform: scaleX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pg-track,
+  .pg-blueprint > li {
+    transition: none;
+  }
+}
+/* === end pages: produtos/empresa/sob-medida === */
+
+/* === pages: apps (lumo/arakids/jornadas/sono-leve) === */
+
+/* Hero sized to the first desktop viewport (header + the next section's diagonal overlap). */
+.pa-hero-shell {
+  padding-top: 40px;
+  padding-bottom: calc(64px + var(--hero-cut));
+}
+@media (min-width: 1024px) {
+  .pa-hero-shell {
+    display: flex;
+    align-items: center;
+    min-height: calc(100svh - var(--header-h));
+    padding-top: 28px;
+    padding-bottom: calc(28px + var(--hero-cut));
+  }
+}
+.pa-hero-title {
+  font-size: clamp(3rem, 14vw, 4.6rem);
+}
+.pa-hero-title--xl {
+  font-size: clamp(3rem, 16.5vw, 5.4rem);
+}
+@media (min-width: 640px) {
+  .pa-hero-title {
+    font-size: clamp(3.6rem, 10vw, 6.2rem);
+  }
+}
+@media (min-width: 1024px) {
+  .pa-hero-title {
+    font-size: clamp(4rem, min(7.2vw, 11svh), 7.6rem);
+  }
+  .pa-hero-title--xl {
+    font-size: clamp(4.4rem, min(9.4vw, 15svh), 9.6rem);
+  }
+}
+
+@keyframes pa-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .pa-in {
+    animation: pa-in 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: calc(var(--i, 0) * 110ms);
+  }
+}
+
+.pa-btn {
+  box-shadow: 0 14px 30px -18px rgba(29, 24, 18, 0.6);
+}
+
+/* Faint triangular lattice for dark and coloured surfaces. */
+.pa-tri-grid-light {
+  background-image:
+    repeating-linear-gradient(60deg, rgba(255, 255, 255, 0.07) 0 1px, transparent 1px 96px),
+    repeating-linear-gradient(-60deg, rgba(255, 255, 255, 0.07) 0 1px, transparent 1px 96px);
+  mask-image: radial-gradient(ellipse 60% 70% at 72% 40%, #000 0%, transparent 75%);
+}
+
+/* Lumo: the real phone fades into the phrase bar; each word lights up as it is spoken. */
+.pa-lumo-phone {
+  mask-image: linear-gradient(#000 62%, transparent 96%);
+}
+@keyframes pa-say {
+  0%,
+  100% {
+    background-color: #fff;
+  }
+  30%,
+  60% {
+    background-color: #e9e3fa;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  [data-inview='true'] .pa-say {
+    animation: pa-say 0.9s ease calc(1.9s + var(--i, 0) * 230ms) 2;
+  }
+}
+
+/* Arakids: the age tiles grow out of the floor into a staircase; the tracks step right. */
+@keyframes pa-grow {
+  from {
+    transform: scaleY(0.12);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+@keyframes pa-flag {
+  from {
+    transform: translateY(14px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+.pa-ak-tile {
+  transform-origin: 50% 100%;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .pa-ak-tile {
+    animation: pa-grow 0.9s cubic-bezier(0.2, 0.9, 0.2, 1.08) both;
+    animation-delay: calc(0.2s + var(--i, 0) * 120ms);
+  }
+  .pa-ak-flag {
+    animation: pa-flag 0.6s cubic-bezier(0.2, 0.9, 0.2, 1.2) 1.3s both;
+  }
+}
+@media (min-width: 1024px) {
+  .pa-stair {
+    margin-left: calc(var(--i, 0) * 8%);
+  }
+}
+
+/* Sono Leve: a few stars, the timer ring drawing in, bars rising night by night. */
+.pa-stars {
+  background-image:
+    radial-gradient(1.5px 1.5px at 12% 18%, rgba(255, 255, 255, 0.7), transparent 60%),
+    radial-gradient(1px 1px at 27% 62%, rgba(255, 255, 255, 0.55), transparent 60%),
+    radial-gradient(1.5px 1.5px at 41% 9%, rgba(255, 255, 255, 0.6), transparent 60%),
+    radial-gradient(1px 1px at 58% 34%, rgba(255, 255, 255, 0.5), transparent 60%),
+    radial-gradient(1.5px 1.5px at 66% 78%, rgba(255, 255, 255, 0.45), transparent 60%),
+    radial-gradient(1px 1px at 79% 14%, rgba(255, 255, 255, 0.7), transparent 60%),
+    radial-gradient(1.5px 1.5px at 88% 52%, rgba(255, 255, 255, 0.5), transparent 60%),
+    radial-gradient(1px 1px at 6% 84%, rgba(255, 255, 255, 0.45), transparent 60%),
+    radial-gradient(1px 1px at 35% 90%, rgba(255, 255, 255, 0.4), transparent 60%),
+    radial-gradient(1.5px 1.5px at 95% 92%, rgba(255, 255, 255, 0.4), transparent 60%);
+}
+@keyframes pa-ring {
+  from {
+    stroke-dashoffset: var(--c);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .pa-sl-ring {
+    animation: pa-ring 1.6s cubic-bezier(0.3, 0.6, 0.2, 1) 0.4s both;
+  }
+}
+.pa-sl-bar {
+  transform-origin: 50% 100%;
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: calc(var(--i, 0) * 120ms);
+}
+[data-inview='false'] .pa-sl-bar {
+  transform: scaleY(0.04);
+}
+.pa-sl-axis {
+  height: 2px;
+  background-image: linear-gradient(90deg, currentColor 0 4px, transparent 4px 12px);
+  background-size: 12px 2px;
+  color: rgba(54, 64, 122, 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pa-sl-bar {
+    transition: none;
+  }
+}
+
+/* Jornadas: the week fills in day by day; progress bars grow; the ISBN line scans. */
+.pa-jd-day {
+  transition:
+    transform 0.45s cubic-bezier(0.3, 1.6, 0.5, 1),
+    background-color 0.3s ease,
+    color 0.3s ease;
+  transition-delay: calc(0.2s + var(--i, 0) * 160ms);
+}
+[data-inview='false'] .pa-jd-day {
+  transform: scale(0.7);
+  background-color: transparent !important;
+  color: #6c7886 !important;
+  box-shadow: inset 0 0 0 1.5px #2a3a4d;
+}
+@keyframes pa-jd-fill {
+  from {
+    transform: scaleX(0);
+  }
+}
+@keyframes pa-jd-scan {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(92px);
+  }
+}
+.pa-jd-fill {
+  transform-origin: 0 50%;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .pa-jd-fill {
+    animation: pa-jd-fill 1.4s cubic-bezier(0.2, 0.7, 0.2, 1) 0.6s both;
+  }
+  .pa-jd-scan {
+    animation: pa-jd-scan 2.8s ease-in-out infinite;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pa-jd-day {
+    transition: none;
+  }
+  .pa-jd-scan {
+    top: 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pa-btn {
+    transition: none;
+  }
+}
+/* === end pages: apps === */
+
+/* === pages: komyx/casa-leve === */
+
+/* Product hero: fills the first viewport under the header on desktop. */
+@media (min-width: 1024px) {
+  .pk-hero {
+    min-height: calc(100svh - var(--header-h));
+  }
+}
+.pk-hero-title {
+  font-size: clamp(2.7rem, 12.4vw, 4.4rem);
+}
+@media (min-width: 640px) {
+  .pk-hero-title {
+    font-size: clamp(3.4rem, 8.6vw, 5.6rem);
+  }
+}
+@media (min-width: 1024px) {
+  .pk-hero-title {
+    font-size: clamp(3.6rem, min(6.4vw, 10.5svh), 7.4rem);
+  }
+}
+/* Short desktop viewports (e.g. 1280×720): a smaller headline keeps the hero in one screen. */
+@media (min-width: 1024px) and (max-height: 800px) {
+  .pk-hero-title {
+    font-size: clamp(3.2rem, min(6vw, 9svh), 7.4rem);
+  }
+}
+
+/* The hero's triangular lattice, in white, for coloured surfaces. */
+.pk-tri-grid-light {
+  background-image:
+    repeating-linear-gradient(60deg, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px 96px),
+    repeating-linear-gradient(-60deg, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px 96px);
+  mask-image: radial-gradient(ellipse 70% 80% at 75% 45%, #000 0%, transparent 75%);
+}
+
+/* Load-time motion for heroes (on screen at first paint, so CSS-only; no InView flash). */
+@keyframes pk-up {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+}
+@keyframes pk-pop {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.9);
+  }
+}
+@keyframes pk-on {
+  from {
+    background-color: #fff;
+    border-color: var(--line-strong);
+    color: var(--ink-muted);
+  }
+}
+/* "backwards", not "both": once done, the element drops its animation (and compositor layer). */
+@media (prefers-reduced-motion: no-preference) {
+  .pk-load-up {
+    animation: pk-up 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+    animation-delay: calc(var(--d, 0) * 1ms);
+  }
+  .pk-load-pop {
+    animation: pk-pop 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+    animation-delay: calc(var(--d, 0) * 1ms);
+  }
+  .pk-load-on {
+    animation: pk-on 0.3s ease backwards;
+    animation-delay: calc(var(--d, 0) * 1ms);
+  }
+}
+
+/* In-view states (see InView): one value swaps for another, bars fill, cells light up. */
+.pk-swap > * {
+  grid-area: 1 / 1;
+  transition:
+    opacity 0.45s ease,
+    transform 0.55s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: calc(0.3s + var(--i, 0) * 260ms);
+}
+.pk-swap > .pk-a {
+  opacity: 0;
+  transform: translateY(-40%);
+}
+[data-inview='false'] .pk-swap > .pk-a {
+  opacity: 1;
+  transform: none;
+}
+[data-inview='false'] .pk-swap > .pk-b {
+  opacity: 0;
+  transform: translateY(40%);
+}
+.pk-fill {
+  transform-origin: left center;
+  transition: transform 1.3s cubic-bezier(0.2, 0.7, 0.2, 1) 0.3s;
+}
+[data-inview='false'] .pk-fill {
+  transform: scaleX(var(--from, 0));
+}
+.pk-fill-y {
+  transform-origin: center bottom;
+  transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: calc(0.3s + var(--i, 0) * 120ms);
+}
+[data-inview='false'] .pk-fill-y {
+  transform: scaleY(0);
+}
+.pk-cell {
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+  transition-delay: calc(0.2s + var(--i, 0) * 18ms);
+}
+[data-inview='false'] .pk-cell {
+  opacity: 0.15;
+  transform: scale(0.6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pk-swap > *,
+  .pk-fill,
+  .pk-fill-y,
+  .pk-cell {
+    transition: none;
+  }
+}
+/* === end pages: komyx/casa-leve === */

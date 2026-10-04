@@ -278,6 +278,7 @@ select {
   stroke-linecap: round;
 }
 .orbit-marker {
+  display: none;
   width: 11px;
   height: 10px;
   margin: -5px 0 0 -5.5px;
@@ -299,12 +300,18 @@ select {
     left: calc(var(--x) - 104px);
     top: calc(var(--y) - 46px);
     transform: translate3d(
-      calc(var(--px) * var(--depth) * -1px),
-      calc(var(--py) * var(--depth) * -1px),
-      0
-    );
+        calc(var(--px) * var(--depth) * -1px),
+        calc(var(--py) * var(--depth) * -1px),
+        calc(var(--z, 0) * 1px)
+      )
+      rotateY(calc(var(--px) * 4deg)) rotateX(calc(var(--py) * -4deg));
     transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
-    will-change: transform;
+  }
+  .orbit-layer {
+    perspective: 1200px;
+  }
+  .orbit-marker {
+    display: block;
   }
   .orbit-window {
     transform: rotate(var(--rot));
@@ -345,10 +352,14 @@ select {
 @keyframes orbit-drift {
   0%,
   100% {
-    transform: translate3d(calc(var(--tx) * -5px), calc(var(--ty) * -5px), 0);
+    transform: translate3d(
+      calc(var(--tx) * var(--amp, 5px) * -1),
+      calc(var(--ty) * var(--amp, 5px) * -1),
+      0
+    );
   }
   50% {
-    transform: translate3d(calc(var(--tx) * 5px), calc(var(--ty) * 5px), 0);
+    transform: translate3d(calc(var(--tx) * var(--amp, 5px)), calc(var(--ty) * var(--amp, 5px)), 0);
   }
 }
 @keyframes orbit-dash {
@@ -523,5 +534,63 @@ select {
   .komyx-rsvp,
   .komyx-flip-face {
     transition: none;
+  }
+}
+
+/* ------------------------------------------------------------------------
+ * Hero intro (see components/home/heroIntro.ts). <html data-intro> is set by an inline script
+ * before the hero paints and removed when the intro ends; these rules are its starting state.
+ * ------------------------------------------------------------------------ */
+.hero-line {
+  display: inline-block;
+}
+@media (min-width: 1024px) {
+  .hero-line {
+    display: block;
+  }
+}
+.hero-line-last {
+  display: block;
+}
+.hero-line-in {
+  display: inline-block;
+  transform-origin: 0 100%;
+}
+[data-intro] .hero-line {
+  clip-path: inset(-0.3em -0.3em -0.32em -0.3em);
+}
+[data-intro] .hero-line-in {
+  translate: 0 1.35em;
+}
+[data-intro] .hero-line-last .hero-line-in {
+  translate: none;
+  opacity: 0;
+}
+[data-intro] [data-intro-fade],
+[data-intro] [data-intro-orbit],
+[data-intro] .orbit-item {
+  opacity: 0;
+}
+[data-intro] .orbit-float,
+[data-intro] .orbit-path {
+  animation: none;
+}
+
+/* Komyx section: the pink layer opens from a tilted card (over black) into the full section. */
+@keyframes komyx-open {
+  from {
+    clip-path: polygon(56% 90px, 86% 50px, 88% 330px, 58% 370px);
+  }
+  to {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .komyx-fill {
+      animation: komyx-open linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 22%;
+    }
   }
 }

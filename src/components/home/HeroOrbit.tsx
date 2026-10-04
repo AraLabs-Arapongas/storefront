@@ -4,6 +4,7 @@ import { useEffect, useRef, type CSSProperties, type ReactNode } from 'react';
 import Link from 'next/link';
 import { PRODUCTS, type Product } from '@/lib/products';
 import { ProductTile } from '@/components/site/ProductMarks';
+import { runHeroIntro } from './heroIntro';
 
 /*
  * On wide screens (xl+) the product windows sit on one elliptical arc that wraps the right end of
@@ -35,6 +36,9 @@ function arcPath() {
 }
 
 const TILT = [-3, 3, -4, 3, -2, 4];
+/** Resting depth (px toward the viewer) and float amplitude per window, in PRODUCTS order. */
+const DEPTH_Z = [8, 5, 3, 1, -2, -4];
+const FLOAT = [4, 6, 3, 8, 5, 7];
 
 export function HeroOrbit({ children }: { children: ReactNode }) {
   const stage = useRef<HTMLDivElement>(null);
@@ -44,11 +48,15 @@ export function HeroOrbit({ children }: { children: ReactNode }) {
     if (!el) return;
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
     const wide = window.matchMedia('(min-width: 1280px)');
+    let introDone = false;
     let frame = 0;
+    let scrollFrame = 0;
     let tx = 0;
     let ty = 0;
+
+    // Pointer: subtle parallax + perspective tilt (desktop mouse only).
     const onMove = (e: PointerEvent) => {
-      if (e.pointerType !== 'mouse' || reduce.matches || !wide.matches) return;
+      if (!introDone || e.pointerType !== 'mouse' || reduce.matches || !wide.matches) return;
       const r = el.getBoundingClientRect();
       tx = ((e.clientX - r.left) / r.width - 0.5) * 2;
       ty = ((e.clientY - r.top) / r.height - 0.5) * 2;
@@ -63,12 +71,97 @@ export function HeroOrbit({ children }: { children: ReactNode }) {
       el.style.setProperty('--px', '0');
       el.style.setProperty('--py', '0');
     };
+
+    // Scroll: on desktop the Komyx window grows and travels toward the Komyx section while the
+    // others ease away; below xl each window gets a little scroll depth instead.
+    const items = Array.from(el.querySelectorAll<HTMLElement>('.orbit-item'));
+    const hero = el.closest('section');
+    let base: { li: HTMLElement; cx: number; cy: number }[] | null = null;
+    const measure = () => {
+      items.forEach((li) => {
+        li.style.translate = '';
+        li.style.scale = '';
+        li.style.opacity = '';
+      });
+      base = items.map((li) => {
+        const r = li.getBoundingClientRect();
+        return { li, cx: r.left + r.width / 2, cy: r.top + r.height / 2 + window.scrollY };
+      });
+    };
+    const applyScroll = () => {
+      scrollFrame = 0;
+      if (!introDone || reduce.matches || !hero) return;
+      const y = window.scrollY;
+      const h = hero.offsetHeight;
+      const p = Math.min(1, Math.max(0, y / (h * 0.8)));
+      const e = p * p * (3 - 2 * p);
+      if (wide.matches) {
+        if (!base) measure();
+        if (!base) return;
+        const vw = window.innerWidth;
+        const heroBottom = hero.offsetTop + h;
+        const stageCx = vw / 2;
+        base.forEach(({ li, cx, cy }) => {
+          if (p === 0) {
+            li.style.translate = '';
+            li.style.scale = '';
+            li.style.opacity = '';
+            li.style.zIndex = '';
+            return;
+          }
+          if (li.dataset.slug === 'komyx') {
+            const dx = (stageCx - cx) * e;
+            const dy = (heroBottom + 80 - cy) * e;
+            li.style.translate = `${dx.toFixed(1)}px ${dy.toFixed(1)}px`;
+            li.style.scale = (1 + 1.9 * e).toFixed(3);
+            li.style.zIndex = '6';
+          } else {
+            const away = cx >= stageCx ? 1 : -1;
+            li.style.translate = `${(away * 140 * e).toFixed(1)}px ${(-70 * e).toFixed(1)}px`;
+            li.style.scale = (1 - 0.12 * e).toFixed(3);
+            li.style.opacity = Math.max(0, 1 - e * 1.4).toFixed(3);
+          }
+        });
+      } else {
+        const depth = [0.05, 0.08, 0.03, 0.07, 0.04, 0.06];
+        items.forEach((li, i) => {
+          li.style.translate = y > h ? '' : `0 ${(-y * (depth[i] ?? 0.05)).toFixed(1)}px`;
+        });
+      }
+    };
+    const onScroll = () => {
+      if (!scrollFrame) scrollFrame = requestAnimationFrame(applyScroll);
+    };
+    const onResize = () => {
+      base = null;
+      onScroll();
+    };
+
+    const finishIntro = () => {
+      introDone = true;
+      applyScroll();
+    };
+    let stopIntro = () => {};
+    try {
+      stopIntro = runHeroIntro(el, finishIntro);
+    } catch {
+      // Never let the intro take the page down: show the final layout.
+      document.documentElement.removeAttribute('data-intro');
+      finishIntro();
+    }
+
     window.addEventListener('pointermove', onMove, { passive: true });
     el.addEventListener('pointerleave', onLeave);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onResize);
     return () => {
+      stopIntro();
       window.removeEventListener('pointermove', onMove);
       el.removeEventListener('pointerleave', onLeave);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onResize);
       cancelAnimationFrame(frame);
+      cancelAnimationFrame(scrollFrame);
     };
   }, []);
 
@@ -81,6 +174,7 @@ export function HeroOrbit({ children }: { children: ReactNode }) {
       {/* The orbit itself: dashed arc + triangle markers pointing the way. */}
       <svg
         aria-hidden="true"
+        data-intro-orbit
         viewBox="0 0 100 100"
         preserveAspectRatio="none"
         className="orbit-layer pointer-events-none absolute inset-0 hidden h-full w-full overflow-visible xl:block"
@@ -91,7 +185,8 @@ export function HeroOrbit({ children }: { children: ReactNode }) {
         <span
           key={i}
           aria-hidden="true"
-          className="orbit-layer orbit-marker tri absolute hidden xl:block"
+          data-intro-orbit
+          className="orbit-layer orbit-marker tri absolute"
           style={
             {
               left: `${m.x.toFixed(3)}%`,
@@ -132,10 +227,12 @@ function OrbitWindow({
     '--ty': at.ty.toFixed(3),
     '--rot': `${TILT[index % TILT.length]}deg`,
     '--depth': 4 + ((index * 3) % 6),
+    '--z': DEPTH_Z[index % DEPTH_Z.length],
+    '--amp': `${FLOAT[index % FLOAT.length]}px`,
     '--delay': `${index * -0.6}s`,
   } as CSSProperties;
   return (
-    <li className="orbit-item xl:pointer-events-auto xl:absolute" style={style}>
+    <li className="orbit-item xl:pointer-events-auto xl:absolute" style={style} data-slug={p.slug}>
       <div className="orbit-float">
         <Link
           href={p.href}

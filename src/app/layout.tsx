@@ -62,7 +62,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={jakarta.variable}>
+    <html lang="pt-BR" className={jakarta.variable} suppressHydrationWarning>
       <body className="min-h-screen bg-[color:var(--bg)] text-[color:var(--ink)]">
         <JsonLd data={organizationSchema()} />
         <Header />

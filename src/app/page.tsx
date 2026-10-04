@@ -8,6 +8,7 @@ import { PRODUCTS, countWord, productBySlug, productsByLine, type Product } from
 import { contactHref } from '@/lib/seo/site';
 import { KomyxMark } from '@/components/site/ProductMarks';
 import { HeroOrbit } from '@/components/home/HeroOrbit';
+import { INTRO_BOOT } from '@/components/home/heroIntro';
 import { InView } from '@/components/home/InView';
 import { KomyxLive } from '@/components/home/KomyxLive';
 import { ArakidsFeature, CasaLeveFeature, LumoFeature } from '@/components/home/FamilyLine';
@@ -105,20 +106,32 @@ export default function Home() {
 
       {/* 1 · HERO — giant type, products on an orbit around it */}
       <section className="relative overflow-hidden">
+        {/* Marks <html data-intro> before the hero paints (see heroIntro.ts). */}
+        <script dangerouslySetInnerHTML={{ __html: INTRO_BOOT }} />
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute left-[-15%] top-[-35%] h-[46rem] w-[46rem] rounded-full bg-[radial-gradient(closest-side,rgba(197,140,43,0.16),transparent_70%)]" />
           <div className="tri-grid absolute inset-0" />
         </div>
         <div className="relative mx-auto max-w-[1240px] px-6 pb-24 pt-10 lg:px-10 lg:pb-36 lg:pt-14">
           <HeroOrbit>
-            <Kicker>Tecnologia simples para pequenos negócios · Arapongas, PR</Kicker>
-            <h1 className="display rise mt-6 text-[clamp(3.2rem,9.4vw,8.6rem)] text-[color:var(--ink)]">
-              <span className="lg:block">Software</span>{' '}
-              <span className="lg:block">que cabe no</span>{' '}
-              <span className="lg:block">seu negócio.</span>{' '}
-              <span className="block text-[color:var(--gold-soft)]">Não o contrário.</span>
+            <div data-intro-fade>
+              <Kicker>Tecnologia simples para pequenos negócios · Arapongas, PR</Kicker>
+            </div>
+            <h1 className="display mt-6 text-[clamp(3.2rem,9.4vw,8.6rem)] text-[color:var(--ink)]">
+              <span className="hero-line">
+                <span className="hero-line-in">Software</span>
+              </span>{' '}
+              <span className="hero-line">
+                <span className="hero-line-in">que cabe no</span>
+              </span>{' '}
+              <span className="hero-line">
+                <span className="hero-line-in">seu negócio.</span>
+              </span>{' '}
+              <span className="hero-line hero-line-last text-[color:var(--gold-soft)]">
+                <span className="hero-line-in">Não o contrário.</span>
+              </span>
             </h1>
-            <div className="mt-10 max-w-[460px] lg:mt-14">
+            <div data-intro-fade className="mt-10 max-w-[460px] lg:mt-14">
               <p className="text-[18px] leading-[1.6] text-[color:var(--ink-muted)] md:text-[19px]">
                 Produtos prontos para assinar e sistemas sob medida, para quem não tem tempo de
                 aprender software.
@@ -179,10 +192,15 @@ export default function Home() {
 
       {/* 3 · KOMYX — full-bleed pink, the product working */}
       <section
-        className="cut-top-rev overflow-x-clip text-white"
-        style={{ background: komyx.colorInk }}
+        className="cut-top-rev overflow-x-clip bg-[color:var(--dark)] text-white"
         aria-labelledby="komyx-title"
       >
+        {/* The pink opens from a tilted card into the full section as it scrolls in. */}
+        <div
+          aria-hidden="true"
+          className="komyx-fill pointer-events-none absolute inset-0"
+          style={{ background: komyx.colorInk }}
+        />
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute right-[-12%] top-[-20%] h-[44rem] w-[44rem] rounded-full bg-[radial-gradient(closest-side,rgba(255,255,255,0.16),transparent_70%)]" />
         </div>

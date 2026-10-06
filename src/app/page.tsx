@@ -26,7 +26,7 @@ const FEATURES: Partial<Record<Product['slug'], (props: { n: number }) => ReactN
   lumo: LumoFeature,
 };
 
-const MOCKS: Partial<Record<Product['slug'], () => ReactNode>> = {
+const MOCKS: Partial<Record<Product['slug'], (props: { wide?: boolean }) => ReactNode>> = {
   'sono-leve': SonoLeveMock,
   jornadas: JornadasMock,
   'le-barista': LeBaristaMock,
@@ -333,40 +333,57 @@ export default function Home() {
                   style={{ background: p.colorInk }}
                 >
                   <div className="pointer-events-none absolute right-[-30%] top-[-30%] h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(closest-side,rgba(255,255,255,0.14),transparent_70%)]" />
-                  <div className="relative mx-auto max-w-[560px]">
-                    <p
-                      className="inline-flex items-center gap-2 rounded-full bg-white px-3.5 py-1.5 text-[12px] font-semibold"
-                      style={{ color: p.colorInk }}
-                    >
-                      <span
-                        aria-hidden="true"
-                        className="shimmer h-2 w-2 rounded-full"
-                        style={{ background: p.colorInk }}
-                      />
-                      {p.statusNote ?? p.status}
-                    </p>
-                    <p className="mt-6 text-[12px] font-semibold uppercase tracking-[0.2em] text-white/75">
-                      {p.audience}
-                    </p>
-                    <h3 className="display mt-3 text-[clamp(3.2rem,7vw,6.4rem)]">{p.name}</h3>
-                    <p className="mt-4 text-[clamp(1.2rem,1.8vw,1.45rem)] font-semibold leading-[1.3]">
-                      {p.tagline}
-                    </p>
-                    <p className="mt-4 text-[16px] leading-[1.7] text-white/85">{p.description}</p>
-                    {Mock ? (
-                      <InView className="mt-10 flex justify-center">
-                        <div className="iv iv-pop">
-                          <Mock />
+                  <div
+                    className={`relative mx-auto ${full && Mock ? 'grid max-w-[1240px] items-center gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-20' : 'max-w-[560px]'}`}
+                  >
+                    <div className={full && Mock ? 'max-w-[560px]' : ''}>
+                      <p
+                        className="inline-flex items-center gap-2 rounded-full bg-white px-3.5 py-1.5 text-[12px] font-semibold"
+                        style={{ color: p.colorInk }}
+                      >
+                        <span
+                          aria-hidden="true"
+                          className="shimmer h-2 w-2 rounded-full"
+                          style={{ background: p.colorInk }}
+                        />
+                        {p.statusNote ?? p.status}
+                      </p>
+                      <p className="mt-6 text-[12px] font-semibold uppercase tracking-[0.2em] text-white/75">
+                        {p.audience}
+                      </p>
+                      <h3 className="display mt-3 text-[clamp(3.2rem,7vw,6.4rem)]">{p.name}</h3>
+                      <p className="mt-4 text-[clamp(1.2rem,1.8vw,1.45rem)] font-semibold leading-[1.3]">
+                        {p.tagline}
+                      </p>
+                      <p className="mt-4 text-[16px] leading-[1.7] text-white/85">
+                        {p.description}
+                      </p>
+                      {Mock && !full ? (
+                        <InView className="mt-10 flex justify-center">
+                          <div className="iv iv-pop">
+                            <Mock />
+                          </div>
+                        </InView>
+                      ) : null}
+                      <Link
+                        href={p.href}
+                        className="group mt-10 inline-flex items-center gap-2 rounded-full border border-white/45 px-6 py-3.5 text-[15px] font-semibold transition hover:bg-white/10"
+                      >
+                        Conhecer o {p.name}
+                        <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                      </Link>
+                    </div>
+                    {Mock && full ? (
+                      <InView className="relative">
+                        <div
+                          aria-hidden="true"
+                          className="pointer-events-none absolute left-1/2 top-1/2 h-[26rem] w-[26rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(227,168,87,0.35),transparent_70%)]"
+                        />
+                        <div className="iv iv-pop relative">
+                          <Mock wide />
                         </div>
                       </InView>
                     ) : null}
-                    <Link
-                      href={p.href}
-                      className="group mt-10 inline-flex items-center gap-2 rounded-full border border-white/45 px-6 py-3.5 text-[15px] font-semibold transition hover:bg-white/10"
-                    >
-                      Conhecer o {p.name}
-                      <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-                    </Link>
                   </div>
                 </article>
               );

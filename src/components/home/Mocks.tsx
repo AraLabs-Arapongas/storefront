@@ -58,15 +58,48 @@ export function JornadasMock() {
 }
 
 /** The real espresso timer, cropped to the top of the phone so it sits level with the cards. */
-export function LeBaristaMock() {
+export function LeBaristaMock({ wide = false }: { wide?: boolean }) {
+  if (!wide) {
+    return (
+      <div className="h-[380px] w-[230px] [mask-image:linear-gradient(#000_80%,transparent)]">
+        <PhoneFrame
+          src="/images/le-barista/2-cronometro.png"
+          alt="Cronômetro do Le Barista em 27 segundos, com o aviso “No alvo: pode parar”"
+          sizes="230px"
+          shadow="deep"
+        />
+      </div>
+    );
+  }
+  // Full-row card: three phones fanned out, the timer in front.
   return (
-    <div className="h-[380px] w-[230px] [mask-image:linear-gradient(#000_80%,transparent)]">
-      <PhoneFrame
-        src="/images/le-barista/2-cronometro.png"
-        alt="Cronômetro do Le Barista em 27 segundos, com o aviso “No alvo: pode parar”"
-        sizes="230px"
-        shadow="deep"
-      />
+    <div className="relative mx-auto aspect-[10/9] w-full max-w-[520px] sm:aspect-auto sm:h-[520px]">
+      <div className="absolute left-[2%] top-[9%] w-[36%] sm:w-[200px]">
+        <PhoneFrame
+          src="/images/le-barista/1-inicio.png"
+          alt="Início do Le Barista com o café em andamento e as estatísticas"
+          sizes="200px"
+          tilt={-9}
+          shadow="deep"
+        />
+      </div>
+      <div className="absolute right-[2%] top-[9%] w-[36%] sm:w-[200px]">
+        <PhoneFrame
+          src="/images/le-barista/3-diagnostico.png"
+          alt="Diagnóstico do Le Barista sugerindo moer 1 clique mais fino"
+          sizes="200px"
+          tilt={9}
+          shadow="deep"
+        />
+      </div>
+      <div className="absolute left-1/2 top-0 w-[42%] -translate-x-1/2 sm:w-[230px]">
+        <PhoneFrame
+          src="/images/le-barista/2-cronometro.png"
+          alt="Cronômetro do Le Barista em 27 segundos, com o aviso “No alvo: pode parar”"
+          sizes="230px"
+          shadow="deep"
+        />
+      </div>
     </div>
   );
 }

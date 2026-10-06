@@ -1539,6 +1539,23 @@ select {
   mask-image: radial-gradient(ellipse 60% 70% at 72% 40%, #000 0%, transparent 75%);
 }
 
+/* PhoneFrame (components/site): titanium side buttons, and the Le Barista screens carousel. */
+.pf-btn {
+  position: absolute;
+  width: 0.9cqw;
+  border-radius: 1cqw;
+  background: linear-gradient(90deg, #2a2724, #5d5852 50%, #2a2724);
+}
+.pa-lb-strip {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(27, 19, 16, 0.25) transparent;
+}
+.pa-lb-strip:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 6px;
+  border-radius: 12px;
+}
+
 /* Lumo: the real phone fades into the phrase bar; each word lights up as it is spoken. */
 .pa-lumo-phone {
   mask-image: linear-gradient(#000 62%, transparent 96%);

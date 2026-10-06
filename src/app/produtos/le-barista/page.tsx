@@ -27,9 +27,10 @@ import {
 } from '@/components/site/AppHero';
 import {
   APP,
-  DiagnosisCard,
-  RecipeAndWeek,
-  ShotTimer,
+  BrewPhones,
+  DiagnosisPhones,
+  LeBaristaHeroPhones,
+  ScreensGallery,
 } from '@/components/products/le-barista/LeBaristaVisuals';
 
 const barista = productBySlug('le-barista');
@@ -130,7 +131,7 @@ export default function LeBaristaPage() {
         })}
       />
 
-      {/* 1 · HERO — a shot on target */}
+      {/* 1 · HERO — the app itself, three real screens */}
       <AppHero
         product={barista}
         titleSize="xl"
@@ -163,7 +164,7 @@ export default function LeBaristaPage() {
           </>
         }
         note={`${price} · iPhone · Sem conta · Sem anúncios`}
-        aside={<ShotTimer />}
+        aside={<LeBaristaHeroPhones />}
       />
 
       {/* 2 · GUIAS — full coffee brown, the ways to brew as giant words */}
@@ -226,7 +227,7 @@ export default function LeBaristaPage() {
               Se você usa WDT ou tela de dispersão, esses passos entram no preparo.
             </p>
           </div>
-          <DiagnosisCard />
+          <DiagnosisPhones />
         </div>
       </section>
 
@@ -241,7 +242,7 @@ export default function LeBaristaPage() {
           <div className="pa-tri-grid-light absolute inset-0" />
         </div>
         <div className="relative mx-auto max-w-[1240px] px-6 py-24 lg:px-10 lg:py-36">
-          <div className="grid gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-end lg:gap-16">
+          <div className="grid gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-16">
             <div>
               <AppKicker color={APP.caramel}>Como funciona</AppKicker>
               <h2 id="lb-como" className="display mt-6 text-[clamp(2.6rem,5.6vw,5rem)]">
@@ -254,9 +255,9 @@ export default function LeBaristaPage() {
               </p>
             </div>
             <div>
-              <RecipeAndWeek />
-              <MockCaption onDark className="mt-4">
-                Interface ilustrativa · valores de exemplo
+              <BrewPhones />
+              <MockCaption onDark className="mt-6 text-center">
+                Telas do app · dados de exemplo
               </MockCaption>
             </div>
           </div>
@@ -278,7 +279,32 @@ export default function LeBaristaPage() {
         </div>
       </section>
 
-      {/* 5 · PRIVACIDADE + DISPONIBILIDADE — brown to close */}
+      {/* 5 · VEJA POR DENTRO — every screen, in a row you can scroll */}
+      <section className="overflow-x-clip pb-20 lg:pb-28" aria-labelledby="lb-telas">
+        <div className="mx-auto max-w-[1240px] px-6 pt-24 lg:px-10 lg:pt-32">
+          <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end lg:gap-16">
+            <div>
+              <AppKicker color={ink}>Veja por dentro</AppKicker>
+              <h2
+                id="lb-telas"
+                className="display mt-6 max-w-[16ch] text-[clamp(2.6rem,6vw,5.4rem)] text-[color:var(--ink)]"
+              >
+                Sete telas, <span style={{ color: ink }}>um café melhor.</span>
+              </h2>
+            </div>
+            <p className="max-w-sm text-[15px] leading-[1.7] text-[color:var(--ink-dim)]">
+              Telas do app no iPhone, com dados de exemplo.{' '}
+              <span className="lg:hidden">Arraste para o lado para ver todas.</span>
+              <span className="hidden lg:inline">
+                Role para o lado, ou clique na faixa e use as setas do teclado.
+              </span>
+            </p>
+          </div>
+        </div>
+        <ScreensGallery labelledBy="lb-telas" />
+      </section>
+
+      {/* 6 · PRIVACIDADE + DISPONIBILIDADE — brown to close */}
       <section
         className="cut-top-rev overflow-x-clip text-white"
         style={{ background: ink }}

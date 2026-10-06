@@ -1,8 +1,9 @@
-import { Flame, BookOpen, Timer, Coffee } from 'lucide-react';
+import { Flame, BookOpen, Timer } from 'lucide-react';
+import { PhoneFrame } from '@/components/site/PhoneFrame';
 
 /*
- * Illustrative product UI built in HTML/CSS for the home page. Names, dates and values are
- * examples (marked as such on the page), not customers or metrics.
+ * Product UI for the home page: HTML/CSS illustrations, or a real screen when the app has one.
+ * Names, dates and values are examples, not customers or metrics.
  */
 
 export function SonoLeveMock() {
@@ -56,30 +57,16 @@ export function JornadasMock() {
   );
 }
 
+/** The real espresso timer, cropped to the top of the phone so it sits level with the cards. */
 export function LeBaristaMock() {
-  // Target window 25–30 s on a 0–40 s track.
   return (
-    <div className="w-full max-w-[300px] rounded-[28px] bg-[#1b1310] p-5 text-[#f4eadf] shadow-[0_30px_60px_-25px_rgba(0,0,0,0.6)]">
-      <p className="flex items-center gap-2 text-[13px] font-semibold text-[#e3a857]">
-        <Coffee className="h-4 w-4" /> Espresso · shot 3
-      </p>
-      <p className="mt-4 text-[44px] font-bold tabular-nums leading-none tracking-tight">
-        27 s{' '}
-        <span className="align-middle text-[14px] font-semibold text-[#e3a857]">· No alvo</span>
-      </p>
-      <div className="relative mt-4 h-2 rounded-full bg-[#33251e]">
-        <span
-          aria-hidden="true"
-          className="absolute inset-y-0 rounded-full bg-[#e3a857]/35"
-          style={{ left: '62.5%', width: '12.5%' }}
-        />
-        <span
-          aria-hidden="true"
-          className="absolute top-1/2 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[#1b1310] bg-[#e3a857]"
-          style={{ left: '67.5%' }}
-        />
-      </div>
-      <p className="mt-2 text-[11.5px] text-[#b9a999]">Alvo: 25 a 30 s · 18 g → 36 g</p>
+    <div className="h-[380px] w-[230px] [mask-image:linear-gradient(#000_80%,transparent)]">
+      <PhoneFrame
+        src="/images/le-barista/2-cronometro.png"
+        alt="Cronômetro do Le Barista em 27 segundos, com o aviso “No alvo: pode parar”"
+        sizes="230px"
+        shadow="deep"
+      />
     </div>
   );
 }

@@ -1,6 +1,8 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  // 85 for the app screenshots in PhoneFrame (fine UI text); 75 is the default everywhere else.
+  images: { qualities: [75, 85] },
   async redirects() {
     return [
       { source: '/casa-leve', destination: '/produtos/casa-leve', permanent: true },

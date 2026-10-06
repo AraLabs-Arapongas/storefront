@@ -3,7 +3,7 @@
  * sitemap all read from here, so adding or retiring a product is a one-file change.
  */
 export type Product = {
-  slug: 'komyx' | 'casa-leve' | 'arakids' | 'lumo' | 'sono-leve' | 'jornadas';
+  slug: 'komyx' | 'casa-leve' | 'arakids' | 'lumo' | 'sono-leve' | 'jornadas' | 'le-barista';
   name: string;
   /** Who it is for, shown as the eyebrow. */
   audience: string;
@@ -132,6 +132,23 @@ export const PRODUCTS: Product[] = [
     color: '#0e7c74',
     colorSoft: '#d8efec',
     colorInk: '#0e7c74',
+    line: 'familias',
+  },
+  {
+    slug: 'le-barista',
+    name: 'Le Barista',
+    audience: 'Para quem faz café em casa',
+    tagline: 'O espresso no ponto, um ajuste de cada vez.',
+    summary: 'guia de espresso e café coado',
+    description:
+      'Registre cada shot e receba um ajuste por vez, com o porquê: moagem, dose ou rendimento, até o café ficar no ponto. Também tem guias de coados, leite vaporizado e bebidas. Tudo no iPhone, sem conta.',
+    offer: 'Gratuito · em revisão na App Store',
+    status: 'Em breve',
+    statusNote: 'Em revisão na App Store',
+    href: '/produtos/le-barista',
+    color: '#8a5a3b',
+    colorSoft: '#f1e3d6',
+    colorInk: '#7a4a2c',
     line: 'familias',
   },
 ];

@@ -12,7 +12,7 @@ import { INTRO_BOOT } from '@/components/home/heroIntro';
 import { InView } from '@/components/home/InView';
 import { KomyxLive } from '@/components/home/KomyxLive';
 import { ArakidsFeature, CasaLeveFeature, LumoFeature } from '@/components/home/FamilyLine';
-import { JornadasMock, SonoLeveMock } from '@/components/home/Mocks';
+import { JornadasMock, LeBaristaMock, SonoLeveMock } from '@/components/home/Mocks';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/' },
@@ -29,6 +29,7 @@ const FEATURES: Partial<Record<Product['slug'], (props: { n: number }) => ReactN
 const MOCKS: Partial<Record<Product['slug'], () => ReactNode>> = {
   'sono-leve': SonoLeveMock,
   jornadas: JornadasMock,
+  'le-barista': LeBaristaMock,
 };
 
 const KOMYX_FLOW = [
@@ -321,12 +322,14 @@ export default function Home() {
             A caminho da App Store
           </h2>
           <div className={`grid ${coming.length > 1 ? 'lg:grid-cols-2' : ''}`}>
-            {coming.map((p) => {
+            {coming.map((p, k) => {
               const Mock = MOCKS[p.slug];
+              // An odd one out at the end takes the full row instead of leaving a gap.
+              const full = coming.length > 1 && coming.length % 2 === 1 && k === coming.length - 1;
               return (
                 <article
                   key={p.slug}
-                  className="relative overflow-hidden px-6 py-20 lg:px-14 lg:py-28"
+                  className={`relative overflow-hidden px-6 py-20 lg:px-14 lg:py-28 ${full ? 'lg:col-span-2' : ''}`}
                   style={{ background: p.colorInk }}
                 >
                   <div className="pointer-events-none absolute right-[-30%] top-[-30%] h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(closest-side,rgba(255,255,255,0.14),transparent_70%)]" />

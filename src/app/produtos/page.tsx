@@ -243,7 +243,7 @@ export default function ProdutosPage() {
           </p>
           <InView
             as="ol"
-            className="pg-index mt-10 grid grid-cols-2 gap-x-5 border-t border-[color:var(--line-strong)] sm:grid-cols-3 lg:mt-12 lg:grid-cols-6"
+            className="pg-index mt-10 grid grid-cols-2 gap-x-5 border-t border-[color:var(--line-strong)] sm:grid-cols-3 lg:mt-12 lg:grid-cols-7"
             threshold={0.2}
           >
             {PRODUCTS.map((p, k) => (

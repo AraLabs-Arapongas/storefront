@@ -337,6 +337,25 @@ export function runHeroIntro(stage: HTMLElement, onDone: () => void): () => void
           { t: 2800, x: R.x, y: R.y, rot: 0, s: 1, depth: 0 },
         ],
       }),
+      // Far back, rising slowly from below the fold, last to settle.
+      'le-barista': (R) => ({
+        z: 14,
+        wps: [
+          {
+            t: 760,
+            ...V(0.62, 1.25),
+            rot: 16,
+            s: 0.62,
+            depth: 1,
+            blur: 2,
+            ease: 'cubic-bezier(0.2, 0.6, 0.3, 1)',
+          },
+          { t: 1500, ...V(0.7, 0.92), rot: 8, s: 0.8, depth: 1, ease: 'linear' },
+          { t: 2100, x: R.x - 10, y: R.y + 18, rot: 3, s: 0.94, depth: 1, ease: EASE_SOFT },
+          { t: 2560, x: R.x + 3, y: R.y - 4, rot: -1.2, s: 1, depth: 0, ease: EASE_SOFT },
+          { t: 2900, x: R.x, y: R.y, rot: 0, s: 1, depth: 0 },
+        ],
+      }),
       // Signature: fast from the right, near miss on "negócio", hard brake, rotate, snap home.
       komyx: (R) => {
         const halfW = (items[0]?.getBoundingClientRect().width ?? 208) / 2;
@@ -439,9 +458,9 @@ export function runHeroIntro(stage: HTMLElement, onDone: () => void): () => void
     // Each card falls from above the viewport to its spot in the grid (usually just below the
     // fold), so they pass through the screen around the headline. Two of them are fast crossers.
     const fast = new Set([1, 4]);
-    const sway = [-26, 34, -18, 22, -30, 14];
-    const spin = [-14, 18, -9, 12, -20, 8];
-    const starts = [260, 380, 470, 600, 700, 820];
+    const sway = [-26, 34, -18, 22, -30, 14, -20];
+    const spin = [-14, 18, -9, 12, -20, 8, -11];
+    const starts = [260, 380, 470, 600, 700, 820, 900];
     items.forEach((li, i) => {
       const top = li.getBoundingClientRect().top;
       const fall = Math.max(top + 160, vh * 0.9) + 120;

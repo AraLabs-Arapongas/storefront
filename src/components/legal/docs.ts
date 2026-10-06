@@ -25,6 +25,7 @@ export const PRODUCT_DOCS: Partial<Record<Product['slug'], LegalDoc[]>> = {
   lumo: ['privacidade', 'termos', 'creditos', 'dedicatoria'],
   jornadas: ['privacidade', 'termos', 'suporte'],
   'sono-leve': ['privacidade', 'termos', 'suporte'],
+  'le-barista': ['privacidade', 'termos', 'suporte'],
 };
 
 export const docHref = (product: Product, doc: LegalDoc) => `${product.href}/${doc}`;

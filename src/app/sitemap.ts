@@ -5,8 +5,8 @@ import { PRODUCTS } from '@/lib/products';
 const LAST_MODIFIED = '2026-10-03';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Legal pages listed here are the long-standing web ones. The Jornadas and Sono Leve
-  // privacy/terms/support pages exist for App Store review and stay out of the sitemap.
+  // Legal pages listed here are the long-standing web ones. The Jornadas, Sono Leve and
+  // Le Barista privacy/terms/support pages exist for App Store review and stay out of the sitemap.
   const legal = [
     '/produtos/casa-leve/privacidade',
     '/produtos/casa-leve/termos',

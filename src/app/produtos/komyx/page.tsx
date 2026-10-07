@@ -5,6 +5,7 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { breadcrumbSchema, webPageSchema } from '@/lib/seo/schemas';
 import { pageMetadata } from '@/lib/seo/metadata';
 import { KOMYX_URL, productBySlug } from '@/lib/products';
+import { contactHref } from '@/lib/seo/site';
 import { KomyxMark } from '@/components/site/ProductMarks';
 import { InView } from '@/components/home/InView';
 import { HeroBuilder } from '@/components/products/komyx/HeroBuilder';
@@ -79,6 +80,11 @@ function Button({
   );
 }
 
+const DEMO_HREF = contactHref(
+  'Demonstração do Komyx',
+  'Olá! Tenho um buffet e queria ver uma demonstração do Komyx.',
+);
+
 function Ctas() {
   return (
     <div className="flex flex-wrap gap-3">
@@ -89,6 +95,13 @@ function Ctas() {
       <Button href={KOMYX_URL} variant="ghost-light">
         Ver planos
       </Button>
+      {/* A conversation with AraLabs, not product info, so it stays here (WhatsApp or email). */}
+      <a
+        href={DEMO_HREF}
+        className="inline-flex items-center px-2 py-3.5 text-[15px] font-semibold text-white underline decoration-white/40 underline-offset-4 transition hover:decoration-white"
+      >
+        Pedir uma demonstração
+      </a>
     </div>
   );
 }

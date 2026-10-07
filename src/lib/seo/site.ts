@@ -9,7 +9,7 @@ export const SITE_TWITTER_DESCRIPTION = `Tecnologia simples para pequenos negóc
 export const CONTACT_EMAIL = 'contato@aralabs.com.br';
 export const JOBS_EMAIL = 'trabalhe@aralabs.com.br';
 /** Digits only with country code (55...). Empty hides every WhatsApp button; email is the fallback. */
-export const CONTACT_WHATSAPP = '';
+export const CONTACT_WHATSAPP = '5543988445445';
 export const LOCALE = 'pt-BR';
 
 export const ORG_ADDRESS = {

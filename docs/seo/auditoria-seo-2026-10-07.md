@@ -1035,3 +1035,20 @@ Pendente (externo ou decisão):
 - P-24 header em ilhas client + CSS por segmento (refatoração maior).
 - `komyx.com.br` (K-7–K-13).
 - Link "Pedir uma demonstração" do Komyx saiu da vitrine: decidir se volta e onde.
+
+### Atualização (2026-10-07, fim do dia)
+
+| Item | Status |
+|---|---|
+| WhatsApp comercial em `CONTACT_WHATSAPP` (todos os botões de contato) | ✅ |
+| Link "Pedir uma demonstração" do Komyx de volta, via WhatsApp | ✅ |
+| P-20 (início): `/guias` com 3 artigos (prancha de comunicação, sob medida ou pronto, espresso), Article + Breadcrumb, fontes citadas | ✅ |
+| IndexNow automático a cada deploy de produção (GitHub Actions, 19 URLs, HTTP 202) | ✅ |
+| Search Console: sitemap reenviado; indexação pedida para /sob-medida, /produtos, /produtos/komyx, /produtos/lumo | ✅ |
+| Google Business Profile criado (nome, categoria, endereço, telefone, site, WhatsApp) | ⏳ falta a verificação por vídeo (usuário) e o horário |
+| `komyx.com.br` (K-7–K-13) | ⏳ em andamento no repo do Komyx |
+
+Ainda pendente:
+- `arakids.aralabs.com.br`: título "Ara Kids" fraco e sem canonical; o projeto Vercel `arakids` não está ligado a repositório e o código não está em `~/Projects/a-labs/tech`.
+- Guia de método Ferber (Sono Leve): só com revisão de profissional de saúde.
+- Lumo em EN/ES com hreflang; perfis sociais (`sameAs`) quando existirem; cases/provas; P-24 (header em ilhas + CSS por segmento).

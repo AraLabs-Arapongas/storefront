@@ -25,11 +25,11 @@ jobs:
       SITE: https://aralabs.com.br
       INDEXNOW_KEY: a14800f5d76d46ea51a13cec3d1b9702
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
-          node-version: 20
+          node-version: 24
 
       # Production alias can lag the deployment success event; wait until the key file is live.
       - name: Wait for key file on production

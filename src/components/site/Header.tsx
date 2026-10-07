@@ -44,7 +44,7 @@ export function Header() {
           <Link
             href="/"
             className="group flex shrink-0 items-center"
-            aria-label="AraLabs — ir para a home"
+            aria-label="AraLabs: Tecnologia simples para pequenos negócios"
             onClick={() => setOpen(false)}
           >
             <LogoLockup

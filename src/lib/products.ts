@@ -63,7 +63,7 @@ export const PRODUCTS: Product[] = [
     href: '/produtos/casa-leve',
     color: '#c26a1e',
     colorSoft: '#f7e6d6',
-    colorInk: '#a85a17',
+    colorInk: '#94500f',
     line: 'familias',
   },
   {

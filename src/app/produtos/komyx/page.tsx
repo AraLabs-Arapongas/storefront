@@ -171,7 +171,7 @@ export default function KomyxPage() {
           </div>
           <figure>
             <HeroBuilder />
-            <figcaption className="mt-6 text-center text-[12px] text-white/65 lg:text-right">
+            <figcaption className="mt-6 text-center text-[12px] text-white lg:text-right">
               Interface ilustrativa · nomes e valores de exemplo
             </figcaption>
           </figure>

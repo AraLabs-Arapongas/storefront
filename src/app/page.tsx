@@ -277,7 +277,7 @@ export default function Home() {
             </div>
             <figure className="relative lg:sticky lg:top-32 lg:pt-12">
               <KomyxLive />
-              <figcaption className="mt-10 text-center text-[12px] text-white/70 sm:mt-56">
+              <figcaption className="mt-10 text-center text-[12px] text-white sm:mt-56">
                 Interface ilustrativa · nomes e valores de exemplo
               </figcaption>
             </figure>
@@ -351,14 +351,14 @@ export default function Home() {
                         />
                         {p.statusNote ?? p.status}
                       </p>
-                      <p className="mt-6 text-[12px] font-semibold uppercase tracking-[0.2em] text-white/75">
+                      <p className="mt-6 text-[12px] font-semibold uppercase tracking-[0.2em] text-white">
                         {p.audience}
                       </p>
                       <h3 className="display mt-3 text-[clamp(3.2rem,7vw,6.4rem)]">{p.name}</h3>
                       <p className="mt-4 text-[clamp(1.2rem,1.8vw,1.45rem)] font-semibold leading-[1.3]">
                         {p.tagline}
                       </p>
-                      <p className="mt-4 text-[16px] leading-[1.7] text-white/85">
+                      <p className="mt-4 text-[16px] leading-[1.7] text-white">
                         {p.description}
                       </p>
                       {Mock && !full ? (

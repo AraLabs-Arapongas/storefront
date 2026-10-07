@@ -190,7 +190,7 @@ export function ArakidsFeature({ n }: { n: number }) {
                 {x.a}
               </span>
               <span
-                className={`mt-2 hidden text-[10.5px] font-semibold sm:block sm:text-[13px] ${k === 1 ? 'text-[#1b3a5c]' : 'text-white/85'}`}
+                className={`mt-2 hidden text-[10.5px] font-semibold sm:block sm:text-[13px] ${k === 1 ? 'text-[#1b3a5c]' : 'text-white'}`}
               >
                 {x.l}
               </span>

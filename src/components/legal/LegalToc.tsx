@@ -93,7 +93,7 @@ function TocList({
 export function LegalToc({ items }: { items: TocItem[] }) {
   const active = useActiveHeading(items);
   return (
-    <nav aria-label="Nesta página" className="lg-toc">
+    <nav aria-label="Sumário" className="lg-toc">
       <p className="lg-toc-label">
         <span className="tri text-[7px]" aria-hidden="true" />
         Nesta página
@@ -118,7 +118,7 @@ export function LegalTocMobile({ items }: { items: TocItem[] }) {
       <summary>
         Nesta página · {count} {count === 1 ? 'seção' : 'seções'}
       </summary>
-      <nav aria-label="Nesta página" className="lg-toc">
+      <nav aria-label="Sumário recolhível" className="lg-toc">
         <TocList
           items={items}
           active={null}

@@ -1,21 +1,17 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo/metadata';
 import { Hl, LegalPage } from '@/components/legal/LegalPage';
 
 const pageTitle = 'Termos de uso — Sono Leve';
 const pageDescription =
   'Termos de uso do Sono Leve. App de apoio ao treino de sono do bebê — não substitui orientação pediátrica.';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: '/produtos/sono-leve/termos',
   title: pageTitle,
   description: pageDescription,
-  alternates: { canonical: '/produtos/sono-leve/termos' },
-  openGraph: {
-    title: pageTitle,
-    description: pageDescription,
-    url: '/produtos/sono-leve/termos',
-    type: 'website',
-  },
-};
+  noindex: true,
+});
 
 const VIGENCIA = '3 de outubro de 2026';
 

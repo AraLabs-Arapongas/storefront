@@ -1,21 +1,17 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo/metadata';
 import { Hl, LegalPage } from '@/components/legal/LegalPage';
 
 const pageTitle = 'Créditos e licenças — Lumo';
 const pageDescription =
   'Atribuição formal dos pictogramas ARASAAC usados no Lumo, autor Sergio Palao, licença CC BY-NC-SA 4.0, propriedade do Governo de Aragón.';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: '/produtos/lumo/creditos',
   title: pageTitle,
   description: pageDescription,
-  alternates: { canonical: '/produtos/lumo/creditos' },
-  openGraph: {
-    title: pageTitle,
-    description: pageDescription,
-    url: '/produtos/lumo/creditos',
-    type: 'website',
-  },
-};
+  noindex: true,
+});
 
 export default function LumoCreditosPage() {
   return (

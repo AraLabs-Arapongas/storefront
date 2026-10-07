@@ -1,11 +1,11 @@
 import Link from 'next/link';
-import type { Metadata } from 'next';
 import type { CSSProperties, ReactNode } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { websiteSchema } from '@/lib/seo/schemas';
 import { PRODUCTS, countWord, productBySlug, productsByLine, type Product } from '@/lib/products';
-import { contactHref } from '@/lib/seo/site';
+import { contactHref, SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE } from '@/lib/seo/site';
+import { pageMetadata } from '@/lib/seo/metadata';
 import { KomyxMark } from '@/components/site/ProductMarks';
 import { HeroOrbit } from '@/components/home/HeroOrbit';
 import { INTRO_BOOT } from '@/components/home/heroIntro';
@@ -14,10 +14,12 @@ import { KomyxLive } from '@/components/home/KomyxLive';
 import { ArakidsFeature, CasaLeveFeature, LumoFeature } from '@/components/home/FamilyLine';
 import { JornadasMock, LeBaristaMock, SonoLeveMock } from '@/components/home/Mocks';
 
-export const metadata: Metadata = {
-  alternates: { canonical: '/' },
-  openGraph: { url: '/' },
-};
+export const metadata = pageMetadata({
+  path: '/',
+  title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+  absoluteTitle: true,
+  description: SITE_DESCRIPTION,
+});
 
 /** Family products with their own composition on the home; the rest go to the color moment. */
 const FEATURES: Partial<Record<Product['slug'], (props: { n: number }) => ReactNode>> = {
@@ -183,7 +185,8 @@ export default function Home() {
               </li>
             ))}
           </InView>
-          <InView as="h2" className="display mt-14 text-[clamp(3.6rem,12vw,11rem)] lg:mt-20">
+          {/* The brand motto, not a section topic: a paragraph, not a heading. */}
+          <InView as="p" className="display mt-14 text-[clamp(3.6rem,12vw,11rem)] lg:mt-20">
             <span className="iv iv-word inline-block" style={i(0)}>
               Abra.
             </span>{' '}
@@ -227,8 +230,8 @@ export default function Home() {
             id="komyx-title"
             className="display mt-8 text-[clamp(2.9rem,6vw,5.9rem)] leading-[0.95]"
           >
-            A festa se vende sozinha.{' '}
-            <span className="block text-[#ffd3e1]">Você só confirma.</span>
+            Komyx, o sistema do seu buffet.{' '}
+            <span className="block text-[#ffd3e1]">O cliente monta, você confirma.</span>
           </h2>
           <div className="mt-14 grid gap-16 lg:mt-20 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-20">
             <div>
@@ -404,7 +407,7 @@ export default function Home() {
             id="sob-medida-title"
             className="display mt-6 max-w-[15ch] text-[clamp(2.8rem,7vw,6.6rem)]"
           >
-            Seu problema ainda não tem produto?{' '}
+            Precisa de um sistema que ainda não existe?{' '}
             <span className="block text-[color:var(--gold)]">A gente faz.</span>
           </h2>
           <p className="mt-8 max-w-xl text-[17px] leading-[1.7] text-white/75">
@@ -431,7 +434,7 @@ export default function Home() {
               href="/sob-medida"
               className="inline-flex items-center gap-2 rounded-full bg-[color:var(--gold)] px-6 py-3.5 text-[15px] font-semibold text-[color:var(--dark)] transition hover:bg-[color:var(--bg)]"
             >
-              Como funciona o sob medida <ArrowRight className="h-4 w-4" />
+              Sistema sob medida para o seu negócio <ArrowRight className="h-4 w-4" />
             </Link>
             <a
               href={contactHref('Quero conversar com a AraLabs')}

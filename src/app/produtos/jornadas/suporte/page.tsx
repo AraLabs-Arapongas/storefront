@@ -1,21 +1,16 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo/metadata';
 import { Hl, LegalPage, SupportMail } from '@/components/legal/LegalPage';
 
 const pageTitle = 'Suporte — Jornadas';
 const pageDescription =
   'Suporte do Jornadas: contato por e-mail e respostas pras dúvidas mais comuns sobre dados, backup e lembretes.';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: '/produtos/jornadas/suporte',
   title: pageTitle,
   description: pageDescription,
-  alternates: { canonical: '/produtos/jornadas/suporte' },
-  openGraph: {
-    title: pageTitle,
-    description: pageDescription,
-    url: '/produtos/jornadas/suporte',
-    type: 'website',
-  },
-};
+});
 
 const VIGENCIA = '3 de outubro de 2026';
 

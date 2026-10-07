@@ -1,21 +1,16 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo/metadata';
 import { Hl, LegalPage, SupportMail } from '@/components/legal/LegalPage';
 
 const pageTitle = 'Suporte — Ara Kids (app)';
 const pageDescription =
   'Suporte do app Ara Kids: contato por e-mail e respostas para as dúvidas mais comuns sobre PIN, tempo por dia, voz e dados.';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: '/produtos/arakids/suporte',
   title: pageTitle,
   description: pageDescription,
-  alternates: { canonical: '/produtos/arakids/suporte' },
-  openGraph: {
-    title: pageTitle,
-    description: pageDescription,
-    url: '/produtos/arakids/suporte',
-    type: 'website',
-  },
-};
+});
 
 const VIGENCIA = '4 de outubro de 2026';
 

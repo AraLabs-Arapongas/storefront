@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import {
   BookOpen,
   GraduationCap,
@@ -13,7 +12,8 @@ import {
   Smartphone,
 } from 'lucide-react';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { softwareApplicationSchema } from '@/lib/seo/schemas';
+import { breadcrumbSchema, softwareApplicationSchema } from '@/lib/seo/schemas';
+import { pageMetadata } from '@/lib/seo/metadata';
 import { productBySlug } from '@/lib/products';
 import { contactHref } from '@/lib/seo/site';
 import { InView } from '@/components/home/InView';
@@ -33,21 +33,15 @@ import {
 } from '@/components/products/jornadas/JornadasVisuals';
 
 const jornadas = productBySlug('jornadas');
-const pageTitle = 'Jornadas — livros, cursos e hábitos no iPhone';
 const pageDescription =
-  'Jornadas é o app da AraLabs para acompanhar leituras, cursos, hábitos, corrida e prática de música: sessões de foco, sequência de dias, meta semanal e gráficos de progresso. Gratuito, sem anúncios e sem conta; os dados ficam no iPhone. Em revisão na App Store.';
+  'Acompanhe livros, cursos e hábitos com sessões de foco, sequência de dias e meta semanal. Grátis, sem anúncios e sem conta. Para iPhone.';
 
-export const metadata: Metadata = {
-  title: pageTitle,
+export const metadata = pageMetadata({
+  path: '/produtos/jornadas',
+  title: 'Jornadas: app de hábitos e metas de leitura',
   description: pageDescription,
-  alternates: { canonical: '/produtos/jornadas' },
-  openGraph: {
-    title: pageTitle,
-    description: pageDescription,
-    url: '/produtos/jornadas',
-    type: 'website',
-  },
-};
+  image: '/produtos/jornadas/opengraph-image',
+});
 
 const NOTIFY = contactHref('Quero saber quando o Jornadas sair');
 /** Light teal for type on the teal and dark sections. */
@@ -132,13 +126,18 @@ export default function JornadasPage() {
           description: pageDescription,
           applicationCategory: 'LifestyleApplication',
           operatingSystem: 'iOS',
+          offer: 'free',
         })}
+      />
+      <JsonLd
+        data={breadcrumbSchema([{ name: 'Produtos', path: '/produtos' }, { name: jornadas.name }])}
       />
 
       {/* 1 · HERO — the week filling in, one day at a time */}
       <AppHero
         product={jornadas}
         titleSize="xl"
+        titlePrefix="Jornadas: livros, cursos e hábitos."
         backdrop={
           <>
             <div className="absolute right-[-10%] top-[-30%] h-[44rem] w-[44rem] rounded-full bg-[radial-gradient(closest-side,rgba(14,124,116,0.16),transparent_70%)]" />

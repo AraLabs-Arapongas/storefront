@@ -4,6 +4,8 @@ type LogoProps = {
   className?: string;
   style?: CSSProperties;
   title?: string;
+  /** Inside a link or control that already has an accessible name: hide the SVG from AT. */
+  decorative?: boolean;
 };
 
 /*
@@ -13,18 +15,19 @@ type LogoProps = {
 const MARK_RATIO = 157 / 143;
 const WORDMARK_RATIO = 1943 / 458;
 
-export function LogoMark({ className, style, title = 'Aralabs' }: LogoProps) {
+export function LogoMark({ className, style, title = 'AraLabs', decorative }: LogoProps) {
   return (
     <svg
       viewBox="13 13 157 143"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       style={style}
-      role="img"
-      aria-label={title}
       preserveAspectRatio="xMidYMid meet"
+      {...(decorative
+        ? { 'aria-hidden': true, focusable: false }
+        : { role: 'img', 'aria-label': title })}
     >
-      <title>{title}</title>
+      {decorative ? null : <title>{title}</title>}
       <g transform="translate(0,170) scale(0.1,-0.1)" fill="currentColor" stroke="none">
         <path d="M887 1509 c-20 -35 -72 -131 -116 -214 l-80 -149 71 -136 c39 -74 88 -166 110 -203 21 -38 38 -70 38 -72 0 -2 -30 -8 -67 -15 -292 -50 -549 -244 -687 -518 -15 -30 -26 -55 -24 -57 2 -1 115 0 252 3 l248 5 35 76 c19 42 82 171 140 288 78 157 111 213 127 217 11 3 69 11 127 17 88 9 124 8 214 -5 60 -9 109 -15 110 -13 6 7 -428 802 -450 826 -11 11 -19 2 -48 -50z" />
         <path d="M1276 658 c-92 -48 -216 -146 -216 -170 0 -6 33 -84 73 -174 l72 -164 243 0 c133 0 242 1 242 3 0 15 -292 553 -302 554 -7 2 -57 -21 -112 -49z" />
@@ -33,18 +36,19 @@ export function LogoMark({ className, style, title = 'Aralabs' }: LogoProps) {
   );
 }
 
-export function LogoWordmark({ className, style, title = 'AraLabs' }: LogoProps) {
+export function LogoWordmark({ className, style, title = 'AraLabs', decorative }: LogoProps) {
   return (
     <svg
       viewBox="7 41 1943 458"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       style={style}
-      role="img"
-      aria-label={title}
       preserveAspectRatio="xMidYMid meet"
+      {...(decorative
+        ? { 'aria-hidden': true, focusable: false }
+        : { role: 'img', 'aria-label': title })}
     >
-      <title>{title}</title>
+      {decorative ? null : <title>{title}</title>}
       <g transform="translate(0,534) scale(0.1,-0.1)" fill="currentColor" stroke="none">
         <path d="M9908 4920 c-225 -13 -321 -52 -371 -151 l-28 -55 -1 -2130 c-1 -1171 2 -2135 6 -2142 5 -9 88 -12 327 -12 l319 0 0 1453 c0 800 3 1812 7 2250 l6 797 -64 -2 c-35 0 -126 -4 -201 -8z" />
         <path d="M14255 4919 c-229 -17 -333 -65 -382 -174 -17 -38 -18 -143 -21 -2177 l-3 -2138 326 0 325 0 0 160 c0 88 2 160 5 160 2 0 42 -30 87 -67 185 -149 343 -231 543 -283 279 -71 532 -65 795 21 211 69 354 161 530 339 269 273 424 635 448 1043 27 462 -86 878 -330 1209 -120 164 -315 331 -486 417 -93 47 -253 97 -370 116 -142 24 -419 17 -547 -13 -206 -48 -362 -121 -496 -232 -46 -38 -100 -83 -120 -100 l-37 -30 -7 283 c-3 155 -5 551 -3 880 l3 597 -80 -1 c-44 -1 -125 -5 -180 -10z m1335 -1988 c47 -12 128 -43 180 -68 79 -39 110 -62 186 -138 130 -129 202 -261 253 -463 66 -259 37 -613 -68 -838 -109 -233 -268 -376 -497 -447 -106 -34 -142 -39 -255 -38 -436 3 -749 227 -869 624 -87 289 -58 680 70 942 116 237 298 379 565 441 88 20 324 12 435 -15z" />
@@ -61,18 +65,21 @@ export function LogoWordmark({ className, style, title = 'AraLabs' }: LogoProps)
 /**
  * Mark + "AraLabs" wordmark locked together, optionally with the tagline under the name. Sizes are
  * explicit (not w-auto) so a flex parent can never stretch the wordmark and push it away from the
- * mark.
+ * mark. Pass `decorative` when it sits inside a link that already has an aria-label; otherwise the
+ * mark alone carries the "AraLabs" name (the wordmark is hidden so it isn't announced twice).
  */
 export function LogoLockup({
   markHeight = 36,
   className = '',
   tagline,
   taglineClassName = '',
+  decorative = false,
 }: {
   markHeight?: number;
   className?: string;
   tagline?: string;
   taglineClassName?: string;
+  decorative?: boolean;
 }) {
   const wordHeight = Math.round(markHeight * 0.52);
   return (
@@ -80,11 +87,13 @@ export function LogoLockup({
       <LogoMark
         className="block shrink-0"
         title="AraLabs"
+        decorative={decorative}
         style={{ height: markHeight, width: markHeight * MARK_RATIO }}
       />
       <span className="flex flex-col items-start leading-none">
         <LogoWordmark
           className="block shrink-0"
+          decorative
           style={{ height: wordHeight, width: wordHeight * WORDMARK_RATIO }}
         />
         {tagline ? (

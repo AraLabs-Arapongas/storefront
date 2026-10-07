@@ -1,22 +1,18 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo/metadata';
 import { Hl, LegalPage } from '@/components/legal/LegalPage';
 
 const pageTitle = 'Excluir conta — Casa Leve';
 const pageDescription =
   'Como excluir sua conta do Casa Leve e o que acontece com seus dados. Exclusão pelo aplicativo ou por solicitação via e-mail.';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: '/produtos/casa-leve/excluir-conta',
   title: pageTitle,
   description: pageDescription,
-  alternates: { canonical: '/produtos/casa-leve/excluir-conta' },
-  openGraph: {
-    title: pageTitle,
-    description: pageDescription,
-    url: '/produtos/casa-leve/excluir-conta',
-    type: 'website',
-  },
-};
+  noindex: true,
+});
 
 export default function CasaLeveExcluirContaPage() {
   return (

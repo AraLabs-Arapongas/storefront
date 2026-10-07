@@ -1,21 +1,17 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo/metadata';
 import { Hl, LegalPage } from '@/components/legal/LegalPage';
 
 const pageTitle = 'Política de Privacidade — Sono Leve';
 const pageDescription =
-  'O Sono Leve não tem conta, servidor nem analytics. Os dados do bebê não saem do seu celular. Esta política descreve em linguagem direta como tratamos privacidade.';
+  'O Sono Leve não tem conta, servidor nem analytics. Os dados do bebê não saem do seu celular. Veja, em linguagem direta, como tratamos privacidade.';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: '/produtos/sono-leve/privacidade',
   title: pageTitle,
   description: pageDescription,
-  alternates: { canonical: '/produtos/sono-leve/privacidade' },
-  openGraph: {
-    title: pageTitle,
-    description: pageDescription,
-    url: '/produtos/sono-leve/privacidade',
-    type: 'website',
-  },
-};
+  noindex: true,
+});
 
 const VIGENCIA = '3 de outubro de 2026';
 

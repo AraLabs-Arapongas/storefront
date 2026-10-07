@@ -1,21 +1,17 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo/metadata';
 import { Hl, LegalPage } from '@/components/legal/LegalPage';
 
 const pageTitle = 'Política de Privacidade — Jornadas';
 const pageDescription =
   'O Jornadas não tem conta, servidor nem analytics. Seus dados ficam no seu celular. Esta política descreve em linguagem direta como tratamos privacidade.';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: '/produtos/jornadas/privacidade',
   title: pageTitle,
   description: pageDescription,
-  alternates: { canonical: '/produtos/jornadas/privacidade' },
-  openGraph: {
-    title: pageTitle,
-    description: pageDescription,
-    url: '/produtos/jornadas/privacidade',
-    type: 'website',
-  },
-};
+  noindex: true,
+});
 
 const VIGENCIA = '3 de outubro de 2026';
 

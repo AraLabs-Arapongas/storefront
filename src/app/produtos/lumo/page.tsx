@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import type { Metadata } from 'next';
 import { ArrowRight } from 'lucide-react';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { softwareApplicationSchema } from '@/lib/seo/schemas';
+import { breadcrumbSchema, softwareApplicationSchema } from '@/lib/seo/schemas';
+import { pageMetadata } from '@/lib/seo/metadata';
 import { LUMO_APPSTORE_URL, productBySlug } from '@/lib/products';
 import { InView } from '@/components/home/InView';
 import { AppButton, AppHero, AppKicker, AppLegalLinks, cssI } from '@/components/site/AppHero';
@@ -12,21 +12,15 @@ const lumo = productBySlug('lumo');
 /** Lighter purple for type and accents on the dark and purple sections. */
 const LILAC = '#d9cffb';
 
-const pageTitle = 'Lumo — comunicação visual pra famílias';
 const pageDescription =
-  'Lumo é o app da AraLabs de comunicação visual e rotina pra famílias com crianças não-verbais. 13.798 pictogramas ARASAAC, 4 idiomas, modo criança com PIN. Gratuito pra sempre. Funciona offline. Disponível na App Store.';
+  'Lumo é um app gratuito de comunicação alternativa para crianças não-verbais: 13.798 pictogramas ARASAAC, rotinas visuais e 4 idiomas. Offline e sem cadastro.';
 
-export const metadata: Metadata = {
-  title: pageTitle,
+export const metadata = pageMetadata({
+  path: '/produtos/lumo',
+  title: 'Lumo: app de comunicação alternativa (CAA) grátis',
   description: pageDescription,
-  alternates: { canonical: '/produtos/lumo' },
-  openGraph: {
-    title: pageTitle,
-    description: pageDescription,
-    url: '/produtos/lumo',
-    type: 'website',
-  },
-};
+  image: '/produtos/lumo/opengraph-image',
+});
 
 const PRA_QUEM = [
   {
@@ -133,15 +127,21 @@ export default function LumoLandingPage() {
           path: '/produtos/lumo',
           name: 'Lumo',
           description: pageDescription,
-          applicationCategory: 'EducationApplication',
+          applicationCategory: 'EducationalApplication',
           operatingSystem: 'iOS',
+          offer: 'free',
+          downloadUrl: LUMO_APPSTORE_URL,
         })}
+      />
+      <JsonLd
+        data={breadcrumbSchema([{ name: 'Produtos', path: '/produtos' }, { name: lumo.name }])}
       />
 
       {/* 1 · HERO — the phrase being built over the real Talk screen */}
       <AppHero
         product={lumo}
         titleSize="xl"
+        titlePrefix="Lumo, comunicação alternativa para crianças não-verbais."
         backdrop={
           <>
             <div className="absolute right-[-10%] top-[-30%] h-[44rem] w-[44rem] rounded-full bg-[radial-gradient(closest-side,rgba(106,75,214,0.16),transparent_70%)]" />
@@ -190,6 +190,13 @@ export default function LumoLandingPage() {
           >
             Quando as palavras <span style={{ color: LILAC }}>não são o caminho.</span>
           </h2>
+          <p className="mt-8 max-w-2xl text-[17px] leading-[1.7] text-white/85">
+            O Lumo é um app de comunicação aumentativa e alternativa (CAA): uma prancha de
+            comunicação no celular ou no tablet, com cards que falam em voz alta. Serve para
+            crianças autistas (TEA), com apraxia de fala ou com outras condições que dificultam a
+            fala, na hora de pedir, escolher e contar. É uma ferramenta de comunicação, não uma
+            terapia, e funciona junto com o trabalho do fonoaudiólogo.
+          </p>
           <InView
             as="ul"
             className="mt-14 grid gap-10 border-t border-white/25 pt-10 md:grid-cols-3 md:gap-10 lg:mt-20"
@@ -490,7 +497,14 @@ export default function LumoLandingPage() {
             </h2>
             <p className="mt-8 max-w-lg text-[17px] leading-[1.7] text-white/75">
               Sem cadastro e sem internet. Famílias e terapeutas com sugestões ou dúvidas podem
-              escrever pra gente.
+              escrever pra gente. E para as tarefas e a agenda da casa toda, a AraLabs também faz o{' '}
+              <Link
+                href="/produtos/casa-leve"
+                className="font-semibold text-white underline underline-offset-4"
+              >
+                Casa Leve
+              </Link>
+              .
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <AppButton href={LUMO_APPSTORE_URL} external bg="#fff" fg={lumo.colorInk}>

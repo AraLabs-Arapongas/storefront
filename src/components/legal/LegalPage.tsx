@@ -2,6 +2,8 @@ import Link from 'next/link';
 import type { CSSProperties, ReactNode } from 'react';
 import { productBySlug, type Product } from '@/lib/products';
 import { CONTACT_EMAIL } from '@/lib/seo/site';
+import { breadcrumbSchema } from '@/lib/seo/schemas';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { DOC_LABEL, PRODUCT_DOCS, docHref, type LegalDoc } from './docs';
 import { LegalToc, LegalTocMobile, type TocItem } from './LegalToc';
 
@@ -99,8 +101,16 @@ export function LegalPage({
   const showToc = toc ?? sections.length >= 3;
   const vars = { '--lg-accent': product.colorInk, '--lg-soft': product.colorSoft } as CSSProperties;
 
+  // Produtos > product > this document. Every legal page goes through here, so it is set once.
+  const breadcrumb = breadcrumbSchema([
+    { name: 'Produtos', path: '/produtos' },
+    { name: product.name, path: product.href },
+    { name: DOC_LABEL[doc].long },
+  ]);
+
   return (
     <div className="lg-page" style={vars}>
+      <JsonLd data={breadcrumb} />
       {/* Band: product colour, document title, date */}
       <header className="lg-band">
         <div className="lg-band-grid" aria-hidden="true" />
@@ -115,7 +125,10 @@ export function LegalPage({
               {product.name}
             </Link>
             {docs.length > 1 ? (
-              <nav aria-label={`Documentos do ${product.name}`} className="lg-docnav">
+              <nav
+                aria-label={`Atalhos para os documentos do ${product.name}`}
+                className="lg-docnav"
+              >
                 <ul className="flex flex-wrap gap-2">
                   {docs.map((d) => (
                     <li key={d}>

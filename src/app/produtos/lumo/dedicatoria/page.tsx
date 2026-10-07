@@ -1,21 +1,17 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo/metadata';
 import { Hl, LegalPage } from '@/components/legal/LegalPage';
 
 const pageTitle = 'Dedicatória — Lumo';
 const pageDescription =
   'O Lumo nasceu em homenagem à Profa. Dra. Selma Lanhellas — educadora, inspiração e presença por trás deste projeto.';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: '/produtos/lumo/dedicatoria',
   title: pageTitle,
   description: pageDescription,
-  alternates: { canonical: '/produtos/lumo/dedicatoria' },
-  openGraph: {
-    title: pageTitle,
-    description: pageDescription,
-    url: '/produtos/lumo/dedicatoria',
-    type: 'website',
-  },
-};
+  noindex: true,
+});
 
 export default function LumoDedicatoriaPage() {
   return (

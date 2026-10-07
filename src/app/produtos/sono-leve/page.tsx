@@ -1,7 +1,8 @@
-import type { Metadata } from 'next';
+import Link from 'next/link';
 import { HeartHandshake, ShieldCheck, Smartphone, Milk, TriangleAlert } from 'lucide-react';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { softwareApplicationSchema } from '@/lib/seo/schemas';
+import { breadcrumbSchema, softwareApplicationSchema } from '@/lib/seo/schemas';
+import { pageMetadata } from '@/lib/seo/metadata';
 import { productBySlug } from '@/lib/products';
 import { contactHref } from '@/lib/seo/site';
 import { InView } from '@/components/home/InView';
@@ -24,21 +25,15 @@ import {
 } from '@/components/products/sono-leve/SonoVisuals';
 
 const sonoLeve = productBySlug('sono-leve');
-const pageTitle = 'Sono Leve — treino de sono do bebê';
 const pageDescription =
-  'Sono Leve é o app da AraLabs que ajuda pais no treino de sono gradual do bebê (método Ferber e variações): ritual da hora de dormir, timer com os intervalos de check-in de cada noite, registro dos despertares e mamadas, histórico e painel. Sem conta; os dados ficam no celular. Não é conselho médico. Em revisão na App Store.';
+  'Treino de sono do bebê com o método Ferber: timer com os intervalos de cada noite, registro de despertares e mamadas. Sem conta, dados só no celular.';
 
-export const metadata: Metadata = {
-  title: pageTitle,
+export const metadata = pageMetadata({
+  path: '/produtos/sono-leve',
+  title: 'Sono Leve: app de treino de sono do bebê (Ferber)',
   description: pageDescription,
-  alternates: { canonical: '/produtos/sono-leve' },
-  openGraph: {
-    title: pageTitle,
-    description: pageDescription,
-    url: '/produtos/sono-leve',
-    type: 'website',
-  },
-};
+  image: '/produtos/sono-leve/opengraph-image',
+});
 
 const NOTIFY = contactHref('Quero saber quando o Sono Leve sair');
 
@@ -113,8 +108,10 @@ export default function SonoLevePage() {
           description: pageDescription,
           applicationCategory: 'HealthApplication',
           operatingSystem: 'iOS',
-          free: false,
         })}
+      />
+      <JsonLd
+        data={breadcrumbSchema([{ name: 'Produtos', path: '/produtos' }, { name: sonoLeve.name }])}
       />
 
       {/* 1 · HERO — night, the timer between check-ins */}
@@ -300,7 +297,16 @@ export default function SonoLevePage() {
           </h2>
           <p className="mt-8 max-w-2xl text-[17px] leading-[1.7] text-[color:var(--ink-muted)]">
             Treino de sono é uma decisão da família e não serve para todo bebê. O app não toma lado,
-            não pressiona e não cobra resultado. Ele tira a conta de cabeça e a dúvida do caminho.
+            não pressiona e não cobra resultado. Ele tira a conta de cabeça e a dúvida do caminho. E
+            para o resto do dia, o Casa Leve cuida das tarefas, das compras e da{' '}
+            <Link
+              href="/produtos/casa-leve"
+              className="font-semibold underline underline-offset-4"
+              style={{ color: ink }}
+            >
+              rotina da família
+            </Link>
+            .
           </p>
           <ul className="mt-14 grid gap-x-14 border-t border-[color:var(--line-strong)] md:grid-cols-2 lg:mt-20">
             {PROMISES.map((r) => (

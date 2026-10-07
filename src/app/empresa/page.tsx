@@ -1,26 +1,28 @@
 import Link from 'next/link';
-import type { Metadata } from 'next';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { aboutPageSchema } from '@/lib/seo/schemas';
+import { pageMetadata } from '@/lib/seo/metadata';
 import { PRODUCTS, countWord, productsByLine } from '@/lib/products';
-import { contactHref, CONTACT_EMAIL, JOBS_EMAIL, ORG_ADDRESS } from '@/lib/seo/site';
+import {
+  contactHref,
+  CNPJ,
+  CONTACT_EMAIL,
+  JOBS_EMAIL,
+  LEGAL_NAME,
+  ORG_ADDRESS,
+} from '@/lib/seo/site';
 import { InView } from '@/components/home/InView';
 import { Kicker, Pill, capitalize, i, tallySentence } from '@/components/pages/Editorial';
 
 const pageDescription =
-  'A AraLabs é uma empresa de software de Arapongas (PR) que faz tecnologia simples para pequenos negócios e para as famílias deles: produtos próprios e sistemas sob medida.';
+  'A AraLabs é uma empresa de software de Arapongas (PR): tecnologia simples para pequenos negócios e suas famílias, com produtos próprios e sistemas sob medida.';
 
-export const metadata: Metadata = {
-  title: 'Empresa',
+export const metadata = pageMetadata({
+  path: '/empresa',
+  title: 'Sobre a AraLabs, empresa de software em Arapongas (PR)',
+  absoluteTitle: true,
   description: pageDescription,
-  alternates: { canonical: '/empresa' },
-  openGraph: {
-    title: 'Sobre a AraLabs',
-    description: pageDescription,
-    url: '/empresa',
-    type: 'website',
-  },
-};
+});
 
 const RULE = [
   {
@@ -101,8 +103,7 @@ export default function EmpresaPage() {
             <div>
               <Kicker>Empresa · Arapongas, Paraná</Kicker>
               <h1 className="pg-title-empresa display mt-6 text-[color:var(--ink)]">
-                <span className="block">Trabalhamos</span>
-                <span className="block">para quem</span>
+                <span className="block">Trabalhamos</span> <span className="block">para quem</span>{' '}
                 <span className="block text-[color:var(--gold-soft)]">trabalha.</span>
               </h1>
               <p className="mt-8 max-w-[560px] text-[17px] leading-[1.55] text-[color:var(--ink-muted)] md:text-[18.5px]">
@@ -162,8 +163,14 @@ export default function EmpresaPage() {
                 Produtos próprios, para assinar e usar hoje.
               </h3>
               <p className="mt-5 max-w-md text-[16.5px] leading-[1.7] text-white/70">
-                Software pronto, com o preço na página. Para o seu negócio e para a sua casa, todos
-                com a mesma cara de simples.
+                Software pronto, com o preço na página, como o{' '}
+                <Link
+                  href="/produtos/komyx"
+                  className="text-white underline decoration-[color:var(--gold)]/50 underline-offset-4 transition hover:text-[color:var(--gold)]"
+                >
+                  Komyx, sistema para buffets
+                </Link>
+                . Para o seu negócio e para a sua casa, todos com a mesma cara de simples.
               </p>
               <ul className="mt-8 space-y-1">
                 {[...business, ...family].map((p) => (
@@ -196,16 +203,22 @@ export default function EmpresaPage() {
                 Sob medida, quando o problema ainda não tem produto.
               </h3>
               <p className="mt-5 max-w-md text-[16.5px] leading-[1.7] text-white/70">
-                Salão, clínica, oficina, escolinha. A gente não começa do zero: já temos uma base
-                pronta para agenda, pagamentos, orçamentos e operação, e ela vira o sistema do seu
-                negócio.
+                Salão, clínica, oficina, escolinha. Nossos{' '}
+                <Link
+                  href="/sob-medida"
+                  className="text-white underline decoration-[color:var(--gold)]/50 underline-offset-4 transition hover:text-[color:var(--gold)]"
+                >
+                  sistemas sob medida
+                </Link>{' '}
+                não começam do zero: já temos uma base pronta para agenda, pagamentos, orçamentos e
+                operação, e ela vira o sistema do seu negócio.
               </p>
               <p className="mt-8 max-w-md border-l-2 border-[color:var(--gold)] pl-5 text-[clamp(1.3rem,2.2vw,1.7rem)] font-semibold leading-[1.3] tracking-tight">
                 Preço fechado. A primeira versão no ar rápido. E o sistema é seu.
               </p>
               <div className="mt-10">
                 <Pill href="/sob-medida" look="gold" arrow>
-                  Como funciona o sob medida
+                  Sistema sob medida para o seu negócio
                 </Pill>
               </div>
             </article>
@@ -220,11 +233,12 @@ export default function EmpresaPage() {
       >
         <span aria-hidden="true" className="pg-corner-tri" />
         <div className="relative mx-auto max-w-[1240px] px-6 py-24 lg:px-10 lg:py-32">
-          <p className="flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.2em] sm:text-[11px] sm:tracking-[0.28em]">
+          {/* The kicker is the section heading; "Abra. Entenda. Use." is a motto, not a topic. */}
+          <h2
+            id="a-regra"
+            className="flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.2em] sm:text-[11px] sm:tracking-[0.28em]"
+          >
             <span className="tri text-[8px]" aria-hidden="true" />A regra que vale para tudo
-          </p>
-          <h2 id="a-regra" className="sr-only">
-            Abra. Entenda. Use.
           </h2>
           <InView as="ol" className="mt-12 border-b-2 border-[color:var(--dark)]" threshold={0.3}>
             {RULE.map((r, k) => (
@@ -321,6 +335,11 @@ export default function EmpresaPage() {
                 {ORG_ADDRESS.addressLocality}, {ORG_ADDRESS.addressRegion} ·{' '}
                 {ORG_ADDRESS.postalCode}
               </address>
+              <p className="mt-3 text-[13.5px] leading-[1.6] text-white/50">
+                {LEGAL_NAME}
+                <br />
+                CNPJ {CNPJ}
+              </p>
             </div>
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/45">

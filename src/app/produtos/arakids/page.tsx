@@ -1,8 +1,9 @@
-import type { Metadata } from 'next';
+import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { softwareApplicationSchema } from '@/lib/seo/schemas';
-import { productBySlug } from '@/lib/products';
+import { breadcrumbSchema, softwareApplicationSchema } from '@/lib/seo/schemas';
+import { pageMetadata } from '@/lib/seo/metadata';
+import { ARAKIDS_URL, productBySlug } from '@/lib/products';
 import { contactHref } from '@/lib/seo/site';
 import { InView } from '@/components/home/InView';
 import { AppButton, AppHero, AppKicker, cssI } from '@/components/site/AppHero';
@@ -15,21 +16,15 @@ import {
 } from '@/components/products/arakids/ArakidsVisuals';
 
 const arakids = productBySlug('arakids');
-const pageTitle = 'Arakids — jogos educativos sem anúncio';
 const pageDescription =
-  'Arakids é o portal da AraLabs com jogos educativos para crianças de 2 a 10 anos: sem anúncios, sem cadastro e sem truques para prender a criança na tela. Por faixa etária, com área dos pais e regras de tempo de tela. Grátis, no navegador.';
+  'Jogos educativos para crianças de 2 a 10 anos, por idade, sem anúncio, sem cadastro e sem truque para prender na tela. Com área dos pais. Grátis, no navegador.';
 
-export const metadata: Metadata = {
-  title: pageTitle,
+export const metadata = pageMetadata({
+  path: '/produtos/arakids',
+  title: 'Arakids: jogos educativos grátis, sem anúncio',
   description: pageDescription,
-  alternates: { canonical: '/produtos/arakids' },
-  openGraph: {
-    title: pageTitle,
-    description: pageDescription,
-    url: '/produtos/arakids',
-    type: 'website',
-  },
-};
+  image: '/produtos/arakids/opengraph-image',
+});
 
 const TRACK_BODY: Record<string, string> = {
   '2–3': 'Toque, cor, som e forma. Jogos curtos para dedos pequenos, sem texto e sem pressa.',
@@ -61,7 +56,12 @@ export default function ArakidsPage() {
           description: pageDescription,
           applicationCategory: 'EducationalApplication',
           operatingSystem: 'Web',
+          offer: 'free',
+          downloadUrl: ARAKIDS_URL,
         })}
+      />
+      <JsonLd
+        data={breadcrumbSchema([{ name: 'Produtos', path: '/produtos' }, { name: arakids.name }])}
       />
 
       {/* 1 · HERO — full blue, the age staircase */}
@@ -75,6 +75,7 @@ export default function ArakidsPage() {
             <div className="pa-tri-grid-light absolute inset-0" />
           </>
         }
+        titlePrefix="Arakids: jogos educativos sem anúncio."
         title={
           <>
             Pra onde vamos <span style={{ color: YELLOW }}>hoje?</span>
@@ -224,6 +225,17 @@ export default function ArakidsPage() {
               <p className="mt-4 max-w-md text-[16.5px] leading-[1.7] text-[color:var(--ink-muted)]">
                 A área dos adultos, protegida por toque longo. Lá ficam as regras do portal, as
                 regras de tempo de tela e o que a criança está aprendendo em cada jogo.
+              </p>
+              <p className="mt-4 max-w-md text-[16.5px] leading-[1.7] text-[color:var(--ink-muted)]">
+                E para a rotina fora da tela, o Casa Leve é o nosso{' '}
+                <Link
+                  href="/produtos/casa-leve"
+                  className="font-semibold underline underline-offset-4"
+                  style={{ color: arakids.colorInk }}
+                >
+                  app de tarefas e rotina da família
+                </Link>
+                .
               </p>
             </article>
             <article className="md:mt-24">

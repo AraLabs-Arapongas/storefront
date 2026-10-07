@@ -22,7 +22,8 @@ function Crop({
   w,
   h,
   sizes,
-  priority,
+  alt,
+  preload,
   className = '',
 }: {
   src: string;
@@ -33,18 +34,20 @@ function Crop({
   w: number;
   h: number;
   sizes: string;
-  priority?: boolean;
+  /** What the crop shows; empty only when the crop is decorative. */
+  alt: string;
+  preload?: boolean;
   className?: string;
 }) {
   return (
     <div className={`relative overflow-hidden ${className}`} style={{ aspectRatio: `${w} / ${h}` }}>
       <Image
         src={src}
-        alt=""
+        alt={alt}
         width={iw}
         height={ih}
         sizes={sizes}
-        priority={priority}
+        preload={preload}
         className="absolute max-w-none"
         style={{
           width: `${(iw / w) * 100}%`,
@@ -105,7 +108,8 @@ export function LumoHeroBoard() {
       <figure className="relative">
         <div className="relative mx-auto w-[66%] max-w-[300px] rotate-[2deg]">
           <Crop
-            src="/images/lumo-banner-mobile.png"
+            src="/images/lumo-banner-mobile.webp"
+            alt="Tela Falar do Lumo, em espanhol: cards de pictogramas para montar a frase"
             iw={1200}
             ih={1500}
             x={527}
@@ -113,7 +117,7 @@ export function LumoHeroBoard() {
             w={538}
             h={800}
             sizes="(min-width: 1024px) 650px, 70vw"
-            priority
+            preload
             className="pa-lumo-phone rounded-t-[11%_7.5%] shadow-[0_40px_80px_-30px_rgba(54,32,140,0.55)]"
           />
         </div>
@@ -131,7 +135,8 @@ export function LumoScreens({ className = '' }: { className?: string }) {
   return (
     <figure className={className}>
       <Crop
-        src="/images/lumo-banner-02.png"
+        src="/images/lumo-banner-02.webp"
+        alt="Telas do Lumo em inglês e espanhol: falar, início e cards de pictogramas"
         iw={2880}
         ih={960}
         x={1490}

@@ -1,21 +1,17 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo/metadata';
 import { Hl, LegalPage } from '@/components/legal/LegalPage';
 
 const pageTitle = 'Política de Privacidade — Lumo';
 const pageDescription =
   'O Lumo não coleta dados. Nada sai do seu celular ou tablet. Esta política descreve em linguagem direta como tratamos privacidade.';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: '/produtos/lumo/privacidade',
   title: pageTitle,
   description: pageDescription,
-  alternates: { canonical: '/produtos/lumo/privacidade' },
-  openGraph: {
-    title: pageTitle,
-    description: pageDescription,
-    url: '/produtos/lumo/privacidade',
-    type: 'website',
-  },
-};
+  noindex: true,
+});
 
 const VIGENCIA = '28 de maio de 2026';
 

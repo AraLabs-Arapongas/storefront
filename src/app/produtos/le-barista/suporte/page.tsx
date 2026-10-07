@@ -1,21 +1,16 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo/metadata';
 import { Hl, LegalPage, SupportMail } from '@/components/legal/LegalPage';
 
 const pageTitle = 'Suporte — Le Barista';
 const pageDescription =
   'Suporte do Le Barista: contato por e-mail e respostas pras dúvidas mais comuns sobre balança, moedor, diagnóstico, dados e backup.';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: '/produtos/le-barista/suporte',
   title: pageTitle,
   description: pageDescription,
-  alternates: { canonical: '/produtos/le-barista/suporte' },
-  openGraph: {
-    title: pageTitle,
-    description: pageDescription,
-    url: '/produtos/le-barista/suporte',
-    type: 'website',
-  },
-};
+});
 
 const VIGENCIA = '6 de outubro de 2026';
 

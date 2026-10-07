@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import type { Metadata } from 'next';
 import type { CSSProperties, ReactNode } from 'react';
 import { ArrowRight, Home } from 'lucide-react';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { softwareApplicationSchema } from '@/lib/seo/schemas';
+import { breadcrumbSchema, softwareApplicationSchema } from '@/lib/seo/schemas';
+import { pageMetadata } from '@/lib/seo/metadata';
 import { productBySlug } from '@/lib/products';
 import { contactHref } from '@/lib/seo/site';
 import { ProductTile } from '@/components/site/ProductMarks';
@@ -17,21 +17,15 @@ import {
   PlannerMock,
 } from '@/components/products/casa-leve/Mocks';
 
-const pageTitle = 'Casa Leve — família organizada, juntos';
 const pageDescription =
-  'Casa Leve é o app da AraLabs pra família: tarefas com pontos, agenda, compras, recompensas, desafios e Pomodoro. Tier Premium libera Cardápio, Finanças e Planner (hábitos, foco do dia, reflexão e visão semanal). Trial de 30 dias. A partir de R$ 9,90/mês.';
+  'Tarefas com pontos, compras, agenda e recompensas num app só para a família. Menos cobrança em casa, mais autonomia para as crianças. 30 dias grátis.';
 
-export const metadata: Metadata = {
-  title: pageTitle,
+export const metadata = pageMetadata({
+  path: '/produtos/casa-leve',
+  title: 'Casa Leve: app de tarefas e rotina da família',
   description: pageDescription,
-  alternates: { canonical: '/produtos/casa-leve' },
-  openGraph: {
-    title: pageTitle,
-    description: pageDescription,
-    url: '/produtos/casa-leve',
-    type: 'website',
-  },
-};
+  image: '/produtos/casa-leve/opengraph-image',
+});
 
 const PRINCIPLES = [
   {
@@ -243,7 +237,11 @@ export default function CasaLevePage() {
           description: pageDescription,
           applicationCategory: 'LifestyleApplication',
           operatingSystem: 'iOS, Android',
+          offer: { price: '9.90', description: 'A partir de R$ 9,90/mês, 30 dias grátis' },
         })}
+      />
+      <JsonLd
+        data={breadcrumbSchema([{ name: 'Produtos', path: '/produtos' }, { name: p.name }])}
       />
 
       {/* 1 · HERO — warm, the day's tasks ticking off */}
@@ -273,9 +271,15 @@ export default function CasaLevePage() {
               </span>
             </div>
             <h1 className="pk-hero-title display mt-7 text-balance text-[color:var(--ink)] lg:mt-8">
+              <span
+                className="pk-load-up mb-3 block text-[clamp(1.15rem,2.1vw,1.7rem)] leading-[1.2] tracking-[-0.015em] lg:mb-4"
+                style={{ color: p.colorInk, '--d': 60 } as CSSProperties}
+              >
+                Casa Leve, o app de rotina da família.
+              </span>{' '}
               <span className="pk-load-up block" style={{ '--d': 120 } as CSSProperties}>
                 Ninguém precisa ficar
-              </span>
+              </span>{' '}
               <span
                 className="pk-load-up block"
                 style={{ color: p.colorInk, '--d': 320 } as CSSProperties}
@@ -360,6 +364,17 @@ export default function CasaLevePage() {
                 com as crianças em casa. Mãe ou pai sozinho querendo dividir o jogo com os filhos.
                 Avós, sogros, quem ajuda em casa: todo mundo entra.
               </p>
+              <p className="mt-5 max-w-lg text-[17px] leading-[1.7] text-[color:var(--ink-muted)]">
+                Para o tempo livre dos pequenos, a AraLabs também tem o Arakids, com{' '}
+                <Link
+                  href="/produtos/arakids"
+                  className="font-semibold underline underline-offset-4"
+                  style={{ color: p.colorInk }}
+                >
+                  jogos educativos sem anúncio para as crianças
+                </Link>
+                .
+              </p>
               <p className="mt-10 flex items-end gap-4 border-t border-[color:var(--line-strong)] pt-8">
                 <span
                   className="display text-[clamp(5rem,10vw,8.5rem)] leading-[0.78]"
@@ -379,7 +394,7 @@ export default function CasaLevePage() {
                 style={{ background: p.colorSoft }}
               />
               <Image
-                src="/images/family-1.png"
+                src="/images/family-1.webp"
                 alt="Família em casa dividindo as tarefas do dia: arrumar a mesa, organizar as mochilas, fazer o almoço"
                 width={1536}
                 height={1024}
@@ -484,7 +499,7 @@ export default function CasaLevePage() {
         <figure className="mt-14 lg:mt-20" style={{ background: p.colorSoft }}>
           <div className="relative mx-auto max-w-[1440px]">
             <Image
-              src="/images/casa-leve-banner-product-mobile.png"
+              src="/images/casa-leve-banner-product-mobile.webp"
               alt="Telas do Casa Leve: rotina da família, pontos e conquistas da criança, planejamento da semana"
               width={1122}
               height={1402}
@@ -492,10 +507,10 @@ export default function CasaLevePage() {
               className="h-auto w-full md:hidden"
             />
             <Image
-              src="/images/casa-leve-banner-product.png"
+              src="/images/casa-leve-banner-product.webp"
               alt="Telas do Casa Leve: rotina da família, pontos e conquistas da criança, planejamento da semana"
-              width={2172}
-              height={724}
+              width={2000}
+              height={667}
               sizes="(min-width: 1440px) 1440px, 100vw"
               className="hidden h-auto w-full md:block"
             />

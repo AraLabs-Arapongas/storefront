@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 import { Header } from '@/components/site/Header';
 import { Footer } from '@/components/site/Footer';
+import { ClickTracking } from '@/components/site/ClickTracking';
 import { Analytics } from '@vercel/analytics/next';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { organizationSchema } from '@/lib/seo/schemas';
@@ -13,6 +14,7 @@ import {
   SITE_DESCRIPTION,
   SITE_TWITTER_DESCRIPTION,
   LOCALE,
+  DEFAULT_OG_IMAGE,
 } from '@/lib/seo/site';
 
 const jakarta = Plus_Jakarta_Sans({
@@ -38,11 +40,15 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     locale: LOCALE,
     type: 'website',
+    images: [
+      { url: DEFAULT_OG_IMAGE, width: 1200, height: 630, alt: `${SITE_NAME} — ${SITE_TAGLINE}` },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: `${SITE_NAME} — ${SITE_TAGLINE}`,
     description: SITE_TWITTER_DESCRIPTION,
+    images: [DEFAULT_OG_IMAGE],
   },
   robots: {
     index: process.env.VERCEL_ENV === 'production',
@@ -69,6 +75,7 @@ export default function RootLayout({
         <main className="relative">{children}</main>
         <Footer />
         <Analytics />
+        <ClickTracking />
       </body>
     </html>
   );

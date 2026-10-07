@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import Link from 'next/link';
 import {
   Calendar,
   Calculator,
@@ -10,26 +10,21 @@ import {
   Bell,
 } from 'lucide-react';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { collectionPageSchema } from '@/lib/seo/schemas';
+import { serviceSchema } from '@/lib/seo/schemas';
+import { pageMetadata } from '@/lib/seo/metadata';
 import { contactHref } from '@/lib/seo/site';
 import { InView } from '@/components/home/InView';
 import { Kicker, Pill, capitalize, i } from '@/components/pages/Editorial';
 import { countWord } from '@/lib/products';
 
 const pageDescription =
-  'Sistema sob medida para o seu negócio: agenda, orçamento, Pix e painel do dono. Primeira versão no ar rápido, preço fechado, o sistema é seu. AraLabs, Arapongas (PR).';
+  'Sistema sob medida para pequenos negócios: agenda, orçamento, cobrança por Pix e painel do dono. Preço fechado, proposta em 2 dias úteis. Arapongas (PR).';
 
-export const metadata: Metadata = {
-  title: 'Sob medida',
+export const metadata = pageMetadata({
+  path: '/sob-medida',
+  title: 'Sistema sob medida para pequenos negócios',
   description: pageDescription,
-  alternates: { canonical: '/sob-medida' },
-  openGraph: {
-    title: 'Sistemas sob medida · AraLabs',
-    description: pageDescription,
-    url: '/sob-medida',
-    type: 'website',
-  },
-};
+});
 
 const PROMISES = [
   { k: 'Proposta', v: 'Em até 2 dias úteis' },
@@ -135,10 +130,12 @@ export default function SobMedidaPage() {
   return (
     <>
       <JsonLd
-        data={collectionPageSchema({
+        data={serviceSchema({
           path: '/sob-medida',
-          name: 'Sistemas sob medida',
+          name: 'Desenvolvimento de sistema sob medida',
+          serviceType: 'Desenvolvimento de software sob medida',
           description: pageDescription,
+          audience: 'Pequenos negócios de serviço',
         })}
       />
 
@@ -149,8 +146,12 @@ export default function SobMedidaPage() {
           <div className="tri-grid pg-grid-right absolute inset-0" />
         </div>
         <div className="pg-hero relative mx-auto max-w-[1240px] px-6 pb-20 pt-10 lg:px-10 lg:pb-24 lg:pt-14">
-          <Kicker>Sob medida · para pequenos negócios</Kicker>
-          <h1 className="pg-title-sob display mt-6 text-[color:var(--ink)]">
+          <h1 className="pg-title-sob display text-[color:var(--ink)]">
+            {/* The kicker line lives inside the h1 so the heading names the service. */}
+            <span className="mb-6 flex items-center gap-3 text-[10px] font-semibold uppercase leading-normal tracking-[0.2em] text-[color:var(--gold-soft)] sm:text-[11px] sm:tracking-[0.28em]">
+              <span className="tri text-[8px]" aria-hidden="true" />
+              Sistema sob medida para pequenos negócios.
+            </span>{' '}
             <span className="lg:block">Seu problema ainda</span>{' '}
             <span className="lg:block">não tem produto?</span>{' '}
             <span className="block text-[color:var(--gold-soft)]">A gente faz.</span>
@@ -239,7 +240,14 @@ export default function SobMedidaPage() {
           <p className="mt-8 max-w-xl text-[17px] leading-[1.7] text-white/75">
             Já temos uma base pronta para agenda, pagamentos, orçamentos e operação. Ela vira o
             sistema de um salão, de uma oficina ou de uma escolinha, do jeito que o seu dia
-            funciona.
+            funciona. O{' '}
+            <Link
+              href="/produtos/komyx"
+              className="text-[color:var(--gold)] underline decoration-[color:var(--gold)]/40 underline-offset-4 transition hover:decoration-[color:var(--gold)]"
+            >
+              Komyx, sistema para buffet e casa de festas
+            </Link>
+            , nasceu exatamente assim.
           </p>
           <InView
             as="ul"

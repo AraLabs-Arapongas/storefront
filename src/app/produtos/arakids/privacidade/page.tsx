@@ -1,21 +1,17 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo/metadata';
 import { Hl, LegalPage } from '@/components/legal/LegalPage';
 
 const pageTitle = 'Política de Privacidade — Ara Kids (app)';
 const pageDescription =
-  'O app Ara Kids não tem conta, servidor, anúncios nem medição de uso. O progresso da criança fica só no aparelho. Esta política descreve em linguagem direta como tratamos privacidade.';
+  'O app Ara Kids não tem conta, servidor, anúncios nem medição de uso. O progresso da criança fica só no aparelho. Veja como tratamos privacidade.';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: '/produtos/arakids/privacidade',
   title: pageTitle,
   description: pageDescription,
-  alternates: { canonical: '/produtos/arakids/privacidade' },
-  openGraph: {
-    title: pageTitle,
-    description: pageDescription,
-    url: '/produtos/arakids/privacidade',
-    type: 'website',
-  },
-};
+  noindex: true,
+});
 
 const VIGENCIA = '4 de outubro de 2026';
 

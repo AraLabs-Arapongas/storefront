@@ -81,6 +81,7 @@ export function AppHero({
   background,
   backdrop,
   title,
+  titlePrefix,
   lead,
   actions,
   note,
@@ -96,6 +97,11 @@ export function AppHero({
   /** Decorative layer behind the content (glows, grids, stars). */
   backdrop?: ReactNode;
   title: ReactNode;
+  /**
+   * What the product is, said plainly ("Lumo, comunicação alternativa…"). It opens the h1 on a
+   * smaller line above the slogan, so the heading names the product without losing the voice.
+   */
+  titlePrefix?: ReactNode;
   lead: ReactNode;
   actions?: ReactNode;
   note?: ReactNode;
@@ -117,6 +123,18 @@ export function AppHero({
             <h1
               className={`pa-hero-title ${titleSize === 'xl' ? 'pa-hero-title--xl' : ''} display mt-7 text-balance ${onDark ? '' : 'text-[color:var(--ink)]'}`}
             >
+              {titlePrefix ? (
+                <>
+                  <span
+                    className={`mb-3 block text-[clamp(1.15rem,2.1vw,1.7rem)] leading-[1.2] tracking-[-0.015em] lg:mb-4 ${
+                      onDark ? 'text-white/85' : ''
+                    }`}
+                    style={onDark ? undefined : { color: product.colorInk }}
+                  >
+                    {titlePrefix}
+                  </span>{' '}
+                </>
+              ) : null}
               {title}
             </h1>
             <div

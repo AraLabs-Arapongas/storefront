@@ -17,6 +17,13 @@ const CONTACT = contactHref('Quero falar com a AraLabs');
 export function Header() {
   const [open, setOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
+  // Set when the panel is closed with the toggle button or Escape while the pointer/focus is still
+  // inside: hover and focus-within don't reopen it until they leave the wrapper.
+  const [productsSuppressed, setProductsSuppressed] = useState(false);
+  const closeProducts = () => {
+    setProductsOpen(false);
+    setProductsSuppressed(false);
+  };
 
   useEffect(() => {
     if (!open) return;
@@ -40,6 +47,7 @@ export function Header() {
             onClick={() => setOpen(false)}
           >
             <LogoLockup
+              decorative
               markHeight={38}
               className="text-[color:var(--ink)] transition group-hover:text-[color:var(--gold-soft)]"
               tagline="Tecnologia simples para pequenos negócios"
@@ -51,49 +59,74 @@ export function Header() {
             className="hidden items-center gap-8 text-[15px] font-medium text-[color:var(--ink-muted)] lg:flex"
             aria-label="Navegação principal"
           >
+            {/* Disclosure: the "Produtos" link navigates; the small button next to it toggles the
+                panel. Hover and focus-within also open it on desktop; Escape closes it. */}
             <div
-              className="relative"
-              onMouseEnter={() => setProductsOpen(true)}
-              onMouseLeave={() => setProductsOpen(false)}
-              onFocus={() => setProductsOpen(true)}
+              className="relative flex items-center gap-0.5"
+              onMouseEnter={() => !productsSuppressed && setProductsOpen(true)}
+              onMouseLeave={closeProducts}
+              onFocus={() => !productsSuppressed && setProductsOpen(true)}
               onBlur={(e) => {
-                if (!e.currentTarget.contains(e.relatedTarget as Node)) setProductsOpen(false);
+                if (!e.currentTarget.contains(e.relatedTarget as Node)) closeProducts();
+              }}
+              onKeyDown={(e) => {
+                if (e.key !== 'Escape' || !productsOpen) return;
+                setProductsOpen(false);
+                setProductsSuppressed(true);
+                e.currentTarget.querySelector<HTMLButtonElement>('button')?.focus();
               }}
             >
               <Link
                 href="/produtos"
-                onClick={() => setProductsOpen(false)}
-                className="inline-flex items-center gap-1 transition hover:text-[color:var(--ink)]"
-                aria-haspopup="menu"
-                aria-expanded={productsOpen}
+                onClick={closeProducts}
+                className="transition hover:text-[color:var(--ink)]"
               >
                 Produtos
+              </Link>
+              <button
+                type="button"
+                aria-expanded={productsOpen}
+                aria-controls="products-panel"
+                aria-label="Abrir lista de produtos"
+                onClick={(e) => {
+                  // A mouse click lands after hover has already opened the panel: keep it open.
+                  // Keyboard activation (detail 0) still toggles.
+                  if (e.detail > 0 && productsOpen) return;
+                  if (productsOpen) {
+                    setProductsOpen(false);
+                    setProductsSuppressed(true);
+                  } else {
+                    setProductsOpen(true);
+                    setProductsSuppressed(false);
+                  }
+                }}
+                className="grid h-6 w-5 place-items-center rounded transition hover:text-[color:var(--ink)]"
+              >
                 <span
                   aria-hidden="true"
                   className={`text-[10px] transition ${productsOpen ? 'rotate-180' : ''}`}
                 >
                   ▾
                 </span>
-              </Link>
+              </button>
               <div
-                role="menu"
+                id="products-panel"
                 className={`absolute left-1/2 top-full z-50 w-[330px] -translate-x-1/2 pt-3 transition-all duration-150 ${
                   productsOpen ? 'visible opacity-100' : 'pointer-events-none invisible opacity-0'
                 }`}
               >
                 <ul className="overflow-hidden rounded-2xl border border-[color:var(--line-strong)] bg-[color:var(--bg-elev)] p-2 shadow-[0_20px_50px_rgba(0,0,0,0.18)]">
                   {PRODUCT_LINES.map((g) => (
-                    <li key={g.line} role="none">
+                    <li key={g.line}>
                       <p className="px-3 pb-1 pt-2.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-[color:var(--ink-dim)]">
                         {g.label}
                       </p>
-                      <ul role="none">
+                      <ul>
                         {g.items.map((p) => (
-                          <li key={p.slug} role="none">
+                          <li key={p.slug}>
                             <Link
                               href={p.href}
-                              role="menuitem"
-                              onClick={() => setProductsOpen(false)}
+                              onClick={closeProducts}
                               className="flex items-center gap-3 rounded-xl px-3 py-2 transition hover:bg-[color:var(--bg)]"
                             >
                               <ProductTile product={p} size={34} />
@@ -119,11 +152,10 @@ export function Header() {
                       </ul>
                     </li>
                   ))}
-                  <li role="none" className="border-t border-[color:var(--line)] mt-1 pt-1">
+                  <li className="border-t border-[color:var(--line)] mt-1 pt-1">
                     <Link
                       href="/produtos"
-                      role="menuitem"
-                      onClick={() => setProductsOpen(false)}
+                      onClick={closeProducts}
                       className="block rounded-xl px-3 py-2 text-[13.5px] font-semibold text-[color:var(--gold-soft)] transition hover:bg-[color:var(--bg)]"
                     >
                       Ver todos os produtos →

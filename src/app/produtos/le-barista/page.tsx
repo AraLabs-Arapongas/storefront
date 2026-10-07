@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import {
   Coffee,
   Filter,
@@ -13,7 +12,8 @@ import {
   Smartphone,
 } from 'lucide-react';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { softwareApplicationSchema } from '@/lib/seo/schemas';
+import { breadcrumbSchema, softwareApplicationSchema } from '@/lib/seo/schemas';
+import { pageMetadata } from '@/lib/seo/metadata';
 import { productBySlug } from '@/lib/products';
 import { contactHref } from '@/lib/seo/site';
 import { InView } from '@/components/home/InView';
@@ -30,25 +30,20 @@ import {
   BrewPhones,
   DiagnosisPhones,
   LeBaristaHeroPhones,
+  SCREENS,
   ScreensGallery,
 } from '@/components/products/le-barista/LeBaristaVisuals';
 
 const barista = productBySlug('le-barista');
-const pageTitle = 'Le Barista — espresso no ponto, passo a passo, no iPhone';
 const pageDescription =
-  'Le Barista é o app da AraLabs para quem faz café em casa: registre cada shot de espresso e receba um ajuste por vez, com o porquê, até o café ficar no ponto. Também tem guias de V60, Chemex, AeroPress, leite vaporizado e bebidas. Gratuito, sem anúncios e sem conta; os dados ficam no iPhone. Em revisão na App Store.';
+  'Registre cada shot e receba um ajuste por vez (moagem, dose ou rendimento) até o espresso ficar no ponto. Guias de V60 e AeroPress. Grátis, para iPhone.';
 
-export const metadata: Metadata = {
-  title: pageTitle,
+export const metadata = pageMetadata({
+  path: '/produtos/le-barista',
+  title: 'Le Barista: app para regular o espresso em casa',
   description: pageDescription,
-  alternates: { canonical: '/produtos/le-barista' },
-  openGraph: {
-    title: pageTitle,
-    description: pageDescription,
-    url: '/produtos/le-barista',
-    type: 'website',
-  },
-};
+  image: '/produtos/le-barista/opengraph-image',
+});
 
 const NOTIFY = contactHref('Quero saber quando o Le Barista sair');
 /** Light caramel for type on the brown and dark sections. */
@@ -128,13 +123,19 @@ export default function LeBaristaPage() {
           description: pageDescription,
           applicationCategory: 'FoodAndDrinkApplication',
           operatingSystem: 'iOS',
+          offer: 'free',
+          screenshot: SCREENS.map((s) => s.src),
         })}
+      />
+      <JsonLd
+        data={breadcrumbSchema([{ name: 'Produtos', path: '/produtos' }, { name: barista.name }])}
       />
 
       {/* 1 · HERO — the app itself, three real screens */}
       <AppHero
         product={barista}
         titleSize="xl"
+        titlePrefix="Le Barista, o guia de café para fazer em casa."
         backdrop={
           <>
             <div className="absolute right-[-10%] top-[-30%] h-[44rem] w-[44rem] rounded-full bg-[radial-gradient(closest-side,rgba(138,90,59,0.18),transparent_70%)]" />

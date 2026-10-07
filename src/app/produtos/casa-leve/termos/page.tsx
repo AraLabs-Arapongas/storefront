@@ -1,22 +1,18 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo/metadata';
 import { Hl, LegalPage } from '@/components/legal/LegalPage';
 
 const pageTitle = 'Termos de Uso — Casa Leve';
 const pageDescription =
   'Regras de uso do aplicativo Casa Leve da AraLabs. Cobre cadastro, conduta, conteúdo do usuário, encerramento e responsabilidades.';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: '/produtos/casa-leve/termos',
   title: pageTitle,
   description: pageDescription,
-  alternates: { canonical: '/produtos/casa-leve/termos' },
-  openGraph: {
-    title: pageTitle,
-    description: pageDescription,
-    url: '/produtos/casa-leve/termos',
-    type: 'website',
-  },
-};
+  noindex: true,
+});
 
 const VIGENCIA = '7 de maio de 2026';
 

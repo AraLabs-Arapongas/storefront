@@ -1,21 +1,17 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo/metadata';
 import { Hl, LegalPage } from '@/components/legal/LegalPage';
 
 const pageTitle = 'Termos de uso — Lumo';
 const pageDescription =
   'Termos de uso do Lumo. App gratuito de comunicação visual pra famílias com crianças não-verbais.';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: '/produtos/lumo/termos',
   title: pageTitle,
   description: pageDescription,
-  alternates: { canonical: '/produtos/lumo/termos' },
-  openGraph: {
-    title: pageTitle,
-    description: pageDescription,
-    url: '/produtos/lumo/termos',
-    type: 'website',
-  },
-};
+  noindex: true,
+});
 
 const VIGENCIA = '28 de maio de 2026';
 

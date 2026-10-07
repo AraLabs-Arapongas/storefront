@@ -1151,6 +1151,8 @@ select {
 /* ------------------------------------------------------------------------
  * Hero intro (see components/home/heroIntro.ts). <html data-intro> is set by an inline script
  * before the hero paints and removed when the intro ends; these rules are its starting state.
+ * The headline and the [data-intro-fade] blocks are never hidden (LCP): only the product
+ * windows and the orbit line start invisible.
  * ------------------------------------------------------------------------ */
 .hero-line {
   display: inline-block;
@@ -1167,17 +1169,6 @@ select {
   display: inline-block;
   transform-origin: 0 100%;
 }
-[data-intro] .hero-line {
-  clip-path: inset(-0.3em -0.3em -0.32em -0.3em);
-}
-[data-intro] .hero-line-in {
-  translate: 0 1.35em;
-}
-[data-intro] .hero-line-last .hero-line-in {
-  translate: none;
-  opacity: 0;
-}
-[data-intro] [data-intro-fade],
 [data-intro] [data-intro-orbit],
 [data-intro] .orbit-item {
   opacity: 0;

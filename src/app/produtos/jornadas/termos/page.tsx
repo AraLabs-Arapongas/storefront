@@ -1,21 +1,17 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo/metadata';
 import { Hl, LegalPage } from '@/components/legal/LegalPage';
 
 const pageTitle = 'Termos de uso — Jornadas';
 const pageDescription =
   'Termos de uso do Jornadas. App da AraLabs pra acompanhar metas pessoais — leituras, cursos, hábitos.';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: '/produtos/jornadas/termos',
   title: pageTitle,
   description: pageDescription,
-  alternates: { canonical: '/produtos/jornadas/termos' },
-  openGraph: {
-    title: pageTitle,
-    description: pageDescription,
-    url: '/produtos/jornadas/termos',
-    type: 'website',
-  },
-};
+  noindex: true,
+});
 
 const VIGENCIA = '3 de outubro de 2026';
 

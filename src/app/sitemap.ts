@@ -2,51 +2,55 @@ import type { MetadataRoute } from 'next';
 import { SITE_URL } from '@/lib/seo/site';
 import { PRODUCTS } from '@/lib/products';
 
-const LAST_MODIFIED = '2026-10-03';
+/*
+ * Indexing policy: the sitemap lists only the pages meant to rank, i.e. home, hubs, sob medida,
+ * empresa, every product page and the product support pages (real FAQ, post-install searches).
+ * Privacy, terms, account deletion, Lumo's credits and dedication exist for the stores and for
+ * users; they are `noindex, follow` and stay out of here.
+ */
+
+/**
+ * Last real content change per path (YYYY-MM-DD), taken from the last commit of each page file.
+ * Maintained by hand: bump the date when a page's content changes. A path missing here is listed
+ * without `lastmod`, which is better than a date Google learns not to trust.
+ */
+const LAST_MODIFIED: Record<string, string> = {
+  '/': '2026-10-07',
+  '/produtos': '2026-10-07',
+  '/sob-medida': '2026-10-07',
+  '/empresa': '2026-10-07',
+  '/produtos/komyx': '2026-10-07',
+  '/produtos/casa-leve': '2026-10-07',
+  '/produtos/arakids': '2026-10-07',
+  '/produtos/lumo': '2026-10-07',
+  '/produtos/sono-leve': '2026-10-07',
+  '/produtos/jornadas': '2026-10-07',
+  '/produtos/le-barista': '2026-10-07',
+  '/produtos/arakids/suporte': '2026-10-04',
+  '/produtos/jornadas/suporte': '2026-10-03',
+  '/produtos/le-barista/suporte': '2026-10-06',
+  '/produtos/sono-leve/suporte': '2026-10-03',
+};
+
+const SUPPORT_PAGES = [
+  '/produtos/arakids/suporte',
+  '/produtos/jornadas/suporte',
+  '/produtos/le-barista/suporte',
+  '/produtos/sono-leve/suporte',
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Legal pages listed here are the long-standing web ones. The Jornadas, Sono Leve and
-  // Le Barista privacy/terms/support pages exist for App Store review and stay out of the sitemap.
-  const legal = [
-    '/produtos/casa-leve/privacidade',
-    '/produtos/casa-leve/termos',
-    '/produtos/casa-leve/excluir-conta',
-    '/produtos/lumo/privacidade',
-    '/produtos/lumo/termos',
-    '/produtos/lumo/creditos',
-    '/produtos/lumo/dedicatoria',
+  const paths = [
+    '/',
+    '/produtos',
+    '/sob-medida',
+    '/empresa',
+    ...PRODUCTS.map((p) => p.href),
+    ...SUPPORT_PAGES,
   ];
-  return [
-    { url: `${SITE_URL}/`, lastModified: LAST_MODIFIED, changeFrequency: 'monthly', priority: 1.0 },
-    {
-      url: `${SITE_URL}/produtos`,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${SITE_URL}/sob-medida`,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${SITE_URL}/empresa`,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    ...PRODUCTS.map((p) => ({
-      url: `${SITE_URL}${p.href}`,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: 'monthly' as const,
-      priority: p.slug === 'komyx' ? 0.95 : 0.8,
-    })),
-    ...legal.map((path) => ({
-      url: `${SITE_URL}${path}`,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: 'yearly' as const,
-      priority: 0.4,
-    })),
-  ];
+
+  return paths.map((path) => ({
+    url: `${SITE_URL}${path}`,
+    ...(LAST_MODIFIED[path] ? { lastModified: LAST_MODIFIED[path] } : {}),
+  }));
 }

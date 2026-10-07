@@ -1,21 +1,16 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo/metadata';
 import { Hl, LegalPage, SupportMail } from '@/components/legal/LegalPage';
 
 const pageTitle = 'Suporte — Sono Leve';
 const pageDescription =
   'Suporte do Sono Leve: contato por e-mail e respostas pras dúvidas mais comuns sobre dados, backup e notificações.';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: '/produtos/sono-leve/suporte',
   title: pageTitle,
   description: pageDescription,
-  alternates: { canonical: '/produtos/sono-leve/suporte' },
-  openGraph: {
-    title: pageTitle,
-    description: pageDescription,
-    url: '/produtos/sono-leve/suporte',
-    type: 'website',
-  },
-};
+});
 
 const VIGENCIA = '3 de outubro de 2026';
 

@@ -1,22 +1,18 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo/metadata';
 import { Hl, LegalPage } from '@/components/legal/LegalPage';
 
 const pageTitle = 'Política de Privacidade — Casa Leve';
 const pageDescription =
   'Como o Casa Leve coleta, usa e protege os dados das famílias que usam o aplicativo. Conformidade com a LGPD e padrões de App Store / Google Play.';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: '/produtos/casa-leve/privacidade',
   title: pageTitle,
   description: pageDescription,
-  alternates: { canonical: '/produtos/casa-leve/privacidade' },
-  openGraph: {
-    title: pageTitle,
-    description: pageDescription,
-    url: '/produtos/casa-leve/privacidade',
-    type: 'website',
-  },
-};
+  noindex: true,
+});
 
 const VIGENCIA = '7 de maio de 2026';
 

@@ -28,7 +28,7 @@ export type Product = {
   line: 'negocios' | 'familias';
 };
 
-export const KOMYX_URL = 'https://komyx.com.br';
+export const KOMYX_URL = 'https://www.komyx.com.br';
 export const ARAKIDS_URL = 'https://arakids.aralabs.com.br';
 export const LUMO_APPSTORE_URL = 'https://apps.apple.com/br/app/lumo/id6777104032';
 
@@ -41,7 +41,7 @@ export const PRODUCTS: Product[] = [
     summary: 'gestão para buffets',
     description:
       'Agenda, orçamento online, reserva com Pix, contrato automático, convite com RSVP e portaria no celular. O cliente monta a festa pela sua página; você só confirma.',
-    offer: '1 mês grátis, depois a partir de R$ 99/mês',
+    offer: '1 mês grátis para testar',
     status: 'No ar',
     href: '/produtos/komyx',
     externalUrl: KOMYX_URL,

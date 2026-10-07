@@ -22,7 +22,7 @@ export function PhoneFrame({
   src,
   alt,
   sizes,
-  priority,
+  preload,
   video,
   tilt = 0,
   shadow = 'soft',
@@ -35,8 +35,8 @@ export function PhoneFrame({
   alt: string;
   /** `sizes` for next/image: the rendered width of the whole phone. */
   sizes: string;
-  /** Only for the phone in the first viewport. */
-  priority?: boolean;
+  /** Only for the phone in the first viewport (the LCP candidate). */
+  preload?: boolean;
   /** Muted looping clip; shows only the poster under prefers-reduced-motion. */
   video?: { src: string; poster: string };
   /** Rotation in degrees. */
@@ -82,7 +82,7 @@ export function PhoneFrame({
                 fill
                 sizes={sizes}
                 quality={85}
-                priority={priority}
+                preload={preload}
                 className="object-cover object-top"
               />
             ) : null}

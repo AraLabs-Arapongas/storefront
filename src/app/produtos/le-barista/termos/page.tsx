@@ -1,21 +1,17 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo/metadata';
 import { Hl, LegalPage } from '@/components/legal/LegalPage';
 
 const pageTitle = 'Termos de uso — Le Barista';
 const pageDescription =
   'Termos de uso do Le Barista. App da AraLabs que guia, passo a passo, o preparo de espresso e café coado em casa.';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: '/produtos/le-barista/termos',
   title: pageTitle,
   description: pageDescription,
-  alternates: { canonical: '/produtos/le-barista/termos' },
-  openGraph: {
-    title: pageTitle,
-    description: pageDescription,
-    url: '/produtos/le-barista/termos',
-    type: 'website',
-  },
-};
+  noindex: true,
+});
 
 const VIGENCIA = '6 de outubro de 2026';
 

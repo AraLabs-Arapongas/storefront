@@ -96,7 +96,7 @@ export function LeBaristaHeroPhones() {
             src={home.src}
             alt={home.alt}
             sizes="(min-width: 1024px) 250px, 46vw"
-            priority
+            preload
           />
         </div>
       </div>

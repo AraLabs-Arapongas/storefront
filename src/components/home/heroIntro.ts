@@ -3,15 +3,19 @@ import type { Product } from '@/lib/products';
 /*
  * Hero intro: "chaos → organization". Product windows tumble in as physical objects at different
  * depths (near the camera: huge, blurred, fast; far away: small, sharp, slow), cross in front of
- * the still-hidden headline, then the headline is revealed by mask while the cards find their
- * places with small, per-card imperfections. Komyx is the signature: it comes in fast from the
- * right, misses "negócio" by a hair, brakes, rotates and snaps home as "Não o contrário." lands.
+ * the headline and find their places with small, per-card imperfections. Komyx is the signature:
+ * it comes in fast from the right, misses "negócio" by a hair, brakes, rotates and snaps home,
+ * and the headline gives a tiny nudge when it brakes.
+ *
+ * The headline, kicker, paragraph and CTAs are NEVER hidden or masked: they are fully visible
+ * from the first paint (they are the LCP candidates, and most first visits come from search).
+ * Only the product windows and the orbit line are animated in.
  *
  * The server HTML is always the final layout. A tiny inline script (INTRO_BOOT, rendered before
  * the hero markup) marks <html data-intro="full|short"> before first paint, which hides the
- * animated pieces via CSS; this module animates them with WAAPI (translate/rotate/scale, opacity,
- * filter) and removes the attribute at the end, leaving the natural CSS state. No attribute
- * (reduced motion, client navigation, no JS) means no intro at all.
+ * cards and the orbit via CSS; this module animates them with WAAPI (translate/rotate/scale,
+ * opacity, filter) and removes the attribute at the end, leaving the natural CSS state. No
+ * attribute (reduced motion, client navigation, no JS) means no intro at all.
  */
 
 export const INTRO_KEY = 'aralabs-intro';
@@ -80,7 +84,6 @@ export function runHeroIntro(stage: HTMLElement, onDone: () => void): () => void
 
   const wide = window.matchMedia('(min-width: 1280px)').matches;
   const lines = Array.from(stage.querySelectorAll<HTMLElement>('.hero-line-in'));
-  const fades = Array.from(stage.querySelectorAll<HTMLElement>('[data-intro-fade]'));
   const items = Array.from(stage.querySelectorAll<HTMLElement>('.orbit-item'));
   const orbit = Array.from(stage.querySelectorAll<Element>('[data-intro-orbit]'));
   const h1 = stage.querySelector<HTMLElement>('h1');
@@ -95,14 +98,7 @@ export function runHeroIntro(stage: HTMLElement, onDone: () => void): () => void
   items.forEach((li) => (li.style.willChange = 'translate, rotate, scale, opacity, filter'));
 
   if (mode === 'short') {
-    lines.forEach((el, i) =>
-      add(el, [{ translate: '0 0.6em' }, { translate: '0 0' }], {
-        delay: i * 60,
-        duration: 450,
-        easing: EASE_OUT,
-      }),
-    );
-    [...fades, ...orbit].forEach((el) =>
+    orbit.forEach((el) =>
       add(el, [{ opacity: 0 }, { opacity: 1 }], { delay: 150, duration: 400, easing: 'ease-out' }),
     );
     items.forEach((li, i) =>
@@ -153,56 +149,19 @@ export function runHeroIntro(stage: HTMLElement, onDone: () => void): () => void
     const vh = window.innerHeight;
     const V = (fx: number, fy: number) => ({ x: fx * vw, y: fy * vh });
 
-    // ---- Headline: nothing before 1.4s; then the mask reveal, then the gold landing.
-    const [l0, l1, l2, l3] = lines;
-    [l0, l1, l2].forEach((el, i) => {
-      if (!el) return;
-      add(
-        el,
-        [
-          { translate: '0 1.35em', scale: i === 0 ? 1.08 : 1 },
-          { translate: '0 -0.03em', scale: 1, offset: 0.78 },
-          { translate: '0 0', scale: 1 },
-        ],
-        { delay: 1400 + i * 190, duration: 560, easing: EASE_OUT },
-      );
-    });
-    if (l3)
-      add(
-        l3,
-        [
-          { translate: '0 -0.45em', scale: 1.5, opacity: 0 },
-          { translate: '0 0.06em', scale: 0.965, opacity: 1, offset: 0.6 },
-          { translate: '0 -0.01em', scale: 1.005, opacity: 1, offset: 0.82 },
-          { translate: '0 0', scale: 1, opacity: 1 },
-        ],
-        { delay: 2450, duration: 460, easing: 'cubic-bezier(0.6, 0, 0.3, 1)' },
-      );
+    // ---- Headline: always visible. It only gives a tiny nudge (never hidden) when Komyx brakes
+    // right next to "negócio".
     if (h1)
       add(
         h1,
         [
           { translate: '0 0' },
-          { translate: '0 9px', offset: 0.25 },
-          { translate: '0 -2px', offset: 0.6 },
+          { translate: '0 5px', offset: 0.3 },
+          { translate: '0 -1px', offset: 0.65 },
           { translate: '0 0' },
         ],
-        { delay: 2700, duration: 340, easing: 'ease-out' },
+        { delay: 2140, duration: 320, easing: 'ease-out' },
       );
-    fades.forEach((el, i) =>
-      add(
-        el,
-        [
-          { opacity: 0, translate: '0 10px' },
-          { opacity: 1, translate: '0 0' },
-        ],
-        {
-          delay: i === 0 ? 1300 : 2750,
-          duration: 520,
-          easing: EASE_OUT,
-        },
-      ),
-    );
     orbit.forEach((el) =>
       add(el, [{ opacity: 0 }, { opacity: 1 }], { delay: 2550, duration: 650, easing: 'ease-out' }),
     );
@@ -422,39 +381,7 @@ export function runHeroIntro(stage: HTMLElement, onDone: () => void): () => void
   /** Mobile/tablet: its own, lighter piece. Cards fall vertically through the viewport. */
   function compactIntro() {
     const vh = window.innerHeight;
-    lines.forEach((el, i) => {
-      const isLast = i === lines.length - 1;
-      add(
-        el,
-        isLast
-          ? [
-              { translate: '0 -0.3em', scale: 1.3, opacity: 0 },
-              { translate: '0 0.04em', scale: 0.97, opacity: 1, offset: 0.62 },
-              { translate: '0 0', scale: 1, opacity: 1 },
-            ]
-          : [{ translate: '0 1.35em' }, { translate: '0 0' }],
-        {
-          delay: [520, 660, 800][i] ?? 1180,
-          duration: isLast ? 420 : 500,
-          easing: isLast ? 'cubic-bezier(0.55, 0, 0.25, 1)' : EASE_OUT,
-        },
-      );
-    });
     orbit.forEach((el) => add(el, [{ opacity: 0 }, { opacity: 1 }], { duration: 300 }));
-    fades.forEach((el, i) =>
-      add(
-        el,
-        [
-          { opacity: 0, translate: '0 10px' },
-          { opacity: 1, translate: '0 0' },
-        ],
-        {
-          delay: i === 0 ? 400 : 1350,
-          duration: 450,
-          easing: EASE_OUT,
-        },
-      ),
-    );
     // Each card falls from above the viewport to its spot in the grid (usually just below the
     // fold), so they pass through the screen around the headline. Two of them are fast crossers.
     const fast = new Set([1, 4]);

@@ -1,36 +1,23 @@
 import Link from 'next/link';
-import type { Metadata } from 'next';
 import type { CSSProperties } from 'react';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { collectionPageSchema } from '@/lib/seo/schemas';
-import {
-  PRODUCTS,
-  PRODUCT_LINES,
-  countWord,
-  joinNames,
-  productsByLine,
-  type Product,
-} from '@/lib/products';
+import { pageMetadata } from '@/lib/seo/metadata';
+import { PRODUCTS, PRODUCT_LINES, countWord, productsByLine, type Product } from '@/lib/products';
 import { contactHref } from '@/lib/seo/site';
 import { KomyxMark, ProductTile } from '@/components/site/ProductMarks';
 import { InView } from '@/components/home/InView';
 import { Kicker, Pill, capitalize, i, tallySentence } from '@/components/pages/Editorial';
 
-const pageDescription = `Produtos da AraLabs: ${joinNames(
-  PRODUCTS.map((p) => ({ name: `${p.name} (${p.summary})` })),
-)}. Abra. Entenda. Use.`;
+const pageDescription =
+  'Komyx para buffets, Lumo para crianças não-verbais, Casa Leve para a rotina da família e outros apps da AraLabs. Simples de usar, preço na página.';
 
-export const metadata: Metadata = {
-  title: 'Produtos',
+export const metadata = pageMetadata({
+  path: '/produtos',
+  title: 'Apps e sistemas da AraLabs: Komyx, Lumo, Casa Leve e mais',
+  absoluteTitle: true,
   description: pageDescription,
-  alternates: { canonical: '/produtos' },
-  openGraph: {
-    title: 'Produtos da AraLabs',
-    description: pageDescription,
-    url: '/produtos',
-    type: 'website',
-  },
-};
+});
 
 const HOW = [
   {
@@ -234,7 +221,7 @@ export default function ProdutosPage() {
         <div className="pg-hero relative mx-auto max-w-[1240px] px-6 pb-20 pt-10 lg:px-10 lg:pb-24 lg:pt-14">
           <Kicker>Produtos · feitos em Arapongas, PR</Kicker>
           <h1 className="pg-title-produtos display mt-6 text-[color:var(--ink)]">
-            <span className="block">{capitalize(countWord(PRODUCTS.length))} produtos.</span>
+            <span className="block">{capitalize(countWord(PRODUCTS.length))} produtos.</span>{' '}
             <span className="block text-[color:var(--gold-soft)]">Nenhum manual.</span>
           </h1>
           <p className="mt-7 max-w-[600px] text-[17px] leading-[1.55] text-[color:var(--ink-muted)] md:text-[18.5px]">

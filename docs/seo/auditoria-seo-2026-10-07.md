@@ -1027,9 +1027,10 @@ Implementado no código (sem commit) e verificado com `next build` + HTML local 
 | P-27 alt nas imagens do Lumo | ✅ |
 | Links contextuais da seção 10 / 27.D | ✅ |
 | `robots.ts` sem `host` | ✅ |
+| P-12 `www` → apex agora 308 (Vercel, via API) | ✅ |
+| Domínio `storefront-fawn-xi.vercel.app` (cópia indexável da produção) removido do projeto | ✅ |
 
 Pendente (externo ou decisão):
-- P-12 redirect `www` → apex permanente: painel Vercel → Domains.
 - P-19 provas/cases, P-20 conteúdo (`/guias`), Lumo EN/ES, Google Business Profile.
 - P-24 header em ilhas client + CSS por segmento (refatoração maior).
 - `komyx.com.br` (K-7–K-13).

@@ -9,6 +9,7 @@ import { contactHref } from '@/lib/seo/site';
 
 const TOP_LINKS = [
   { label: 'Sob medida', href: '/sob-medida' },
+  { label: 'Guias', href: '/guias' },
   { label: 'Empresa', href: '/empresa' },
 ];
 

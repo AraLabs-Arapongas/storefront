@@ -27,3 +27,11 @@ npm run dev
 - Marcas: `src/components/site/Logo.tsx` (AraLabs) e `src/components/site/ProductMarks.tsx` (Komyx e tiles).
 - Kit de seção/título/botão: `src/components/site/ui.tsx`.
 - Pendências e decisões: `docs/futuro.md`.
+
+## IndexNow
+
+A cada deploy de Production bem-sucedido na Vercel, `.github/workflows/indexnow.yml` avisa o IndexNow (Bing, Yandex, Seznam, Naver; o Google não usa) com todas as URLs de `/sitemap.xml`, numa única requisição.
+
+- Chave: `public/a14800f5d76d46ea51a13cec3d1b9702.txt` (servida em `https://aralabs.com.br/<chave>.txt`). Para trocar, gere outra com `openssl rand -hex 16`, renomeie o arquivo e atualize a chave no script e no workflow.
+- Rodar na mão: `node scripts/indexnow.mjs --dry-run` mostra o payload sem enviar; sem `--dry-run` envia. `SITE` e `INDEXNOW_KEY` podem ser sobrescritos por env.
+- Pelo GitHub: Actions → IndexNow → Run workflow.

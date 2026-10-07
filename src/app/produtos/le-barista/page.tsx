@@ -11,6 +11,7 @@ import {
   ChartColumn,
   Smartphone,
 } from 'lucide-react';
+import Link from 'next/link';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { breadcrumbSchema, softwareApplicationSchema } from '@/lib/seo/schemas';
 import { pageMetadata } from '@/lib/seo/metadata';
@@ -225,7 +226,16 @@ export default function LeBaristaPage() {
             </p>
             <p className="mt-5 max-w-lg text-[15px] leading-[1.7] text-[color:var(--ink-dim)]">
               Se o moedor já está no mais fino, o diagnóstico passa a mexer na dose e no rendimento.
-              Se você usa WDT ou tela de dispersão, esses passos entram no preparo.
+              Se você usa WDT ou tela de dispersão, esses passos entram no preparo. A lógica por
+              trás está no guia{' '}
+              <Link
+                href="/guias/cafe/espresso-amargo-ou-azedo"
+                className="font-semibold underline underline-offset-4"
+                style={{ color: ink }}
+              >
+                espresso amargo ou azedo: o que ajustar primeiro
+              </Link>
+              .
             </p>
           </div>
           <DiagnosisPhones />

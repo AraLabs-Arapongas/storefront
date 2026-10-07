@@ -20,6 +20,7 @@ const columns: { title: string; links: { label: string; href: string | null }[] 
     links: [
       { label: 'Sob medida', href: '/sob-medida' },
       { label: 'Empresa', href: '/empresa' },
+      { label: 'Guias', href: '/guias' },
       { label: 'Todos os produtos', href: '/produtos' },
     ],
   },

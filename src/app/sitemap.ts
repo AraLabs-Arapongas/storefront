@@ -1,10 +1,11 @@
 import type { MetadataRoute } from 'next';
 import { SITE_URL } from '@/lib/seo/site';
 import { PRODUCTS } from '@/lib/products';
+import { GUIDES } from '@/lib/guides';
 
 /*
  * Indexing policy: the sitemap lists only the pages meant to rank, i.e. home, hubs, sob medida,
- * empresa, every product page and the product support pages (real FAQ, post-install searches).
+ * empresa, the /guias hub and its articles, every product page and the product support pages (real FAQ, post-install searches).
  * Privacy, terms, account deletion, Lumo's credits and dedication exist for the stores and for
  * users; they are `noindex, follow` and stay out of here.
  */
@@ -26,6 +27,10 @@ const LAST_MODIFIED: Record<string, string> = {
   '/produtos/sono-leve': '2026-10-07',
   '/produtos/jornadas': '2026-10-07',
   '/produtos/le-barista': '2026-10-07',
+  '/guias': '2026-10-07',
+  '/guias/comunicacao-alternativa/prancha-de-comunicacao': '2026-10-07',
+  '/guias/sistemas/sistema-sob-medida-ou-pronto': '2026-10-07',
+  '/guias/cafe/espresso-amargo-ou-azedo': '2026-10-07',
   '/produtos/arakids/suporte': '2026-10-04',
   '/produtos/jornadas/suporte': '2026-10-03',
   '/produtos/le-barista/suporte': '2026-10-06',
@@ -47,6 +52,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/empresa',
     ...PRODUCTS.map((p) => p.href),
     ...SUPPORT_PAGES,
+    '/guias',
+    ...GUIDES.map((g) => g.path),
   ];
 
   return paths.map((path) => ({

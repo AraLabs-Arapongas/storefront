@@ -1,0 +1,48 @@
+name: IndexNow
+
+# Vercel's GitHub integration creates a GitHub deployment per build; production
+# builds use environment "Production" (preview builds use "Preview").
+on:
+  deployment_status:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: indexnow
+  cancel-in-progress: true
+
+jobs:
+  notify:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.deployment_status.state == 'success' &&
+       github.event.deployment.environment == 'Production')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      SITE: https://aralabs.com.br
+      INDEXNOW_KEY: a14800f5d76d46ea51a13cec3d1b9702
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # Production alias can lag the deployment success event; wait until the key file is live.
+      - name: Wait for key file on production
+        run: |
+          for i in $(seq 1 24); do
+            body=$(curl -fsS "$SITE/$INDEXNOW_KEY.txt" || true)
+            if [ "$(printf '%s' "$body" | tr -d '[:space:]')" = "$INDEXNOW_KEY" ]; then
+              echo "Key file live after attempt $i"; exit 0
+            fi
+            echo "Attempt $i: key file not live yet, retrying in 5s"; sleep 5
+          done
+          echo "Key file not served at $SITE/$INDEXNOW_KEY.txt after ~2 min" >&2
+          exit 1
+
+      - name: Notify IndexNow
+        run: node scripts/indexnow.mjs

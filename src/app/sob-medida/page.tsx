@@ -366,7 +366,15 @@ export default function SobMedidaPage() {
           <div className="mt-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
             <p className="max-w-lg text-[17px] leading-[1.7] text-white/75">
               Não precisa saber o que quer em termos de sistema. Precisa saber o que atrapalha. O
-              resto é com a gente.
+              resto é com a gente. Ainda em dúvida se precisa mesmo de um sistema próprio? Leia o
+              guia{' '}
+              <Link
+                href="/guias/sistemas/sistema-sob-medida-ou-pronto"
+                className="text-[color:var(--gold)] underline decoration-[color:var(--gold)]/40 underline-offset-4 transition hover:decoration-[color:var(--gold)]"
+              >
+                sistema sob medida ou sistema pronto: como decidir
+              </Link>
+              .
             </p>
             <div className="flex flex-wrap gap-3">
               <Pill href={START} look="gold" arrow>

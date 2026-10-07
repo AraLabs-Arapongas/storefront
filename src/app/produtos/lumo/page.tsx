@@ -195,7 +195,15 @@ export default function LumoLandingPage() {
             comunicação no celular ou no tablet, com cards que falam em voz alta. Serve para
             crianças autistas (TEA), com apraxia de fala ou com outras condições que dificultam a
             fala, na hora de pedir, escolher e contar. É uma ferramenta de comunicação, não uma
-            terapia, e funciona junto com o trabalho do fonoaudiólogo.
+            terapia, e funciona junto com o trabalho do fonoaudiólogo. Se a família está começando,
+            o guia{' '}
+            <Link
+              href="/guias/comunicacao-alternativa/prancha-de-comunicacao"
+              className="font-semibold text-white underline underline-offset-4"
+            >
+              como montar uma prancha de comunicação em casa
+            </Link>{' '}
+            explica o passo a passo.
           </p>
           <InView
             as="ul"

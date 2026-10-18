@@ -31,6 +31,11 @@ export type Product = {
 export const KOMYX_URL = 'https://www.komyx.com.br';
 export const ARAKIDS_URL = 'https://arakids.aralabs.com.br';
 export const LUMO_APPSTORE_URL = 'https://apps.apple.com/br/app/lumo/id6777104032';
+export const CASA_LEVE_APPSTORE_URL = 'https://apps.apple.com/br/app/casa-leve/id6767421292';
+export const CASA_LEVE_PLAY_URL = 'https://play.google.com/store/apps/details?id=com.casaleve.app';
+export const SONO_LEVE_APPSTORE_URL = 'https://apps.apple.com/br/app/sono-leve/id6768605267';
+export const JORNADAS_APPSTORE_URL = 'https://apps.apple.com/br/app/jornadas/id6784899120';
+export const LE_BARISTA_APPSTORE_URL = 'https://apps.apple.com/br/app/le-barista/id6819510586';
 
 export const PRODUCTS: Product[] = [
   {
@@ -59,8 +64,9 @@ export const PRODUCTS: Product[] = [
     description:
       'Tarefas com pontos, compras, agenda, recompensas e desafios num app só. Menos cobrança em casa, mais clareza e autonomia para as crianças.',
     offer: 'A partir de R$ 9,90/mês · 30 dias grátis',
-    status: 'Beta',
+    status: 'No ar',
     href: '/produtos/casa-leve',
+    externalUrl: CASA_LEVE_APPSTORE_URL,
     color: '#c26a1e',
     colorSoft: '#f7e6d6',
     colorInk: '#94500f',
@@ -108,9 +114,9 @@ export const PRODUCTS: Product[] = [
     summary: 'treino de sono do bebê',
     description:
       'Ritual da hora de dormir, timer com os intervalos de check-in de cada noite, registro dos despertares e das mamadas e a evolução noite a noite. Tudo no celular, sem conta.',
-    offer: 'iPhone · em revisão na App Store',
-    status: 'Em breve',
-    statusNote: 'Em revisão na App Store',
+    offer: 'Gratuito, na App Store',
+    status: 'No ar',
+    externalUrl: SONO_LEVE_APPSTORE_URL,
     href: '/produtos/sono-leve',
     color: '#36407a',
     colorSoft: '#e3e5f4',
@@ -125,9 +131,9 @@ export const PRODUCTS: Product[] = [
     summary: 'leituras, cursos e hábitos',
     description:
       'Acompanhe leituras, cursos, hábitos, corrida e prática de música com sessões de foco, sequência de dias, meta semanal e gráficos de progresso. Tudo no iPhone, sem conta.',
-    offer: 'Gratuito · em revisão na App Store',
-    status: 'Em breve',
-    statusNote: 'Em revisão na App Store',
+    offer: 'Gratuito, na App Store',
+    status: 'No ar',
+    externalUrl: JORNADAS_APPSTORE_URL,
     href: '/produtos/jornadas',
     color: '#0e7c74',
     colorSoft: '#d8efec',
@@ -142,9 +148,9 @@ export const PRODUCTS: Product[] = [
     summary: 'guia de espresso e café coado',
     description:
       'Registre cada shot e receba um ajuste por vez, com o porquê: moagem, dose ou rendimento, até o café ficar no ponto. Também tem guias de coados, leite vaporizado e bebidas. Tudo no iPhone, sem conta.',
-    offer: 'Gratuito · em revisão na App Store',
-    status: 'Em breve',
-    statusNote: 'Em revisão na App Store',
+    offer: 'Gratuito, na App Store',
+    status: 'No ar',
+    externalUrl: LE_BARISTA_APPSTORE_URL,
     href: '/produtos/le-barista',
     color: '#8a5a3b',
     colorSoft: '#f1e3d6',

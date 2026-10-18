@@ -47,6 +47,9 @@ function onClick(e: MouseEvent) {
       // App Store paths look like /br/app/<name>/id123.
       const fromLink = url.pathname.match(/\/app\/([^/]+)/)?.[1];
       track('appstore_click', { page, app: fromPage ?? fromLink ?? 'unknown' });
+    } else if (host === 'play.google.com') {
+      const fromPage = page.match(PRODUCT_PATH)?.[1];
+      track('googleplay_click', { page, app: fromPage ?? url.searchParams.get('id') ?? 'unknown' });
     } else if (host === 'arakids.aralabs.com.br') {
       track('arakids_open', { page });
     } else if (url.origin === window.location.origin) {

@@ -10,13 +10,13 @@ import {
   Timer,
   ChartColumn,
   Smartphone,
+  ArrowRight,
 } from 'lucide-react';
 import Link from 'next/link';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { breadcrumbSchema, softwareApplicationSchema } from '@/lib/seo/schemas';
 import { pageMetadata } from '@/lib/seo/metadata';
-import { productBySlug } from '@/lib/products';
-import { contactHref } from '@/lib/seo/site';
+import { LE_BARISTA_APPSTORE_URL, productBySlug } from '@/lib/products';
 import { InView } from '@/components/home/InView';
 import {
   AppButton,
@@ -46,7 +46,6 @@ export const metadata = pageMetadata({
   image: '/produtos/le-barista/opengraph-image',
 });
 
-const NOTIFY = contactHref('Quero saber quando o Le Barista sair');
 /** Light caramel for type on the brown and dark sections. */
 const CREMA = '#f3cf98';
 
@@ -114,7 +113,6 @@ const FEATURES = [
 
 export default function LeBaristaPage() {
   const ink = barista.colorInk;
-  const price = barista.offer.split(' · ')[0];
   return (
     <>
       <JsonLd
@@ -125,6 +123,7 @@ export default function LeBaristaPage() {
           applicationCategory: 'FoodAndDrinkApplication',
           operatingSystem: 'iOS',
           offer: 'free',
+          downloadUrl: LE_BARISTA_APPSTORE_URL,
           screenshot: SCREENS.map((s) => s.src),
         })}
       />
@@ -157,15 +156,15 @@ export default function LeBaristaPage() {
         }
         actions={
           <>
-            <AppButton href={NOTIFY} bg={ink} fg="#fff">
-              Me avise quando sair
+            <AppButton href={LE_BARISTA_APPSTORE_URL} external bg={ink} fg="#fff">
+              Baixar na App Store <ArrowRight className="h-4 w-4" />
             </AppButton>
             <AppButton href="#guias" variant="ghost">
               O que dá para preparar
             </AppButton>
           </>
         }
-        note={`${price} · iPhone · Sem conta · Sem anúncios`}
+        note={`Gratuito · iPhone · Sem conta · Sem anúncios`}
         aside={<LeBaristaHeroPhones />}
       />
 
@@ -349,20 +348,18 @@ export default function LeBaristaPage() {
             <div className="border-t border-white/25 pt-8">
               <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/70">
                 <span aria-hidden="true" className="shimmer h-2 w-2 rounded-full bg-white" />
-                {barista.statusNote ?? barista.status}
+                {barista.offer}
               </p>
               <p className="mt-5 text-[clamp(1.6rem,2.6vw,2.2rem)] font-bold leading-[1.15] tracking-tight">
-                Quer saber quando o Le Barista sair?
+                Puxe o próximo shot com ele.
               </p>
               <p className="mt-4 text-[16px] leading-[1.7] text-white/80">
-                O app para iPhone foi enviado para a App Store em 6 de outubro de 2026 e está em
-                revisão pela Apple. Assim que for aprovado, o link para baixar aparece nesta página.
-                Mande uma mensagem e a gente avisa. Sugestões de guias e bebidas também são
-                bem-vindas.
+                O Le Barista está na App Store para iPhone, de graça, sem conta e sem anúncios.
+                Sugestões de guias e bebidas são bem-vindas: é só mandar uma mensagem.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <AppButton href={NOTIFY} bg="#fff" fg={ink}>
-                  Me avise
+                <AppButton href={LE_BARISTA_APPSTORE_URL} external bg="#fff" fg={ink}>
+                  Baixar na App Store <ArrowRight className="h-4 w-4" />
                 </AppButton>
                 <AppButton href="/produtos" variant="ghost-dark">
                   Ver os outros produtos

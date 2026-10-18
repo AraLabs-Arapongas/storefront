@@ -208,8 +208,8 @@ export default function EspressoAmargoOuAzedoPage() {
               <p>
                 Ele pergunta que equipamento você tem: sem balança, trabalha em ml; sem moedor
                 regulável, ajusta pela dose e pelo rendimento; com o moedor no mais fino, passa a
-                mexer nos outros dois. Funciona no iPhone, sem conta e sem internet. O app foi
-                enviado para a App Store e está em revisão pela Apple.
+                mexer nos outros dois. Funciona no iPhone, sem conta e sem internet, e é gratuito
+                na App Store.
               </p>
             </>
           ),

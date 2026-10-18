@@ -65,6 +65,11 @@
   a Apple aprovar, trocar `status`/`statusNote`/`offer` e pôr o link da
   App Store nas páginas `/produtos/jornadas` e `/produtos/sono-leve`.
 
+- **Todos no ar em 2026-10-18.** Casa Leve (App Store + Google Play),
+  Sono Leve, Jornadas e Le Barista publicados. `status: 'No ar'` em
+  todos; links das lojas em `src/lib/products.ts`; CTAs "Me avise" e
+  "Pedir acesso ao beta" viraram download.
+
 - **Admin AraLabs no storefront — postergado em 2026-04-29.**
   Spec completa em `docs/superpowers/specs/2026-04-29-admin-multiproduct-design.md`.
   Enquanto ara-agenda for produto único, o admin vive dentro do próprio

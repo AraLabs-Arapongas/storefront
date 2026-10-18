@@ -67,7 +67,7 @@ const i = (n: number) => ({ '--i': n }) as CSSProperties;
 
 const capitalize = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
 
-/** "Seis produtos: três no ar, um em beta e dois em breve." Always matches products.ts. */
+/** "Sete produtos, todos no ar." or "Seis produtos: três no ar e três em breve." Always matches products.ts. */
 function portfolioLine() {
   const parts = (
     [
@@ -79,9 +79,11 @@ function portfolioLine() {
     .map(([status, label]) => ({ n: PRODUCTS.filter((p) => p.status === status).length, label }))
     .filter((x) => x.n > 0)
     .map(({ n, label }) => `${countWord(n)} ${label}`);
+  const total = capitalize(countWord(PRODUCTS.length));
+  if (PRODUCTS.every((p) => p.status === 'No ar')) return `${total} produtos, todos no ar.`;
   const list =
     parts.length > 1 ? `${parts.slice(0, -1).join(', ')} e ${parts[parts.length - 1]}` : parts[0];
-  return `${capitalize(countWord(PRODUCTS.length))} produtos: ${list}.`;
+  return `${total} produtos: ${list}.`;
 }
 
 function Kicker({
@@ -318,11 +320,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5 · COLOR MOMENT — what is arriving */}
+      {/* 5 · COLOR MOMENT — the apps without their own composition above */}
       {coming.length ? (
         <section aria-labelledby="chegando" className="cut-top cut-flush text-white">
           <h2 id="chegando" className="sr-only">
-            A caminho da App Store
+            Também na App Store
           </h2>
           <div className={`grid ${coming.length > 1 ? 'lg:grid-cols-2' : ''}`}>
             {coming.map((p, k) => {
@@ -349,7 +351,7 @@ export default function Home() {
                           className="shimmer h-2 w-2 rounded-full"
                           style={{ background: p.colorInk }}
                         />
-                        {p.statusNote ?? p.status}
+                        {p.status === 'No ar' ? p.offer : (p.statusNote ?? p.status)}
                       </p>
                       <p className="mt-6 text-[12px] font-semibold uppercase tracking-[0.2em] text-white">
                         {p.audience}
@@ -358,9 +360,7 @@ export default function Home() {
                       <p className="mt-4 text-[clamp(1.2rem,1.8vw,1.45rem)] font-semibold leading-[1.3]">
                         {p.tagline}
                       </p>
-                      <p className="mt-4 text-[16px] leading-[1.7] text-white">
-                        {p.description}
-                      </p>
+                      <p className="mt-4 text-[16px] leading-[1.7] text-white">{p.description}</p>
                       {Mock && !full ? (
                         <InView className="mt-10 flex justify-center">
                           <div className="iv iv-pop">
@@ -368,13 +368,26 @@ export default function Home() {
                           </div>
                         </InView>
                       ) : null}
-                      <Link
-                        href={p.href}
-                        className="group mt-10 inline-flex items-center gap-2 rounded-full border border-white/45 px-6 py-3.5 text-[15px] font-semibold transition hover:bg-white/10"
-                      >
-                        Conhecer o {p.name}
-                        <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-                      </Link>
+                      <div className="mt-10 flex flex-wrap gap-3">
+                        {p.externalUrl ? (
+                          <a
+                            href={p.externalUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-[15px] font-semibold transition hover:bg-white/90"
+                            style={{ color: p.colorInk }}
+                          >
+                            Baixar na App Store
+                          </a>
+                        ) : null}
+                        <Link
+                          href={p.href}
+                          className="group inline-flex items-center gap-2 rounded-full border border-white/45 px-6 py-3.5 text-[15px] font-semibold transition hover:bg-white/10"
+                        >
+                          Conhecer o {p.name}
+                          <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                        </Link>
+                      </div>
                     </div>
                     {Mock && full ? (
                       <InView className="relative">

@@ -1,10 +1,16 @@
 import Link from 'next/link';
-import { HeartHandshake, ShieldCheck, Smartphone, Milk, TriangleAlert } from 'lucide-react';
+import {
+  ArrowRight,
+  HeartHandshake,
+  ShieldCheck,
+  Smartphone,
+  Milk,
+  TriangleAlert,
+} from 'lucide-react';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { breadcrumbSchema, softwareApplicationSchema } from '@/lib/seo/schemas';
 import { pageMetadata } from '@/lib/seo/metadata';
-import { productBySlug } from '@/lib/products';
-import { contactHref } from '@/lib/seo/site';
+import { SONO_LEVE_APPSTORE_URL, productBySlug } from '@/lib/products';
 import { InView } from '@/components/home/InView';
 import {
   AppButton,
@@ -34,8 +40,6 @@ export const metadata = pageMetadata({
   description: pageDescription,
   image: '/produtos/sono-leve/opengraph-image',
 });
-
-const NOTIFY = contactHref('Quero saber quando o Sono Leve sair');
 
 const NIGHT = [
   {
@@ -108,6 +112,8 @@ export default function SonoLevePage() {
           description: pageDescription,
           applicationCategory: 'HealthApplication',
           operatingSystem: 'iOS',
+          offer: 'free',
+          downloadUrl: SONO_LEVE_APPSTORE_URL,
         })}
       />
       <JsonLd
@@ -133,15 +139,15 @@ export default function SonoLevePage() {
         }
         actions={
           <>
-            <AppButton href={NOTIFY} bg={LAVENDER} fg="#1a1640">
-              Me avise quando sair
+            <AppButton href={SONO_LEVE_APPSTORE_URL} external bg={LAVENDER} fg="#1a1640">
+              Baixar na App Store <ArrowRight className="h-4 w-4" />
             </AppButton>
             <AppButton href="#noite" variant="ghost-dark">
               Como funciona
             </AppButton>
           </>
         }
-        note="iPhone · Sem conta · Funciona offline · Dados ficam no celular"
+        note="Gratuito · iPhone · Sem conta · Funciona offline · Dados ficam no celular"
         aside={<NightTimer />}
       />
 
@@ -368,20 +374,19 @@ export default function SonoLevePage() {
                   className="shimmer h-2 w-2 rounded-full"
                   style={{ background: LAVENDER }}
                 />
-                {sonoLeve.statusNote ?? sonoLeve.status}
+                {sonoLeve.offer}
               </p>
               <p className="mt-5 text-[clamp(1.6rem,2.6vw,2.2rem)] font-bold leading-[1.15] tracking-tight">
-                Quer saber quando o Sono Leve sair?
+                Baixe e comece hoje à noite.
               </p>
               <p className="mt-4 text-[16px] leading-[1.7] text-white/75">
-                O app para iPhone foi enviado para a App Store em 3 de outubro de 2026 e está em
-                revisão pela Apple. Assim que for aprovado, o link para baixar aparece nesta página.
-                Mande uma mensagem e a gente avisa. Se você já passou por um treino de sono, sua
-                experiência ajuda a gente a fazer um app melhor.
+                O Sono Leve está na App Store para iPhone, de graça e sem conta. Se você já passou
+                por um treino de sono, mande uma mensagem: sua experiência ajuda a gente a fazer um
+                app melhor.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <AppButton href={NOTIFY} bg={LAVENDER} fg="#1a1640">
-                  Me avise
+                <AppButton href={SONO_LEVE_APPSTORE_URL} external bg={LAVENDER} fg="#1a1640">
+                  Baixar na App Store <ArrowRight className="h-4 w-4" />
                 </AppButton>
                 <AppButton href="/produtos" variant="ghost-dark">
                   Ver os outros produtos

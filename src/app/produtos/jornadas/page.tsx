@@ -10,12 +10,12 @@ import {
   ChartColumn,
   BellRing,
   Smartphone,
+  ArrowRight,
 } from 'lucide-react';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { breadcrumbSchema, softwareApplicationSchema } from '@/lib/seo/schemas';
 import { pageMetadata } from '@/lib/seo/metadata';
-import { productBySlug } from '@/lib/products';
-import { contactHref } from '@/lib/seo/site';
+import { JORNADAS_APPSTORE_URL, productBySlug } from '@/lib/products';
 import { InView } from '@/components/home/InView';
 import {
   AppButton,
@@ -43,7 +43,6 @@ export const metadata = pageMetadata({
   image: '/produtos/jornadas/opengraph-image',
 });
 
-const NOTIFY = contactHref('Quero saber quando o Jornadas sair');
 /** Light teal for type on the teal and dark sections. */
 const MINT = '#9fe3d8';
 
@@ -116,7 +115,6 @@ const FEATURES = [
 
 export default function JornadasPage() {
   const ink = jornadas.colorInk;
-  const price = jornadas.offer.split(' · ')[0];
   return (
     <>
       <JsonLd
@@ -127,6 +125,7 @@ export default function JornadasPage() {
           applicationCategory: 'LifestyleApplication',
           operatingSystem: 'iOS',
           offer: 'free',
+          downloadUrl: JORNADAS_APPSTORE_URL,
         })}
       />
       <JsonLd
@@ -158,15 +157,15 @@ export default function JornadasPage() {
         }
         actions={
           <>
-            <AppButton href={NOTIFY} bg={ink} fg="#fff">
-              Me avise quando sair
+            <AppButton href={JORNADAS_APPSTORE_URL} external bg={ink} fg="#fff">
+              Baixar na App Store <ArrowRight className="h-4 w-4" />
             </AppButton>
             <AppButton href="#jornadas" variant="ghost">
               O que dá para acompanhar
             </AppButton>
           </>
         }
-        note={`${price} · iPhone · Sem conta · Sem anúncios`}
+        note={`Gratuito · iPhone · Sem conta · Sem anúncios`}
         aside={<WeekStreak />}
       />
 
@@ -314,20 +313,18 @@ export default function JornadasPage() {
             <div className="border-t border-white/25 pt-8">
               <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/70">
                 <span aria-hidden="true" className="shimmer h-2 w-2 rounded-full bg-white" />
-                {jornadas.statusNote ?? jornadas.status}
+                {jornadas.offer}
               </p>
               <p className="mt-5 text-[clamp(1.6rem,2.6vw,2.2rem)] font-bold leading-[1.15] tracking-tight">
-                Quer saber quando o Jornadas sair?
+                Comece sua primeira jornada hoje.
               </p>
               <p className="mt-4 text-[16px] leading-[1.7] text-white/80">
-                O app para iPhone foi enviado para a App Store em 3 de outubro de 2026 e está em
-                revisão pela Apple. Assim que for aprovado, o link para baixar aparece nesta página.
-                Mande uma mensagem e a gente avisa. Sugestões de tipos de jornada também são
-                bem-vindas.
+                O Jornadas está na App Store para iPhone, de graça, sem conta e sem anúncios.
+                Sugestões de tipos de jornada são bem-vindas: é só mandar uma mensagem.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <AppButton href={NOTIFY} bg="#fff" fg={ink}>
-                  Me avise
+                <AppButton href={JORNADAS_APPSTORE_URL} external bg="#fff" fg={ink}>
+                  Baixar na App Store <ArrowRight className="h-4 w-4" />
                 </AppButton>
                 <AppButton href="/produtos" variant="ghost-dark">
                   Ver os outros produtos

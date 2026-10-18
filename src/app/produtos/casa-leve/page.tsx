@@ -5,8 +5,7 @@ import { ArrowRight, Home } from 'lucide-react';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { breadcrumbSchema, softwareApplicationSchema } from '@/lib/seo/schemas';
 import { pageMetadata } from '@/lib/seo/metadata';
-import { productBySlug } from '@/lib/products';
-import { contactHref } from '@/lib/seo/site';
+import { CASA_LEVE_APPSTORE_URL, CASA_LEVE_PLAY_URL, productBySlug } from '@/lib/products';
 import { ProductTile } from '@/components/site/ProductMarks';
 import { InView } from '@/components/home/InView';
 import {
@@ -226,7 +225,6 @@ function AppRow({
 
 export default function CasaLevePage() {
   const p = productBySlug('casa-leve');
-  const betaHref = contactHref('Quero testar o Casa Leve (beta)');
 
   return (
     <>
@@ -238,6 +236,7 @@ export default function CasaLevePage() {
           applicationCategory: 'LifestyleApplication',
           operatingSystem: 'iOS, Android',
           offer: { price: '9.90', description: 'A partir de R$ 9,90/mês, 30 dias grátis' },
+          downloadUrl: CASA_LEVE_APPSTORE_URL,
         })}
       />
       <JsonLd
@@ -294,12 +293,22 @@ export default function CasaLevePage() {
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <a
-                  href={betaHref}
+                  href={CASA_LEVE_APPSTORE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-[15px] font-semibold text-white transition hover:brightness-110"
                   style={{ background: p.colorInk }}
                 >
-                  Pedir acesso ao beta
+                  Baixar na App Store
                   <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                </a>
+                <a
+                  href={CASA_LEVE_PLAY_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-[color:var(--line-strong)] px-6 py-3.5 text-[15px] font-semibold text-[color:var(--ink)] transition hover:border-[color:var(--ink)]"
+                >
+                  Baixar no Google Play
                 </a>
                 <a
                   href="#planos"
@@ -309,7 +318,7 @@ export default function CasaLevePage() {
                 </a>
               </div>
               <p className="mt-4 text-[14px] text-[color:var(--ink-muted)]">
-                {p.offer} · beta privado no TestFlight (iOS)
+                {p.offer} · iPhone e Android
               </p>
             </div>
           </div>
@@ -682,17 +691,17 @@ export default function CasaLevePage() {
             })}
           </InView>
           <p className="mt-8 text-[13.5px] text-[color:var(--ink-dim)]">
-            Até 10 pessoas por casa · cobrança pela App Store · sem custo durante o beta
+            Até 10 pessoas por casa · cobrança pela App Store ou pelo Google Play
           </p>
         </div>
       </section>
 
-      {/* 8 · BETA — full-bleed orange */}
+      {/* 8 · DOWNLOAD — full-bleed orange */}
       <section
         id="contato"
         className="cut-top overflow-x-clip text-white"
         style={{ background: p.colorInk }}
-        aria-labelledby="beta-title"
+        aria-labelledby="baixar-title"
       >
         <div className="pointer-events-none absolute inset-0">
           <div className="pk-tri-grid-light absolute inset-0" />
@@ -703,29 +712,36 @@ export default function CasaLevePage() {
           />
         </div>
         <div className="relative mx-auto max-w-[1240px] px-6 py-24 lg:px-10 lg:py-36">
-          <Kicker color="#ffe1c4">Acesso ao beta</Kicker>
-          <h2 id="beta-title" className="display mt-6 max-w-[15ch] text-[clamp(2.8rem,7vw,6.6rem)]">
-            Quer testar antes do lançamento?
+          <Kicker color="#ffe1c4">{p.offer}</Kicker>
+          <h2
+            id="baixar-title"
+            className="display mt-6 max-w-[15ch] text-[clamp(2.8rem,7vw,6.6rem)]"
+          >
+            Baixe e organize a casa hoje.
           </h2>
           <p className="mt-8 max-w-xl text-[17px] leading-[1.7] text-white/85">
-            O Casa Leve está em beta privado no TestFlight (iOS). Mande uma mensagem e a gente põe a
-            sua casa no próximo grupo de convidados, sem custo durante o beta.
+            O Casa Leve está na App Store e no Google Play. Crie a casa, convide a família e teste
+            30 dias sem pagar nada.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
             <a
-              href={betaHref}
+              href={CASA_LEVE_APPSTORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-[15px] font-semibold transition hover:bg-[#ffe1c4]"
               style={{ color: p.colorInk }}
             >
-              Pedir acesso ao beta
+              Baixar na App Store
               <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
             </a>
-            <Link
-              href="/produtos"
+            <a
+              href={CASA_LEVE_PLAY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-white/45 px-6 py-3.5 text-[15px] font-semibold text-white transition hover:bg-white/10"
             >
-              Ver os outros produtos
-            </Link>
+              Baixar no Google Play
+            </a>
           </div>
           <nav
             aria-label="Documentos do Casa Leve"

@@ -5,7 +5,7 @@ import { Hl, LegalPage } from '@/components/legal/LegalPage';
 
 const pageTitle = 'Excluir conta — Arafit';
 const pageDescription =
-  'Como excluir sua conta do Arafit e o que acontece com seus dados. Solicitação por e-mail, prazos e cancelamento de assinatura na loja.';
+  'Como excluir sua conta do Arafit e o que acontece com seus dados. Pelo app ou por e-mail, prazos e cancelamento de assinatura na loja.';
 
 export const metadata: Metadata = pageMetadata({
   path: '/produtos/arafit/excluir-conta',
@@ -24,20 +24,20 @@ export default function ArafitExcluirContaPage() {
           Excluir sua <Hl>conta.</Hl>
         </>
       }
-      intro="Você pode pedir a exclusão da sua conta do Arafit a qualquer momento, por e-mail."
+      intro="Você pode excluir sua conta do Arafit a qualquer momento, pelo próprio app ou por e-mail."
       lead={
         <p>
-          Esta página explica como pedir a exclusão da sua conta do Arafit, o que é apagado e em
-          quanto tempo. A exclusão é definitiva e não pode ser desfeita.
+          Esta página explica como excluir sua conta do Arafit, o que é apagado e em quanto tempo. A
+          exclusão é definitiva e não pode ser desfeita.
         </p>
       }
       summary={[
         {
-          label: 'Como pedir',
+          label: 'Como excluir',
           text: (
             <>
-              Escreva para contato@aralabs.com.br com o número de celular da conta e a frase
-              &ldquo;Solicito a exclusão da minha conta Arafit&rdquo;.
+              No app: <strong>Perfil › Excluir conta</strong>. Sem acesso ao app, escreva para
+              contato@aralabs.com.br com o número de celular da conta.
             </>
           ),
         },
@@ -64,11 +64,16 @@ export default function ArafitExcluirContaPage() {
         {
           id: 'como-pedir',
           n: '1',
-          title: 'Como pedir a exclusão',
+          title: 'Como excluir',
           body: (
             <>
               <p>
-                Envie uma mensagem para{' '}
+                <strong>Pelo app:</strong> abra o Arafit, vá em <strong>Perfil</strong> e toque em{' '}
+                <strong>Excluir conta</strong>. O app mostra o que será apagado e pede confirmação.
+                A conta é apagada na hora dos nossos servidores e do aparelho.
+              </p>
+              <p>
+                <strong>Sem acesso ao app:</strong> envie uma mensagem para{' '}
                 <a href="mailto:contato@aralabs.com.br">contato@aralabs.com.br</a> com:
               </p>
               <ul>
@@ -106,19 +111,20 @@ export default function ArafitExcluirContaPage() {
               <ul>
                 <li>Seu perfil: telefone, nome e fotos.</li>
                 <li>
-                  Seus dados de saúde: anamnese, PAR-Q, lesões, medicamentos, medidas, avaliações e
-                  testes.
-                </li>
-                <li>
                   Seus treinos e histórico, inclusive o que você treinou por conta no Arafit
                   Pessoal.
                 </li>
-                <li>O vínculo com o seu personal e o registro do seu consentimento.</li>
+                <li>Seus programas próprios, peso e medidas que você registrou.</li>
+                <li>
+                  A ligação da sua conta com o seu personal e o registro do seu consentimento.
+                </li>
                 <li>Os registros de assinatura associados à sua conta.</li>
               </ul>
               <p>
-                O personal deixa de ver você na lista de alunos dele. Se você só quer encerrar o
-                acompanhamento com o personal, sem apagar a conta, fale com ele.
+                O cadastro que o seu personal fez de você (nome, telefone, anamnese, avaliações
+                físicas e cobrança) é do personal, que é o controlador desses dados: ele continua
+                com ele, marcado como inativo e sem ligação com a sua conta. Para apagar esses
+                dados, peça ao seu personal ou escreva para contato@aralabs.com.br.
               </p>
             </>
           ),

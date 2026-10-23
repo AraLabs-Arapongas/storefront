@@ -67,7 +67,10 @@ export default function ArafitTermosPage() {
         {
           label: 'Encerrar',
           text: (
-            <>Você pode excluir sua conta a qualquer momento, pelo e-mail contato@aralabs.com.br.</>
+            <>
+              Você pode excluir sua conta a qualquer momento, no app (Perfil › Excluir conta) ou
+              pelo e-mail contato@aralabs.com.br.
+            </>
           ),
         },
       ]}

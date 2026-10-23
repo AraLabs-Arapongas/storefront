@@ -71,8 +71,8 @@ export default function ArafitPrivacidadePage() {
           label: 'Como apagar',
           text: (
             <>
-              Pelo e-mail contato@aralabs.com.br, com o número cadastrado. Veja{' '}
-              <Link href="/produtos/arafit/excluir-conta">Excluir conta</Link>.
+              No app, em Perfil › Excluir conta, ou pelo e-mail contato@aralabs.com.br, com o número
+              cadastrado. Veja <Link href="/produtos/arafit/excluir-conta">Excluir conta</Link>.
             </>
           ),
         },

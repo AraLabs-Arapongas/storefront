@@ -3,7 +3,15 @@
  * sitemap all read from here, so adding or retiring a product is a one-file change.
  */
 export type Product = {
-  slug: 'komyx' | 'casa-leve' | 'arakids' | 'lumo' | 'sono-leve' | 'jornadas' | 'le-barista';
+  slug:
+    | 'komyx'
+    | 'arafit'
+    | 'casa-leve'
+    | 'arakids'
+    | 'lumo'
+    | 'sono-leve'
+    | 'jornadas'
+    | 'le-barista';
   name: string;
   /** Who it is for, shown as the eyebrow. */
   audience: string;
@@ -53,6 +61,22 @@ export const PRODUCTS: Product[] = [
     color: '#e8356d',
     colorSoft: '#fde7ef',
     colorInk: '#c81e55',
+    line: 'negocios',
+  },
+  {
+    slug: 'arafit',
+    name: 'Arafit',
+    audience: 'Para personal trainers',
+    tagline: 'A sua ficha na mão do aluno.',
+    summary: 'app para personal trainers',
+    description:
+      'Cadastre os alunos, monte e envie as fichas, veja quem treinou e quem sumiu, cuide da agenda, da cobrança e das avaliações físicas. O aluno entra com o número do celular e treina pela sua ficha.',
+    offer: 'Grátis até 5 alunos · Ilimitado R$ 19,90/mês',
+    status: 'Em breve',
+    href: '/produtos/arafit',
+    color: '#e10600',
+    colorSoft: '#fde4e2',
+    colorInk: '#c10500',
     line: 'negocios',
   },
   {

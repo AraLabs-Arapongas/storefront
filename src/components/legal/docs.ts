@@ -20,6 +20,7 @@ export const DOC_LABEL: Record<LegalDoc, { short: string; long: string }> = {
 
 /** Which documents exist for each product (each one is a route under the product's page). */
 export const PRODUCT_DOCS: Partial<Record<Product['slug'], LegalDoc[]>> = {
+  arafit: ['privacidade', 'termos', 'excluir-conta'],
   arakids: ['privacidade', 'suporte'],
   'casa-leve': ['privacidade', 'termos', 'excluir-conta'],
   lumo: ['privacidade', 'termos', 'creditos', 'dedicatoria'],

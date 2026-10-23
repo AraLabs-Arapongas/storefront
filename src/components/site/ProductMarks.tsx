@@ -1,5 +1,5 @@
 import { useId, type CSSProperties } from 'react';
-import { Home, Blocks, Coffee, MessageSquareText, MoonStar, Route } from 'lucide-react';
+import { Home, Blocks, Coffee, Dumbbell, MessageSquareText, MoonStar, Route } from 'lucide-react';
 import type { Product } from '@/lib/products';
 
 /** Komyx mark: a balloon with the K knocked out, knot and string. Fills with currentColor. */
@@ -62,6 +62,8 @@ export function ProductTile({
   const inner =
     product.slug === 'komyx' ? (
       <KomyxMark style={{ width: icon * 1.1, height: icon * 1.1 }} />
+    ) : product.slug === 'arafit' ? (
+      <Dumbbell style={{ width: icon, height: icon }} strokeWidth={2.2} />
     ) : product.slug === 'casa-leve' ? (
       <Home style={{ width: icon, height: icon }} strokeWidth={2.2} />
     ) : product.slug === 'arakids' ? (

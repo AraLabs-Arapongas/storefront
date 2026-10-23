@@ -296,6 +296,18 @@ export function runHeroIntro(stage: HTMLElement, onDone: () => void): () => void
           { t: 2800, x: R.x, y: R.y, rot: 0, s: 1, depth: 0 },
         ],
       }),
+      // Mid depth, dropping in from above the top right and gliding down to the top of the arc.
+      arafit: (R) => ({
+        z: 24,
+        wps: [
+          { t: 620, ...V(0.95, -0.35), rot: 20, s: 1.7, depth: 2, blur: 10, ease: THROW },
+          { t: 900, ...V(0.8, 0.1), rot: 10, s: 1.2, depth: 2, ease: 'linear' },
+          { t: 1600, ...V(0.72, 0.16), rot: 6, s: 1.1, depth: 1, ease: EASE_SOFT },
+          { t: 2350, x: R.x - 8, y: R.y + 10, rot: -1.8, s: 1, depth: 1, ease: EASE_SOFT },
+          { t: 2560, x: R.x + 2, y: R.y - 3, rot: 0.6, s: 1, depth: 0, ease: EASE_SOFT },
+          { t: 2760, x: R.x, y: R.y, rot: 0, s: 1, depth: 0 },
+        ],
+      }),
       // Far back, rising slowly from below the fold, last to settle.
       'le-barista': (R) => ({
         z: 14,
@@ -385,9 +397,9 @@ export function runHeroIntro(stage: HTMLElement, onDone: () => void): () => void
     // Each card falls from above the viewport to its spot in the grid (usually just below the
     // fold), so they pass through the screen around the headline. Two of them are fast crossers.
     const fast = new Set([1, 4]);
-    const sway = [-26, 34, -18, 22, -30, 14, -20];
-    const spin = [-14, 18, -9, 12, -20, 8, -11];
-    const starts = [260, 380, 470, 600, 700, 820, 900];
+    const sway = [-26, 34, -18, 22, -30, 14, -20, 28];
+    const spin = [-14, 18, -9, 12, -20, 8, -11, 10];
+    const starts = [260, 380, 470, 600, 700, 820, 900, 980];
     items.forEach((li, i) => {
       const top = li.getBoundingClientRect().top;
       const fall = Math.max(top + 160, vh * 0.9) + 120;

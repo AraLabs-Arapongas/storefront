@@ -14,6 +14,7 @@ const nextConfig: NextConfig = {
       { source: '/tese', destination: '/empresa', permanent: true },
       { source: '/komyx', destination: '/produtos/komyx', permanent: true },
       { source: '/arakids', destination: '/produtos/arakids', permanent: true },
+      { source: '/arafit', destination: '/produtos/arafit', permanent: true },
     ];
   },
 };

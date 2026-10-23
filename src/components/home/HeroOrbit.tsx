@@ -36,12 +36,13 @@ function arcPath() {
   return `M ${a.x.toFixed(2)} ${a.y.toFixed(2)} A ${ARC.rx} ${ARC.ry} 0 0 1 ${b.x.toFixed(2)} ${b.y.toFixed(2)}`;
 }
 
-const TILT = [-3, 3, -4, 3, -2, 4, -3];
+const TILT = [-3, 3, -4, 3, -2, 4, -3, 2];
 /** Resting depth (px toward the viewer) and float amplitude per window, in PRODUCTS order. */
-const DEPTH_Z = [8, 5, 3, 1, -2, -4, -6];
+const DEPTH_Z = [8, 6, 5, 3, 1, -2, -4, -6];
 /** Where each window goes when the hero scrolls away (px, deg, scale at the end of the exit). */
 const EXIT: Record<Product['slug'], { x: number; y: number; r: number; s: number }> = {
   komyx: { x: -40, y: -460, r: -9, s: 1.2 },
+  arafit: { x: 300, y: -320, r: 10, s: 1.05 },
   'casa-leve': { x: 420, y: -60, r: 12, s: 0.95 },
   arakids: { x: 360, y: 90, r: -15, s: 0.92 },
   lumo: { x: 460, y: 220, r: 14, s: 1 },
@@ -49,7 +50,7 @@ const EXIT: Record<Product['slug'], { x: number; y: number; r: number; s: number
   jornadas: { x: -200, y: 460, r: -13, s: 0.95 },
   'le-barista': { x: -380, y: 300, r: 11, s: 0.92 },
 };
-const FLOAT = [4, 6, 3, 8, 5, 7, 4];
+const FLOAT = [4, 5, 6, 3, 8, 5, 7, 4];
 
 export function HeroOrbit({ children }: { children: ReactNode }) {
   const stage = useRef<HTMLDivElement>(null);
@@ -133,7 +134,7 @@ export function HeroOrbit({ children }: { children: ReactNode }) {
           li.style.opacity = Math.max(0, 1 - Math.max(0, e - 0.5) * 2).toFixed(3);
         });
       } else {
-        const depth = [0.05, 0.08, 0.03, 0.07, 0.04, 0.06, 0.05];
+        const depth = [0.05, 0.07, 0.08, 0.03, 0.07, 0.04, 0.06, 0.05];
         items.forEach((li, i) => {
           li.style.translate = y > h ? '' : `0 ${(-y * (depth[i] ?? 0.05)).toFixed(1)}px`;
         });

@@ -21,6 +21,7 @@ const LAST_MODIFIED: Record<string, string> = {
   '/sob-medida': '2026-10-07',
   '/empresa': '2026-10-07',
   '/produtos/komyx': '2026-10-07',
+  '/produtos/arafit': '2026-10-23',
   '/produtos/casa-leve': '2026-10-07',
   '/produtos/arakids': '2026-10-07',
   '/produtos/lumo': '2026-10-07',

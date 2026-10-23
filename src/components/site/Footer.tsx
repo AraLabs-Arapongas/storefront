@@ -5,9 +5,9 @@ import { CONTACT_EMAIL, JOBS_EMAIL, CONTACT_WHATSAPP, LEGAL_NAME, CNPJ } from '@
 
 /** Products with their own privacy policy and terms (App Store requirement for the apps). */
 const LEGAL = PRODUCTS.filter((p) =>
-  (['casa-leve', 'lumo', 'jornadas', 'sono-leve', 'le-barista'] as Product['slug'][]).includes(
-    p.slug,
-  ),
+  (
+    ['arafit', 'casa-leve', 'lumo', 'jornadas', 'sono-leve', 'le-barista'] as Product['slug'][]
+  ).includes(p.slug),
 );
 
 const columns: { title: string; links: { label: string; href: string | null }[] }[] = [

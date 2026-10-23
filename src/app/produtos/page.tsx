@@ -49,6 +49,7 @@ const externalLabel = (p: Product) =>
 /** Second beat of the band headline, per product. */
 const BAND_KICKER: Partial<Record<Product['slug'], string>> = {
   komyx: 'O cliente monta a festa. Você só confirma.',
+  arafit: 'Você acompanha cada treino.',
 };
 
 /** Business line: each product is a full-bleed moment in its own colour. */
@@ -230,7 +231,7 @@ export default function ProdutosPage() {
           </p>
           <InView
             as="ol"
-            className="pg-index mt-10 grid grid-cols-2 gap-x-5 border-t border-[color:var(--line-strong)] sm:grid-cols-3 lg:mt-12 lg:grid-cols-7"
+            className="pg-index mt-10 grid grid-cols-2 gap-x-5 border-t border-[color:var(--line-strong)] sm:grid-cols-3 lg:mt-12 lg:grid-cols-8"
             threshold={0.2}
           >
             {PRODUCTS.map((p, k) => (

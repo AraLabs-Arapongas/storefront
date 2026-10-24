@@ -261,11 +261,6 @@ const MATRIX: {
     label: 'Treino sem internet',
     cells: ['Sim', NI, NI, NI],
   },
-  {
-    group: 'O que tem',
-    label: 'Treino com IA',
-    cells: ['Não tem', NI, NI, 'Sim'],
-  },
 ];
 
 const ALL_PLANS = [

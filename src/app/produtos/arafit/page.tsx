@@ -118,6 +118,20 @@ const ALUNO_SHOTS: Shot[] = [
   },
 ];
 
+const SOLO = [
+  {
+    t: 'Programas prontos',
+    b: 'Hipertrofia, emagrecimento, glúteo e mais. Escolha um e comece hoje.',
+  },
+  {
+    t: 'Monte em 3 perguntas',
+    b: 'Objetivo, dias por semana e tempo de treino: a rotina sai pronta.',
+  },
+  { t: 'Série a série', b: 'Carga da última vez, recorde e o descanso contando sozinho.' },
+  { t: 'Sua evolução', b: 'Placar da semana, calendário de treinos, volume e recordes.' },
+  { t: 'Lembretes e música', b: 'Aviso nos dias de treino e a playlist do treino no Spotify.' },
+];
+
 const EDGES = [
   {
     t: 'Avisa no celular do aluno',
@@ -190,7 +204,10 @@ const MATRIX: {
     group: 'O que tem',
     label: 'App do aluno',
     cells: [
-      'Treino série a série, cronômetro e histórico',
+      {
+        t: 'Grátis para o aluno',
+        note: 'Carga da última vez e recorde, descanso automático, placar da semana, avaliação e Pix do personal; funciona sem internet',
+      },
       'Treino com vídeo e cronômetro',
       'App do aluno; acompanhamento em tempo real no pago',
       'Treino e histórico em calendário',
@@ -503,6 +520,13 @@ export default async function ArafitPage() {
                 <span aria-hidden="true">★</span>
                 Fundador: R$ 19,90/mês para sempre · restam {seats} de {FOUNDER_SEATS} vagas
               </a>
+              <a
+                href="#sozinho"
+                className="group mt-4 flex w-fit items-center gap-2 text-[14.5px] font-semibold text-white/90 underline-offset-4 hover:underline"
+              >
+                Treina sozinho? O Arafit também é para você
+                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+              </a>
             </div>
           </div>
           <figure
@@ -575,9 +599,75 @@ export default async function ArafitPage() {
         </div>
       </section>
 
+      {/* 3b · TRAINING SOLO — cream, the student without a personal */}
+      <section
+        id="sozinho"
+        className="cut-top overflow-x-clip bg-[color:var(--bg)] text-[color:var(--ink)]"
+      >
+        <div className="mx-auto grid max-w-[1240px] gap-16 px-6 py-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-20 lg:px-10 lg:py-36">
+          <div>
+            <Kicker color={p.colorInk}>Para quem treina sozinho</Kicker>
+            <h2 className="display mt-6 max-w-[14ch] text-[clamp(2.6rem,6vw,5.6rem)]">
+              Sem personal? <span style={{ color: p.colorInk }}>O Arafit também é seu.</span>
+            </h2>
+            <p className="mt-7 max-w-xl text-[17px] leading-[1.7] text-[color:var(--ink-muted)]">
+              Com o <strong className="text-[color:var(--ink)]">Arafit Pessoal</strong> você treina
+              por conta, com o mesmo app que os personais usam com os alunos.
+            </p>
+            <ul className="mt-10 border-t border-[color:var(--line-strong)]">
+              {SOLO.map((x) => (
+                <li
+                  key={x.t}
+                  className="grid gap-1 border-b border-[color:var(--line-strong)] py-4 sm:grid-cols-[12rem_1fr] sm:gap-6"
+                >
+                  <span className="flex items-center gap-3 text-[16px] font-bold">
+                    <span
+                      className="tri tri-r text-[7px]"
+                      style={{ color: p.colorInk }}
+                      aria-hidden="true"
+                    />
+                    {x.t}
+                  </span>
+                  <span className="pl-[22px] text-[15px] leading-[1.6] text-[color:var(--ink-muted)] sm:pl-0">
+                    {x.b}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-10 flex flex-wrap items-end gap-x-10 gap-y-4">
+              <p
+                className="display text-[clamp(3rem,5vw,4.4rem)] leading-[0.9]"
+                style={{ color: p.colorInk }}
+              >
+                <span className="align-top text-[0.3em] tracking-normal">R$</span>4,90
+                <span className="text-[0.22em] font-semibold tracking-normal text-[color:var(--ink-dim)]">
+                  /mês
+                </span>
+              </p>
+              <p className="max-w-sm text-[14.5px] leading-[1.6] text-[color:var(--ink-muted)]">
+                Se um dia tiver personal, o programa dele entra junto. O que você treina por conta
+                continua só seu.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-end justify-center gap-4 sm:gap-6">
+            <Phone
+              src="/images/arafit/aluno-descanso.webp"
+              alt="Treino em andamento com o cronômetro de descanso entre séries"
+              className="w-[46%] max-w-[260px] translate-y-8"
+            />
+            <Phone
+              src="/images/arafit/aluno-calendario.webp"
+              alt="Evolução com o calendário de treinos do mês"
+              className="w-[46%] max-w-[260px]"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* 4 · WHAT SETS IT APART — dark, numbered index */}
       <section
-        className="cut-top relative overflow-x-clip text-white"
+        className="cut-top-rev relative overflow-x-clip text-white"
         style={{ background: BLACK }}
       >
         <div className="pointer-events-none absolute -right-40 top-0 h-[40rem] w-[40rem] rounded-full bg-[radial-gradient(closest-side,rgba(225,6,0,0.22),transparent_70%)]" />
@@ -622,7 +712,7 @@ export default async function ArafitPage() {
       </section>
 
       {/* 5 · PRICE COMPARISON — cream table */}
-      <section className="cut-top-rev overflow-x-clip bg-[color:var(--bg)] text-[color:var(--ink)]">
+      <section className="cut-top overflow-x-clip bg-[color:var(--bg)] text-[color:var(--ink)]">
         <div className="mx-auto max-w-[1240px] px-6 py-24 lg:px-10 lg:py-36">
           <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
             <div>
@@ -756,7 +846,7 @@ export default async function ArafitPage() {
       {/* 6 · PLANS + FOUNDER */}
       <section
         id="planos"
-        className="cut-top relative overflow-x-clip text-white"
+        className="cut-top-rev relative overflow-x-clip text-white"
         style={{ background: BLACK }}
       >
         <div className="mx-auto max-w-[1240px] px-6 py-24 lg:px-10 lg:py-36">
@@ -905,7 +995,7 @@ export default async function ArafitPage() {
       {/* 7 · COMING SOON — full-bleed red */}
       <section
         id="contato"
-        className="cut-top-rev relative overflow-x-clip text-white"
+        className="cut-top relative overflow-x-clip text-white"
         style={{ background: p.colorInk }}
         aria-labelledby="em-breve-title"
       >

@@ -215,16 +215,6 @@ const MATRIX: {
   },
   {
     group: 'O que tem',
-    label: 'Exercícios',
-    cells: [
-      'Imagem, músculos e instruções',
-      'Mais de 1.800 vídeos',
-      'Biblioteca com mais de 250',
-      NI,
-    ],
-  },
-  {
-    group: 'O que tem',
     label: 'Agenda de aulas',
     cells: ['Horários fixos e avulsos, falta e remarcação', NI, NI, 'Divulgação de horários'],
   },

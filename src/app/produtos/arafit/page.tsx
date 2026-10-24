@@ -149,8 +149,8 @@ const ONLY: { icon: LucideIcon; t: string; b: string }[] = [
   },
   {
     icon: WifiOff,
-    t: 'Treino sem internet',
-    b: 'No subsolo da academia o treino continua, com cargas e cronômetro. Sobe quando o sinal volta.',
+    t: 'O treino inteiro sem sinal',
+    b: 'No subsolo da academia o aluno continua marcando séries, cargas e descanso. Tudo sobe quando a conexão volta.',
   },
   {
     icon: Music,
@@ -305,7 +305,15 @@ const MATRIX: {
   {
     group: 'O que tem',
     label: 'Treino sem internet',
-    cells: ['Sim', NI, NI, NI],
+    cells: [
+      {
+        t: 'O treino inteiro',
+        note: 'Marca séries, cargas e descanso sem sinal; sobe sozinho quando a conexão volta',
+      },
+      NI,
+      NI,
+      'Mostra o último treino baixado',
+    ],
   },
 ];
 

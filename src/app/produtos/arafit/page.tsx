@@ -87,7 +87,7 @@ const PERSONAL_SHOTS: Shot[] = [
     src: '/images/arafit/personal-saude.webp',
     alt: 'Saúde do aluno com peso, gordura, massa magra e categorias de avaliação',
     t: 'Avaliação física completa',
-    b: 'Anamnese, perimetria, dobras, postura, mobilidade, força, resistência, cardio e funcional.',
+    b: 'Anamnese com perguntas suas, perimetria, dobras, postura, testes físicos e fotos de antes × depois.',
   },
 ];
 
@@ -338,8 +338,8 @@ const MATRIX: {
     label: 'Avaliação física',
     cells: [
       {
-        t: 'Anamnese com PAR-Q, perimetria, dobras (Pollock 3 e 7) e postural',
-        note: 'Testes de mobilidade, força, resistência, cardio, funcional e neuromotora, com classificação e evolução',
+        t: 'Anamnese com PAR-Q e perguntas suas, perimetria, dobras (Pollock 3 e 7), postural e fotos de progresso',
+        note: 'Testes de mobilidade, força, resistência, cardio, funcional e neuromotora, com classificação, evolução e antes × depois',
       },
       'Anamnese; avaliação física, postural e neuromotora',
       'Básica no grátis; PAR-Q, postural e fotos no pago',

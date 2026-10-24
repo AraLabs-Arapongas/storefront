@@ -387,7 +387,14 @@ function CompareCell({ v, ours }: { v: Cell; ours?: boolean }) {
       </span>
     );
   }
-  if (v === NI) return <span className="text-[color:var(--ink-dim)]">Não informado</span>;
+  if (v === NI) {
+    return (
+      <span className="text-[color:var(--ink-dim)]">
+        <span aria-hidden="true">—</span>
+        <span className="sr-only">não informado</span>
+      </span>
+    );
+  }
   if (typeof v === 'object') {
     return (
       <span className="block">
@@ -808,9 +815,9 @@ export default async function ArafitPage() {
           </div>
           <p className="mt-5 max-w-3xl text-[13px] leading-[1.6] text-[color:var(--ink-dim)]">
             Com base no que cada empresa publica no próprio site e nas lojas de apps, consultado em
-            outubro de 2026; preços e funções podem ter mudado. &ldquo;Não informado&rdquo; quer
-            dizer que não encontramos a função descrita publicamente, não que ela não exista.
-            Confira no site de cada um.
+            outubro de 2026; preços e funções podem ter mudado. Um traço (&mdash;) quer dizer que
+            não encontramos a função descrita publicamente, não que ela não exista. Confira no site
+            de cada um.
           </p>
 
           <div className="mt-20 grid gap-10 border-t border-[color:var(--line-strong)] pt-10 lg:grid-cols-[0.8fr_1.2fr]">

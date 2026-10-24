@@ -70,8 +70,8 @@ export const PRODUCTS: Product[] = [
     tagline: 'O seu programa na mão do aluno.',
     summary: 'app para personal trainers',
     description:
-      'Cadastre os alunos, monte e envie os programas, veja quem treinou e quem sumiu, cuide da agenda, da cobrança e das avaliações físicas. O aluno entra com o número do celular e treina pelo seu programa.',
-    offer: 'Grátis até 5 alunos · Ilimitado R$ 19,90/mês',
+      'Cadastre os alunos, monte e envie os programas, veja quem treinou e quem sumiu, cuide da agenda, da cobrança e das avaliações físicas. O aluno entra com o número do celular, treina pelo seu programa e recebe seus avisos no celular.',
+    offer: 'Grátis com 1 aluno · Pro R$ 9,90 · Ilimitado R$ 29,90',
     status: 'Em breve',
     href: '/produtos/arafit',
     color: '#e10600',

@@ -12,7 +12,7 @@ import { InView } from '@/components/home/InView';
 import { FOUNDER_SEATS, founderSeatsLeft } from './founder-seats';
 
 const pageDescription =
-  'App para personal trainers: alunos, programas de treino, agenda, cobrança e avaliações físicas num lugar só. O aluno treina pelo seu programa no celular e você vê tudo. Grátis com 1 aluno, Pro R$ 9,90 (até 10 alunos), Ilimitado R$ 29,90.';
+  'App para personal trainers: alunos, programas de treino, agenda, cobrança e avaliações físicas num lugar só. O aluno treina pelo seu programa no celular e você vê tudo. Grátis com 2 alunos, Pro R$ 9,90 (até 10 alunos), Ilimitado R$ 29,90.';
 
 export const metadata = pageMetadata({
   path: '/produtos/arafit',
@@ -162,7 +162,7 @@ const MATRIX: {
     group: 'Preço por mês',
     label: 'Grátis',
     cells: [
-      { t: '1 aluno', note: 'Todas as funções' },
+      { t: '2 alunos', note: 'Todas as funções' },
       { t: '1 aluno', note: 'Depois do teste de 10 dias' },
       {
         t: 'Até 10 alunos',
@@ -271,8 +271,8 @@ const TIERS = [
     name: 'Grátis',
     price: '0',
     period: '',
-    note: 'Para testar com um aluno',
-    items: ['1 aluno ativo', 'Tudo do app, sem prazo'],
+    note: 'Para testar com você e um aluno de verdade',
+    items: ['2 alunos ativos', 'Tudo do app, sem prazo'],
   },
   {
     id: 'pro',
@@ -413,7 +413,7 @@ export default async function ArafitPage() {
           offer: {
             price: '0',
             description:
-              'Personal: grátis com 1 aluno; Pro R$ 9,90/mês (até 10 alunos); Ilimitado R$ 29,90/mês (fundador R$ 19,90 para os 100 primeiros). Aluno: Arafit Pessoal R$ 4,90/mês.',
+              'Personal: grátis com 2 alunos; Pro R$ 9,90/mês (até 10 alunos); Ilimitado R$ 29,90/mês (fundador R$ 19,90 para os 100 primeiros). Aluno: Arafit Pessoal R$ 4,90/mês.',
           },
         })}
       />
@@ -764,7 +764,7 @@ export default async function ArafitPage() {
             <div>
               <Kicker color={RED_ON_DARK}>Planos</Kicker>
               <h2 className="display mt-6 text-[clamp(2.6rem,6vw,5.6rem)]">
-                Comece com um aluno.{' '}
+                Comece com dois alunos.{' '}
                 <span className="block" style={{ color: RED }}>
                   Cresça sem trocar de app.
                 </span>

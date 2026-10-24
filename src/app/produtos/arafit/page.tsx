@@ -1,7 +1,19 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { CSSProperties, ReactNode } from 'react';
-import { ArrowRight, Check, Dumbbell, Minus } from 'lucide-react';
+import {
+  ArrowRight,
+  BadgeCheck,
+  CalendarCheck,
+  Check,
+  Dumbbell,
+  Map as MapIcon,
+  Megaphone,
+  Minus,
+  Music,
+  WifiOff,
+  type LucideIcon,
+} from 'lucide-react';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { breadcrumbSchema, softwareApplicationSchema } from '@/lib/seo/schemas';
 import { pageMetadata } from '@/lib/seo/metadata';
@@ -115,6 +127,40 @@ const ALUNO_SHOTS: Shot[] = [
     alt: 'Aba Meu personal com WhatsApp, chave Pix, plano e próximas aulas',
     t: 'Meu personal',
     b: 'WhatsApp, chave Pix para copiar, o plano, as próximas aulas e os recados.',
+  },
+];
+
+/** What we did not find in what MFIT, Tecnofit and Mobitrainer publish (October 2026). */
+const ONLY: { icon: LucideIcon; t: string; b: string }[] = [
+  {
+    icon: CalendarCheck,
+    t: 'A agenda cobra sozinha',
+    b: 'Marcou a aula como realizada, ela sai do pacote. Falta não desconta, a não ser que você escolha.',
+  },
+  {
+    icon: BadgeCheck,
+    t: '"Já paguei" pelo app',
+    b: 'O aluno copia o seu Pix, paga e avisa. Você confirma com um toque, sem conferir extrato.',
+  },
+  {
+    icon: Megaphone,
+    t: 'Avisos com mural',
+    b: 'Uma promoção ou um feriado vai para todos: notificação para quem aceitou e mural no app.',
+  },
+  {
+    icon: WifiOff,
+    t: 'Treino sem internet',
+    b: 'No subsolo da academia o treino continua, com cargas e cronômetro. Sobe quando o sinal volta.',
+  },
+  {
+    icon: Music,
+    t: 'Música do treino',
+    b: 'Cada treino tem a sua playlist do Spotify, sugerida ou do próprio aluno, a um toque.',
+  },
+  {
+    icon: MapIcon,
+    t: 'O percurso na academia',
+    b: 'O mapa da academia mostra onde está cada aparelho, na ordem dos exercícios do treino.',
   },
 ];
 
@@ -817,6 +863,37 @@ export default async function ArafitPage() {
             não encontramos a função descrita publicamente, não que ela não exista. Confira no site
             de cada um.
           </p>
+
+          <div className="mt-24">
+            <Kicker color={p.colorInk}>Só no Arafit</Kicker>
+            <h3 className="display mt-5 max-w-[18ch] text-[clamp(2.2rem,4.4vw,3.8rem)]">
+              O que você <span style={{ color: p.colorInk }}>não acha nos outros.</span>
+            </h3>
+            <InView
+              as="ul"
+              className="mt-12 grid gap-px overflow-hidden rounded-[26px] border border-[color:var(--line-strong)] bg-[color:var(--line-strong)] sm:grid-cols-2 lg:grid-cols-3"
+              threshold={0.1}
+            >
+              {ONLY.map(({ icon: Icon, t, b }, k) => (
+                <li key={t} className="iv iv-up bg-[color:var(--bg)] p-7 lg:p-8" style={i(k)}>
+                  <span
+                    className="grid h-12 w-12 place-items-center rounded-2xl text-white"
+                    style={{ background: p.colorInk }}
+                  >
+                    <Icon className="h-6 w-6" aria-hidden="true" />
+                  </span>
+                  <h4 className="mt-6 text-[20px] font-bold tracking-tight">{t}</h4>
+                  <p className="mt-2 text-[15px] leading-[1.6] text-[color:var(--ink-muted)]">
+                    {b}
+                  </p>
+                </li>
+              ))}
+            </InView>
+            <p className="mt-4 text-[13px] text-[color:var(--ink-dim)]">
+              Funções que não encontramos no que MFIT Personal, Tecnofit Personal e Mobitrainer
+              divulgam (outubro de 2026).
+            </p>
+          </div>
 
           <div className="mt-20 grid gap-10 border-t border-[color:var(--line-strong)] pt-10 lg:grid-cols-[0.8fr_1.2fr]">
             <h3 className="display text-[clamp(2rem,3.6vw,3rem)]">

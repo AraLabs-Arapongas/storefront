@@ -363,7 +363,7 @@ export default function ArafitPage() {
               </h2>
             </div>
             <p className="max-w-md text-[17px] leading-[1.7] text-[color:var(--ink-muted)]">
-              O caderno, a planilha dos programas, a agenda e a lista de quem já pagou, tudo no
+              O caderno, a planilha de treinos, a agenda e a lista de quem já pagou, tudo no
               celular.
             </p>
           </div>

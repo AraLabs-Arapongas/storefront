@@ -66,7 +66,7 @@ export const PRODUCTS: Product[] = [
   {
     slug: 'arafit',
     name: 'Arafit',
-    audience: 'Para personal trainers',
+    audience: 'Para personal trainers e alunos',
     tagline: 'O seu programa na mão do aluno.',
     summary: 'app para personal trainers',
     description:

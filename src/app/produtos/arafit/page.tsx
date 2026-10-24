@@ -150,7 +150,8 @@ const EDGES = [
  * `null` = the company has no such plan; `NI` = we did not find it described publicly (it may exist).
  */
 const NI = 'ni' as const;
-type Cell = string | null | typeof NI;
+/** A value, optionally with a smaller note under it (what the plan leaves out, the annual price…). */
+type Cell = string | { t: string; note: string } | null | typeof NI;
 const APPS = ['Arafit', 'MFIT Personal', 'Tecnofit Personal', 'Mobitrainer'] as const;
 const MATRIX: {
   group: 'Preço por mês' | 'O que tem';
@@ -160,7 +161,15 @@ const MATRIX: {
   {
     group: 'Preço por mês',
     label: 'Grátis',
-    cells: ['1 aluno', '1 aluno, depois do teste', 'Até 10 alunos (plano básico)', null],
+    cells: [
+      { t: '1 aluno', note: 'Todas as funções' },
+      { t: '1 aluno', note: 'Depois do teste de 10 dias' },
+      {
+        t: 'Até 10 alunos',
+        note: 'Versão básica: cobrança automática e avaliação completa (PAR-Q, postural, fotos) só no pago',
+      },
+      null,
+    ],
   },
   {
     group: 'Preço por mês',
@@ -171,10 +180,10 @@ const MATRIX: {
     group: 'Preço por mês',
     label: 'Alunos ilimitados',
     cells: [
-      'R$ 29,90 (fundador R$ 19,90)',
+      { t: 'R$ 29,90', note: 'R$ 19,90/mês no anual · fundador R$ 19,90 no mensal' },
       'R$ 39,90',
-      'R$ 36,90 (R$ 24,90/mês no anual)',
-      'Sem ilimitado: R$ 69,90 até 30 alunos',
+      { t: 'R$ 36,90', note: 'R$ 24,90/mês no anual' },
+      { t: 'Não tem', note: 'Até 30 alunos por R$ 69,90' },
     ],
   },
   {
@@ -278,7 +287,7 @@ const TIERS = [
     name: 'Ilimitado',
     price: '29,90',
     period: '/mês',
-    note: 'ou R$ 299 por ano · para quem vive disso',
+    note: 'ou R$ 19,90/mês no anual (R$ 238,80) · para quem vive disso',
     items: ['Alunos sem limite', '30 avisos para todos por mês'],
   },
 ] as const;
@@ -372,6 +381,18 @@ function CompareCell({ v, ours }: { v: Cell; ours?: boolean }) {
     );
   }
   if (v === NI) return <span className="text-[color:var(--ink-dim)]">Não informado</span>;
+  if (typeof v === 'object') {
+    return (
+      <span className="block">
+        <span className={`block ${ours ? 'font-semibold' : ''}`}>{v.t}</span>
+        <span
+          className={`mt-1 block text-[12.5px] leading-[1.45] ${ours ? '' : 'text-[color:var(--ink-dim)]'}`}
+        >
+          {v.note}
+        </span>
+      </span>
+    );
+  }
   return <span className={ours ? 'font-semibold' : ''}>{v}</span>;
 }
 

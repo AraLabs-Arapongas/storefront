@@ -164,6 +164,34 @@ const ONLY: { icon: LucideIcon; t: string; b: string }[] = [
   },
 ];
 
+/** The automations, run every morning by the server (October 2026). */
+const AUTOPILOT = [
+  {
+    t: 'Cobrança',
+    items: [
+      'Lembrete no dia do vencimento e 3 dias depois',
+      'Aviso quando o pacote está acabando',
+      'Para sozinho quando o aluno paga',
+    ],
+  },
+  {
+    t: 'Retenção',
+    items: [
+      '"Bora voltar?" para quem sumiu',
+      'Resumo da manhã de quem parou',
+      'Parabéns por bater a meta',
+    ],
+  },
+  {
+    t: 'Relacionamento',
+    items: [
+      'Boas-vindas no primeiro acesso',
+      'Parabéns no aniversário',
+      'Lembrete de reavaliação a cada 60 dias',
+    ],
+  },
+];
+
 const SOLO = [
   {
     t: 'Programas prontos',
@@ -273,10 +301,36 @@ const MATRIX: {
     group: 'O que tem',
     label: 'Cobrança dos alunos',
     cells: [
-      'Mensal, por aula ou pacote; o aluno vê o Pix e avisa "Já paguei"',
+      {
+        t: 'Mensal, por aula ou pacote',
+        note: 'Lembrete automático no vencimento e quando o pacote acaba; o aluno vê o Pix e avisa "Já paguei"',
+      },
       'Pagamento pelo app',
       'Cobrança automática no pago',
       'Venda com Asaas',
+    ],
+  },
+  {
+    group: 'O que tem',
+    label: 'Retenção de alunos',
+    cells: [
+      { t: 'No automático', note: 'Chama o aluno que sumiu e te manda o resumo de quem parou' },
+      NI,
+      NI,
+      NI,
+    ],
+  },
+  {
+    group: 'O que tem',
+    label: 'Mensagens automáticas',
+    cells: [
+      {
+        t: 'Boas-vindas, aniversário e reavaliação',
+        note: 'Você liga, desliga e edita o texto de cada uma',
+      },
+      NI,
+      NI,
+      NI,
     ],
   },
   {
@@ -901,6 +955,42 @@ export default async function ArafitPage() {
               Funções que não encontramos no que MFIT Personal, Tecnofit Personal e Mobitrainer
               divulgam (outubro de 2026).
             </p>
+          </div>
+
+          <div
+            className="mt-16 grid gap-10 rounded-[30px] p-8 text-white sm:p-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center"
+            style={{ background: BLACK }}
+          >
+            <div>
+              <Kicker color={RED_ON_DARK}>No piloto automático</Kicker>
+              <h3 className="display mt-5 text-[clamp(2.2rem,4.4vw,3.8rem)]">
+                Cobrança, retenção e relacionamento{' '}
+                <span style={{ color: RED }}>sem você lembrar.</span>
+              </h3>
+              <p className="mt-5 max-w-md text-[16px] leading-[1.7] text-white/70">
+                Todo dia de manhã o Arafit confere quem venceu, quem sumiu e quem faz aniversário, e
+                avisa no celular. Você liga o que quiser e escreve do seu jeito.
+              </p>
+            </div>
+            <ul className="grid gap-px overflow-hidden rounded-[22px] bg-white/10 sm:grid-cols-3">
+              {AUTOPILOT.map((x) => (
+                <li key={x.t} className="bg-[#141414] p-6">
+                  <p className="text-[18px] font-bold">{x.t}</p>
+                  <ul className="mt-3 space-y-2 text-[14px] leading-[1.5] text-white/70">
+                    {x.items.map((it) => (
+                      <li key={it} className="flex gap-2">
+                        <span
+                          className="tri tri-r mt-[0.45em] text-[6px]"
+                          style={{ color: RED_ON_DARK }}
+                          aria-hidden="true"
+                        />
+                        {it}
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div className="mt-20 grid gap-10 border-t border-[color:var(--line-strong)] pt-10 lg:grid-cols-[0.8fr_1.2fr]">

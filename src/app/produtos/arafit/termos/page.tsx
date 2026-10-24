@@ -98,18 +98,18 @@ export default function ArafitTermosPage() {
             <>
               <p>
                 O Arafit é um aplicativo móvel para personal trainers organizarem os alunos e para
-                os alunos treinarem pela ficha do personal. O mesmo app serve aos dois; o papel de
-                cada um vem da conta.
+                os alunos treinarem pelo programa do personal. O mesmo app serve aos dois; o papel
+                de cada um vem da conta.
               </p>
               <ul>
                 <li>
-                  <strong>Personal:</strong> cadastra alunos, monta e envia fichas de treino,
-                  acompanha os treinos feitos pela ficha, organiza a agenda de aulas, registra a
-                  cobrança dos alunos e faz avaliações físicas.
+                  <strong>Personal:</strong> cadastra alunos, monta e envia programas de treino,
+                  acompanha os treinos feitos nesses programas, organiza a agenda de aulas, registra
+                  a cobrança dos alunos e faz avaliações físicas.
                 </li>
                 <li>
-                  <strong>Aluno:</strong> entra com o número cadastrado pelo personal, treina pela
-                  ficha e acompanha o histórico e a evolução. Com o Arafit Pessoal, também treina
+                  <strong>Aluno:</strong> entra com o número cadastrado pelo personal, treina pelo
+                  programa e acompanha o histórico e a evolução. Com o Arafit Pessoal, também treina
                   por conta, com ou sem personal.
                 </li>
               </ul>
@@ -149,7 +149,7 @@ export default function ArafitTermosPage() {
             <>
               <ul>
                 <li>
-                  A orientação profissional, as fichas, as cargas e as avaliações são de
+                  A orientação profissional, os programas, as cargas e as avaliações são de
                   responsabilidade do personal. O Arafit é uma ferramenta de organização e não
                   prescreve treino.
                 </li>
@@ -298,7 +298,7 @@ export default function ArafitTermosPage() {
           title: 'Seus dados e conteúdo',
           body: (
             <p>
-              Fichas, treinos, avaliações e demais registros que você cria continuam sendo seus.
+              Programas, treinos, avaliações e demais registros que você cria continuam sendo seus.
               Você concede à AraLabs uma licença não-exclusiva e gratuita, limitada ao tempo de uso
               da conta, para armazenar, exibir e transmitir esse conteúdo às pessoas que podem vê-lo
               segundo a <Link href="/produtos/arafit/privacidade">Política de Privacidade</Link>,

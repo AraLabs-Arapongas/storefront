@@ -10,11 +10,11 @@ import { ProductTile } from '@/components/site/ProductMarks';
 import { InView } from '@/components/home/InView';
 
 const pageDescription =
-  'App para personal trainers: alunos, fichas de treino, agenda, cobrança e avaliações físicas num lugar só. O aluno treina pela sua ficha no celular. Grátis até 5 alunos.';
+  'App para personal trainers: alunos, programas de treino, agenda, cobrança e avaliações físicas num lugar só. O aluno treina pelo seu programa no celular. Grátis até 5 alunos.';
 
 export const metadata = pageMetadata({
   path: '/produtos/arafit',
-  title: 'Arafit: app para personal trainer organizar alunos e fichas',
+  title: 'Arafit: app para personal trainer organizar alunos e programas',
   description: pageDescription,
   image: '/produtos/arafit/opengraph-image',
 });
@@ -38,12 +38,12 @@ const PERSONAL: AppEntry[] = [
     b: 'Cadastre pelo celular, com o número do aluno. A conta dele já nasce ligada a você.',
   },
   {
-    t: 'Fichas',
+    t: 'Programas',
     b: 'Treinos A, B, C, com séries, cargas e descanso. Monte uma vez e envie para o aluno.',
   },
   {
     t: 'Quem treinou',
-    b: 'Os treinos feitos pela ficha chegam para você. Dá para ver quem está em dia e quem sumiu.',
+    b: 'Os treinos feitos pelo programa chegam para você. Dá para ver quem está em dia e quem sumiu.',
   },
   {
     t: 'Agenda',
@@ -72,7 +72,7 @@ const STEPS = [
   },
   {
     n: '03',
-    t: 'Monte as fichas',
+    t: 'Monte os programas',
     b: 'Treinos A, B, C com séries, cargas e descanso, e envie para cada aluno.',
   },
   {
@@ -84,8 +84,8 @@ const STEPS = [
 
 const ALUNO = [
   {
-    t: 'A ficha pronta',
-    b: 'Entra com o número que o personal cadastrou e a ficha já está lá.',
+    t: 'O programa pronto',
+    b: 'Entra com o número que o personal cadastrou e o programa já está lá.',
   },
   {
     t: 'Série a série',
@@ -97,7 +97,7 @@ const ALUNO = [
   },
   {
     t: 'Junto do personal',
-    b: 'Os treinos da ficha aparecem para o personal, que acompanha de perto.',
+    b: 'Os treinos do programa aparecem para o personal, que acompanha de perto.',
   },
 ];
 
@@ -146,7 +146,7 @@ const TIERS = [
       'Montar treino',
       'Com ou sem personal',
       'O personal não vê o que ele treina por conta',
-      'Se o vínculo acabar, a última ficha e o histórico ficam',
+      'Se o vínculo acabar, o último programa e o histórico ficam',
     ],
   },
 ];
@@ -208,7 +208,7 @@ function FichaMock() {
       <div className="flex items-center justify-between">
         <Wordmark className="text-[22px]" />
         <span className="rounded-full bg-white/10 px-2.5 py-1 text-[10.5px] font-semibold uppercase tracking-[0.14em] text-white/75">
-          Ficha do personal
+          Programa do personal
         </span>
       </div>
       <p className="mt-6 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/55">
@@ -275,7 +275,7 @@ export default function ArafitPage() {
         data={breadcrumbSchema([{ name: 'Produtos', path: '/produtos' }, { name: p.name }])}
       />
 
-      {/* 1 · HERO — the app's black, the ficha in the student's hand */}
+      {/* 1 · HERO — the app's black, the program in the student's hand */}
       <section
         className="pk-hero relative flex items-center overflow-hidden text-white"
         style={{ background: BLACK }}
@@ -304,7 +304,7 @@ export default function ArafitPage() {
                 Arafit, o app do personal trainer.
               </span>{' '}
               <span className="pk-load-up block" style={{ '--d': 120 } as CSSProperties}>
-                Você monta a ficha.
+                Você monta o programa.
               </span>{' '}
               <span
                 className="pk-load-up block"
@@ -315,8 +315,9 @@ export default function ArafitPage() {
             </h1>
             <div className="pk-load-up" style={{ '--d': 520 } as CSSProperties}>
               <p className="mt-7 max-w-[34rem] text-[17px] leading-[1.6] text-white/75 md:text-[18.5px]">
-                Alunos, fichas, agenda, cobrança e avaliações físicas num app só. O aluno entra com
-                o número do celular, a sua ficha aparece pronta e cada treino feito chega para você.
+                Alunos, programas, agenda, cobrança e avaliações físicas num app só. O aluno entra
+                com o número do celular, o seu programa aparece pronto e cada treino feito chega
+                para você.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <a
@@ -362,7 +363,7 @@ export default function ArafitPage() {
               </h2>
             </div>
             <p className="max-w-md text-[17px] leading-[1.7] text-[color:var(--ink-muted)]">
-              O caderno, a planilha das fichas, a agenda e a lista de quem já pagou, tudo no
+              O caderno, a planilha dos programas, a agenda e a lista de quem já pagou, tudo no
               celular.
             </p>
           </div>
@@ -417,11 +418,11 @@ export default function ArafitPage() {
         <div className="relative mx-auto max-w-[1240px] px-6 py-24 lg:px-10 lg:py-36">
           <Kicker color={ON_RED}>Para o aluno</Kicker>
           <h2 className="display mt-6 max-w-[15ch] text-[clamp(2.8rem,6.4vw,6rem)]">
-            A ficha chega pronta. <span style={{ color: ON_RED }}>É só treinar.</span>
+            O programa chega pronto. <span style={{ color: ON_RED }}>É só treinar.</span>
           </h2>
           <p className="mt-7 max-w-xl text-[17px] leading-[1.7] text-white/85">
             O mesmo app, do outro lado. O aluno entra com o número que você cadastrou, sem senha, e
-            treina pela sua ficha.
+            treina pelo seu programa.
           </p>
           <InView
             as="ul"
@@ -497,7 +498,7 @@ export default function ArafitPage() {
               </h2>
             </div>
             <p className="max-w-md text-[17px] leading-[1.7] text-[color:var(--ink-muted)]">
-              O aluno com personal treina pela ficha sem pagar nada. O Arafit Pessoal é para quem
+              O aluno com personal treina pelo programa sem pagar nada. O Arafit Pessoal é para quem
               também quer treinar por conta, com ou sem personal.
             </p>
           </div>

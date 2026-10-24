@@ -139,15 +139,15 @@ export default function ArafitExcluirContaPage() {
               <ul>
                 <li>Seu perfil: telefone, nome, fotos e chave Pix.</li>
                 <li>
-                  A agenda, a cobrança e as avaliações que você registrou sobre os seus alunos, e as
-                  fichas que você criou.
+                  A agenda, a cobrança e as avaliações que você registrou sobre os seus alunos, e os
+                  programas que você criou.
                 </li>
                 <li>Os registros de assinatura associados à sua conta.</li>
               </ul>
               <p>
                 As contas dos seus alunos não são apagadas: elas pertencem a cada aluno, que
                 continua podendo entrar no Arafit. O vínculo com você termina. Quem tem o Arafit
-                Pessoal fica com a última ficha e o histórico de treinos, como em qualquer fim de
+                Pessoal fica com o último programa e o histórico de treinos, como em qualquer fim de
                 vínculo.
               </p>
             </>

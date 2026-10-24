@@ -31,7 +31,7 @@ export default function ArafitPrivacidadePage() {
       lead={
         <p>
           O Arafit é um aplicativo da AraLabs para personal trainers organizarem os alunos e para os
-          alunos treinarem pela ficha do personal. O mesmo app serve aos dois; o papel de cada um
+          alunos treinarem pelo programa do personal. O mesmo app serve aos dois; o papel de cada um
           vem da conta. Esta política descreve, em linguagem direta, quais dados tratamos, com qual
           finalidade, quem vê o quê e como você pode exercer seus direitos.
         </p>
@@ -52,8 +52,8 @@ export default function ArafitPrivacidadePage() {
           label: 'Quem vê',
           text: (
             <>
-              O personal vê a ficha, os treinos da ficha, as avaliações e a cobrança dos alunos
-              dele. O que o aluno treina por conta no Arafit Pessoal{' '}
+              O personal vê o programa, os treinos feitos nele, as avaliações e a cobrança dos
+              alunos dele. O que o aluno treina por conta no Arafit Pessoal{' '}
               <strong>não aparece para o personal</strong>.
             </>
           ),
@@ -101,7 +101,7 @@ export default function ArafitPrivacidadePage() {
             <>
               <p>
                 <strong>O personal trainer é o controlador dos dados dos alunos dele.</strong> É ele
-                quem cadastra o aluno, monta a ficha, faz as avaliações e registra a agenda e a
+                quem cadastra o aluno, monta o programa, faz as avaliações e registra a agenda e a
                 cobrança, e é ele quem decide para que esses dados servem na relação com o aluno.
               </p>
               <p>
@@ -146,7 +146,7 @@ export default function ArafitPrivacidadePage() {
                   medicamentos, avaliações físicas e testes (veja o item 3.1).
                 </li>
                 <li>
-                  <strong>Treinos</strong> — fichas, séries, cargas, repetições, descanso e os
+                  <strong>Treinos</strong> — programas, séries, cargas, repetições, descanso e os
                   treinos realizados.
                 </li>
                 <li>
@@ -188,15 +188,15 @@ export default function ArafitPrivacidadePage() {
                 </li>
                 <li>
                   <strong>Ligar personal e aluno:</strong> o personal cadastra o aluno pelo número
-                  do celular, e o aluno encontra a ficha pronta ao entrar com esse número.
+                  do celular, e o aluno encontra o programa pronto ao entrar com esse número.
                 </li>
                 <li>
-                  <strong>Treino:</strong> mostrar a ficha, registrar cada série e guardar o
+                  <strong>Treino:</strong> mostrar o programa, registrar cada série e guardar o
                   histórico e a evolução.
                 </li>
                 <li>
-                  <strong>Acompanhamento pelo personal:</strong> mostrar ao personal os treinos da
-                  ficha, as avaliações, a agenda e a cobrança dos alunos dele.
+                  <strong>Acompanhamento pelo personal:</strong> mostrar ao personal os treinos do
+                  programa, as avaliações, a agenda e a cobrança dos alunos dele.
                 </li>
                 <li>
                   <strong>Lembretes de cobrança:</strong> quando o personal escolhe, o app abre o
@@ -222,12 +222,12 @@ export default function ArafitPrivacidadePage() {
           body: (
             <ul>
               <li>
-                <strong>O aluno</strong> vê os próprios dados: ficha, treinos, histórico, avaliações
-                e medidas.
+                <strong>O aluno</strong> vê os próprios dados: programa, treinos, histórico,
+                avaliações e medidas.
               </li>
               <li>
-                <strong>O personal</strong> vê, dos alunos dele: a ficha, os treinos feitos pela
-                ficha, as avaliações e os dados de saúde, a agenda e a cobrança.
+                <strong>O personal</strong> vê, dos alunos dele: o programa, os treinos feitos nele,
+                as avaliações e os dados de saúde, a agenda e a cobrança.
               </li>
               <li>
                 <strong>O que o aluno treina por conta no Arafit Pessoal</strong> (programas

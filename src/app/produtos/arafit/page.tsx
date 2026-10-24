@@ -180,7 +180,7 @@ const MATRIX: {
     group: 'Preço por mês',
     label: 'Alunos ilimitados',
     cells: [
-      { t: 'R$ 29,90', note: 'R$ 19,90/mês no anual · fundador R$ 19,90 no mensal' },
+      { t: 'R$ 29,90', note: 'R$ 19,90/mês no anual. Fundador: R$ 19,90 no mensal.' },
       'R$ 39,90',
       { t: 'R$ 36,90', note: 'R$ 24,90/mês no anual' },
       { t: 'Não tem', note: 'Até 30 alunos por R$ 69,90' },

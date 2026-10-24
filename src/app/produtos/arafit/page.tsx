@@ -237,7 +237,10 @@ const MATRIX: {
     group: 'O que tem',
     label: 'Avaliação física',
     cells: [
-      'Anamnese com PAR-Q, perimetria, dobras (Pollock 3 e 7) e testes físicos',
+      {
+        t: 'Anamnese com PAR-Q, perimetria, dobras (Pollock 3 e 7) e postural',
+        note: 'Testes de mobilidade, força, resistência, cardio, funcional e neuromotora, com classificação e evolução',
+      },
       'Anamnese; avaliação física, postural e neuromotora',
       'Básica no grátis; PAR-Q, postural e fotos no pago',
       'Anamnese e acompanhamento corporal',

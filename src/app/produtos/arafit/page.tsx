@@ -222,7 +222,7 @@ const MATRIX: {
     group: 'Preço por mês',
     label: 'Grátis',
     cells: [
-      { t: '2 alunos', note: 'Todas as funções' },
+      { t: '2 alunos', note: 'Tudo, menos os avisos para todos' },
       { t: '1 aluno', note: 'Depois do teste de 10 dias' },
       {
         t: 'Até 10 alunos',
@@ -331,7 +331,7 @@ const TIERS = [
     price: '0',
     period: '',
     note: 'Para testar com você e um aluno de verdade',
-    items: ['2 alunos ativos', 'Tudo do app, sem prazo'],
+    items: ['2 alunos ativos', 'Tudo do app, sem prazo, menos os avisos para todos'],
   },
   {
     id: 'pro',

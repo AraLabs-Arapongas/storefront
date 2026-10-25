@@ -34,6 +34,31 @@ const MOCKS: Partial<Record<Product['slug'], (props: { wide?: boolean }) => Reac
   'le-barista': LeBaristaMock,
 };
 
+/** What the AI does in the Arafit (all live in the app). */
+const ARAFIT_AI = [
+  'Monta a ficha a partir do que você descreve',
+  'Resume a avaliação física com os números certos',
+  'Aponta o que pede atenção na anamnese',
+  'Escreve aviso, recado e cobrança no seu tom',
+  'Conta como foi a semana dos seus alunos',
+];
+
+/** The AI mark from the Arafit app: a big and a small four-point sparkle. */
+function Sparkle({ size, fill }: { size: number; fill: string }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden="true" className="shrink-0">
+      <path
+        d="M10 4.5Q11.71 12.29 19.5 14Q11.71 15.71 10 23.5Q8.29 15.71 0.5 14Q8.29 12.29 10 4.5Z"
+        fill={fill}
+      />
+      <path
+        d="M19.4 0.4Q20.24 3.76 23.6 4.6Q20.24 5.44 19.4 8.8Q18.56 5.44 15.2 4.6Q18.56 3.76 19.4 0.4Z"
+        fill={fill}
+      />
+    </svg>
+  );
+}
+
 const KOMYX_FLOW = [
   'Agenda sem choque de datas',
   'Orçamento com pacotes e cardápio',
@@ -111,6 +136,7 @@ function Kicker({
 
 export default function Home() {
   const komyx = productBySlug('komyx');
+  const arafit = productBySlug('arafit');
   const family = productsByLine('familias');
   const featured = family.filter((p) => p.status !== 'Em breve' && FEATURES[p.slug]);
   const coming = family.filter((p) => !featured.includes(p));
@@ -284,6 +310,67 @@ export default function Home() {
               </figcaption>
             </figure>
           </div>
+        </div>
+      </section>
+
+      {/* 3b · ARAFIT — black, the AI spark in orange is the only accent */}
+      <section
+        className="cut-top overflow-x-clip text-white"
+        style={{ background: '#0a0a0a' }}
+        aria-labelledby="arafit-title"
+      >
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute left-[-14%] top-[-10%] h-[42rem] w-[42rem] rounded-full bg-[radial-gradient(closest-side,rgba(225,6,0,0.32),transparent_70%)]" />
+          <div className="absolute bottom-[-24%] right-[-8%] h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(closest-side,rgba(255,122,26,0.16),transparent_70%)]" />
+        </div>
+        <div className="relative mx-auto grid max-w-[1240px] gap-14 px-6 py-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-20 lg:px-10 lg:py-32">
+          <div>
+            <div className="flex flex-wrap items-center gap-3">
+              <Sparkle size={40} fill="#ff6a1a" />
+              <p className="text-[26px] font-extrabold tracking-tight">{arafit.name}</p>
+              <span className="rounded-full bg-white/12 px-2.5 py-1 text-[10.5px] font-semibold uppercase tracking-[0.16em]">
+                {arafit.status} · {arafit.audience.replace(/^Para /, 'para ')}
+              </span>
+            </div>
+            <h2
+              id="arafit-title"
+              className="display mt-8 text-[clamp(2.6rem,4.6vw,4.6rem)] leading-[0.98]"
+            >
+              O app do personal com IA.{' '}
+              <span
+                className="block bg-clip-text text-transparent"
+                style={{ backgroundImage: 'linear-gradient(90deg, #ff3b2f, #ff7a1a)' }}
+              >
+                A IA faz o rascunho, você decide.
+              </span>
+            </h2>
+            <p className="mt-8 max-w-lg text-[17px] leading-[1.7] text-white/75">
+              Alunos, treinos, agenda, cobrança e avaliações num app só, com a IA cuidando da parte
+              chata. Tudo o que ela escreve chega para você revisar antes de ir para o aluno.
+            </p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Link
+                href={arafit.href}
+                className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-[15px] font-semibold transition hover:bg-[#ffd6d2]"
+                style={{ color: arafit.colorInk }}
+              >
+                Conhecer o Arafit <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+            <p className="mt-4 text-[14px] text-white/70">{arafit.offer}</p>
+          </div>
+          <InView as="ul" className="border-t border-white/15" threshold={0.2}>
+            {ARAFIT_AI.map((x, k) => (
+              <li
+                key={x}
+                className="iv iv-up flex items-center gap-4 border-b border-white/15 py-4 text-[17px] font-semibold"
+                style={i(k)}
+              >
+                <Sparkle size={20} fill="#ff6a1a" />
+                {x}
+              </li>
+            ))}
+          </InView>
         </div>
       </section>
 

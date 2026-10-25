@@ -63,7 +63,29 @@ export function ProductTile({
     product.slug === 'komyx' ? (
       <KomyxMark style={{ width: icon * 1.1, height: icon * 1.1 }} />
     ) : product.slug === 'arafit' ? (
-      <Dumbbell style={{ width: icon, height: icon }} strokeWidth={2.2} />
+      <span className="relative inline-grid place-items-center">
+        <Dumbbell style={{ width: icon, height: icon }} strokeWidth={2.2} />
+        {/* The AI spark from the app's mark, top right. */}
+        <svg
+          viewBox="0 0 24 24"
+          className="absolute"
+          style={{
+            width: icon * 0.62,
+            height: icon * 0.62,
+            right: -icon * 0.42,
+            top: -icon * 0.42,
+          }}
+        >
+          <path
+            d="M10 4.5Q11.71 12.29 19.5 14Q11.71 15.71 10 23.5Q8.29 15.71 0.5 14Q8.29 12.29 10 4.5Z"
+            fill="#ffd27a"
+          />
+          <path
+            d="M19.4 0.4Q20.24 3.76 23.6 4.6Q20.24 5.44 19.4 8.8Q18.56 5.44 15.2 4.6Q18.56 3.76 19.4 0.4Z"
+            fill="#ffd27a"
+          />
+        </svg>
+      </span>
     ) : product.slug === 'casa-leve' ? (
       <Home style={{ width: icon, height: icon }} strokeWidth={2.2} />
     ) : product.slug === 'arakids' ? (

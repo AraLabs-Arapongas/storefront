@@ -745,6 +745,14 @@ export default async function ArafitPage() {
               >
                 {p.status} · {p.audience.replace(/^Para /, 'para ')}
               </span>
+              <a
+                href="#ia"
+                className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[12px] font-bold text-white shadow-[0_6px_18px_-6px_rgba(0,0,0,0.5)] transition hover:brightness-110"
+                style={{ background: 'linear-gradient(90deg, #0a0a0a, #2a0a00)' }}
+              >
+                <AiMark size={14} />
+                Com IA
+              </a>
             </div>
             <h1 className="pk-hero-title display mt-7 text-balance lg:mt-8">
               <span
@@ -757,7 +765,7 @@ export default async function ArafitPage() {
                 </span>
               </span>{' '}
               <span className="pk-load-up block" style={{ '--d': 120 } as CSSProperties}>
-                Você monta.
+                Você monta com IA.
               </span>{' '}
               <span className="pk-load-up block" style={{ '--d': 220 } as CSSProperties}>
                 O aluno treina.
@@ -792,6 +800,20 @@ export default async function ArafitPage() {
                   Ver planos
                 </a>
               </div>
+              <ul className="mt-6 flex max-w-[34rem] flex-wrap gap-2">
+                {AI_PERSONAL.map((x) => (
+                  <li key={x.t}>
+                    <a
+                      href="#ia"
+                      className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[13px] font-semibold text-white transition hover:bg-black/60"
+                      style={{ background: 'rgba(10,10,10,0.42)' }}
+                    >
+                      <AiMark size={13} />
+                      {x.t}
+                    </a>
+                  </li>
+                ))}
+              </ul>
               <a
                 href="#fundador"
                 className="mt-6 inline-flex items-center gap-2.5 rounded-full border px-4 py-2 text-[13.5px] font-semibold transition hover:brightness-125"

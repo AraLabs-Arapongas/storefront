@@ -54,37 +54,37 @@ type Shot = { src: string; alt: string; t: string; b: string };
 
 const PERSONAL_SHOTS: Shot[] = [
   {
-    src: '/images/arafit/personal-inicio.webp',
+    src: '/images/arafit/iphone/personal-inicio.webp',
     alt: 'Início do personal: aulas de hoje, quem treinou, alunos que sumiram e pagamentos em atraso',
     t: 'O dia num relance',
     b: 'Aulas de hoje, quem treinou, quem sumiu há mais de 7 dias e quem está com a mensalidade em atraso.',
   },
   {
-    src: '/images/arafit/personal-agenda.webp',
+    src: '/images/arafit/iphone/personal-agenda.webp',
     alt: 'Agenda da semana com aulas realizadas, faltas e horários fixos',
     t: 'Agenda que cobra sozinha',
     b: 'Horários fixos e avulsos. Marcou realizada, a aula sai do pacote. Falta não desconta, a não ser que você queira.',
   },
   {
-    src: '/images/arafit/personal-alunos.webp',
+    src: '/images/arafit/iphone/personal-alunos.webp',
     alt: 'Lista de alunos com o último treino de cada um',
     t: 'Todos os alunos',
     b: 'Quando cada um treinou e quantos treinos fez na semana. Quem ainda não entrou recebe o convite pelo WhatsApp.',
   },
   {
-    src: '/images/arafit/personal-aluno.webp',
+    src: '/images/arafit/iphone/personal-aluno.webp',
     alt: 'Página do aluno com treinos do mês, frequência e programa',
     t: 'A página de cada aluno',
     b: 'Frequência, último treino, o programa atual e o recado que aparece no celular dele.',
   },
   {
-    src: '/images/arafit/personal-cobranca.webp',
+    src: '/images/arafit/iphone/personal-cobranca.webp',
     alt: 'Cobrança do aluno com mensalidade paga e próximas aulas',
     t: 'Cobrança sem planilha',
     b: 'Mensal, por aula ou pacote. O aluno avisa "Já paguei" e você confirma com um toque.',
   },
   {
-    src: '/images/arafit/personal-saude.webp',
+    src: '/images/arafit/iphone/personal-saude.webp',
     alt: 'Saúde do aluno com peso, gordura, massa magra e categorias de avaliação',
     t: 'Avaliação física completa',
     b: 'Anamnese com perguntas suas, perimetria, dobras, postura, testes físicos e fotos de antes × depois.',
@@ -93,37 +93,25 @@ const PERSONAL_SHOTS: Shot[] = [
 
 const ALUNO_SHOTS: Shot[] = [
   {
-    src: '/images/arafit/aluno-inicio.webp',
+    src: '/images/arafit/iphone/aluno-inicio.webp',
     alt: 'Início do aluno com o treino do dia e o ritmo da semana',
     t: 'O treino do dia',
     b: 'Abre o app e o treino de hoje está lá, com o ritmo da semana.',
   },
   {
-    src: '/images/arafit/aluno-serie.webp',
-    alt: 'Treino em andamento com carga, repetições e a última vez',
+    src: '/images/arafit/iphone/aluno-descanso.webp',
+    alt: 'Treino em andamento com a série marcada e o cronômetro de descanso',
     t: 'Série a série',
-    b: 'Carga e repetições da última vez, o recorde e o vídeo do exercício.',
+    b: 'Carga e repetições de cada série, e o descanso começa sozinho e avisa a hora da próxima.',
   },
   {
-    src: '/images/arafit/aluno-descanso.webp',
-    alt: 'Cronômetro de descanso entre séries',
-    t: 'Descanso contando',
-    b: 'O cronômetro começa sozinho e avisa quando é hora da próxima série.',
-  },
-  {
-    src: '/images/arafit/aluno-evolucao.webp',
-    alt: 'Evolução com o placar da semana, sequência de semanas e totais',
-    t: 'Placar da semana',
-    b: 'Treinos na semana contra a meta, semanas seguidas e o volume levantado.',
-  },
-  {
-    src: '/images/arafit/aluno-avaliacao.webp',
+    src: '/images/arafit/iphone/aluno-avaliacao.webp',
     alt: 'Avaliação física do personal com gordura, massa magra e gráfico',
     t: 'A avaliação no celular',
     b: 'Gordura, massa magra e peso, com a variação desde a última avaliação.',
   },
   {
-    src: '/images/arafit/aluno-meu-personal.webp',
+    src: '/images/arafit/iphone/aluno-meu-personal.webp',
     alt: 'Aba Meu personal com WhatsApp, chave Pix, plano e próximas aulas',
     t: 'Meu personal',
     b: 'WhatsApp, chave Pix para copiar, o plano, as próximas aulas e os recados.',
@@ -180,38 +168,54 @@ const ONLY: { icon: LucideIcon | 'ai'; t: string; b: string }[] = [
 ];
 
 /** The AI features (Claude Haiku), all live in the app (October 2026). Only real AI gets the ✦. */
-const AI_PERSONAL = [
+const AI_PERSONAL: Shot[] = [
   {
+    src: '/images/arafit/iphone/ia-personal-programa.webp',
+    alt: 'Programa com IA: o pedido do personal, o que a IA entendeu e o rascunho do programa',
     t: 'Programa com IA',
     b: 'Descreva o aluno em poucas palavras. A IA entende o objetivo e as restrições, o programa sai do nosso catálogo revisado e você ajusta antes de mandar.',
   },
   {
+    src: '/images/arafit/iphone/ia-personal-avaliacao.webp',
+    alt: 'Resumo da avaliação física escrito pela IA para o personal revisar',
     t: 'Resumo da avaliação',
     b: 'O que mudou desde a última avaliação, com os números certos e os próximos focos. Você edita e manda pelo WhatsApp.',
   },
   {
+    src: '/images/arafit/iphone/ia-personal-anamnese.webp',
+    alt: 'Pontos de atenção da anamnese apontados pela IA',
     t: 'Pontos de atenção da anamnese',
     b: 'Lesões, remédios e respostas do PAR-Q que não batem aparecem no topo, antes de você montar o treino.',
   },
   {
+    src: '/images/arafit/iphone/ia-personal-escrever.webp',
+    alt: 'Escrever com IA: opções de aviso geradas a partir da ideia do personal',
     t: 'Escrever com IA',
     b: 'Promoção, recado ou cobrança com jeitinho: escreva a ideia, escolha o tom e receba três opções para escolher.',
   },
   {
+    src: '/images/arafit/iphone/ia-personal-semana.webp',
+    alt: 'Sua semana: resumo da IA com quem sumiu, quem atrasou e quem bateu recorde',
     t: 'Sua semana',
     b: 'Quem sumiu, quem atrasou e quem bateu recorde, num toque, com a mensagem de WhatsApp pronta.',
   },
 ];
-const AI_ALUNO = [
+const AI_ALUNO: Shot[] = [
   {
+    src: '/images/arafit/iphone/ia-aluno-treino.webp',
+    alt: 'Por que esse treino: a IA explica o treino do dia ao aluno',
     t: 'Por que esse treino?',
     b: 'A IA explica a ordem e o objetivo dos exercícios do programa que você montou.',
   },
   {
+    src: '/images/arafit/ia-aluno-evolucao.webp',
+    alt: 'Sua evolução em palavras: resumo da IA na aba Evolução do aluno',
     t: 'A evolução em palavras',
     b: 'Recordes, frequência e avaliação contados como uma conversa, uma vez por semana.',
   },
   {
+    src: '/images/arafit/iphone/ia-aluno-assistente.webp',
+    alt: 'Assistente de treino: o aluno conta o que quer e o treino sai pronto',
     t: 'Assistente de treino',
     b: 'Para quem treina sozinho: objetivo, dias, tempo e o que dói, e o treino sai pronto.',
   },
@@ -601,7 +605,7 @@ function Wordmark({ className = '', accent = RED }: { className?: string; accent
   );
 }
 
-/** A real screenshot of the app in a phone outline. */
+/** A real iPhone screenshot in an iPhone frame: titanium edge, black bezel and the Dynamic Island. */
 function Phone({
   src,
   alt,
@@ -615,17 +619,23 @@ function Phone({
 }) {
   return (
     <div
-      className={`overflow-hidden rounded-[30px] border-[6px] border-[#1d1d1f] bg-black shadow-[0_30px_70px_-24px_rgba(0,0,0,0.55)] ${className}`}
+      className={`relative rounded-[13.5%/6.2%] bg-[#2b2b2e] p-[1.2%] shadow-[0_30px_70px_-24px_rgba(0,0,0,0.55),inset_0_0_0_1px_rgba(255,255,255,0.14)] ${className}`}
     >
-      <Image
-        src={src}
-        alt={alt}
-        width={540}
-        height={1200}
-        sizes="(min-width: 1024px) 280px, 60vw"
-        priority={priority}
-        className="block h-auto w-full"
-      />
+      <div className="relative overflow-hidden rounded-[12.6%/5.8%] border-[5px] border-black bg-black">
+        <Image
+          src={src}
+          alt={alt}
+          width={540}
+          height={1174}
+          sizes="(min-width: 1024px) 280px, 60vw"
+          priority={priority}
+          className="block h-auto w-full"
+        />
+        <span
+          aria-hidden="true"
+          className="absolute left-1/2 top-[1.6%] h-[3.4%] w-[31%] -translate-x-1/2 rounded-full bg-black"
+        />
+      </div>
     </div>
   );
 }
@@ -635,7 +645,7 @@ function Gallery({ shots, dark }: { shots: Shot[]; dark?: boolean }) {
   return (
     <InView
       as="ul"
-      className="-mx-6 mt-14 flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 pb-4 lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-x-10 lg:gap-y-16 lg:overflow-visible lg:px-0"
+      className={`-mx-6 mt-14 flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 pb-4 lg:mx-0 lg:grid ${shots.length === 4 ? 'lg:grid-cols-4' : 'lg:grid-cols-3'} lg:gap-x-10 lg:gap-y-16 lg:overflow-visible lg:px-0`}
       threshold={0.1}
     >
       {shots.map((s, k) => (
@@ -651,6 +661,32 @@ function Gallery({ shots, dark }: { shots: Shot[]; dark?: boolean }) {
           >
             {s.b}
           </p>
+        </li>
+      ))}
+    </InView>
+  );
+}
+
+/** The AI screens: phone, ✦ title and a line each; scrolls sideways on phones. */
+function AiGallery({ shots }: { shots: Shot[] }) {
+  return (
+    <InView
+      as="ul"
+      className="-mx-6 mt-6 flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 pb-4 lg:mx-0 lg:grid lg:grid-cols-5 lg:gap-6 lg:overflow-visible lg:px-0"
+      threshold={0.1}
+    >
+      {shots.map((s, k) => (
+        <li
+          key={s.src}
+          className="iv iv-up w-[62vw] shrink-0 snap-start sm:w-[240px] lg:w-auto"
+          style={i(k)}
+        >
+          <Phone src={s.src} alt={s.alt} className="mx-auto max-w-[240px]" />
+          <p className="mt-5 flex items-start gap-2 text-[17px] font-bold leading-[1.3] tracking-tight">
+            <AiMark size={16} className="mt-[0.2em]" />
+            {s.t}
+          </p>
+          <p className="mt-1.5 text-[14px] leading-[1.55] text-white/70">{s.b}</p>
         </li>
       ))}
     </InView>
@@ -837,13 +873,13 @@ export default async function ArafitPage() {
           >
             <div className="flex items-end justify-center gap-4 sm:gap-6">
               <Phone
-                src="/images/arafit/personal-inicio.webp"
+                src="/images/arafit/iphone/personal-inicio.webp"
                 alt="Início do personal no Arafit"
                 className="w-[46%] translate-y-6"
                 priority
               />
               <Phone
-                src="/images/arafit/aluno-inicio.webp"
+                src="/images/arafit/iphone/aluno-inicio.webp"
                 alt="Início do aluno no Arafit com o treino do dia"
                 className="w-[46%]"
                 priority
@@ -888,44 +924,15 @@ export default async function ArafitPage() {
             </p>
           </div>
 
-          <div className="mt-16 grid gap-14 lg:grid-cols-[1.35fr_1fr] lg:gap-16">
-            <div>
-              <h3 className="text-[13px] font-semibold uppercase tracking-[0.2em] text-white/60">
-                Para o personal
-              </h3>
-              <InView
-                as="ul"
-                className="mt-5 grid gap-x-10 border-t border-white/15 sm:grid-cols-2"
-                threshold={0.1}
-              >
-                {AI_PERSONAL.map((x, k) => (
-                  <li key={x.t} className="iv iv-up border-b border-white/15 py-6" style={i(k)}>
-                    <p className="flex items-start gap-2.5 text-[19px] font-bold leading-[1.3] tracking-tight">
-                      <AiMark size={18} className="mt-[0.2em]" />
-                      {x.t}
-                    </p>
-                    <p className="mt-2 text-[15px] leading-[1.6] text-white/70">{x.b}</p>
-                  </li>
-                ))}
-              </InView>
-            </div>
-            <div>
-              <h3 className="text-[13px] font-semibold uppercase tracking-[0.2em] text-white/60">
-                Para o aluno
-              </h3>
-              <InView as="ul" className="mt-5 border-t border-white/15" threshold={0.1}>
-                {AI_ALUNO.map((x, k) => (
-                  <li key={x.t} className="iv iv-up border-b border-white/15 py-6" style={i(k)}>
-                    <p className="flex items-start gap-2.5 text-[19px] font-bold leading-[1.3] tracking-tight">
-                      <AiMark size={18} className="mt-[0.2em]" />
-                      {x.t}
-                    </p>
-                    <p className="mt-2 text-[15px] leading-[1.6] text-white/70">{x.b}</p>
-                  </li>
-                ))}
-              </InView>
-            </div>
-          </div>
+          <h3 className="mt-16 text-[13px] font-semibold uppercase tracking-[0.2em] text-white/60">
+            Para o personal
+          </h3>
+          <AiGallery shots={AI_PERSONAL} />
+          <h3 className="mt-16 text-[13px] font-semibold uppercase tracking-[0.2em] text-white/60">
+            Para o aluno
+          </h3>
+          {/* A evolução em palavras entra quando a tela for capturada no iPhone (precisa do histórico do aluno). */}
+          <AiGallery shots={AI_ALUNO.filter((x) => !x.src.endsWith('ia-aluno-evolucao.webp'))} />
 
           <ul className="mt-14 grid gap-x-8 gap-y-3 sm:grid-cols-2 lg:grid-cols-4">
             {AI_RULES.map((r) => (
@@ -1039,13 +1046,13 @@ export default async function ArafitPage() {
           </div>
           <div className="flex items-end justify-center gap-4 sm:gap-6">
             <Phone
-              src="/images/arafit/aluno-descanso.webp"
+              src="/images/arafit/iphone/aluno-descanso.webp"
               alt="Treino em andamento com o cronômetro de descanso entre séries"
               className="w-[46%] max-w-[260px] translate-y-8"
             />
             <Phone
-              src="/images/arafit/aluno-calendario.webp"
-              alt="Evolução com o calendário de treinos do mês"
+              src="/images/arafit/iphone/ia-aluno-assistente.webp"
+              alt="Assistente de treino com IA montando um programa para quem treina sozinho"
               className="w-[46%] max-w-[260px]"
             />
           </div>
@@ -1432,7 +1439,7 @@ export default async function ArafitPage() {
             </div>
             <figure className="mx-auto w-full max-w-[260px]">
               <Phone
-                src="/images/arafit/personal-fundador.webp"
+                src="/images/arafit/iphone/personal-fundador.webp"
                 alt="Perfil de um personal fundador com o selo Fundador #01 e a marca dourada"
               />
               <figcaption className="mt-4 text-center text-[12.5px] text-white/55">

@@ -36,7 +36,7 @@ const MOCKS: Partial<Record<Product['slug'], (props: { wide?: boolean }) => Reac
 
 /** What the AI does in the Arafit (all live in the app). */
 const ARAFIT_AI = [
-  'Monta a ficha a partir do que você descreve',
+  'Monta o programa a partir do que você descreve',
   'Resume a avaliação física com os números certos',
   'Aponta o que pede atenção na anamnese',
   'Escreve aviso, recado e cobrança no seu tom',

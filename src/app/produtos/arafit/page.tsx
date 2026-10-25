@@ -24,7 +24,7 @@ import { InView } from '@/components/home/InView';
 import { FOUNDER_SEATS, founderSeatsLeft } from './founder-seats';
 
 const pageDescription =
-  'App para personal trainers com IA: alunos, programas de treino, agenda, cobrança e avaliações físicas num lugar só, com IA para montar fichas, resumir avaliações e escrever mensagens. O aluno treina pelo seu programa no celular e você vê tudo. Grátis com 2 alunos, Pro R$ 9,90 (até 10 alunos), Ilimitado R$ 29,90.';
+  'App para personal trainers com IA: alunos, programas de treino, agenda, cobrança e avaliações físicas num lugar só, com IA para montar programas, resumir avaliações e escrever mensagens. O aluno treina pelo seu programa no celular e você vê tudo. Grátis com 2 alunos, Pro R$ 9,90 (até 10 alunos), Ilimitado R$ 29,90.';
 
 export const metadata = pageMetadata({
   path: '/produtos/arafit',
@@ -73,8 +73,8 @@ const PERSONAL_SHOTS: Shot[] = [
   },
   {
     src: '/images/arafit/personal-aluno.webp',
-    alt: 'Ficha do aluno com treinos do mês, frequência e programa',
-    t: 'A ficha de cada aluno',
+    alt: 'Página do aluno com treinos do mês, frequência e programa',
+    t: 'A página de cada aluno',
     b: 'Frequência, último treino, o programa atual e o recado que aparece no celular dele.',
   },
   {
@@ -182,8 +182,8 @@ const ONLY: { icon: LucideIcon | 'ai'; t: string; b: string }[] = [
 /** The AI features (Claude Haiku), all live in the app (October 2026). Only real AI gets the ✦. */
 const AI_PERSONAL = [
   {
-    t: 'Ficha com IA',
-    b: 'Descreva o aluno em poucas palavras. A IA entende o objetivo e as restrições, a ficha sai do nosso catálogo revisado e você ajusta antes de mandar.',
+    t: 'Programa com IA',
+    b: 'Descreva o aluno em poucas palavras. A IA entende o objetivo e as restrições, o programa sai do nosso catálogo revisado e você ajusta antes de mandar.',
   },
   {
     t: 'Resumo da avaliação',
@@ -474,7 +474,7 @@ const MATRIX: {
   },
   {
     group: 'Com IA',
-    label: 'Ficha de treino com IA',
+    label: 'Programa de treino com IA',
     cells: [
       {
         t: 'Sim',
@@ -780,7 +780,7 @@ export default async function ArafitPage() {
             <div className="pk-load-up" style={{ '--d': 520 } as CSSProperties}>
               <p className="mt-7 max-w-[34rem] text-[17px] leading-[1.6] text-white/85 md:text-[18.5px]">
                 Alunos, programas, agenda, cobrança e avaliações físicas num app só, com IA para
-                montar a ficha, resumir a avaliação e escrever a mensagem. O aluno entra com o
+                montar o programa, resumir a avaliação e escrever a mensagem. O aluno entra com o
                 número do celular, o seu programa aparece pronto e cada treino feito chega para
                 você.
               </p>
@@ -882,16 +882,16 @@ export default async function ArafitPage() {
               </h2>
             </div>
             <p className="max-w-lg text-[17px] leading-[1.7] text-white/75">
-              Montar a ficha, ler a avaliação, escrever a cobrança: o que tomava a noite agora leva
-              um toque. Tudo o que a IA escreve chega para você revisar, com o ✦ para saber de onde
-              veio.
+              Montar o programa, ler a avaliação, escrever a cobrança: o que tomava a noite agora
+              leva um toque. Tudo o que a IA escreve chega para você revisar, com o ✦ para saber de
+              onde veio.
             </p>
           </div>
 
           <div className="mt-16 grid gap-14 lg:grid-cols-[1.35fr_1fr] lg:gap-16">
             <div>
               <h3 className="text-[13px] font-semibold uppercase tracking-[0.2em] text-white/60">
-                Para você
+                Para o personal
               </h3>
               <InView
                 as="ul"
@@ -1067,8 +1067,9 @@ export default async function ArafitPage() {
               </h2>
             </div>
             <p className="max-w-lg text-[17px] leading-[1.7] text-white/70">
-              Ficha de treino todo app tem. O Arafit cuida do que acontece entre uma aula e outra: o
-              aviso que chega, o treino que roda sem sinal e a cobrança que se resolve sozinha.
+              Programa de treino todo app tem. O Arafit cuida do que acontece entre uma aula e
+              outra: o aviso que chega, o treino que roda sem sinal e a cobrança que se resolve
+              sozinha.
             </p>
           </div>
           <InView

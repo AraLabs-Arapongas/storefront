@@ -70,7 +70,7 @@ export const PRODUCTS: Product[] = [
     tagline: 'O app do personal com IA.',
     summary: 'app para personal trainers com IA',
     description:
-      'A IA monta a ficha, resume a avaliação, escreve a cobrança e conta como foi a semana; você revisa e envia. Alunos, agenda, cobrança e avaliações físicas num app só, e o aluno treina pelo seu programa no celular.',
+      'A IA monta o programa, resume a avaliação, escreve a cobrança e conta como foi a semana; você revisa e envia. Alunos, agenda, cobrança e avaliações físicas num app só, e o aluno treina pelo seu programa no celular.',
     offer: 'Grátis com 2 alunos · Pro R$ 9,90 · Ilimitado R$ 29,90',
     status: 'Em breve',
     statusNote: 'Em breve · com IA',

@@ -24,11 +24,11 @@ import { InView } from '@/components/home/InView';
 import { FOUNDER_SEATS, founderSeatsLeft } from './founder-seats';
 
 const pageDescription =
-  'App para personal trainers: alunos, programas de treino, agenda, cobrança e avaliações físicas num lugar só. O aluno treina pelo seu programa no celular e você vê tudo. Grátis com 2 alunos, Pro R$ 9,90 (até 10 alunos), Ilimitado R$ 29,90.';
+  'App para personal trainers com IA: alunos, programas de treino, agenda, cobrança e avaliações físicas num lugar só, com IA para montar fichas, resumir avaliações e escrever mensagens. O aluno treina pelo seu programa no celular e você vê tudo. Grátis com 2 alunos, Pro R$ 9,90 (até 10 alunos), Ilimitado R$ 29,90.';
 
 export const metadata = pageMetadata({
   path: '/produtos/arafit',
-  title: 'Arafit: app para personal trainer organizar alunos, treinos, agenda e cobrança',
+  title: 'Arafit: app para personal trainer com IA para alunos, treinos, agenda e cobrança',
   description: pageDescription,
   image: '/produtos/arafit/opengraph-image',
 });
@@ -164,6 +164,90 @@ const ONLY: { icon: LucideIcon; t: string; b: string }[] = [
   },
 ];
 
+/** The AI features (Claude Haiku), all live in the app (October 2026). Only real AI gets the ✦. */
+const AI_PERSONAL = [
+  {
+    t: 'Ficha com IA',
+    b: 'Descreva o aluno em poucas palavras. A IA entende o objetivo e as restrições, a ficha sai do nosso catálogo revisado e você ajusta antes de mandar.',
+  },
+  {
+    t: 'Resumo da avaliação',
+    b: 'O que mudou desde a última avaliação, com os números certos e os próximos focos. Você edita e manda pelo WhatsApp.',
+  },
+  {
+    t: 'Pontos de atenção da anamnese',
+    b: 'Lesões, remédios e respostas do PAR-Q que não batem aparecem no topo, antes de você montar o treino.',
+  },
+  {
+    t: 'Escrever com IA',
+    b: 'Promoção, recado ou cobrança com jeitinho: escreva a ideia, escolha o tom e receba três opções para escolher.',
+  },
+  {
+    t: 'Sua semana',
+    b: 'Quem sumiu, quem atrasou e quem bateu recorde, num toque, com a mensagem de WhatsApp pronta.',
+  },
+];
+const AI_ALUNO = [
+  {
+    t: 'Por que esse treino?',
+    b: 'A IA explica a ordem e o objetivo dos exercícios do programa que você montou.',
+  },
+  {
+    t: 'A evolução em palavras',
+    b: 'Recordes, frequência e avaliação contados como uma conversa, uma vez por semana.',
+  },
+  {
+    t: 'Assistente de treino',
+    b: 'Para quem treina sozinho: objetivo, dias, tempo e o que dói, e o treino sai pronto.',
+  },
+];
+const AI_RULES = [
+  'Você revisa antes: a IA não publica nem envia nada sozinha',
+  'Nome e telefone do aluno não vão para a IA',
+  'Número que não bate com os dados, a frase sai',
+  'Sem diagnóstico e sem prescrever remédio ou dieta',
+];
+
+/** The AI mark from the app: a big and a small four-point sparkle, red → orange. */
+function AiMark({
+  size = 16,
+  className = '',
+  solid,
+}: {
+  size?: number;
+  className?: string;
+  solid?: string;
+}) {
+  const id = `ai-${size}-${solid ? 's' : 'g'}`;
+  const fill = solid ?? `url(#${id})`;
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      className={`inline-block shrink-0 ${className}`}
+    >
+      {solid ? null : (
+        <defs>
+          <linearGradient id={id} x1="2" y1="22" x2="22" y2="2" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stopColor="#E10600" />
+            <stop offset="1" stopColor="#FF7A1A" />
+          </linearGradient>
+        </defs>
+      )}
+      <path
+        d="M10 4.5Q11.71 12.29 19.5 14Q11.71 15.71 10 23.5Q8.29 15.71 0.5 14Q8.29 12.29 10 4.5Z"
+        fill={fill}
+      />
+      <path
+        d="M19.4 0.4Q20.24 3.76 23.6 4.6Q20.24 5.44 19.4 8.8Q18.56 5.44 15.2 4.6Q18.56 3.76 19.4 0.4Z"
+        fill={fill}
+      />
+    </svg>
+  );
+}
+
 /** The automations, run every morning by the server (October 2026). */
 const AUTOPILOT = [
   {
@@ -204,6 +288,10 @@ const SOLO = [
   { t: 'Série a série', b: 'Carga da última vez, recorde e o descanso contando sozinho.' },
   { t: 'Sua evolução', b: 'Placar da semana, calendário de treinos, volume e recordes.' },
   { t: 'Lembretes e música', b: 'Aviso nos dias de treino e a playlist do treino no Spotify.' },
+  {
+    t: 'Assistente com IA',
+    b: 'Conte o objetivo, o tempo e o que dói: o assistente monta o treino. 60 usos por mês.',
+  },
 ];
 
 const EDGES = [
@@ -385,7 +473,11 @@ const TIERS = [
     price: '0',
     period: '',
     note: 'Para testar com você e um aluno de verdade',
-    items: ['2 alunos ativos', 'Tudo do app, sem prazo, menos os avisos para todos'],
+    items: [
+      '2 alunos ativos',
+      'Tudo do app, sem prazo, menos os avisos para todos',
+      '20 usos de IA por mês',
+    ],
   },
   {
     id: 'pro',
@@ -393,7 +485,7 @@ const TIERS = [
     price: '9,90',
     period: '/mês',
     note: 'ou R$ 99 por ano · para quem está começando',
-    items: ['Até 10 alunos ativos', '5 avisos para todos por mês'],
+    items: ['Até 10 alunos ativos', '5 avisos para todos por mês', '150 usos de IA por mês'],
   },
   {
     id: 'ilimitado',
@@ -401,7 +493,7 @@ const TIERS = [
     price: '29,90',
     period: '/mês',
     note: 'ou R$ 19,90/mês no anual (R$ 238,80) · para quem vive disso',
-    items: ['Alunos sem limite', '30 avisos para todos por mês'],
+    items: ['Alunos sem limite', '30 avisos para todos por mês', '500 usos de IA por mês'],
   },
 ] as const;
 
@@ -578,7 +670,10 @@ export default async function ArafitPage() {
                 className="pk-load-up mb-3 block text-[clamp(1.15rem,2.1vw,1.7rem)] leading-[1.2] tracking-[-0.015em] lg:mb-4"
                 style={{ color: ON_RED, '--d': 60 } as CSSProperties}
               >
-                Arafit, o app do personal trainer.
+                <span className="inline-flex items-center gap-2.5">
+                  <AiMark size={26} solid="#ffffff" className="h-[0.95em] w-[0.95em]" />
+                  Arafit, o app do personal com IA.
+                </span>
               </span>{' '}
               <span className="pk-load-up block" style={{ '--d': 120 } as CSSProperties}>
                 Você monta.
@@ -595,9 +690,10 @@ export default async function ArafitPage() {
             </h1>
             <div className="pk-load-up" style={{ '--d': 520 } as CSSProperties}>
               <p className="mt-7 max-w-[34rem] text-[17px] leading-[1.6] text-white/85 md:text-[18.5px]">
-                Alunos, programas, agenda, cobrança e avaliações físicas num app só. O aluno entra
-                com o número do celular, o seu programa aparece pronto e cada treino feito chega
-                para você.
+                Alunos, programas, agenda, cobrança e avaliações físicas num app só, com IA para
+                montar a ficha, resumir a avaliação e escrever a mensagem. O aluno entra com o
+                número do celular, o seu programa aparece pronto e cada treino feito chega para
+                você.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <a
@@ -655,6 +751,91 @@ export default async function ArafitPage() {
               <span>Aluno</span>
             </figcaption>
           </figure>
+        </div>
+      </section>
+
+      {/* 1b · AI — black, the sparkle and its gradient are the only orange on the page */}
+      <section
+        id="ia"
+        className="cut-top-rev relative overflow-x-clip text-white"
+        style={{ background: BLACK }}
+      >
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute left-[-12%] top-[-10%] h-[44rem] w-[44rem] rounded-full bg-[radial-gradient(closest-side,rgba(225,6,0,0.28),transparent_70%)]" />
+          <div className="absolute bottom-[-20%] right-[-10%] h-[36rem] w-[36rem] rounded-full bg-[radial-gradient(closest-side,rgba(255,122,26,0.16),transparent_70%)]" />
+        </div>
+        <div className="relative mx-auto max-w-[1240px] px-6 py-24 lg:px-10 lg:py-36">
+          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+            <div>
+              <AiMark size={72} className="h-14 w-14 lg:h-[72px] lg:w-[72px]" />
+              <h2 className="display mt-8 max-w-[13ch] text-[clamp(2.8rem,6.6vw,6.2rem)]">
+                A IA faz o rascunho.{' '}
+                <span
+                  className="bg-clip-text text-transparent"
+                  style={{ backgroundImage: 'linear-gradient(90deg, #ff3b2f, #ff7a1a)' }}
+                >
+                  Você dá a palavra final.
+                </span>
+              </h2>
+            </div>
+            <p className="max-w-lg text-[17px] leading-[1.7] text-white/75">
+              Montar a ficha, ler a avaliação, escrever a cobrança: o que tomava a noite agora leva
+              um toque. Tudo o que a IA escreve chega para você revisar, com o ✦ para saber de onde
+              veio.
+            </p>
+          </div>
+
+          <div className="mt-16 grid gap-14 lg:grid-cols-[1.35fr_1fr] lg:gap-16">
+            <div>
+              <h3 className="text-[13px] font-semibold uppercase tracking-[0.2em] text-white/60">
+                Para você
+              </h3>
+              <InView
+                as="ul"
+                className="mt-5 grid gap-x-10 border-t border-white/15 sm:grid-cols-2"
+                threshold={0.1}
+              >
+                {AI_PERSONAL.map((x, k) => (
+                  <li key={x.t} className="iv iv-up border-b border-white/15 py-6" style={i(k)}>
+                    <p className="flex items-start gap-2.5 text-[19px] font-bold leading-[1.3] tracking-tight">
+                      <AiMark size={18} className="mt-[0.2em]" />
+                      {x.t}
+                    </p>
+                    <p className="mt-2 text-[15px] leading-[1.6] text-white/70">{x.b}</p>
+                  </li>
+                ))}
+              </InView>
+            </div>
+            <div>
+              <h3 className="text-[13px] font-semibold uppercase tracking-[0.2em] text-white/60">
+                Para o aluno
+              </h3>
+              <InView as="ul" className="mt-5 border-t border-white/15" threshold={0.1}>
+                {AI_ALUNO.map((x, k) => (
+                  <li key={x.t} className="iv iv-up border-b border-white/15 py-6" style={i(k)}>
+                    <p className="flex items-start gap-2.5 text-[19px] font-bold leading-[1.3] tracking-tight">
+                      <AiMark size={18} className="mt-[0.2em]" />
+                      {x.t}
+                    </p>
+                    <p className="mt-2 text-[15px] leading-[1.6] text-white/70">{x.b}</p>
+                  </li>
+                ))}
+              </InView>
+            </div>
+          </div>
+
+          <ul className="mt-14 grid gap-x-8 gap-y-3 sm:grid-cols-2 lg:grid-cols-4">
+            {AI_RULES.map((r) => (
+              <li key={r} className="flex gap-2.5 text-[14px] leading-[1.5] text-white/80">
+                <Check className="mt-0.5 h-4 w-4 shrink-0" style={{ color: RED_ON_DARK }} />
+                {r}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-8 text-[13.5px] text-white/55">
+            Cada plano tem os seus usos de IA por mês: 20 no Grátis, 150 no Pro e 500 no Ilimitado.
+            O aluno usa a cota dele, não a sua.
+          </p>
         </div>
       </section>
 

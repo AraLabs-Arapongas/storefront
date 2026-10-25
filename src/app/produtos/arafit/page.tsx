@@ -131,7 +131,7 @@ const ALUNO_SHOTS: Shot[] = [
 ];
 
 /** What we did not find in what MFIT, Tecnofit and Mobitrainer publish (October 2026). */
-const ONLY: { icon: LucideIcon; t: string; b: string }[] = [
+const ONLY: { icon: LucideIcon | 'ai'; t: string; b: string }[] = [
   {
     icon: CalendarCheck,
     t: 'A agenda cobra sozinha',
@@ -161,6 +161,21 @@ const ONLY: { icon: LucideIcon; t: string; b: string }[] = [
     icon: MapIcon,
     t: 'O percurso na academia',
     b: 'O mapa da academia mostra onde está cada aparelho, na ordem dos exercícios do treino.',
+  },
+  {
+    icon: 'ai',
+    t: 'Avaliação resumida pela IA',
+    b: 'O que mudou desde a última avaliação, com os números conferidos. Você edita e manda pelo WhatsApp.',
+  },
+  {
+    icon: 'ai',
+    t: 'Sua semana com IA',
+    b: 'Quem sumiu, quem atrasou e quem bateu recorde, num cartão, com a mensagem pronta para cada um.',
+  },
+  {
+    icon: 'ai',
+    t: 'IA no app do aluno',
+    b: 'O aluno entende por que o treino é assim e lê a própria evolução em palavras.',
   },
 ];
 
@@ -330,7 +345,7 @@ const NI = 'ni' as const;
 type Cell = string | { t: string; note: string } | null | typeof NI;
 const APPS = ['Arafit', 'MFIT Personal', 'Tecnofit Personal', 'Mobitrainer'] as const;
 const MATRIX: {
-  group: 'Preço por mês' | 'O que tem';
+  group: 'Preço por mês' | 'O que tem' | 'Com IA';
   label: string;
   cells: [Cell, Cell, Cell, Cell];
 }[] = [
@@ -455,6 +470,72 @@ const MATRIX: {
       NI,
       NI,
       'Mostra o último treino baixado',
+    ],
+  },
+  {
+    group: 'Com IA',
+    label: 'Ficha de treino com IA',
+    cells: [
+      {
+        t: 'Sim',
+        note: 'A IA entende o pedido e as restrições; os exercícios saem do nosso catálogo revisado',
+      },
+      'Sim (MFIT IA)',
+      NI,
+      'Sim',
+    ],
+  },
+  {
+    group: 'Com IA',
+    label: 'Anamnese com IA',
+    cells: [
+      { t: 'Pontos de atenção', note: 'Lesões, remédios e respostas do PAR-Q que não batem' },
+      'Resumo da anamnese',
+      NI,
+      NI,
+    ],
+  },
+  {
+    group: 'Com IA',
+    label: 'Resumo da avaliação física',
+    cells: [
+      { t: 'Sim', note: 'Com os números conferidos, para editar e mandar pelo WhatsApp' },
+      NI,
+      NI,
+      NI,
+    ],
+  },
+  {
+    group: 'Com IA',
+    label: 'Mensagens com IA',
+    cells: [
+      { t: 'Avisos, recados e cobrança', note: 'Três opções no tom que você escolher' },
+      'Notificações push',
+      NI,
+      { t: 'Agente no WhatsApp', note: 'Atendimento automático' },
+    ],
+  },
+  {
+    group: 'Com IA',
+    label: 'Resumo da semana',
+    cells: [
+      { t: 'Sim', note: 'Quem sumiu, atrasou ou bateu recorde, com a mensagem pronta' },
+      NI,
+      NI,
+      NI,
+    ],
+  },
+  {
+    group: 'Com IA',
+    label: 'IA no app do aluno',
+    cells: [
+      {
+        t: 'Treino explicado e evolução em palavras',
+        note: 'E um assistente de treino para quem treina sozinho',
+      },
+      NI,
+      NI,
+      NI,
     ],
   },
 ];
@@ -1010,7 +1091,7 @@ export default async function ArafitPage() {
             </div>
             <p className="max-w-md text-[17px] leading-[1.7] text-[color:var(--ink-muted)]">
               Pelo preço que outros cobram por 3 alunos, o Pro do Arafit leva 10. E o que vem junto
-              — agenda que cobra, aviso no celular do aluno, treino offline — está aqui, lado a
+              — agenda que cobra, aviso no celular do aluno, treino offline e IA — está aqui, lado a
               lado.
             </p>
           </div>
@@ -1025,7 +1106,10 @@ export default async function ArafitPage() {
                 <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[color:var(--ink-dim)]">
                   {r.group}
                 </p>
-                <p className="mt-1 text-[18px] font-bold">{r.label}</p>
+                <p className="mt-1 flex items-center gap-2 text-[18px] font-bold">
+                  {r.group === 'Com IA' ? <AiMark size={16} /> : null}
+                  {r.label}
+                </p>
                 <dl className="mt-3 grid gap-2.5 text-[14.5px]">
                   {APPS.map((app, k) => (
                     <div
@@ -1067,7 +1151,7 @@ export default async function ArafitPage() {
                   ))}
                 </tr>
               </thead>
-              {(['Preço por mês', 'O que tem'] as const).map((group) => (
+              {(['Preço por mês', 'O que tem', 'Com IA'] as const).map((group) => (
                 <tbody key={group}>
                   <tr className="border-t border-[color:var(--line-strong)]">
                     <th
@@ -1081,7 +1165,14 @@ export default async function ArafitPage() {
                   {MATRIX.filter((r) => r.group === group).map((r) => (
                     <tr key={r.label} className="border-t border-[color:var(--line)]">
                       <th scope="row" className="px-5 py-4 align-top font-semibold">
-                        {r.label}
+                        {r.group === 'Com IA' ? (
+                          <span className="flex items-start gap-2">
+                            <AiMark size={15} className="mt-[0.2em]" />
+                            {r.label}
+                          </span>
+                        ) : (
+                          r.label
+                        )}
                       </th>
                       {r.cells.map((c, k) => (
                         <td
@@ -1121,9 +1212,16 @@ export default async function ArafitPage() {
                 <li key={t} className="iv iv-up bg-[color:var(--bg)] p-7 lg:p-8" style={i(k)}>
                   <span
                     className="grid h-12 w-12 place-items-center rounded-2xl text-white"
-                    style={{ background: p.colorInk }}
+                    style={{
+                      background:
+                        Icon === 'ai' ? 'linear-gradient(135deg, #e10600, #ff7a1a)' : p.colorInk,
+                    }}
                   >
-                    <Icon className="h-6 w-6" aria-hidden="true" />
+                    {Icon === 'ai' ? (
+                      <AiMark size={24} solid="#ffffff" />
+                    ) : (
+                      <Icon className="h-6 w-6" aria-hidden="true" />
+                    )}
                   </span>
                   <h4 className="mt-6 text-[20px] font-bold tracking-tight">{t}</h4>
                   <p className="mt-2 text-[15px] leading-[1.6] text-[color:var(--ink-muted)]">

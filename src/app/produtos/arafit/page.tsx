@@ -99,10 +99,22 @@ const ALUNO_SHOTS: Shot[] = [
     b: 'Abre o app e o treino de hoje está lá, com o ritmo da semana.',
   },
   {
+    src: '/images/arafit/iphone/aluno-serie.webp',
+    alt: 'Treino em andamento com carga, repetições, a última vez e o recorde',
+    t: 'Série a série',
+    b: 'Carga e repetições da última vez e o recorde do exercício, à vista antes de cada série.',
+  },
+  {
     src: '/images/arafit/iphone/aluno-descanso.webp',
     alt: 'Treino em andamento com a série marcada e o cronômetro de descanso',
-    t: 'Série a série',
-    b: 'Carga e repetições de cada série, e o descanso começa sozinho e avisa a hora da próxima.',
+    t: 'Descanso contando',
+    b: 'Marcou a série, o cronômetro começa sozinho e avisa quando é hora da próxima.',
+  },
+  {
+    src: '/images/arafit/iphone/aluno-evolucao.webp',
+    alt: 'Evolução com o placar da semana, sequência de semanas na meta e totais',
+    t: 'Placar da semana',
+    b: 'Treinos na semana contra a meta, semanas seguidas na meta e o volume levantado.',
   },
   {
     src: '/images/arafit/iphone/aluno-avaliacao.webp',
@@ -208,7 +220,7 @@ const AI_ALUNO: Shot[] = [
     b: 'A IA explica a ordem e o objetivo dos exercícios do programa que você montou.',
   },
   {
-    src: '/images/arafit/ia-aluno-evolucao.webp',
+    src: '/images/arafit/iphone/ia-aluno-evolucao.webp',
     alt: 'Sua evolução em palavras: resumo da IA na aba Evolução do aluno',
     t: 'A evolução em palavras',
     b: 'Recordes, frequência e avaliação contados como uma conversa, uma vez por semana.',
@@ -931,8 +943,7 @@ export default async function ArafitPage() {
           <h3 className="mt-16 text-[13px] font-semibold uppercase tracking-[0.2em] text-white/60">
             Para o aluno
           </h3>
-          {/* A evolução em palavras entra quando a tela for capturada no iPhone (precisa do histórico do aluno). */}
-          <AiGallery shots={AI_ALUNO.filter((x) => !x.src.endsWith('ia-aluno-evolucao.webp'))} />
+          <AiGallery shots={AI_ALUNO} />
 
           <ul className="mt-14 grid gap-x-8 gap-y-3 sm:grid-cols-2 lg:grid-cols-4">
             {AI_RULES.map((r) => (

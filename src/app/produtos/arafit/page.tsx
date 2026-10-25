@@ -1407,7 +1407,9 @@ export default async function ArafitPage() {
                   <span style={{ color: GOLD }}>
                     {seats === 0 ? 'Vagas esgotadas' : `Restam ${seats} de ${FOUNDER_SEATS} vagas`}
                   </span>
-                  <span className="text-white/55">{seatsTaken} fundadores</span>
+                  <span className="text-white/55">
+                    {seats === 0 ? '' : `Próximo número: #${seatsTaken + 1}`}
+                  </span>
                 </div>
                 <div
                   className="mt-3 h-2.5 overflow-hidden rounded-full bg-white/10"

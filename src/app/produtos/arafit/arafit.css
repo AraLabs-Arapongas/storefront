@@ -1,0 +1,61 @@
+/* Arafit page styles, imported by page.tsx. */
+
+/* Bebas Neue, the app's title face (loaded by the Arafit page as --font-bebas). */
+.af-display {
+  font-family: var(--font-bebas), var(--font-sans), ui-sans-serif, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  line-height: 0.92;
+}
+.af-hero-title {
+  font-size: clamp(3.3rem, 15vw, 5rem);
+}
+@media (min-width: 640px) {
+  .af-hero-title {
+    font-size: clamp(4.4rem, 10vw, 6.4rem);
+  }
+}
+@media (min-width: 1024px) {
+  .af-hero-title {
+    font-size: clamp(3.8rem, min(5.4vw, 9.5svh), 6.4rem);
+  }
+}
+
+/* Focus ring readable on the light page (the site default is gold, for the cream canvas). */
+.af a:focus-visible,
+.af button:focus-visible {
+  outline: 2px solid #121214;
+  outline-offset: 3px;
+}
+
+/* The AI border from the app: a lavender edge with a violet light running around it. */
+@property --af-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+.af-ai-border {
+  border: 2px solid transparent;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    conic-gradient(
+        from var(--af-angle),
+        #ddd0fb 0deg,
+        #ddd0fb 210deg,
+        #8b5cf6 270deg,
+        #a855f7 310deg,
+        #d946ef 345deg,
+        #ddd0fb 360deg
+      )
+      border-box;
+}
+@keyframes af-spin {
+  to {
+    --af-angle: 360deg;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .af-ai-border {
+    animation: af-spin 5s linear infinite;
+  }
+}

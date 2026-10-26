@@ -27,6 +27,7 @@ import { productBySlug } from '@/lib/products';
 import { ProductTile } from '@/components/site/ProductMarks';
 import { InView } from '@/components/home/InView';
 import { FOUNDER_SEATS, founderSeatsLeft } from './founder-seats';
+import './arafit.css';
 
 /** The app's title face. Loaded only here; `.af-display` in globals.css uses the variable. */
 const bebas = Bebas_Neue({ weight: '400', subsets: ['latin'], variable: '--font-bebas' });

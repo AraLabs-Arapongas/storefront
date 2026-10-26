@@ -973,7 +973,7 @@ export default async function ArafitPage() {
           offer: {
             price: '0',
             description:
-              'Personal: grátis com 2 alunos; Pro R$ 9,90/mês (até 10 alunos); Ilimitado R$ 29,90/mês (fundador R$ 19,90 para os 100 primeiros). Aluno: Arafit Pessoal R$ 4,90/mês.',
+              'Personal: grátis com 2 alunos; Pro R$ 9,90/mês (até 10 alunos); Ilimitado R$ 29,90/mês (fundador R$ 19,90 por 2 anos para os 100 primeiros). Aluno: Arafit Pessoal R$ 4,90/mês ou R$ 49/ano.',
           },
         })}
       />
@@ -1098,7 +1098,7 @@ export default async function ArafitPage() {
                 style={{ borderColor: `${GOLD}88`, color: GOLD_DEEP, background: GOLD_CREAM }}
               >
                 <span aria-hidden="true">★</span>
-                Fundador: R$ 19,90/mês para sempre · restam {seats} de {FOUNDER_SEATS} vagas
+                Fundador: R$ 19,90/mês por 2 anos · restam {seats} de {FOUNDER_SEATS} vagas
               </a>
             </div>
           </div>
@@ -1360,7 +1360,7 @@ export default async function ArafitPage() {
                 </span>
               </p>
               <p className="max-w-sm text-[14.5px] leading-[1.6]" style={{ color: MUTED }}>
-                Se um dia tiver personal, o programa dele entra junto. O que você treina por conta
+                Ou R$ 49 por ano, 2 meses grátis. Se um dia tiver personal, o programa dele entra junto. O que você treina por conta
                 continua só seu.
               </p>
             </div>
@@ -1653,13 +1653,13 @@ export default async function ArafitPage() {
               <Kicker color={GOLD}>Fundador</Kicker>
               <h3 className="af-display mt-4 text-[clamp(2.6rem,5.4vw,4.4rem)]">
                 Os 100 primeiros pagam{' '}
-                <span style={{ color: GOLD_DEEP }}>R$ 19,90 para sempre.</span>
+                <span style={{ color: GOLD_DEEP }}>R$ 19,90 por 2 anos.</span>
               </h3>
               <p className="mt-5 max-w-xl text-[16.5px] leading-[1.7]" style={{ color: MUTED }}>
-                O Ilimitado inteiro por R$ 19,90 por mês (ou R$ 199 por ano), enquanto a assinatura
-                continuar. Cada fundador ganha um número, o selo dourado e a marca do app em
-                dourado. A vaga não volta: quem fica mais de 60 dias sem pagar perde o preço de
-                fundador.
+                O Ilimitado inteiro por R$ 19,90 por mês (ou R$ 199 por ano) durante 2 anos; depois
+                segue no preço normal. Cada fundador ganha um número, o selo dourado e a marca do app
+                em dourado, que ficam para sempre. A vaga não volta: quem fica mais de 60 dias sem
+                pagar perde o preço de fundador.
               </p>
               <div className="mt-8">
                 <p className="text-[14px] font-bold" style={{ color: GOLD_DEEP }}>
@@ -1710,7 +1710,7 @@ export default async function ArafitPage() {
             </p>
             <p className="text-[16px] leading-[1.7]" style={{ color: MUTED }}>
               Com personal, o aluno usa grátis. O{' '}
-              <strong style={{ color: INK }}>Arafit Pessoal</strong> (R$ 4,90/mês) é para quem
+              <strong style={{ color: INK }}>Arafit Pessoal</strong> (R$ 4,90/mês ou R$ 49/ano) é para quem
               também quer treinar por conta — programas próprios, programas prontos e montar treino
               com o Fito. O personal não vê o que ele treina por conta, e se o vínculo acabar o
               último programa e o histórico ficam com ele.

@@ -14,7 +14,7 @@ export const metadata: Metadata = pageMetadata({
   noindex: true,
 });
 
-const VIGENCIA = '23 de outubro de 2026';
+const VIGENCIA = '26 de outubro de 2026';
 
 export default function ArafitTermosPage() {
   return (
@@ -135,6 +135,18 @@ export default function ArafitTermosPage() {
                 aluno.
               </li>
               <li>
+                <strong>A conta de personal é individual.</strong> Ela é de um profissional, para os
+                alunos que ele mesmo atende. Academias, estúdios, boxes, redes e empresas com vários
+                profissionais não podem usar uma conta de personal para atender os alunos do
+                estabelecimento, nem dividir uma mesma conta entre vários profissionais: cada personal
+                tem a própria conta. Para uso por academias, fale com a gente em{' '}
+                <a href="mailto:contato@aralabs.com.br">contato@aralabs.com.br</a>.
+              </li>
+              <li>
+                Não é permitido criar contas de personal de fachada para liberar o acesso de alunos
+                (por exemplo, o próprio aluno criando uma conta de personal para si mesmo).
+              </li>
+              <li>
                 O Arafit é destinado a maiores de 18 anos. Menores só podem usar com a autorização e
                 o acompanhamento de um responsável legal.
               </li>
@@ -197,13 +209,26 @@ export default function ArafitTermosPage() {
             <>
               <ul>
                 <li>
-                  <strong>Personal:</strong> grátis até 5 alunos ativos; plano{' '}
-                  <strong>Ilimitado</strong> por R$ 19,90/mês ou R$ 199/ano.
+                  <strong>Personal:</strong> grátis com até 2 alunos ativos; <strong>Pro</strong>{' '}
+                  (até 10 alunos ativos) por R$ 9,90/mês ou R$ 99/ano; <strong>Ilimitado</strong> por
+                  R$ 29,90/mês ou R$ 239/ano.
                 </li>
                 <li>
-                  <strong>Aluno:</strong> <strong>Arafit Pessoal</strong> por R$ 4,90/mês, para
-                  treinar também por conta (programas próprios, programas prontos e montar treino),
-                  com ou sem personal.
+                  <strong>Preço de fundador:</strong> os 100 primeiros assinantes do Ilimitado pagam
+                  R$ 19,90/mês ou R$ 199/ano <strong>por 2 anos</strong> a partir da assinatura. Depois
+                  desse prazo vale o preço normal do Ilimitado. Quem fica mais de 60 dias sem pagar
+                  perde o preço de fundador.
+                </li>
+                <li>
+                  <strong>Aluno:</strong> usa grátis o programa do personal. Com personal no plano
+                  grátis, o acesso grátis dura 30 dias desde a entrada no app; com personal Pro ou
+                  Ilimitado, não tem prazo. <strong>Arafit Pessoal</strong> por R$ 4,90/mês ou R$ 49/ano,
+                  para treinar também por conta (programas próprios, programas prontos e montar treino
+                  com a IA), com ou sem personal.
+                </li>
+                <li>
+                  <strong>Pacote de IA:</strong> 200 usos por R$ 4,90, compra única, sem validade.
+                  Os usos do pacote só são gastos depois da cota do mês do plano.
                 </li>
               </ul>
               <p>
@@ -282,6 +307,10 @@ export default function ArafitTermosPage() {
                 <li>Tentar acessar dados de outros usuários por meios não autorizados.</li>
                 <li>
                   Usar os dados de alunos para qualquer finalidade fora do acompanhamento do treino.
+                </li>
+                <li>
+                  Usar uma conta de personal em nome de uma academia ou empresa, ou compartilhar uma
+                  conta entre vários profissionais (veja o item 3).
                 </li>
               </ul>
               <p>

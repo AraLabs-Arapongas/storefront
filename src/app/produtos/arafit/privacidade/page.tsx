@@ -14,7 +14,7 @@ export const metadata: Metadata = pageMetadata({
   noindex: true,
 });
 
-const VIGENCIA = '23 de outubro de 2026';
+const VIGENCIA = '26 de outubro de 2026';
 
 export default function ArafitPrivacidadePage() {
   return (
@@ -207,6 +207,28 @@ export default function ArafitPrivacidadePage() {
                   <strong>Assinaturas:</strong> saber se a conta tem um plano ativo para liberar os
                   recursos correspondentes.
                 </li>
+                <li>
+                  <strong>Recursos de IA (marcados com ✦):</strong> quando você pede, o app envia à
+                  IA só o necessário para a tarefa (por exemplo, objetivo, nível, restrições e
+                  séries de um treino). <strong>Nome e telefone não são enviados.</strong> A IA não
+                  prescreve sozinha: o personal ou o aluno revisa antes de usar.
+                </li>
+                <li>
+                  <strong>Avisos (notificações):</strong> lembretes de treino, recados e avisos do
+                  personal, com a sua permissão. Novidades e dicas do Arafit só chegam se você
+                  aceitar; dá para desligar em Perfil › Notificações.
+                </li>
+                <li>
+                  <strong>Dados de uso (opcional):</strong> se você aceitar em Perfil › Dados de uso,
+                  registramos eventos de uso do app (telas abertas, treinos iniciados e concluídos,
+                  compras) ligados a um identificador da conta, sem nome, telefone, endereço IP ou
+                  dados de saúde, para entender o que melhorar. Sem o seu aceite, nada é enviado.
+                </li>
+                <li>
+                  <strong>Ditado por voz:</strong> o microfone só é usado quando você toca para
+                  falar. A transcrição é feita pelo reconhecimento de voz do próprio aparelho (Apple
+                  ou Google); o áudio não é guardado pelo Arafit.
+                </li>
               </ul>
               <p>
                 <strong>Não vendemos seus dados.</strong> Não usamos seus dados para anúncios. Não
@@ -261,8 +283,24 @@ export default function ArafitPrivacidadePage() {
                   </a>
                 </li>
                 <li>
-                  <strong>Provedor de SMS</strong> — recebe o seu número de telefone para enviar o
-                  código de login.
+                  <strong>Comtele</strong> (provedor de SMS) — recebe o seu número de telefone para
+                  enviar o código de login.
+                </li>
+                <li>
+                  <strong>Anthropic</strong> (modelo de IA Claude) — recebe o texto das tarefas de
+                  IA que você pede, sem nome nem telefone. Não usa esses dados para treinar modelos.{' '}
+                  <a href="https://www.anthropic.com/legal/privacy" rel="noopener noreferrer" target="_blank">
+                    anthropic.com/legal/privacy
+                  </a>
+                </li>
+                <li>
+                  <strong>PostHog</strong> — dados de uso, apenas de quem aceitou, sem endereço IP.{' '}
+                  <a href="https://posthog.com/privacy" rel="noopener noreferrer" target="_blank">
+                    posthog.com/privacy
+                  </a>
+                </li>
+                <li>
+                  <strong>Expo / Apple / Google</strong> — entrega das notificações ao seu aparelho.
                 </li>
                 <li>
                   <strong>Apple App Store / Google Play</strong> — distribuição do app e

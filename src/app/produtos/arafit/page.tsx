@@ -613,7 +613,7 @@ const TIERS = [
     name: 'Ilimitado',
     price: '29,90',
     period: '/mês',
-    note: 'ou R$ 19,90/mês no anual (R$ 238,80) · para quem vive disso',
+    note: 'ou R$ 19,90/mês no anual (R$ 239) · para quem vive disso',
     items: ['Alunos sem limite', '30 avisos para todos por mês', '500 usos de IA por mês'],
   },
 ] as const;

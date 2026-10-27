@@ -8,16 +8,16 @@
   line-height: 0.92;
 }
 .af-hero-title {
-  font-size: clamp(3.3rem, 15vw, 5rem);
+  font-size: clamp(2.9rem, 12vw, 4.2rem);
 }
 @media (min-width: 640px) {
   .af-hero-title {
-    font-size: clamp(4.4rem, 10vw, 6.4rem);
+    font-size: clamp(3.8rem, 8vw, 5.2rem);
   }
 }
 @media (min-width: 1024px) {
   .af-hero-title {
-    font-size: clamp(3.8rem, min(5.4vw, 9.5svh), 6.4rem);
+    font-size: clamp(3.4rem, min(4.6vw, 8.5svh), 5.4rem);
   }
 }
 

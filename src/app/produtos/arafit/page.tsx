@@ -9,6 +9,7 @@ import {
   Bell,
   CalendarCheck,
   Check,
+  ChevronDown,
   HeartHandshake,
   Map as MapIcon,
   Megaphone,
@@ -27,6 +28,7 @@ import { productBySlug } from '@/lib/products';
 import { ProductTile } from '@/components/site/ProductMarks';
 import { InView } from '@/components/home/InView';
 import { FOUNDER_SEATS, founderSeatsLeft } from './founder-seats';
+import { FlowVideo } from './FlowVideo';
 import './arafit.css';
 
 /** The app's title face. Loaded only here; `.af-display` in globals.css uses the variable. */
@@ -55,7 +57,7 @@ const AI = '#6D28D9';
 const AI_SOFT = '#F3EEFF';
 const AI_BORDER = '#DDD0FB';
 const GOLD = '#D4A72C';
-const GOLD_DEEP = '#9A6F00';
+const GOLD_DEEP = '#875F00';
 const GOLD_CREAM = '#FBF3DC';
 
 /** Card and icon tints from the app: `bg` is the card, `fg` the icon. */
@@ -78,6 +80,25 @@ const FOUNDER_HREF = contactHref(
 );
 
 type Shot = { src: string; alt: string; t: string; b: string };
+
+/** What the personal deals with today, and what changes with the Arafit. */
+const PAINS: { before: string; after: string }[] = [
+  {
+    before: 'O programa vai em PDF pelo WhatsApp e some no meio da conversa.',
+    after:
+      'O programa fica no celular do aluno, série a série, com a carga da última vez. Mudou alguma coisa, ele recebe na hora.',
+  },
+  {
+    before: 'Você só descobre que o aluno parou quando ele cancela.',
+    after:
+      'Você vê quem treinou na semana e quem sumiu. O Arafit chama quem parou e te manda o resumo de manhã.',
+  },
+  {
+    before: 'A cobrança vive numa planilha, e lembrar quem não pagou é constrangedor.',
+    after:
+      'Mensal, por aula ou pacote. O lembrete sai sozinho no vencimento, e o aluno copia o seu Pix e avisa "Já paguei".',
+  },
+];
 
 const AI_PERSONAL: Shot[] = [
   {
@@ -119,13 +140,8 @@ const AI_RULES = [
   'Sem diagnóstico e sem prescrever remédio ou dieta',
 ];
 
+/** The first three are shown as screens; the rest are said in words. */
 const PERSONAL_SHOTS: Shot[] = [
-  {
-    src: '/images/arafit/iphone/personal-inicio.webp',
-    alt: 'Início do personal: aulas de hoje, quem treinou, quem sumiu e pagamentos em atraso',
-    t: 'O dia num relance',
-    b: 'Aulas de hoje, quem treinou na semana, quem sumiu e quem está com a mensalidade em atraso.',
-  },
   {
     src: '/images/arafit/iphone/personal-agenda.webp',
     alt: 'Agenda da semana com aulas realizadas, faltas e horários fixos',
@@ -133,10 +149,10 @@ const PERSONAL_SHOTS: Shot[] = [
     b: 'Horários fixos e avulsos. Marcou realizada, a aula sai do pacote. Falta não desconta, a não ser que você queira.',
   },
   {
-    src: '/images/arafit/iphone/personal-alunos.webp',
-    alt: 'Lista de alunos com o último treino de cada um',
-    t: 'Todos os alunos',
-    b: 'Quando cada um treinou e quantos treinos fez na semana. Quem ainda não entrou recebe o convite pelo WhatsApp.',
+    src: '/images/arafit/iphone/personal-cobranca.webp',
+    alt: 'Cobrança da aluna com mensalidade paga e lembrete automático',
+    t: 'Cobrança sem planilha',
+    b: 'Mensal, por aula ou pacote. O aluno avisa "Já paguei" e você confirma com um toque.',
   },
   {
     src: '/images/arafit/iphone/personal-aluno.webp',
@@ -145,10 +161,16 @@ const PERSONAL_SHOTS: Shot[] = [
     b: 'Frequência, último treino, o programa atual e o recado que aparece no celular dele.',
   },
   {
-    src: '/images/arafit/iphone/personal-cobranca.webp',
-    alt: 'Cobrança da aluna com mensalidade paga e lembrete automático',
-    t: 'Cobrança sem planilha',
-    b: 'Mensal, por aula ou pacote. O aluno avisa "Já paguei" e você confirma com um toque.',
+    src: '/images/arafit/iphone/personal-inicio.webp',
+    alt: 'Início do personal: aulas de hoje, quem treinou, quem sumiu e pagamentos em atraso',
+    t: 'O dia num relance',
+    b: 'Aulas de hoje, quem treinou na semana, quem sumiu e quem está com a mensalidade em atraso.',
+  },
+  {
+    src: '/images/arafit/iphone/personal-alunos.webp',
+    alt: 'Lista de alunos com o último treino de cada um',
+    t: 'Todos os alunos',
+    b: 'Quando cada um treinou e quantos treinos fez na semana. Quem ainda não entrou recebe o convite pelo WhatsApp.',
   },
   {
     src: '/images/arafit/iphone/personal-saude.webp',
@@ -195,44 +217,20 @@ const AUTOPILOT: { t: string; icon: LucideIcon; tint: Tint; items: string[] }[] 
 /** A day of the student, in the order it happens. */
 const DAY: (Shot & { tint: Tint; step: string })[] = [
   {
-    src: '/images/arafit/iphone/aluno-inicio.webp',
-    alt: 'Início da aluna com o treino do dia, o botão de iniciar e a semana',
-    t: 'O treino do dia',
-    b: 'Abre o app e o treino de hoje está lá, com a semana e o mês ao lado.',
-    tint: 'coral',
-    step: 'Início',
-  },
-  {
     src: '/images/arafit/iphone/aluno-serie.webp',
     alt: 'Treino em andamento com carga, repetições e a última vez',
     t: 'Série a série',
-    b: 'Carga e repetições da última vez à vista antes de cada série. Um toque e a série está marcada.',
+    b: 'Carga e repetições da última vez à vista. Um toque marca a série e o descanso começa a contar.',
     tint: 'blue',
     step: 'Treino',
-  },
-  {
-    src: '/images/arafit/iphone/aluno-descanso.webp',
-    alt: 'Treino em andamento com o cronômetro de descanso contando',
-    t: 'Descanso contando',
-    b: 'Marcou a série, o cronômetro começa sozinho e avisa quando é hora da próxima.',
-    tint: 'teal',
-    step: 'Descanso',
   },
   {
     src: '/images/arafit/iphone/aluno-evolucao.webp',
     alt: 'Evolução com o placar da semana, a sequência de semanas na meta e os totais',
     t: 'Placar da semana',
-    b: 'Treinos na semana contra a meta, semanas seguidas na meta, tempo médio e volume levantado.',
+    b: 'Treinos na semana contra a meta, semanas seguidas na meta e os recordes, que só valem quando passam a melhor marca.',
     tint: 'green',
     step: 'Evolução',
-  },
-  {
-    src: '/images/arafit/iphone/aluno-recordes.webp',
-    alt: 'Lista de recordes com a carga nova e a marca anterior de cada exercício',
-    t: 'Recorde que vale',
-    b: 'Só é recorde quando passa a melhor marca na mesma faixa de repetições. Primeira vez não conta.',
-    tint: 'amber',
-    step: 'Recorde',
   },
   {
     src: '/images/arafit/iphone/aluno-compartilhar.webp',
@@ -353,7 +351,7 @@ const MATRIX: {
     group: 'Preço por mês',
     label: 'Alunos ilimitados',
     cells: [
-      { t: 'R$ 29,90', note: 'R$ 19,90/mês no anual. Fundador: R$ 19,90 no mensal.' },
+      { t: 'R$ 29,90', note: 'R$ 19,90/mês no anual. Fundador: R$ 19,90/mês por 2 anos.' },
       'R$ 39,90',
       { t: 'R$ 36,90', note: 'R$ 24,90/mês no anual' },
       { t: 'Não tem', note: 'Até 30 alunos por R$ 69,90' },
@@ -560,25 +558,18 @@ const ONLY: { icon: LucideIcon | 'ai'; tint: Tint; t: string; b: string }[] = [
     t: 'O percurso na academia',
     b: 'O mapa da academia mostra onde está cada aparelho, na ordem dos exercícios do treino.',
   },
-  {
-    icon: 'ai',
-    tint: 'ai',
-    t: 'Avaliação resumida pela IA',
-    b: 'O que mudou desde a última avaliação, com os números conferidos. Você edita e manda pelo WhatsApp.',
-  },
-  {
-    icon: 'ai',
-    tint: 'ai',
-    t: 'Sua semana com IA',
-    b: 'Quem sumiu, quem atrasou e quem bateu recorde, num cartão, com a mensagem pronta para cada um.',
-  },
-  {
-    icon: 'ai',
-    tint: 'ai',
-    t: 'O Fito no app do aluno',
-    b: 'Explica por que o treino é assim, conta a evolução em palavras e comemora cada recorde.',
-  },
 ];
+
+/** The founder offer, one condition per line. */
+const FOUNDER_TERMS = [
+  ['Preço', 'R$ 19,90 por mês, ou R$ 199 por ano.'],
+  [
+    'Por quanto tempo',
+    '2 anos. Depois, o preço normal do Ilimitado: R$ 29,90 por mês ou R$ 239 por ano.',
+  ],
+  ['Para quem', 'Personal trainers, só os 100 primeiros.'],
+  ['A vaga não volta', 'Quem fica mais de 60 dias sem pagar perde o preço de fundador.'],
+] as const;
 
 const ALL_PLANS = [
   'Programas, agenda, cobrança e avaliações',
@@ -821,11 +812,14 @@ function Phone({
   alt,
   className = '',
   preload,
+  lcp,
 }: {
   src: string;
   alt: string;
   className?: string;
   preload?: boolean;
+  /** The page's largest paint: fetched ahead of everything else. */
+  lcp?: boolean;
 }) {
   return (
     <div
@@ -838,7 +832,8 @@ function Phone({
           width={540}
           height={1174}
           sizes="(min-width: 1024px) 280px, 60vw"
-          preload={preload}
+          preload={preload || lcp}
+          fetchPriority={lcp ? 'high' : undefined}
           className="block h-auto w-full"
         />
         <span
@@ -942,11 +937,41 @@ function CompareCell({ v, ours }: { v: Cell; ours?: boolean }) {
   return <span className={ours ? 'font-semibold' : ''}>{v}</span>;
 }
 
+/** Features said in words, beside or under the screens that show the main ones. */
+function More({
+  items,
+  ai,
+  className = '',
+}: {
+  items: { t: string; b: string }[];
+  ai?: boolean;
+  className?: string;
+}) {
+  return (
+    <ul className={`grid gap-x-10 gap-y-7 ${className}`}>
+      {items.map((x) => (
+        <li key={x.t} className="border-t pt-5" style={{ borderColor: ai ? AI_BORDER : '#DADADF' }}>
+          <h3
+            className="flex items-start gap-2 text-[17px] font-bold leading-[1.3] tracking-tight"
+            style={{ color: INK }}
+          >
+            {ai ? <AiMark size={15} className="mt-[0.2em]" /> : null}
+            {x.t}
+          </h3>
+          <p className="mt-1.5 text-[14.5px] leading-[1.6]" style={{ color: MUTED }}>
+            {x.b}
+          </p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 /** Section title in Bebas. */
 function Title({ children, className = '' }: { children: ReactNode; className?: string }) {
   return (
     <h2
-      className={`af-display mt-5 text-balance text-[clamp(2.8rem,7.4vw,5.2rem)] ${className}`}
+      className={`af-display mt-5 text-balance text-[clamp(2.3rem,5.2vw,3.9rem)] ${className}`}
       style={{ color: INK }}
     >
       {children}
@@ -973,7 +998,7 @@ export default async function ArafitPage() {
           offer: {
             price: '0',
             description:
-              'Personal: grátis com 2 alunos; Pro R$ 9,90/mês (até 10 alunos); Ilimitado R$ 29,90/mês (fundador R$ 19,90 por 2 anos para os 100 primeiros). Aluno: Arafit Pessoal R$ 4,90/mês ou R$ 49/ano.',
+              'Personal: grátis com 2 alunos; Pro R$ 9,90/mês (até 10 alunos); Ilimitado R$ 29,90/mês (fundador R$ 19,90/mês durante 2 anos para os 100 primeiros). Aluno: Arafit Pessoal R$ 4,90/mês ou R$ 49/ano.',
           },
         })}
       />
@@ -1016,17 +1041,14 @@ export default async function ArafitPage() {
                 className="pk-load-up block text-[clamp(1.05rem,2vw,1.4rem)] font-semibold leading-[1.3] tracking-[-0.01em]"
                 style={{ ...d(60), color: MUTED }}
               >
-                Arafit, o app de treino com IA para personal e aluno.
+                Arafit, o app do personal trainer e dos alunos dele.
               </span>
-              <span className="af-display af-hero-title mt-3 block">
+              <span className="af-display af-hero-title mt-3 block text-balance">
                 <span className="pk-load-up block" style={d(120)}>
-                  O personal orienta.
+                  Chega de treino em PDF
                 </span>
-                <span className="pk-load-up block" style={d(220)}>
-                  O aluno realiza.
-                </span>
-                <span className="pk-load-up block" style={{ ...d(320), color: AI }}>
-                  O Fito acompanha.
+                <span className="pk-load-up block" style={{ ...d(220), color: RED }}>
+                  e cobrança na planilha.
                 </span>
               </span>
             </h1>
@@ -1035,9 +1057,9 @@ export default async function ArafitPage() {
                 className="mt-6 max-w-[34rem] text-[17px] leading-[1.6] md:text-[18px]"
                 style={{ color: MUTED }}
               >
-                Alunos, programas com IA, agenda, cobrança e avaliações num app só para o personal.
-                O programa no celular, série a série, para o aluno. E o Fito, o robô do Arafit,
-                comemorando cada pequena evolução.
+                Alunos, programas, agenda e cobrança num app só. O aluno treina pelo celular, série
+                a série, e você vê quem treinou, quem sumiu e quem pagou. O Fito, a IA do Arafit,
+                faz o rascunho do programa; quem decide é você.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <PrimaryCta href={NOTIFY_HREF}>Quero saber quando chegar</PrimaryCta>
@@ -1049,19 +1071,22 @@ export default async function ArafitPage() {
                   Ver planos
                 </a>
               </div>
-              <ul className="mt-7 grid max-w-[34rem] gap-3 sm:grid-cols-2">
+              <p className="mt-3 text-[13.5px] font-semibold" style={{ color: MUTED }}>
+                Grátis com 2 alunos, sem prazo e sem cartão.
+              </p>
+              <ul className="mt-6 grid max-w-[34rem] gap-3 sm:grid-cols-2">
                 {(
                   [
                     {
                       href: '#personal',
-                      t: 'Para o personal',
-                      b: 'Alunos, programa com IA, agenda e cobrança',
+                      t: 'Sou personal',
+                      b: 'Alunos, programas com IA, agenda e cobrança num app só',
                       tint: 'blue',
                     },
                     {
-                      href: '#pessoal',
-                      t: 'Para quem treina',
-                      b: 'Arafit Pessoal com o Fito · R$ 4,90/mês',
+                      href: '#aluno',
+                      t: 'Sou aluno',
+                      b: 'Com personal, grátis. Sem personal, Arafit Pessoal por R$ 4,90/mês',
                       tint: 'green',
                     },
                   ] as const
@@ -1108,7 +1133,7 @@ export default async function ArafitPage() {
                 src="/images/arafit/iphone/personal-inicio.webp"
                 alt="Início do personal no Arafit: aulas de hoje, treinos da semana e pagamentos"
                 className="w-[40%] translate-y-6"
-                preload
+                lcp
               />
               <Phone
                 src="/images/arafit/iphone/aluno-inicio.webp"
@@ -1132,52 +1157,75 @@ export default async function ArafitPage() {
         </div>
       </section>
 
-      {/* 2 · THE FITO FOR THE PERSONAL — lavender, the only purple surface on the page */}
-      <section
-        id="ia"
-        className="cut-top-rev relative overflow-x-clip"
-        style={{ background: `linear-gradient(180deg, ${AI_SOFT} 0%, #ffffff 100%)` }}
-      >
+      {/* 2 · WHAT IT SOLVES — words only, the breath after the hero */}
+      <section id="por-que" className="cut-top-rev relative overflow-x-clip bg-white">
         <div className={WRAP}>
-          <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
-            <div>
-              <Kicker color={AI}>O Fito para o personal</Kicker>
-              <Title className="max-w-[16em]">
-                A IA faz o rascunho.{' '}
-                <span className="block" style={{ color: AI }}>
-                  Você dá a palavra final.
-                </span>
-              </Title>
-              <p className="mt-6 max-w-lg text-[17px] leading-[1.7]" style={{ color: MUTED }}>
-                Montar o programa, ler a avaliação, escrever a cobrança: o que tomava a noite agora
-                leva um toque. Tudo o que o Fito escreve chega para você revisar, com o ✦ para saber
-                de onde veio.
-              </p>
-            </div>
-            <FitoSays fito={<Fito pose="pensando" />} label="Programa com IA">
-              Me conta do aluno: objetivo, dias por semana, tempo, nível, local e dores ou lesões.
-              Eu monto um rascunho a partir dos programas revisados. Você revisa e decide.
-            </FitoSays>
-          </div>
-
-          <Gallery shots={AI_PERSONAL} cols={5} ai />
-
-          <ul className="mt-12 grid gap-x-8 gap-y-3 sm:grid-cols-2 lg:grid-cols-4">
-            {AI_RULES.map((r) => (
-              <li key={r} className="flex gap-2.5 text-[14px] leading-[1.5]" style={{ color: INK }}>
-                <Check
-                  className="mt-0.5 h-4 w-4 shrink-0"
-                  style={{ color: AI }}
-                  aria-hidden="true"
-                />
-                {r}
+          <Kicker color={RED}>O que muda</Kicker>
+          <Title className="max-w-[16em]">O que o Arafit tira das suas costas.</Title>
+          <ul
+            className="mt-12 grid gap-px overflow-hidden rounded-[28px] border lg:grid-cols-3"
+            style={{ borderColor: '#E6E6EA', background: '#E6E6EA' }}
+          >
+            {PAINS.map((x) => (
+              <li key={x.before} className="flex flex-col bg-white p-7 lg:p-9">
+                <p className="text-[13px] font-semibold" style={{ color: MUTED }}>
+                  Hoje
+                </p>
+                <p className="mt-2 text-[17px] leading-[1.55]" style={{ color: MUTED }}>
+                  {x.before}
+                </p>
+                <p
+                  className="mt-7 flex items-center gap-2 text-[13px] font-semibold"
+                  style={{ color: RED }}
+                >
+                  <Check className="h-4 w-4" aria-hidden="true" />
+                  Com o Arafit
+                </p>
+                <p className="mt-2 text-[17px] font-semibold leading-[1.55]" style={{ color: INK }}>
+                  {x.after}
+                </p>
               </li>
             ))}
           </ul>
-          <p className="mt-6 text-[13.5px]" style={{ color: MUTED }}>
-            Cada plano tem os seus usos de IA por mês: 20 no Grátis, 150 no Pro e 500 no Ilimitado.
-            O aluno usa a cota dele, não a sua.
+        </div>
+      </section>
+
+      {/* 2b · SEE IT WORK — the app recorded on an iPhone, step by step */}
+      <section id="como-funciona" className="relative overflow-x-clip bg-white">
+        <div className="relative mx-auto max-w-[1240px] px-6 pb-20 lg:px-10 lg:pb-28">
+          <Kicker color={RED}>Veja funcionando</Kicker>
+          <Title className="max-w-[16em]">Do programa ao treino, em 40 segundos.</Title>
+          <p className="mt-5 max-w-[38rem] text-[17px] leading-[1.6]" style={{ color: MUTED }}>
+            É o app de verdade, gravado num iPhone. O personal pede o programa ao Fito, a aluna
+            treina e bate um recorde, e o personal vê que ela treinou.
           </p>
+          <div className="mt-12">
+            <FlowVideo
+              src="/images/arafit/video/arafit-fluxo.mp4"
+              poster="/images/arafit/video/arafit-fluxo-poster.webp"
+              label="Vídeo do Arafit: o personal monta o programa com o Fito, a aluna treina e bate um recorde, e o personal vê que ela treinou hoje"
+              steps={[
+                {
+                  at: 0,
+                  t: 'O personal monta com o Fito',
+                  b: 'Você conta o objetivo, o Fito faz o rascunho, você revisa e envia. O programa aparece no app da aluna.',
+                  ...TINT.ai,
+                },
+                {
+                  at: 16.3,
+                  t: 'A aluna treina e bate recorde',
+                  b: 'Série a série, com a carga da última vez. Subiu a carga, o recorde aparece na hora.',
+                  ...TINT.green,
+                },
+                {
+                  at: 36.3,
+                  t: 'Você vê quem treinou',
+                  b: 'Na lista de alunos, quem treinou hoje e quem sumiu. Sem perguntar no WhatsApp.',
+                  ...TINT.blue,
+                },
+              ]}
+            />
+          </div>
         </div>
       </section>
 
@@ -1190,7 +1238,7 @@ export default async function ArafitPage() {
         <div className={WRAP}>
           <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
             <div>
-              <Kicker color={TINT.blue.fg}>Para o personal</Kicker>
+              <Kicker color={RED}>Para o personal</Kicker>
               <Title>
                 Seus alunos. <span className="block">Num app só.</span>
               </Title>
@@ -1200,13 +1248,14 @@ export default async function ArafitPage() {
               celular. Estas são as telas do app, com alunos de exemplo.
             </p>
           </div>
-          <Gallery shots={PERSONAL_SHOTS} />
+          <Gallery shots={PERSONAL_SHOTS.slice(0, 3)} />
+          <More items={PERSONAL_SHOTS.slice(3)} className="mt-14 sm:grid-cols-3" />
 
           <div className="mt-20 rounded-[32px] bg-white p-7 shadow-[0_24px_60px_-40px_rgba(18,18,20,0.35)] sm:p-10 lg:p-12">
             <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
               <div>
-                <Kicker color={TINT.green.fg}>No piloto automático</Kicker>
-                <h3 className="af-display mt-4 text-[clamp(2.3rem,5vw,3.6rem)]">
+                <Kicker color={RED}>No piloto automático</Kicker>
+                <h3 className="af-display mt-4 text-[clamp(2rem,3.8vw,2.7rem)]">
                   Cobrança, retenção e relacionamento sem você lembrar.
                 </h3>
                 <p className="mt-4 max-w-md text-[16px] leading-[1.7]" style={{ color: MUTED }}>
@@ -1251,16 +1300,85 @@ export default async function ArafitPage() {
         </div>
       </section>
 
-      {/* 4 · THE STUDENT'S DAY — from the home screen to the share card, with the Fito celebrating */}
-      <section id="aluno" className="cut-top-rev relative overflow-x-clip bg-white">
+      {/* 4 · THE FITO FOR THE PERSONAL — lavender, the only purple surface on the page */}
+      <section
+        id="ia"
+        className="cut-top-rev relative overflow-x-clip"
+        style={{ background: `linear-gradient(180deg, ${AI_SOFT} 0%, #ffffff 100%)` }}
+      >
+        <div className={WRAP}>
+          <div className="grid gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-16">
+            <div className="min-w-0">
+              <Kicker color={AI}>O Fito para o personal</Kicker>
+              <Title className="max-w-[16em]">
+                A IA faz o rascunho.{' '}
+                <span className="block" style={{ color: AI }}>
+                  Você dá a palavra final.
+                </span>
+              </Title>
+              <p className="mt-6 max-w-lg text-[17px] leading-[1.7]" style={{ color: MUTED }}>
+                Montar o programa, ler a avaliação, escrever a cobrança: o que tomava a noite agora
+                leva um toque. Tudo o que o Fito escreve chega para você revisar, com o ✦ para saber
+                de onde veio.
+              </p>
+              <FitoSays className="mt-10" fito={<Fito pose="pensando" />} label="Programa com IA">
+                Me conta do aluno: objetivo, dias por semana, tempo, nível, local e dores ou lesões.
+                Eu monto um rascunho a partir dos programas revisados. Você revisa e decide.
+              </FitoSays>
+            </div>
+            <div className="flex items-end justify-center gap-4 sm:gap-6">
+              {[AI_PERSONAL[0], AI_PERSONAL[4]].map((s, k) => (
+                <Phone
+                  key={s.src}
+                  src={s.src}
+                  alt={s.alt}
+                  className={`w-[46%] max-w-[250px] ${k === 0 ? 'translate-y-8' : ''}`}
+                />
+              ))}
+            </div>
+          </div>
+
+          <More items={AI_PERSONAL} ai className="mt-20 sm:grid-cols-2 lg:grid-cols-5" />
+
+          <ul className="mt-14 grid gap-x-8 gap-y-3 sm:grid-cols-2 lg:grid-cols-4">
+            {AI_RULES.map((r) => (
+              <li key={r} className="flex gap-2.5 text-[14px] leading-[1.5]" style={{ color: INK }}>
+                <Check
+                  className="mt-0.5 h-4 w-4 shrink-0"
+                  style={{ color: AI }}
+                  aria-hidden="true"
+                />
+                {r}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6 text-[13.5px]" style={{ color: MUTED }}>
+            Cada plano tem os seus usos de IA por mês: 20 no Grátis, 150 no Pro e 500 no Ilimitado.
+            O aluno usa a cota dele, não a sua.
+          </p>
+        </div>
+      </section>
+
+      {/* 5 · THE STUDENT'S DAY — from the home screen to the share card, with the Fito celebrating */}
+      <section id="aluno" className="cut-top relative overflow-x-clip" style={{ background: BG }}>
         <div className={WRAP}>
           <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
             <div>
-              <Kicker color={TINT.green.fg}>Para o aluno</Kicker>
+              <Kicker color={RED}>Para o aluno</Kicker>
               <Title className="max-w-[16em]">O programa chega pronto. É só treinar.</Title>
               <p className="mt-6 max-w-xl text-[17px] leading-[1.7]" style={{ color: MUTED }}>
                 O mesmo app, do outro lado. O aluno entra com o número que você cadastrou, sem
                 senha, e treina pelo seu programa. Para ele, é grátis. Um dia de treino é assim:
+              </p>
+              <p className="mt-4 text-[15px] leading-[1.6]" style={{ color: MUTED }}>
+                Treina sem personal?{' '}
+                <a
+                  href="#pessoal"
+                  className="font-semibold underline underline-offset-4"
+                  style={{ color: INK }}
+                >
+                  O Arafit Pessoal, por R$ 4,90/mês, é para você.
+                </a>
               </p>
             </div>
             <FitoSays fito={<Fito pose="comemorando" />} label="Recorde pessoal">
@@ -1270,51 +1388,37 @@ export default async function ArafitPage() {
 
           <Gallery shots={DAY} />
 
-          <div className="mt-24 grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-            <div className="flex items-end justify-center gap-4 sm:gap-6">
-              <Phone
-                src="/images/arafit/iphone/aluno-meu-personal.webp"
-                alt="Aba Meu personal com WhatsApp, chave Pix, plano mensal pago e próximas aulas"
-                className="w-[46%] max-w-[250px] translate-y-6"
-              />
-              <Phone
-                src="/images/arafit/iphone/aluno-avaliacao.webp"
-                alt="Avaliação do personal na Evolução da aluna: gordura, massa magra, peso e gráfico"
-                className="w-[46%] max-w-[250px]"
-              />
-            </div>
-            <div>
-              <h3 className="af-display text-[clamp(2.3rem,5vw,3.6rem)]">
-                Do lado do aluno, também.
-              </h3>
-              <ul className="mt-8 grid gap-x-8 gap-y-6 sm:grid-cols-2">
-                {STUDENT_EDGES.map((x) => (
-                  <li key={x.t} className="flex gap-4">
-                    <IconChip icon={x.icon} tint={x.tint} />
-                    <div>
-                      <p className="text-[17px] font-bold tracking-tight">{x.t}</p>
-                      <p className="mt-1 text-[14.5px] leading-[1.6]" style={{ color: MUTED }}>
-                        {x.b}
-                      </p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <div className="mt-24">
+            <h3 className="af-display text-[clamp(2rem,3.8vw,2.7rem)]">
+              Do lado do aluno, também.
+            </h3>
+            <ul className="mt-8 grid gap-x-10 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">
+              {STUDENT_EDGES.map((x) => (
+                <li key={x.t} className="flex gap-4">
+                  <IconChip icon={x.icon} tint={x.tint} />
+                  <div>
+                    <p className="text-[17px] font-bold tracking-tight">{x.t}</p>
+                    <p className="mt-1 text-[14.5px] leading-[1.6]" style={{ color: MUTED }}>
+                      {x.b}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
 
-      {/* 5 · ARAFIT PESSOAL — for whoever trains without a personal, or beside one */}
+      {/* 6 · ARAFIT PESSOAL — for whoever trains without a personal, or beside one */}
       <section
         id="pessoal"
-        className="cut-top relative overflow-x-clip"
-        style={{ background: `linear-gradient(180deg, ${TINT.green.bg} 0%, ${BG} 100%)` }}
+        className="cut-top-rev relative overflow-x-clip"
+        style={{ background: `linear-gradient(180deg, ${TINT.green.bg} 0%, #ffffff 100%)` }}
       >
         <span id="sozinho" className="absolute top-0" aria-hidden="true" />
         <div className={`${WRAP} grid gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-20`}>
           <div className="min-w-0">
-            <Kicker color={TINT.green.fg}>Para quem treina</Kicker>
+            <Kicker color={RED}>Para quem treina</Kicker>
             <Title className="max-w-[16em]">Sem personal, ou ao lado dele. Com o Fito.</Title>
             <p className="mt-6 max-w-xl text-[17px] leading-[1.7]" style={{ color: MUTED }}>
               Com o <strong style={{ color: INK }}>Arafit Pessoal</strong> você treina por conta,
@@ -1350,7 +1454,7 @@ export default async function ArafitPage() {
               ))}
             </ul>
             <div className="mt-10 flex flex-wrap items-end gap-x-10 gap-y-4">
-              <p className="af-display text-[clamp(3.4rem,6vw,4.8rem)]">
+              <p className="af-display text-[clamp(2.8rem,4.6vw,3.6rem)]">
                 <span className="align-top text-[0.36em]">R$</span>4,90
                 <span
                   className="ml-1 font-[family-name:var(--font-sans)] text-[0.22em] font-semibold"
@@ -1365,219 +1469,22 @@ export default async function ArafitPage() {
               </p>
             </div>
           </div>
-          <div className="min-w-0">
-            <div className="flex items-end justify-center gap-4 sm:gap-6">
-              <Phone
-                src="/images/arafit/iphone/aluno-treino.webp"
-                alt="Aba Treino com o Fito sugerindo dicas do primeiro exercício e o programa da semana"
-                className="w-[46%] max-w-[250px] translate-y-8"
-              />
-              <Phone
-                src="/images/arafit/iphone/ia-aluno-assistente.webp"
-                alt="Conversa com o Fito: hoje é o Treino A, ver os exercícios ou montar o programa"
-                className="w-[46%] max-w-[250px]"
-              />
-            </div>
-            <FitoSays
-              className="mt-14"
-              fito={<Fito pose="levantando-peso" />}
-              label="Treino do dia"
-            >
-              Oi, Ana! Hoje é o Treino A, Peito e Abdômen. Quer se preparar?
-            </FitoSays>
-          </div>
+          <FitoSays
+            className="min-w-0"
+            fito={<Fito pose="levantando-peso" />}
+            label="Treino do dia"
+          >
+            Oi, Ana! Hoje é o Treino A, Peito e Abdômen. Quer se preparar?
+          </FitoSays>
         </div>
       </section>
 
-      {/* 6 · COMPARISON — light table, the only-in-Arafit grid, what every plan has */}
-      <section className="cut-top-rev relative overflow-x-clip bg-white">
-        <div className={WRAP}>
-          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-            <div>
-              <Kicker color={TINT.pink.fg}>Comparando</Kicker>
-              <Title>
-                Mais alunos <span className="block">pelo mesmo preço.</span>
-              </Title>
-            </div>
-            <p className="max-w-md text-[17px] leading-[1.7]" style={{ color: MUTED }}>
-              Pelo preço que outros cobram por 3 alunos, o Pro do Arafit leva 10. E o que vem junto
-              — agenda que cobra, aviso no celular do aluno, treino offline e IA — está aqui, lado a
-              lado.
-            </p>
-          </div>
-
-          {/* Phones: one card per line of the comparison. */}
-          <ul className="mt-12 grid gap-4 md:hidden">
-            {MATRIX.map((r) => (
-              <li
-                key={r.label}
-                className="rounded-[22px] border p-5"
-                style={{ borderColor: '#E6E6EA', background: BG }}
-              >
-                <p
-                  className="text-[11px] font-semibold uppercase tracking-[0.18em]"
-                  style={{ color: MUTED }}
-                >
-                  {r.group}
-                </p>
-                <p className="mt-1 flex items-center gap-2 text-[18px] font-bold">
-                  {r.group === 'Com IA' ? <AiMark size={16} /> : null}
-                  {r.label}
-                </p>
-                <dl className="mt-3 grid gap-2 text-[14.5px]">
-                  {APPS.map((app, k) => (
-                    <div
-                      key={app}
-                      className="grid grid-cols-[6.8rem_1fr] gap-3 rounded-xl px-2.5 py-2"
-                      style={{ background: k === 0 ? '#ffffff' : undefined }}
-                    >
-                      <dt style={{ color: k === 0 ? INK : MUTED }}>
-                        {k === 0 ? <Wordmark className="text-[22px]" /> : app}
-                      </dt>
-                      <dd className="min-w-0">
-                        <CompareCell v={r.cells[k]} ours={k === 0} />
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-              </li>
-            ))}
-          </ul>
-
-          <div
-            className="mt-14 hidden overflow-x-auto rounded-[24px] border md:block"
-            style={{ borderColor: '#E6E6EA' }}
-          >
-            <table className="w-full min-w-[900px] border-collapse text-left text-[14.5px] leading-[1.5]">
-              <caption className="sr-only">
-                Arafit, MFIT Personal, Tecnofit Personal e Mobitrainer: preços e funções divulgados,
-                consultados em outubro de 2026
-              </caption>
-              <thead>
-                <tr>
-                  <th scope="col" className="w-[19%] px-5 py-5" />
-                  {APPS.map((app, k) => (
-                    <th
-                      key={app}
-                      scope="col"
-                      className="w-[20%] px-5 py-5 align-bottom text-[16px] font-bold"
-                      style={k === 0 ? { background: TINT.coral.bg } : undefined}
-                    >
-                      {k === 0 ? <Wordmark className="text-[32px]" /> : app}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              {(['Preço por mês', 'O que tem', 'Com IA'] as const).map((group) => (
-                <tbody key={group}>
-                  <tr className="border-t" style={{ borderColor: '#E6E6EA' }}>
-                    <th
-                      scope="colgroup"
-                      colSpan={5}
-                      className="px-5 pb-2 pt-6 text-[11.5px] font-semibold uppercase tracking-[0.18em]"
-                      style={{ color: MUTED }}
-                    >
-                      {group}
-                    </th>
-                  </tr>
-                  {MATRIX.filter((r) => r.group === group).map((r) => (
-                    <tr key={r.label} className="border-t" style={{ borderColor: '#EFEFF2' }}>
-                      <th scope="row" className="px-5 py-4 align-top font-semibold">
-                        {r.group === 'Com IA' ? (
-                          <span className="flex items-start gap-2">
-                            <AiMark size={15} className="mt-[0.2em]" />
-                            {r.label}
-                          </span>
-                        ) : (
-                          r.label
-                        )}
-                      </th>
-                      {r.cells.map((c, k) => (
-                        <td
-                          key={APPS[k]}
-                          className="px-5 py-4 align-top"
-                          style={k === 0 ? { background: TINT.coral.bg, color: INK } : undefined}
-                        >
-                          <CompareCell v={c} ours={k === 0} />
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              ))}
-            </table>
-          </div>
-          <p className="mt-5 max-w-3xl text-[13px] leading-[1.6]" style={{ color: MUTED }}>
-            Com base no que cada empresa publica no próprio site e nas lojas de apps, consultado em
-            outubro de 2026; preços e funções podem ter mudado. Um traço (&mdash;) quer dizer que
-            não encontramos a função descrita publicamente, não que ela não exista. Confira no site
-            de cada um.
-          </p>
-
-          <div className="mt-24">
-            <Kicker color={TINT.amber.fg}>Só no Arafit</Kicker>
-            <h3 className="af-display mt-4 text-[clamp(2.3rem,5vw,3.8rem)]">
-              O que você não acha nos outros.
-            </h3>
-            <InView
-              as="ul"
-              className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
-              threshold={0.1}
-            >
-              {ONLY.map(({ icon, tint, t, b }, k) => (
-                <li
-                  key={t}
-                  className={`iv iv-up rounded-[24px] border p-6 lg:p-7 ${tint === 'ai' ? '' : 'bg-white'}`}
-                  style={{
-                    ...i(k),
-                    borderColor: tint === 'ai' ? AI_BORDER : '#E6E6EA',
-                    background: tint === 'ai' ? AI_SOFT : undefined,
-                  }}
-                >
-                  <IconChip icon={icon} tint={tint} size={48} />
-                  <h4 className="mt-5 text-[19px] font-bold tracking-tight">{t}</h4>
-                  <p className="mt-2 text-[15px] leading-[1.6]" style={{ color: MUTED }}>
-                    {b}
-                  </p>
-                </li>
-              ))}
-            </InView>
-            <p className="mt-4 text-[13px]" style={{ color: MUTED }}>
-              Funções que não encontramos no que MFIT Personal, Tecnofit Personal e Mobitrainer
-              divulgam (outubro de 2026).
-            </p>
-          </div>
-
-          <div
-            className="mt-20 grid gap-8 rounded-[28px] p-7 sm:p-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center"
-            style={{ background: BG }}
-          >
-            <h3 className="af-display text-[clamp(2.1rem,4vw,3rem)]">
-              Em todos os planos, inclusive o grátis.
-            </h3>
-            <ul className="grid gap-4 sm:grid-cols-2">
-              {ALL_PLANS.map((x) => (
-                <li key={x} className="flex items-start gap-3 text-[16px] font-semibold">
-                  <span
-                    className="grid h-6 w-6 shrink-0 place-items-center rounded-full"
-                    style={{ background: TINT.green.bg, color: TINT.green.fg }}
-                  >
-                    <Check className="h-3.5 w-3.5" aria-hidden="true" />
-                  </span>
-                  {x}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* 7 · PLANS + FOUNDER */}
+      {/* 7 · PLANS — the tiers, how they compare, the founder seats */}
       <section id="planos" className="cut-top relative overflow-x-clip" style={{ background: BG }}>
         <div className={WRAP}>
           <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
             <div>
-              <Kicker color={TINT.teal.fg}>Planos</Kicker>
+              <Kicker color={RED}>Planos</Kicker>
               <Title>
                 Comece com dois alunos. <span className="block">Cresça sem trocar de app.</span>
               </Title>
@@ -1608,7 +1515,7 @@ export default async function ArafitPage() {
                   >
                     Personal · {t.name}
                   </p>
-                  <p className="af-display mt-5 text-[clamp(4rem,7vw,5.6rem)]">
+                  <p className="af-display mt-5 text-[clamp(3.2rem,5vw,4.2rem)]">
                     <span className="align-top text-[0.32em]">R$</span>
                     {t.price}
                     {t.period ? (
@@ -1643,24 +1550,220 @@ export default async function ArafitPage() {
             })}
           </InView>
 
+          <div
+            className="mt-8 grid gap-8 rounded-[28px] bg-white p-7 sm:p-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center"
+            style={{ boxShadow: 'inset 0 0 0 1px #E6E6EA' }}
+          >
+            <h3 className="af-display text-[clamp(1.9rem,3.2vw,2.4rem)]">
+              Em todos os planos, inclusive o grátis.
+            </h3>
+            <ul className="grid gap-4 sm:grid-cols-2">
+              {ALL_PLANS.map((x) => (
+                <li key={x} className="flex items-start gap-3 text-[16px] font-semibold">
+                  <span
+                    className="grid h-6 w-6 shrink-0 place-items-center rounded-full"
+                    style={{ background: TINT.green.bg, color: TINT.green.fg }}
+                  >
+                    <Check className="h-3.5 w-3.5" aria-hidden="true" />
+                  </span>
+                  {x}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="mt-24 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+            <div>
+              <Kicker color={RED}>Comparando</Kicker>
+              <h3 className="af-display mt-4 text-[clamp(2rem,3.8vw,2.7rem)]">
+                Mais alunos pelo mesmo preço.
+              </h3>
+            </div>
+            <p className="max-w-md text-[17px] leading-[1.7]" style={{ color: MUTED }}>
+              Pelo preço que outros cobram por 3 alunos, o Pro do Arafit leva 10. E estas funções
+              não encontramos nos outros:
+            </p>
+          </div>
+
+          <div>
+            <InView
+              as="ul"
+              className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+              threshold={0.1}
+            >
+              {ONLY.map(({ icon, tint, t, b }, k) => (
+                <li
+                  key={t}
+                  className="iv iv-up rounded-[24px] border bg-white p-6 lg:p-7"
+                  style={{ ...i(k), borderColor: '#E6E6EA' }}
+                >
+                  <IconChip icon={icon} tint={tint} size={48} />
+                  <h4 className="mt-5 text-[19px] font-bold tracking-tight">{t}</h4>
+                  <p className="mt-2 text-[15px] leading-[1.6]" style={{ color: MUTED }}>
+                    {b}
+                  </p>
+                </li>
+              ))}
+            </InView>
+            <p className="mt-4 text-[13px]" style={{ color: MUTED }}>
+              Funções que não encontramos no que MFIT Personal, Tecnofit Personal e Mobitrainer
+              divulgam (outubro de 2026).
+            </p>
+          </div>
+
+          {/* The full table, side by side, for whoever wants every line. */}
+          <details
+            className="group mt-10 rounded-[24px] border bg-white"
+            style={{ borderColor: '#E6E6EA' }}
+          >
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded-[24px] px-6 py-5 text-[16px] font-semibold [&::-webkit-details-marker]:hidden">
+              Ver a comparação completa, função por função
+              <ChevronDown
+                className="h-5 w-5 shrink-0 transition group-open:rotate-180"
+                aria-hidden="true"
+              />
+            </summary>
+            <div className="border-t px-4 pb-6 sm:px-6" style={{ borderColor: '#EFEFF2' }}>
+              {/* Phones: one card per line of the comparison. */}
+              <ul className="mt-6 grid gap-4 md:hidden">
+                {MATRIX.map((r) => (
+                  <li
+                    key={r.label}
+                    className="rounded-[22px] border p-5"
+                    style={{ borderColor: '#E6E6EA', background: BG }}
+                  >
+                    <p
+                      className="text-[11px] font-semibold uppercase tracking-[0.18em]"
+                      style={{ color: MUTED }}
+                    >
+                      {r.group}
+                    </p>
+                    <p className="mt-1 flex items-center gap-2 text-[18px] font-bold">
+                      {r.group === 'Com IA' ? <AiMark size={16} /> : null}
+                      {r.label}
+                    </p>
+                    <dl className="mt-3 grid gap-2 text-[14.5px]">
+                      {APPS.map((app, k) => (
+                        <div
+                          key={app}
+                          className="grid grid-cols-[6.8rem_1fr] gap-3 rounded-xl px-2.5 py-2"
+                          style={{ background: k === 0 ? '#ffffff' : undefined }}
+                        >
+                          <dt style={{ color: k === 0 ? INK : MUTED }}>
+                            {k === 0 ? <Wordmark className="text-[22px]" /> : app}
+                          </dt>
+                          <dd className="min-w-0">
+                            <CompareCell v={r.cells[k]} ours={k === 0} />
+                          </dd>
+                        </div>
+                      ))}
+                    </dl>
+                  </li>
+                ))}
+              </ul>
+
+              <div
+                className="mt-6 hidden overflow-x-auto rounded-[20px] border md:block"
+                style={{ borderColor: '#E6E6EA' }}
+              >
+                <table className="w-full min-w-[900px] border-collapse text-left text-[14.5px] leading-[1.5]">
+                  <caption className="sr-only">
+                    Arafit, MFIT Personal, Tecnofit Personal e Mobitrainer: preços e funções
+                    divulgados, consultados em outubro de 2026
+                  </caption>
+                  <thead>
+                    <tr>
+                      <td className="w-[19%] px-5 py-5" />
+                      {APPS.map((app, k) => (
+                        <th
+                          key={app}
+                          scope="col"
+                          className="w-[20%] px-5 py-5 align-bottom text-[16px] font-bold"
+                          style={k === 0 ? { background: TINT.coral.bg } : undefined}
+                        >
+                          {k === 0 ? <Wordmark className="text-[32px]" /> : app}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  {(['Preço por mês', 'O que tem', 'Com IA'] as const).map((group) => (
+                    <tbody key={group}>
+                      <tr className="border-t" style={{ borderColor: '#E6E6EA' }}>
+                        <th
+                          scope="rowgroup"
+                          colSpan={5}
+                          className="px-5 pb-2 pt-6 text-[11.5px] font-semibold uppercase tracking-[0.18em]"
+                          style={{ color: MUTED }}
+                        >
+                          {group}
+                        </th>
+                      </tr>
+                      {MATRIX.filter((r) => r.group === group).map((r) => (
+                        <tr key={r.label} className="border-t" style={{ borderColor: '#EFEFF2' }}>
+                          <th scope="row" className="px-5 py-4 align-top font-semibold">
+                            {r.group === 'Com IA' ? (
+                              <span className="flex items-start gap-2">
+                                <AiMark size={15} className="mt-[0.2em]" />
+                                {r.label}
+                              </span>
+                            ) : (
+                              r.label
+                            )}
+                          </th>
+                          {r.cells.map((c, k) => (
+                            <td
+                              key={APPS[k]}
+                              className="px-5 py-4 align-top"
+                              style={
+                                k === 0 ? { background: TINT.coral.bg, color: INK } : undefined
+                              }
+                            >
+                              <CompareCell v={c} ours={k === 0} />
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  ))}
+                </table>
+              </div>
+              <p className="mt-5 max-w-3xl text-[13px] leading-[1.6]" style={{ color: MUTED }}>
+                Com base no que cada empresa publica no próprio site e nas lojas de apps, consultado
+                em outubro de 2026; preços e funções podem ter mudado. Um traço (&mdash;) quer dizer
+                que não encontramos a função descrita publicamente, não que ela não exista. Confira
+                no site de cada um.
+              </p>
+            </div>
+          </details>
+
           {/* Founder: the 100 first */}
           <div
             id="fundador"
-            className="mt-16 grid gap-12 overflow-hidden rounded-[32px] border p-7 sm:p-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-center"
+            className="mt-24 grid gap-12 overflow-hidden rounded-[32px] border p-7 sm:p-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-center"
             style={{ borderColor: `${GOLD}66`, background: GOLD_CREAM }}
           >
             <div className="min-w-0">
               <Kicker color={GOLD}>Fundador</Kicker>
-              <h3 className="af-display mt-4 text-[clamp(2.6rem,5.4vw,4.4rem)]">
+              <h3 className="af-display mt-4 text-[clamp(2.2rem,4vw,3.2rem)]">
                 Os 100 primeiros pagam{' '}
-                <span style={{ color: GOLD_DEEP }}>R$ 19,90 por 2 anos.</span>
+                <span style={{ color: GOLD_DEEP }}>R$ 19,90 por mês durante 2 anos.</span>
               </h3>
               <p className="mt-5 max-w-xl text-[16.5px] leading-[1.7]" style={{ color: MUTED }}>
-                O Ilimitado inteiro por R$ 19,90 por mês (ou R$ 199 por ano) durante 2 anos; depois
-                segue no preço normal. Cada fundador ganha um número, o selo dourado e a marca do app
-                em dourado, que ficam para sempre. A vaga não volta: quem fica mais de 60 dias sem
-                pagar perde o preço de fundador.
+                O plano Ilimitado, com alunos sem limite, pelo preço de fundador. Cada fundador
+                ganha um número, o selo dourado e a marca do app em dourado, que ficam para sempre.
               </p>
+              <dl className="mt-6 grid gap-x-8 gap-y-4 text-[15px] leading-[1.55] sm:grid-cols-2">
+                {FOUNDER_TERMS.map(([t, b]) => (
+                  <div key={t}>
+                    <dt className="font-bold" style={{ color: INK }}>
+                      {t}
+                    </dt>
+                    <dd className="mt-0.5" style={{ color: MUTED }}>
+                      {b}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
               <div className="mt-8">
                 <p className="text-[14px] font-bold" style={{ color: GOLD_DEEP }}>
                   {seats === 0 ? 'Vagas esgotadas' : `Restam ${seats} de ${FOUNDER_SEATS} vagas`}
@@ -1736,16 +1839,18 @@ export default async function ArafitPage() {
         <div className={WRAP}>
           <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
             <div>
-              <Kicker color={TINT.peach.fg}>Em breve</Kicker>
+              <Kicker color={RED}>Em breve</Kicker>
               <h2
                 id="em-breve-title"
-                className="af-display mt-5 max-w-[14em] text-balance text-[clamp(2.8rem,7.4vw,5.6rem)]"
+                className="af-display mt-5 max-w-[14em] text-balance text-[clamp(2.4rem,5.4vw,4.2rem)]"
               >
-                Chegando à App Store e ao Google Play.
+                O personal orienta. O aluno realiza.{' '}
+                <span style={{ color: AI }}>O Fito acompanha.</span>
               </h2>
               <p className="mt-7 max-w-xl text-[17px] leading-[1.7]" style={{ color: MUTED }}>
-                O Arafit ainda não está nas lojas. Quer saber quando chegar, garantir uma vaga de
-                fundador ou usar com os seus alunos desde o começo? Fale com a gente.
+                O Arafit chega em breve à App Store e ao Google Play. Quer saber quando chegar,
+                garantir uma vaga de fundador ou usar com os seus alunos desde o começo? Fale com a
+                gente.
               </p>
               <div className="mt-9 flex flex-wrap gap-3">
                 <PrimaryCta href={NOTIFY_HREF}>Quero saber quando chegar</PrimaryCta>

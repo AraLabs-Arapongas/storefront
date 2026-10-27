@@ -211,7 +211,7 @@ export default function ArafitTermosPage() {
                 <li>
                   <strong>Personal:</strong> grátis com até 2 alunos ativos; <strong>Pro</strong>{' '}
                   (até 10 alunos ativos) por R$ 9,90/mês ou R$ 99/ano; <strong>Ilimitado</strong> por
-                  R$ 29,90/mês ou R$ 239/ano.
+                  R$ 29,90/mês ou R$ 299/ano.
                 </li>
                 <li>
                   <strong>Preço de fundador:</strong> os 100 primeiros assinantes do Ilimitado pagam

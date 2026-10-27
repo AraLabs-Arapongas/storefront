@@ -268,7 +268,7 @@ const MATRIX: {
     group: 'Preço por mês',
     label: 'Alunos ilimitados',
     cells: [
-      { t: 'R$ 29,90', note: 'R$ 19,90/mês no anual. Fundador: R$ 19,90/mês por 2 anos.' },
+      { t: 'R$ 29,90', note: 'R$ 299 no anual. Fundador: R$ 19,90/mês por 2 anos.' },
       'R$ 39,90',
       { t: 'R$ 36,90', note: 'R$ 24,90/mês no anual' },
       { t: 'Não tem', note: 'Até 30 alunos por R$ 69,90' },
@@ -482,7 +482,7 @@ const FOUNDER_TERMS = [
   ['Preço', 'R$ 19,90 por mês, ou R$ 199 por ano.'],
   [
     'Por quanto tempo',
-    '2 anos. Depois, o preço normal do Ilimitado: R$ 29,90 por mês ou R$ 239 por ano.',
+    '2 anos. Depois, o preço normal do Ilimitado: R$ 29,90 por mês ou R$ 299 por ano.',
   ],
   ['Para quem', 'Personal trainers, só os 100 primeiros.'],
   ['A vaga não volta', 'Quem fica mais de 60 dias sem pagar perde o preço de fundador.'],
@@ -521,7 +521,7 @@ const TIERS = [
     name: 'Ilimitado',
     price: '29,90',
     period: '/mês',
-    note: 'ou R$ 19,90/mês no anual (R$ 239) · para quem vive disso',
+    note: 'ou R$ 299 por ano · para quem vive disso',
     items: ['Alunos sem limite', '30 avisos para todos por mês', '500 usos de IA por mês'],
   },
 ] as const;
